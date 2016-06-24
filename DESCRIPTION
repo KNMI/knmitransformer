@@ -6,6 +6,7 @@ Author: Who wrote it
 Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: Transforms todays climate into future climate.
 License: file LICENSE
+Imports: data.table
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Suggests: testthat
