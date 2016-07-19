@@ -5,11 +5,10 @@
 
 'transformation program'  of the KNMI 2014 climate change scenarios for the Netherlands
 
-**Note so far this package has no functionality and all the mentioned files below live currently in '/inst/oldFiles'**
+**Note so far this package has only very limited functionality**
 
 Bakker, A. (2015), Time series transformation tool: description of the program to generate time series
 consistent with the KNMI’14 climate scenarios, Technical Report TR-349, De Bilt, the Netherlands.
-
 
 The actual transformation procedures for daily meteorological variables are written in R-code
 
@@ -25,9 +24,10 @@ The R-functions
    
 are meant to read and transform ASCII files in a format often used by KNMI to provide data to professional users (see example *.dat files mentioned below).
    
+
 The deltas / change factors are read from separate files 
 
-(*official KNMI14 change factors / deltas are contained in the ASCII files 'deltas-KNMI14_\*.txt'*)
+(*official KNMI14 change factors / deltas are contained in the ASCII files 'deltas-KNMI14_\*.txt' in the 'inst/extData' folder*)
 
 The following files provide (elemetary) examples how to use above scripts.
 

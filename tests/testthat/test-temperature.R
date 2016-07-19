@@ -24,7 +24,7 @@ test_that("regression test", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                    ofile=ofile,
                                    delta.file=delta.file,
                                    sc=sc,
@@ -32,7 +32,6 @@ test_that("regression test", {
                                    var=var,
                                    regio.file=regio.file)
 
-  tmp <- fread("uitvoertg.txt")
   expect_equal_to_reference(tmp, "regressionTestOutput/uitvoertg.rds")
 })
 
