@@ -1,0 +1,45 @@
+---
+title: "Proposal for knmitransformer package"
+author: "Christiana Photiadou and Martin Roth"
+date: "July 19, 2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Motivation
+
+- Usability
+- Version control
+- Regression testing
+- Documentation
+- Upcoming climate scenarios
+
+## Trigger
+Project by Raymond (and different project by Jules?) for transforming new data again 
+
+## People
+The following people should get involved:
+
+- Geert-Jan
+- Jules
+- Jeanet
+
+Mention that knmitransformer was removed from knmi account for technical reasons.
+
+## Deliverables
+
+- Unified functionality
+- FORTRAN call to R package for website
+- Regression testing
+- Recalculation of the KNMI14 (revised) indices
+
+## Outlook
+Research on method
+
+## TODO
+
+- Time estimate
+- Try to deley the RWS/Deltares project to let them profit from this as well
