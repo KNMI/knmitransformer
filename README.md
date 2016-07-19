@@ -1,5 +1,8 @@
 # knmitransformer
 
+[![Travis-CI Build Status](https://travis-ci.org/MartinRoth/knmitransformer.svg?branch=master)](https://travis-ci.org/MartinRoth/knmitransformer)
+[![Coverage Status](https://img.shields.io/codecov/c/github/MartinRoth/knmitransformer/master.svg)](https://codecov.io/github/MartinRoth/knmitransformer?branch=master)
+
 'transformation program'  of the KNMI 2014 climate change scenarios for the Netherlands
 
 **Note so far this package has no functionality and all the mentioned files below live currently in '/inst/oldFiles'**

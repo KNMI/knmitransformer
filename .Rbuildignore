@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^Proposal\.Rmd$
 ^Proposal\.pdf$
+^\.travis\.yml$
