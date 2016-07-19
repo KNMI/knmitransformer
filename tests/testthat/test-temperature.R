@@ -1,13 +1,8 @@
-context("temperature")
+context("Temperature transformation")
 
 library(data.table)
 
-## TODO: Rename context
-## TODO: Add more tests
-
-
-
-test_that("regression test", {
+test_that("Temperature regression test", {
   ifile="DeBilt_tg_1901-2014_detrended.dat"     # input file
   #ifile="./tests/testthat/DeBilt_tg_1901-2014_detrended.dat"     # input file
   ofile="uitvoertg.txt"      # output file (DEFAULT="uitvoer.txt")
