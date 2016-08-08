@@ -42,4 +42,5 @@ Research on method
 ## TODO
 
 - Time estimate
+- Who is responisble for Fog, Wind, and Humidity?
 - Try to delay the RWS/Deltares project to let them profit from this as well
