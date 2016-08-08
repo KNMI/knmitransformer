@@ -2,7 +2,7 @@
 title: "Proposal for knmitransformer package"
 author: "Christiana Photiadou and Martin Roth"
 date: "July 19, 2016"
-output: pdf_document
+output: word_document
 ---
 
 ```{r setup, include=FALSE}
