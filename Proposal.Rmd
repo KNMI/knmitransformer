@@ -25,7 +25,7 @@ The following people should get involved:
 
 - Geert-Jan
 - Jules
-- Jeanet
+- Janette
 
 Mention that knmitransformer was removed from knmi account for technical reasons.
 
@@ -42,4 +42,4 @@ Research on method
 ## TODO
 
 - Time estimate
-- Try to deley the RWS/Deltares project to let them profit from this as well
+- Try to delay the RWS/Deltares project to let them profit from this as well
