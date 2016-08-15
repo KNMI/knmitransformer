@@ -10,37 +10,58 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Motivation
-
 - Usability
 - Version control
 - Regression testing
 - Documentation
-- Upcoming climate scenarios
+- Upcoming climate scenarios or other projects 
+- Maintenance?
 
 ## Trigger
-Project by Raymond (and different project by Jules?) for transforming new data again 
+- Project transformed timeseries for Deltares and RWS by Raymond Sluiter and Jules Beersma for transforming new data again.
+- Knmitransformer was removed from knmi account for technical reasons.
 
 ## People
 The following people should get involved:
 
-- Geert-Jan
-- Jules
-- Janette
-
-Mention that knmitransformer was removed from knmi account for technical reasons.
+- Geert Jan van Oldenborgh
+- Jules Beersma
+- Janette Bessembinder
+- assign technical issues to a thrid person... (suggested by Ge)
 
 ## Deliverables
-
 - Unified functionality
 - FORTRAN call to R package for website
 - Regression testing
 - Recalculation of the KNMI14 (revised) indices
+- Research on method
 
 ## Outlook
-Research on method
+1. Collection of data (Christiana or maybe someone else also?) (ready under version control): Days ...
+- reference data 1981-2010 (102 stations)
+- deltas
+- transformed data and validation using knmi14 scenarios version '15
 
-## TODO
+2. Manual regression test (Christiana & Martin): Days...
+- code and reference data should be the same as the trasformed data
+- indices = scenarios
+- ref data...mmm unclear
 
+3. Switch to function and automatic regression tests (Martin and Christiana): Days 3 each 
+- put deltas in an internal structure. In case deltas are changed then they should be updated by the one who calculates them (Jules?).
+- replace source commands
+- test De Bilt: for all variables, all scenarios (check delta files directly). 
+- indices calculations for the above selection. check functions of indices.
+
+4. Fix appearence to user and output format (Martin & Christiana): Days 4 each
+- wrapping function in fortran
+
+5. Fortran call to this package and webpage launch (Martin & Christiana): Days 5 each 
+
+
+## TODO-ISSUES
+- A4 proposal
 - Time estimate
 - Who is responisble for Fog, Wind, and Humidity?
-- Try to delay the RWS/Deltares project to let them profit from this as well
+- Try to delay the RWS/Deltares project to let them profit from this as well. Since it is financed by RWS it should be finished within 2016.
+- Who is responsible for maintenance? 
