@@ -2,7 +2,7 @@
 title: "Proposal for knmitransformer package"
 author: "Christiana Photiadou and Martin Roth"
 date: "July 19, 2016"
-output: word_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Trigger
 - Project transformed timeseries for Deltares and RWS by Raymond Sluiter and Jules Beersma for transforming new data again.
-- Knmitransformer was removed from knmi account for technical reasons.
+- Different scripts in use ...
 
 ## People
 The following people should get involved:
@@ -35,6 +35,8 @@ The following people should get involved:
 - Regression testing
 - Recalculation of the KNMI14 (revised) indices
 - Research on method
+- Flowchart :)
+- Delta calculation is not a part of this package 
 
 ## Outlook
 1. Collection of data (Christiana or maybe someone else also?) (ready under version control): Days ...
@@ -42,26 +44,38 @@ The following people should get involved:
 - deltas
 - transformed data and validation using knmi14 scenarios version '15
 
-2. Manual regression test (Christiana & Martin): Days...
-- code and reference data should be the same as the trasformed data
+1. Manual regression test (Christiana & Martin): Days...
+- code and reference data should be the same as the transformed data
+- deltas should be the same
 - indices = scenarios
-- ref data...mmm unclear
 
-3. Switch to function and automatic regression tests (Martin and Christiana): Days 3 each 
-- put deltas in an internal structure. In case deltas are changed then they should be updated by the one who calculates them (Jules?).
+2. Switch to package structure and use automatic regression tests (Martin and Christiana): Days 5 each 
+- put deltas in an internal structure. 
 - replace source commands
-- test De Bilt: for all variables, all scenarios (check delta files directly). 
+- test De Bilt: for all variables, all scenarios 
 - indices calculations for the above selection. check functions of indices.
 
-4. Fix appearence to user and output format (Martin & Christiana): Days 4 each
+FIRST MILESTONE
+
+3. Fix appearence to user and output format (Martin (6) Christiana (6), Geert Jan, Rudmer, Janette, Jules)
+- tidy input data
+- one common function?
 - wrapping function in fortran
+- User testing (Rudmer?, Janette?)
+- MetaData
 
-5. Fortran call to this package and webpage launch (Martin & Christiana): Days 5 each 
+4. Fortran call to this package and webpage launch (Martin & Christiana): Days 5 each 
 
+SECOND MILESTONE
+
+5. Extend basis version
+- longer time series (Rudmer?)
+- interpolating time range e.g. 2075 (Geert Jan?)
 
 ## TODO-ISSUES
 - A4 proposal
 - Time estimate
-- Who is responisble for Fog, Wind, and Humidity?
+- Who is responsible for Fog, Wind, and Humidity?
 - Try to delay the RWS/Deltares project to let them profit from this as well. Since it is financed by RWS it should be finished within 2016.
 - Who is responsible for maintenance? 
+- Who is responsible for deltas?
