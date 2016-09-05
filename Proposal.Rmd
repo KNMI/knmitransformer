@@ -52,10 +52,10 @@ The following people are invited to participate:
         * indices = scenarios
 
 2. Switch to package structure and use automatic regression tests (Time: 13 days)
-- Internal structure for the deltas 
-- test De Bilt: for all variables, all scenarios
-- Calculation of the indices for the above selection. Corresponding version of index functions will be documented.
-- Profvis: profiling performance increase, multiple stations/grids 
+    - Internal structure for the deltas 
+    - test De Bilt: for all variables, all scenarios
+    - Calculation of the indices for the above selection. Corresponding version of index functions will be documented.
+    - Profvis: profiling performance increase, multiple stations/grids 
 
 ##### FIRST MILESTONE
 This basic version of the package can be used for the reproduction of the KNMI14 scenarios.
