@@ -62,17 +62,17 @@ This basic version of the package can be used for the reproduction of the KNMI14
 
 3. Communication: Fix appearance to user and output format (Time: 20 days)  
 Contribution from Geert Jan, Rudmer, Janette, Jules etc
-- agree on one general function be used or a function per variable (temp, precip, etc)?
-- Wrapping function in fortran
-- User testing by Rudmer and Janette. The potential user should be in position to retrieve own results.
-- Fix output and input format (tidy data) 
-- Include metadata
-- All users have to agree on the functionality of the package
-- Internal changes of the packages functionality should not affect user 
+    - agree on one general function be used or a function per variable (temp, precip, etc)?
+    - Wrapping function in fortran
+    - User testing by Rudmer and Janette. The potential user should be in position to retrieve own results.
+    - Fix output and input format (tidy data) 
+    - Include metadata
+    - All users have to agree on the functionality of the package
+    - Internal changes of the packages functionality should not affect user 
 
 4. Outreach web application (Time: 15 days)
-- shiny app 
-- Fortran call for climate explorer
+    - shiny app 
+    - Fortran call for climate explorer
 
 
 ##### SECOND MILESTONE
@@ -81,9 +81,9 @@ Use of the same version locally and online. Feedback from the users and potentia
 
 5. Extend basis version   
 Issues for an extended version will be address in this phase if necessary. List to be adapted after recommendations by the rest of the team
-- scientific method (A sounding board for the future directions should be established.)
-- longer time series (Rudmer?)
-- interpolating time range e.g. 2075 (Geert Jan?)
+    - scientific method (A sounding board for the future directions should be established.)
+    - longer time series (Rudmer?)
+    - interpolating time range e.g. 2075 (Geert Jan?)
 
 [^1]:
 Time calculated for an average R user
