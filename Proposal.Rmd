@@ -2,7 +2,7 @@
 title: "Proposal for knmitransformer package"
 author: "Christiana Photiadou and Martin Roth"
 date: "July 19, 2016"
-output: html_document
+output: word_document
 ---
 
 ```{r setup, include=FALSE}
@@ -16,18 +16,79 @@ knitr::opts_chunk$set(echo = TRUE)
 - Documentation
 - Upcoming climate scenarios or other projects 
 - Maintenance?
-
+ 
+ 
 ## Trigger
 - Project transformed timeseries for Deltares and RWS by Raymond Sluiter and Jules Beersma for transforming new data again.
-- Different scripts in use ...
+- Knmitransformer was removed from knmi account for technical reasons.
 
-## People
-The following people should get involved:
+Proposal
 
-- Geert Jan van Oldenborgh
-- Jules Beersma
-- Janette Bessembinder
-- assign technical issues to a thrid person... (suggested by Ge)
+Proposal
+The KNMI climate change scenarios have gain a great deal of reputation not only in the Netherlands but also abroad. Since their first edition in 2006 a new version was required to translate the findings of the IPCC report (2013) to the Netherlands. For the delivery of the KNMI14 scenarios a necessary update of the code resulted to -together with moving staff- in having multiple versions of the transformation code. Today, there is no unified version and a responsible team to support it. Furthermore,  we are moving into a user-friendly oriented climate services where we should be able to provide to the potential user an open source package of the transformation code.
+Therefore, with this project we propose to develop an open source package of the KNMI scenarios with unified functionality. The basic version of the proposed package will reproduce as validation the KNMI14 (revised ‘15) scenarios through one single general function.  The unified functionality of the package together with the automated regression testing will allows us to update and maintain efficiently future versions. The resulted R-package (library) will be distributed through the KNMI github account, where potential users both inside and outside KNMI will be able to use the package for individual use or projects. For the web application, a Fortran wrap will be used to call the R package. The output format (timesries, dates, station id, etc) of the package will be decided within the team, following feedback from the expert users within KNMI. At this stage no visualization of the results will be discussed. A detailed documentation with a flowchart of the functionality of the package will be available together with the package itself.
+
+The following people are invited to participate:
+
+- Christiana Photiadou expert user & development, project coordination
+- Martin Roth development, project coordination
+- Geert Jan van Oldenborgh expert user & development
+- Jules Beersma expert user & development
+- Janette Bessembinder communication
+- Rudmer Jilderda expert user & development
+
+
+A work package description follows with detailed steps and milestones:
+
+1.  Base version
+    - Set up the base version (Time: 15 days). 
+    This is constructed in the first phase with the goal to recalculate the KNMI14 (version ‘15) scenarios. 
+        * Collection of data (ready under version control): All data necessary for calculation of the scenarios (temperature, precipitation, global radiation…) are gathered. 
+        *reference data 1981-2010: 102 stations for precipitation, temperature and rest?
+        * deltas for all scenarios and time horizons. The deltas are separated from data and remain the same in this project.
+        * First transformed of data and proceed to validation using KNMI14(‘15) scenarios
+
+    - Manual regression test. TIme: 8 days
+    Here a regression test is performed to guarantee that the developed basic version  produces the same results as KNMI14(‘15). 
+        * code and reference data should be the same as the transformed data
+        * deltas should be the same
+        * indices = scenarios
+
+2. Switch to package structure and use automatic regression tests: Time: 13 days.
+- put deltas in an internal structure.
+- replace source commands
+- test De Bilt: for all variables, all scenarios
+- indices calculations for the above selection. check functions of indices.
+- Profvis: profiling performance increase, multiple stations/grids, (De Bilt station)
+
+FIRST MILESTONE
+This basic version of the package can be used for the reproduction of the KNMI14 scenarios.
+
+3. Communication: Fix appearance to user and output format Time 20 days.
+Contribution from Geert Jan, Rudmer, Janette, Jules etc
+- tidy input data
+- should one common function be used or a function per variable?
+- wrapping function in fortran
+- User testing (Rudmer?, Janette?). The potential user should be in position to retrieve own results…
+- One output format 
+- MetaData
+- all users have to agree on the functionality of the package. 
+
+4. Outreach web application: Time: 15 days
+Internal changes of the packages functionality should not affect user appi plap plapla  
+shiny app 
+Fortran call for climate explorer
+
+
+SECOND MILESTONE
+Use of the same basic version is used local online. Feedback from the users and potential improvements on the functionality are documented. 
+
+
+5. Extend basis version. Issues for an extended version will be address in this phase if necessary. List to be adapted after recommendations by the rest of the team
+- scientific method….
+- longer time series (Rudmer?)
+- interpolating time range e.g. 2075 (Geert Jan?)
+
 
 ## Deliverables
 - Unified functionality
@@ -36,46 +97,74 @@ The following people should get involved:
 - Recalculation of the KNMI14 (revised) indices
 - Research on method
 - Flowchart :)
-- Delta calculation is not a part of this package 
+- Delta calculation is not a part of this package
+The following people are invited to participate:
 
-## Outlook
-1. Collection of data (Christiana or maybe someone else also?) (ready under version control): Days ...
-- reference data 1981-2010 (102 stations)
-- deltas
-- transformed data and validation using knmi14 scenarios version '15
+- Christiana Photiadou expert user & development, project coordination
+- Martin Roth development, project coordination
+- Geert Jan van Oldenborgh expert user & development
+- Jules Beersma expert user & development
+- Janette Bessembinder communication
+- Rudmer Jilderda expert user & development
 
-1. Manual regression test (Christiana & Martin): Days...
-- code and reference data should be the same as the transformed data
-- deltas should be the same
-- indices = scenarios
 
-2. Switch to package structure and use automatic regression tests (Martin and Christiana): Days 5 each 
-- put deltas in an internal structure. 
+A work package description follows with detailed steps and milestones:
+
+1.  Base version
+    - Set up the base version (Time: 15 days). 
+    This is constructed in the first phase with the goal to recalculate the KNMI14 (version ‘15) scenarios. 
+        * Collection of data (ready under version control): All data necessary for calculation of the scenarios (temperature, precipitation, global radiation…) are gathered. 
+        *reference data 1981-2010: 102 stations for precipitation, temperature and rest?
+        * deltas for all scenarios and time horizons. The deltas are separated from data and remain the same in this project.
+        * First transformed of data and proceed to validation using KNMI14(‘15) scenarios
+
+    - Manual regression test. TIme: 8 days
+    Here a regression test is performed to guarantee that the developed basic version  produces the same results as KNMI14(‘15). 
+        * code and reference data should be the same as the transformed data
+        * deltas should be the same
+        * indices = scenarios
+
+2. Switch to package structure and use automatic regression tests: Time: 13 days.
+- put deltas in an internal structure.
 - replace source commands
-- test De Bilt: for all variables, all scenarios 
+- test De Bilt: for all variables, all scenarios
 - indices calculations for the above selection. check functions of indices.
+- Profvis: profiling performance increase, multiple stations/grids, (De Bilt station)
 
 FIRST MILESTONE
+This basic version of the package can be used for the reproduction of the KNMI14 scenarios.
 
-3. Fix appearence to user and output format (Martin (6) Christiana (6), Geert Jan, Rudmer, Janette, Jules)
+3. Communication: Fix appearance to user and output format Time 20 days.
+Contribution from Geert Jan, Rudmer, Janette, Jules etc
 - tidy input data
-- one common function?
+- should one common function be used or a function per variable?
 - wrapping function in fortran
-- User testing (Rudmer?, Janette?)
+- User testing (Rudmer?, Janette?). The potential user should be in position to retrieve own results…
+- One output format 
 - MetaData
+- all users have to agree on the functionality of the package. 
 
-4. Fortran call to this package and webpage launch (Martin & Christiana): Days 5 each 
+4. Outreach web application: Time: 15 days
+Internal changes of the packages functionality should not affect user appi plap plapla  
+shiny app 
+Fortran call for climate explorer
+
 
 SECOND MILESTONE
+Use of the same basic version is used local online. Feedback from the users and potential improvements on the functionality are documented. 
 
-5. Extend basis version
+
+5. Extend basis version. Issues for an extended version will be address in this phase if necessary. List to be adapted after recommendations by the rest of the team
+- scientific method….
 - longer time series (Rudmer?)
 - interpolating time range e.g. 2075 (Geert Jan?)
 
-## TODO-ISSUES
-- A4 proposal
-- Time estimate
-- Who is responsible for Fog, Wind, and Humidity?
-- Try to delay the RWS/Deltares project to let them profit from this as well. Since it is financed by RWS it should be finished within 2016.
-- Who is responsible for maintenance? 
-- Who is responsible for deltas?
+
+## Deliverables
+- Unified functionality
+- FORTRAN call to R package for website
+- Regression testing
+- Recalculation of the KNMI14 (revised) indices
+- Research on method
+- Flowchart :)
+- Delta calculation is not a part of this package
