@@ -21,10 +21,10 @@ The basic version of the proposed package will be validated such that it can be 
 The unified functionality of the package together with the automated regression testing will allow us to update and maintain efficiently future versions.
 The R-package (library) will be distributed through the KNMI github account, where potential users, both inside and outside KNMI, will be able to use the package for individual use and projects.
 For the web application, a Fortran wrap will be used to call the R package.
-The output format (timesries, dates, station id, etc) of the package will be decided within the team, following feedback from the expert users within KNMI.
+The output format (timeseries, dates, station id, etc) of the package will be decided within the team, following feedback from the expert users within KNMI.
 At this stage no visualization of the results will be discussed, as this package focus on the transformation of the data.
 A detailed documentation with a flowchart of the functionality of the package will be available together with the package itself. 
-Finaly, the benefits of the developed R-package will be, hopefully, demonstrated in the upcoming calculations for the future KNMI scenarios. 
+Finally, the benefits of the developed R-package will be, hopefully, demonstrated in the upcoming calculations for the future KNMI scenarios. 
 
 The following people are invited to participate:
 
