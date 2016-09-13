@@ -2,7 +2,7 @@
 title: "Proposal for knmitransformer package"
 author: "Christiana Photiadou and Martin Roth"
 date: "September 5, 2016"
-output: word_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -14,7 +14,9 @@ The KNMI climate change scenarios have gained a great deal of reputation not onl
 Since their first edition in 2006 a new version was required to translate the findings of the IPCC report (2013) to the Netherlands. 
 For the delivery of the KNMI14 scenarios a necessary update of the code resulted -together with moving staff- in having multiple versions of the transformation code. 
 Today, there is no unified version and a responsible team to support it. 
-Furthermore, we are moving into a user-friendly oriented climate services where we should be able to provide to the potential user an open source package of the transformation code. 
+However, there is currently a transition at KNMI away from single scripts to encapsulated functions and towards version controlled development of these methods.
+This increases the user-friendliness and simplifies the distribution of the methods to interested parties. 
+As the transformation program is an important building block for applications inside and outside KNMI, we feel the need to update it to these new standards.
 
 With this project we propose to develop an open source R-package of the KNMI scenario transformation with unified functionality.
 The basic version of the proposed package will be validated such that it can be used to reproduce the KNMI14 (revised ‘15) scenarios (except for wind, humidity and fog).
@@ -26,7 +28,7 @@ At this stage no visualization of the results will be discussed, as this package
 A detailed documentation with a flowchart of the functionality of the package will be available together with the package itself. 
 Finally, the benefits of the developed R-package will be, hopefully, demonstrated in the upcoming calculations for the future KNMI scenarios. 
 
-The following people are invited to participate:
+The following people are invited to participate and should be involved in the sounding board for future developments:
 
 - Christiana Photiadou (development, project coordination)
 - Martin Roth (development, project coordination)
@@ -34,11 +36,13 @@ The following people are invited to participate:
 - Jules Beersma (development)
 - Janette Bessembinder (communication)
 - Rudmer Jilderda (development)
+- Geert Lenderink 
 
 
 #### A work package description follows with detailed steps and milestones:
 
-1.  -Prepare for version controlled development (Time: 20-25 days[^1]):Set up the base version in git repository. This is constructed in the first phase with the goal to recalculate the KNMI14 (version ‘15) indices. This is a validation step which allows us to be sure that we have exactly the same input/output in order to recalculate separate indices if needed.
+1.  Prepare for version controlled development (Time: 20-25 days[^1])
+    - Set up the base version in git repository. This is constructed in the first phase with the goal to recalculate the KNMI14 (version ‘15) indices. This is a validation step which allows us to be sure that we have exactly the same input/output in order to recalculate separate indices if needed.
         * Collection of data: All data necessary for calculation of the scenarios (temperature, precipitation, global radiation) are gathered. 
         * reference data 1981-2010: 102 stations for precipitation, temperature and rest?
         * deltas for all scenarios and time horizons (2030,2050,2085). The deltas are separated from data and remain the same in this project. Update of deltas should not interfere with the functionality of the package.
@@ -83,9 +87,9 @@ Use of the same version locally and online. Feedback from the users and potentia
     - Geert Jan: interpolating time range e.g. 2075?
     - rounding for brochure
     - Janette: interest in spatial correlations prior/past transformation between stations, and also correlations with gridded precipitation data
-    -Janette: look/test alternative ways of drying/wetting days (Alexander Bakker proposed that version 1.2 could be better, but no time was invested to actually test this version)
-    -Janette: method for trasnforming hourly precipitation data (consistency with daily precipitation).
-    -Janette: include transformation programmes for humidity and wind speed (although changes are not significant).
+    - Janette: look/test alternative ways of drying/wetting days (Alexander Bakker proposed that version 1.2 could be better, but no time was invested to actually test this version)
+    - Janette: method for trasnforming hourly precipitation data (consistency with daily precipitation).
+    - Janette: include transformation programmes for humidity and wind speed (although changes are not significant).
 
 
 [^1]:
