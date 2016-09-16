@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 The KNMI climate change scenarios have gained a great deal of reputation not only in the Netherlands but also abroad. 
 Since their first edition in 2006 a new version was required to translate the findings of the IPCC report (2013) to the Netherlands. 
 For the delivery of the KNMI14 scenarios a necessary update of the code resulted -together with moving staff- in having multiple versions of the transformation code. 
-Today, there is no unified version and a responsible team to support it. 
+Today, there is no unified version and no responsible team to support it. 
 However, there is currently a transition at KNMI away from single scripts to encapsulated functions and towards version controlled development of these methods.
 This increases the user-friendliness and simplifies the distribution of the methods to interested parties. 
 As the transformation program is an important building block for applications inside and outside KNMI, we feel the need to update it to these new standards.
@@ -21,20 +21,20 @@ As the transformation program is an important building block for applications in
 With this project we propose to develop an open source R-package of the KNMI scenario transformation with unified functionality.
 The basic version of the proposed package will be validated such that it can be used to reproduce the KNMI14 (revised ‘15) scenarios (except for wind, humidity and fog).
 The unified functionality of the package together with the automated regression testing will allow us to update and maintain efficiently future versions.
-The R-package (library) will be distributed through the KNMI github account, where potential users, both inside and outside KNMI, will be able to use the package for individual use and projects.
+The R-package (library) will be distributed through the KNMI github account, where potential users, both inside and outside KNMI, will be able to obtain the package for individual use and projects.
 For the web application, a Fortran wrap will be used to call the R package.
 The output format (timeseries, dates, station id, etc) of the package will be decided within the team, following feedback from the expert users within KNMI.
 At this stage no visualization of the results will be discussed, as this package focuses on the transformation of the data.
 A detailed documentation with a flowchart of the functionality of the package will be available together with the package itself. 
-A sounding board will be also available, where the team can discuss stategies/advice for further development, discuss the possible rigidity of the method vs. user requests, extended version of the package, etc.
-Finally, the benefits of the developed R-package will be, hopefully, demonstrated in the upcoming calculations for the future KNMI scenarios. 
+A sounding board will be created, where the team can discuss strategies/advice for further development, discuss the possible rigidity of the method vs. user requests, extended version of the package, etc.
+Finally, this way of developing will be helpful for the upcoming calculations for the future KNMI scenarios. The underlying methods are likely to change for the new scenarios and will lead to a new version of this package. 
 
 The following people are invited to participate and should be involved in the sounding board for future developments:
 
 - Christiana Photiadou (development, project coordination)
 - Martin Roth (development, project coordination)
 - Rudmer Jilderda (development)
-- extra person for developemnt
+- extra person for development
 - Geert Jan van Oldenborgh 
 - Jules Beersma 
 - Janette Bessembinder
@@ -43,14 +43,16 @@ The following people are invited to participate and should be involved in the so
 
 #### A work package description follows with detailed steps and milestones:
 
-1.  Prepare for version controlled development (Time: 20-25 days[^1])
-    - Set up the base version in git repository. This is constructed in the first phase with the goal to recalculate the KNMI14 (version ‘15) indices. This is a validation step which allows us to be sure that we have exactly the same input/output in order to recalculate separate indices if needed.
+1.  Prepare for version controlled development (Time: 20-25 days[^1])  
+    The declared aim of this first step is a repository, with the functions used to obtain the KNMI14 (version '15) scenario indices.
+    This is needed to ensure the consistency of the package functionality with this version of the KNMI scenario indices.
+    - Set up the base version in git repository.  
         * Collection of data: All data (for temp, precip, global radiation and sunshine duration) necessary for calculation of the scenarios (mean values for reference period and scenarios for temperature, precipitation, evaporation and drought) and the extremes indices (Rudmer) are gathered. 
         * deltas for all scenarios and time horizons (2030,2050,2085). The deltas are separated from data and remain the same in this project. Update of deltas should not interfere with the functionality of the package.
         * two version of precipitation (v1.1, v1.2) with different way of handling wet/dry days. In the basic package version v1.1 is used as validation and issues concerning v1.2 are moved to the soundboard for further investigation.
         * rounding step for the brochure. This step is not included in the validation procedure but is moved to the soundboard.
-    - Manual regression test
-    Here a regression test is performed to guarantee that the developed basic version  produces the same results as KNMI14(‘15). 
+    - Manual regression test  
+    Here a regression test is performed to guarantee that the developed basic version produces the same results as KNMI14(‘15). 
         * processed reference data should be the same as the reference data out from KDC
         * deltas should be the same
         * new indices = reference indices
@@ -89,7 +91,7 @@ Use of the same version locally and online. Feedback from the users and potentia
     - rounding for brochure
     - Janette: interest in spatial correlations prior/past transformation between stations, and also correlations with gridded precipitation data
     - Janette: look/test alternative ways of drying/wetting days (Alexander Bakker proposed that version 1.2 could be better, but no time was invested to actually test this version)
-    - Janette: method for trasnforming hourly precipitation data (consistency with daily precipitation).
+    - Janette: method for transforming hourly precipitation data (consistency with daily precipitation).
     - Janette: include transformation programmes for humidity and wind speed (although changes are not significant).
 
 
