@@ -31,9 +31,9 @@ Finally, this way of developing will be helpful for the upcoming calculations fo
 
 The following people are invited to participate and should be involved in the sounding board for future developments:
 
-- Christiana Photiadou (development, project coordination)
-- Martin Roth (development, project coordination)
-- Rudmer Jilderda (development)
+- Christiana Photiadou
+- Martin Roth
+- Rudmer Jilderda 
 - extra person for development
 - Geert Jan van Oldenborgh 
 - Jules Beersma 
@@ -43,58 +43,46 @@ The following people are invited to participate and should be involved in the so
 
 #### A work package description follows with detailed steps and milestones:
 
-1.  Prepare for version controlled development (Time: 20-25 days[^1])  
-    The declared aim of this first step is a repository, with the functions used to obtain the KNMI14 (version '15) scenario indices.
-    This is needed to ensure the consistency of the package functionality with this version of the KNMI scenario indices.
-    - Set up the base version in git repository.  
-        * Collection of data: All data (for temp, precip, global radiation and sunshine duration) necessary for calculation of the scenarios (mean values for reference period and scenarios for temperature, precipitation, evaporation and drought) and the extremes indices (Rudmer) are gathered. 
-        * deltas for all scenarios and time horizons (2030,2050,2085). The deltas are separated from data and remain the same in this project. Update of deltas should not interfere with the functionality of the package.
-        * two version of precipitation (v1.1, v1.2) with different way of handling wet/dry days. In the basic package version v1.1 is used as validation and issues concerning v1.2 are moved to the soundboard for further investigation.
-        * rounding step for the brochure. This step is not included in the validation procedure but is moved to the soundboard.
+1.  Prepare for version controlled development  (Time: 20-25 days[^1])  
+    The declared aim of this first step is a repository, with the functions used to transform the reference data according to the KNMI14 scenarios.
+    This is needed to ensure the consistency of the package functionality.
+    - Set up the base version of the transformation package in a git repository  
+        * collection of all data (for temp, precip, global radiation and sunshine duration) for the reference period and the scenarios 
+        * deltas for all scenarios and time horizons (2030,2050,2085)
+        * two versions for precipitation (v1.1, v1.2) with different ways of handling wet/dry days. In the basic package, version v1.1 is used in the validation and v1.2 is kept in a separate branch
+    - Set up an additional repository for the indices calculations which are needed for the brochure. The rounding issue will be addressed here
     - Manual regression test  
     Here we test file by file if the input and output correspond to the results of KNMI14(‘15). 
-        * Transforming the reference data should yield the same as the transformed data data out from KDC
-        * deltas should be the same
-        * new indices = reference indices
+        * transforming the reference data should yield the same as the transformed data out from KDC; the same applies for the indices
+        * extra test is introduced for the consistency of the deltas
 
 2. Switch to package structure and use automatic regression tests (Time: 13 days)  
-   Automating the tests from above (manual testing) leads to consistency in the code development
-    - Internal structure for the deltas 
+   Automating the tests from above (manual testing) ensures consistency in the code development
     - test De Bilt: for all variables, all scenarios
-    - Calculation of the indices for the above selection. Corresponding version of index functions will be documented.
-    - Profiling performance and remove of bottlenecks, multiple stations/grids 
-
-##### FIRST MILESTONE
-This basic version of the package can be used for the reproduction of the KNMI14 indices
+    - profiling performance and remove of bottlenecks, multiple stations/grids 
+    - calculation of the indices by calling the new transformation package
 
 3. Communication: Fix appearance to user and output format (Time: 20 days)  
-Contribution from Geert Jan, Rudmer, Janette, Jules etc
-    - agree on one general function be used or a function per variable (temp, precip, etc).  The different transformation procedure of temperature and precipitation will not be visible to the user but it will be to the developer and does not affect the choice of one general function.
-    - Wrapping function in fortran to be able to use the R package in climate explorer and the visualization page. 
-    - User testing by Rudmer and Janette. The potential user should be in position to retrieve own results.
-    - Fix output and input format (tidy data) 
-    - Include metadata
-    - The team has to agree on the functionality of the package
-    - Further internal changes of the package functionality should and will not affect potential users after release. 
+    - agree on one general function to be used or a function per variable (temp, precip, etc)
+    - user testing
+    - fix output and input format (tidy data) 
+    - include metadata
 
 4. Outreach web application (Time: 15 days)
-    - shiny app 
-    - Fortran call for climate explorer
+    - Fortran call for climate explorer 
+    - shiny app?
 
 
-##### SECOND MILESTONE
-Use of the same version locally and online. Feedback from the users and potential improvements on the functionality are documented. 
-
-
-5. Sounding board/ Extend basic version: Up to now we only want to be able to reproduce the KNMI14 indices. Therefore, we restrict the possibilities of the base package. On the other side we are doing this under version control, laying thus the foundation for a controlled development. In one repository there can be different versions. However adding features to the master repository will be first addressed in the sounding board and tested in a developed version. The sounding board is therefore intended for the team to write ideas/wishes of exploring once the R package is released. The ideas could be implemented through internships or further internal projects but all of them under version control. 
-    - Rudmer: longer time series, changes Rudmer made and now runs for the Deltares project.
-    - Geert Jan: interpolating time range e.g. 2075?
-    - rounding for brochure
-    - Janette: interest in spatial correlations prior/past transformation between stations, and also correlations with gridded precipitation data
-    - Janette: look/test alternative ways of drying/wetting days (Alexander Bakker proposed that version 1.2 could be better, but no time was invested to actually test this version)
-    - Janette: method for transforming hourly precipitation data (consistency with daily precipitation).
-    - Janette: include transformation programs for humidity and wind speed (although changes are not significant).
-
-
+#### Sounding board/ Extend basic version:  
+Here, ideas and wishes for further development of the R package are discussed.
+The ideas could be implemented through internships or further internal projects but all of them under version control.
+   
+- longer time series
+- interpolating time range e.g. 2075?
+- interest in spatial correlations prior/past transformation between stations, and also correlations with gridded precipitation data
+- look/test alternative ways of drying/wetting days
+- method for transforming hourly precipitation data (consistency with daily precipitation).
+- include transformation programs for humidity and wind speed
+    
 [^1]:
 Time calculated for an average R user
