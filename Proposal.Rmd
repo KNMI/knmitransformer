@@ -58,7 +58,7 @@ The following people are invited to participate and should be involved in the so
         * new indices = reference indices
 
 2. Switch to package structure and use automatic regression tests (Time: 13 days)  
-   Automating the tests from above leads to consistency in the code development
+   Automating the tests from above (manual testing) leads to consistency in the code development
     - Internal structure for the deltas 
     - test De Bilt: for all variables, all scenarios
     - Calculation of the indices for the above selection. Corresponding version of index functions will be documented.
