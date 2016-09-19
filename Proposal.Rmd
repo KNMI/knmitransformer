@@ -2,7 +2,7 @@
 title: "Proposal for knmitransformer package"
 author: "Christiana Photiadou and Martin Roth"
 date: "September 5, 2016"
-output: html_document
+output: word_document
 ---
 
 ```{r setup, include=FALSE}
@@ -52,12 +52,13 @@ The following people are invited to participate and should be involved in the so
         * two version of precipitation (v1.1, v1.2) with different way of handling wet/dry days. In the basic package version v1.1 is used as validation and issues concerning v1.2 are moved to the soundboard for further investigation.
         * rounding step for the brochure. This step is not included in the validation procedure but is moved to the soundboard.
     - Manual regression test  
-    Here a regression test is performed to guarantee that the developed basic version produces the same results as KNMI14(‘15). 
-        * processed reference data should be the same as the reference data out from KDC
+    Here we test file by file if the input and output correspond to the results of KNMI14(‘15). 
+        * Transforming the reference data should yield the same as the transformed data data out from KDC
         * deltas should be the same
         * new indices = reference indices
 
-2. Switch to package structure and use automatic regression tests (Time: 13 days)
+2. Switch to package structure and use automatic regression tests (Time: 13 days)  
+   Automating the tests from above leads to consistency in the code development
     - Internal structure for the deltas 
     - test De Bilt: for all variables, all scenarios
     - Calculation of the indices for the above selection. Corresponding version of index functions will be documented.
@@ -92,7 +93,7 @@ Use of the same version locally and online. Feedback from the users and potentia
     - Janette: interest in spatial correlations prior/past transformation between stations, and also correlations with gridded precipitation data
     - Janette: look/test alternative ways of drying/wetting days (Alexander Bakker proposed that version 1.2 could be better, but no time was invested to actually test this version)
     - Janette: method for transforming hourly precipitation data (consistency with daily precipitation).
-    - Janette: include transformation programmes for humidity and wind speed (although changes are not significant).
+    - Janette: include transformation programs for humidity and wind speed (although changes are not significant).
 
 
 [^1]:
