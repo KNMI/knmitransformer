@@ -50,7 +50,7 @@ The following people are invited to participate and should be involved in the so
         * collection of all data (for temp, precip, global radiation and sunshine duration) for the reference period and the scenarios 
         * deltas for all scenarios and time horizons (2030,2050,2085)
         * two versions for precipitation (v1.1, v1.2) with different ways of handling wet/dry days. In the basic package, version v1.1 is used in the validation and v1.2 is kept in a separate branch
-    - Set up an additional repository for the indices calculations which are needed for the brochure. The rounding issue will be addressed here
+    - Set up an additional repository for the indices calculations which are needed for the brochure. The rounding issue will be addressed here[^2]. 
     - Manual regression test  
     Here we test file by file if the input and output correspond to the results of KNMI14(‘15). 
         * transforming the reference data should yield the same as the transformed data out from KDC; the same applies for the indices
@@ -69,20 +69,23 @@ The following people are invited to participate and should be involved in the so
     - include metadata
 
 4. Outreach web application (Time: 15 days)
-    - Fortran call for climate explorer 
+    - longer time series
+    - interpolating time range e.g. 2075?
+    - Wrapper for climate explorer (has to save file)
     - shiny app?
 
 
 #### Sounding board/ Extend basic version:  
 Here, ideas and wishes for further development of the R package are discussed.
 The ideas could be implemented through internships or further internal projects but all of them under version control.
-   
-- longer time series
-- interpolating time range e.g. 2075?
-- interest in spatial correlations prior/past transformation between stations, and also correlations with gridded precipitation data
-- look/test alternative ways of drying/wetting days
-- method for transforming hourly precipitation data (consistency with daily precipitation).
-- include transformation programs for humidity and wind speed
+
+  - Numbering should be done according to the numbering in the documents (v4.0=v3.2(doc))
+  - interest in spatial correlations prior/past transformation between stations, and also correlations with gridded precipitation data
+  - look/test alternative ways of drying/wetting days
+  - method for transforming hourly precipitation data (consistency with daily precipitation).
+  - include transformation programs for humidity and wind speed
     
 [^1]:
 Time calculated for an average R user
+[^2]:
+Rounding for the brochure was done manually 
