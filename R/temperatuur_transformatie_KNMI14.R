@@ -130,6 +130,11 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
   # CONSTANTS AND FUNCTIONS ###############################################################################
   version="v1.0"
 
+  if (!p %in% c(2030, 2050, 2085)) {
+    flog.error("p={%s} has to be a valid period", paste(p))
+    stop("Period must be valid, i.e. 2030, 2050, or 2085")
+  }
+
   # READ REFERENCE DATA FROM ifile
   flog.info("Reading reference data, file={%s}", ifile)
   H.comments <- scan(ifile, character(0), sep = "\n", quiet=TRUE) # select lines with "#" from reference file and ignore them
@@ -171,15 +176,11 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
   # comments
   writeLines("# Transformed daily temperature [deg.C] according to KNMI'14 transformation tool,")
   writeLines(paste("# version ",version,sep=""))
-  if(is.na(p)) {
-    writeLines(paste("# Deltas are derived from ", sc, sep=""))
+  if(p=="2030") {
+    writeLines("# Deltas are derived from the 2030 decadal prediction")
   } else {
-    if(p=="2030") {
-      writeLines("# Deltas are derived from the 2030 decadal prediction")
-    } else {
-      writeLines(paste("# Deltas are derived from ", sc ," scenario", sep=""))
-      writeLines(paste("# around the time horizon ", p, sep=""))
-    }
+    writeLines(paste("# Deltas are derived from ", sc ," scenario", sep=""))
+    writeLines(paste("# around the time horizon ", p, sep=""))
   }
   writeLines("#")
   writeLines("# Bakker A. (2015), Time series transformation tool: description of the program to")

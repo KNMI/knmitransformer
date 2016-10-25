@@ -40,7 +40,7 @@ test_that("Temperature regression test", {
                                    var=var
                                    )
 
-  expect_equal_to_reference(tmp, "regressionTestOutput/uitvoertg_without_regional.file.rds")
+  expect_equal_to_reference(tmp, "regressionTestOutput/uitvoertg_without_regional.rds")
 
   tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                    ofile=ofile,
@@ -50,15 +50,16 @@ test_that("Temperature regression test", {
                                    var=var
                                    )
 
-  expect_equal_to_reference(tmp, "regressionTestOutput/uitvoertg_GL_2050.file.rds")
+  expect_equal_to_reference(tmp, "regressionTestOutput/uitvoertg_GL_2050.rds")
 
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  expect_error(temperatuur_transformatie_KNMI14(ifile=ifile,
                                    ofile=ofile,
                                    delta.file=delta.file,
                                    sc="GL",
+                                   p=NA,
                                    var=var
-                                   )
+                                   ),
+               "Period must be valid, i.e. 2030, 2050, or 2085")
 
-  expect_equal_to_reference(tmp, "regressionTestOutput/uitvoertg_GL.file.rds")
 })
 
