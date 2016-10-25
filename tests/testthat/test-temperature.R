@@ -1,5 +1,8 @@
 context("Temperature transformation")
 
+library(futile.logger)
+flog.threshold(DEBUG)
+flog.appender(appender.file('knmitransformer.log'))
 library(data.table)
 
 test_that("Temperature regression test", {

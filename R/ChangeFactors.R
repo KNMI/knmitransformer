@@ -1,10 +1,12 @@
 
 ReadChangeFactors <- function(deltaFile, var, scenario, period) {
   if(!is.na(deltaFile)) {
+    flog.info("Reading deltas, file={%s}", deltaFile)
     deltas <- read.table(deltaFile,header=T)         # deltas are provided in file "delta.file"
   } else {
     if(period=="2030") {
       tmpPath <- paste("deltas-KNMI14__",var,"_______2030.txt",sep="")
+      flog.info("Reading deltas, file={%s}", tmpPath)
       tmpPath <- system.file("extdata", tmpPath, package="knmitransformer")
       deltas <- read.table(tmpPath, header=T) # 2030 decadal prediction if p=2030
     } else {
@@ -14,6 +16,7 @@ ReadChangeFactors <- function(deltaFile, var, scenario, period) {
       tmpPath <- paste("deltas-KNMI14__",var,"___",
                        str.ext(scenario, "_", 3), "_",
                        str.ext(period, "_", 4), ".txt", sep="")
+      flog.info("Reading deltas, file={%s}", tmpPath)
       tmpPath <- system.file("extdata", tmpPath, package="knmitransformer")
       deltas <- read.table(tmpPath,header=T)
     }

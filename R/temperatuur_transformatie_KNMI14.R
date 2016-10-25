@@ -125,12 +125,15 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
                                               p=2030,
                                               var,
                                               regio.file=NA) {
-
+  flog.info("Running temperature transformation")
+  flog.debug("Version is 1.0")
   # CONSTANTS AND FUNCTIONS ###############################################################################
   version="v1.0"
 
   # READ REFERENCE DATA FROM ifile
-  H.comments <- scan(ifile, character(0), sep = "\n") # select lines with "#" from reference file and ignore them
+  flog.info("Reading reference data, file={%s}", ifile)
+  H.comments <- scan(ifile, character(0), sep = "\n", quiet=TRUE) # select lines with "#" from reference file and ignore them
+  flog.debug("Scanning of the reference data returned n={%i} lines.", length(H.comments))
   H.comments <- H.comments[grep("#",H.comments)]      # (only necessary for output file)
 
   obs        <- read.table(ifile,header=F)            # read reference data (header wordt niet apart ingelezen)
@@ -139,13 +142,13 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
   names(obs) <- c("date",round(obs[1,-1],0))          # station names are read from first line
   obs        <- obs[which(obs[,1]!=0),]               # actual data
 
- print(names(obs))
-#print(obs[1:10,])
+  flog.debug("obs colnames={%s}", paste(names(obs), collapse = ", "))
+  #print(obs[1:10,])
 
   # READ CHANGE FACTORS (DELTAS)
   deltas <- ReadChangeFactors(delta.file, var, sc, p)
 
-#print(deltas)
+  #print(deltas)
 
   # LINK STATIONS TO REGIONS
   if(is.na(regio.file)) {
@@ -156,7 +159,7 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
     regio.tabel   <- as.vector(stationstabel[match(names(obs)[-1],stationstabel[,1]),2])
   }
 
- print(regio.tabel)
+  flog.debug("regio.table={%s}", paste(regio.tabel, collapse = ", "))
 
   # TRANSFORMATION
   #source("tm_trans_KNMI14.R")
@@ -197,6 +200,9 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
 #JB<
 
   sink()
-  fread(ofile)
+  result <- fread(ofile)
 
+  flog.debug("Temperature transformation ended successfully!")
+  flog.debug("")
+  return(result)
 } # end function temp.trans_KNMI14
