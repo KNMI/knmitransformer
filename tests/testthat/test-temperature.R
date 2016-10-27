@@ -63,3 +63,11 @@ test_that("Temperature regression test", {
 
 })
 
+test_that("Temperature regression test (with actual data)", {
+  filename <- system.file("ReferenceData", "KNMI14____ref__tg___19810101-20101231_v1.0_T25.txt", package="knmitransformer")
+  tmp <- fread(filename, skip = 1)
+  colnames <- c("date", paste0("Station_", as.integer(tmp[1, -1, with = FALSE])))
+  observations <- tmp[-(1:5), ]
+  setnames(observations, colnames)
+  expect_equal(3*2,9)
+})
