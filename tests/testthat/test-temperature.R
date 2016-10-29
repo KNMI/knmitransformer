@@ -64,10 +64,35 @@ test_that("Temperature regression test", {
 })
 
 test_that("Temperature regression test (with actual data)", {
-  filename <- system.file("ReferenceData", "KNMI14____ref__tg___19810101-20101231_v1.0_T25.txt", package="knmitransformer")
-  tmp <- fread(filename, skip = 1)
-  colnames <- c("date", paste0("Station_", as.integer(tmp[1, -1, with = FALSE])))
-  observations <- tmp[-(1:5), ]
-  setnames(observations, colnames)
-  expect_equal(3*2,9)
+  #filename <- system.file("ReferenceData", "KNMI14____ref__tg___19810101-20101231_v1.0_T25.txt", package="knmitransformer")
+  #tmp <- fread(filename, skip = 1)
+  #colnames <- c("date", paste0("Station_", as.integer(tmp[1, -1, with = FALSE])))
+  #observations <- tmp[-(1:5), ]
+  #setnames(observations, colnames)
+  #expect_equal(3*2,9)
+  ifile="DeBilt_tg_1980-2010.dat"     # input file
+  ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
+  delta.file=NA            # file containing deltas
+  # if delta.file is not provided (DEFAULT)
+  # KNMI'14 deltas are used
+
+  # deltas are derived from KNMI'14 deltas if delta.file is not specified
+  # following arguments are used
+  sc="GL"                    # scenario ("GL", "GH", "WL", "WH")
+  p=2030                     # time horizon (2030, 2050, 2085)
+  var="tg"                   # temperature characteristic ("tg" = mean,
+  #                             "tn" = min,
+  #                             "tx" = max)
+  regio.file="stationstabel" # table that links stations to region
+
+  ref <- fread("DeBilt_tg____2030.dat")
+
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
 })
