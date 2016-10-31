@@ -1,4 +1,3 @@
-#' Split reference data file into single files
 SplitReferenceFile <- function(filename) {
   comments <- scan(filename, character(0), sep = "\n", quiet=TRUE) # select lines with "#" from reference file and ignore them
   comments <- comments[grep("#", comments)]      # (only necessary for output file)
