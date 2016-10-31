@@ -70,7 +70,7 @@ test_that("Temperature regression test (with actual data)", {
   #observations <- tmp[-(1:5), ]
   #setnames(observations, colnames)
   #expect_equal(3*2,9)
-  ifile="DeBilt_tg_1980-2010.dat"     # input file
+  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
   delta.file=NA            # file containing deltas
   # if delta.file is not provided (DEFAULT)
@@ -85,8 +85,6 @@ test_that("Temperature regression test (with actual data)", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  ref <- fread("DeBilt_tg____2030.dat")
-
   tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
@@ -94,5 +92,8 @@ test_that("Temperature regression test (with actual data)", {
                                           p=p,
                                           var=var,
                                           regio.file=regio.file)
-  expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg___DeBilt.rds")
+
+  #ref <- fread("regressionInput/temperature/KNMI14___2030_tg___19810101-20101231_v3.2_260.txt")
+  #expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
 })
