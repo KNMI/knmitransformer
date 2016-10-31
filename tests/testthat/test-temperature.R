@@ -96,6 +96,25 @@ test_that("Temperature regression test (with actual data) 2030", {
 
   #ref <- fread("regressionInput/temperature/KNMI14___2030_tg___19810101-20101231_v3.2_260.txt")
   #expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
+
+  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"     # input file
+  ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
+  delta.file=NA            # file containing deltas
+  sc="GL"                    # scenario ("GL", "GH", "WL", "WH")
+  p=2030                     # time horizon (2030, 2050, 2085)
+  var="tg"                   # temperature characteristic ("tg" = mean,
+  #                             "tn" = min,
+  #                             "tx" = max)
+  regio.file="stationstabel" # table that links stations to region
+
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg.rds")
 })
 
 test_that("Temperature regression test (with actual data) WH", {
