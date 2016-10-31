@@ -30,7 +30,7 @@ test_that("Temperature regression test", {
                                    var=var,
                                    regio.file=regio.file)
 
-  expect_equal_to_reference(tmp, "regressionTestOutput/uitvoertg.rds")
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/uitvoertg.rds")
 
   tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                    ofile=ofile,
@@ -40,7 +40,7 @@ test_that("Temperature regression test", {
                                    var=var
                                    )
 
-  expect_equal_to_reference(tmp, "regressionTestOutput/uitvoertg_without_regional.rds")
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/uitvoertg_without_regional.rds")
 
   tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                    ofile=ofile,
@@ -50,7 +50,7 @@ test_that("Temperature regression test", {
                                    var=var
                                    )
 
-  expect_equal_to_reference(tmp, "regressionTestOutput/uitvoertg_GL_2050.rds")
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/uitvoertg_GL_2050.rds")
 
   expect_error(temperatuur_transformatie_KNMI14(ifile=ifile,
                                    ofile=ofile,
