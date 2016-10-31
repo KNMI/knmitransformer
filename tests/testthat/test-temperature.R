@@ -177,3 +177,83 @@ test_that("Temperature regression test (with actual data) GL", {
   #ref <- fread("regressionInput/temperature/KNMI14_WH_2050_tg___19810101-20101231_v3.2_260.txt")
   #expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
 })
+
+test_that("Temperature regression test (with actual data) GH", {
+  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
+  ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
+  delta.file=NA            # file containing deltas
+  # if delta.file is not provided (DEFAULT)
+  # KNMI'14 deltas are used
+
+  # deltas are derived from KNMI'14 deltas if delta.file is not specified
+  # following arguments are used
+  sc="GH"                    # scenario ("GL", "GH", "WL", "WH")
+  p=2050                     # time horizon (2030, 2050, 2085)
+  var="tg"                   # temperature characteristic ("tg" = mean,
+  #                             "tn" = min,
+  #                             "tx" = max)
+  regio.file="stationstabel" # table that links stations to region
+
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tg___DeBilt.rds")
+
+  p = 2085
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tg___DeBilt.rds")
+
+
+  #ref <- fread("regressionInput/temperature/KNMI14_WH_2050_tg___19810101-20101231_v3.2_260.txt")
+  #expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
+})
+
+test_that("Temperature regression test (with actual data) GH", {
+  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
+  ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
+  delta.file=NA            # file containing deltas
+  # if delta.file is not provided (DEFAULT)
+  # KNMI'14 deltas are used
+
+  # deltas are derived from KNMI'14 deltas if delta.file is not specified
+  # following arguments are used
+  sc="WL"                    # scenario ("GL", "GH", "WL", "WH")
+  p=2050                     # time horizon (2030, 2050, 2085)
+  var="tg"                   # temperature characteristic ("tg" = mean,
+  #                             "tn" = min,
+  #                             "tx" = max)
+  regio.file="stationstabel" # table that links stations to region
+
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tg___DeBilt.rds")
+
+ # p = 2085
+ # tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+ #                                         ofile=ofile,
+ #                                         delta.file=delta.file,
+ #                                         sc=sc,
+ #                                         p=p,
+ #                                         var=var,
+ #                                         regio.file=regio.file)
+ # expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tg___DeBilt.rds")
+
+
+  #ref <- fread("regressionInput/temperature/KNMI14_WH_2050_tg___19810101-20101231_v3.2_260.txt")
+  #expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
+})
