@@ -5,52 +5,143 @@ flog.threshold(DEBUG)
 flog.appender(appender.file('knmitransformer.log'))
 library(data.table)
 
-test_that("Temperature regression test", {
-  ifile="DeBilt_tg_1901-2014_detrended.dat"     # input file
-  #ifile="./tests/testthat/DeBilt_tg_1901-2014_detrended.dat"     # input file
-  ofile="uitvoertg.txt"      # output file (DEFAULT="uitvoer.txt")
-  delta.file=NA            # file containing deltas
-  # if delta.file is not provided (DEFAULT)
-  # KNMI'14 deltas are used
+context("Temperature transformation - Entire station set")
 
-  # deltas are derived from KNMI'14 deltas if delta.file is not specified
-  # following arguments are used
+ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
+ofile      <- "tmp.txt" # output file - used only temporary
+delta.file <- NA
+regio.file <- "stationstabel" # table that links stations to region
+
+test_that("2030 decadal prediction", {
+  sc="GL"
+  p=2030
+  var="tg"
+
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg.rds")
+})
+
+test_that("Scenario WL", {
+  sc="WL"
+  p=2050
+  var="tg"
+
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tg.rds")
+
+  # Regression test based only on the smaller subset used also for the other
+  # scenarios - on the web there is an extended version
+  p = 2085
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2085_tg.rds")
+})
+
+test_that("Scenario WH", {
+  sc="WH"
+  p=2050
+  var="tg"
+
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tg.rds")
+
+  p = 2085
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2085_tg.rds")
+})
+
+test_that("Scenario GH", {
+  sc="GH"
+  p=2050
+  var="tg"
+
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tg.rds")
+
+  p = 2085
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tg.rds")
+})
+
+test_that("Scenario GL", {
+  sc="GL"
+  p=2050
+  var="tg"
+
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tg.rds")
+
+  p = 2085
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tg.rds")
+})
+
+
+context("Temperature transformation - Single station exercises")
+
+test_that("Test wrong user input", {
+  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
+  ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
+  delta.file=NA            # file containing deltas
   sc="GL"                    # scenario ("GL", "GH", "WL", "WH")
   p=2030                     # time horizon (2030, 2050, 2085)
   var="tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
-
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
-                                   ofile=ofile,
-                                   delta.file=delta.file,
-                                   sc=sc,
-                                   p=p,
-                                   var=var,
-                                   regio.file=regio.file)
-
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/uitvoertg.rds")
-
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
-                                   ofile=ofile,
-                                   delta.file=delta.file,
-                                   sc=sc,
-                                   p=p,
-                                   var=var
-                                   )
-
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/uitvoertg_without_regional.rds")
-
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
-                                   ofile=ofile,
-                                   delta.file=delta.file,
-                                   sc="GL",
-                                   p=2050,
-                                   var=var
-                                   )
-
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/uitvoertg_GL_2050.rds")
 
   expect_error(temperatuur_transformatie_KNMI14(ifile=ifile,
                                    ofile=ofile,
@@ -63,27 +154,11 @@ test_that("Temperature regression test", {
 
 })
 
-test_that("Temperature regression test (with actual data) 2030", {
-  #filename <- system.file("ReferenceData", "KNMI14____ref__tg___19810101-20101231_v1.0_T25.txt", package="knmitransformer")
-  #tmp <- fread(filename, skip = 1)
-  #colnames <- c("date", paste0("Station_", as.integer(tmp[1, -1, with = FALSE])))
-  #observations <- tmp[-(1:5), ]
-  #setnames(observations, colnames)
-  #expect_equal(3*2,9)
-  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
-  ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
-  delta.file=NA            # file containing deltas
-  # if delta.file is not provided (DEFAULT)
-  # KNMI'14 deltas are used
-
-  # deltas are derived from KNMI'14 deltas if delta.file is not specified
-  # following arguments are used
-  sc="GL"                    # scenario ("GL", "GH", "WL", "WH")
-  p=2030                     # time horizon (2030, 2050, 2085)
-  var="tg"                   # temperature characteristic ("tg" = mean,
-  #                             "tn" = min,
-  #                             "tx" = max)
-  regio.file="stationstabel" # table that links stations to region
+test_that("Procedure works for one station as well", {
+  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
+  sc="GL"
+  p=2030
+  var="tg"
 
   tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                           ofile=ofile,
@@ -93,28 +168,6 @@ test_that("Temperature regression test (with actual data) 2030", {
                                           var=var,
                                           regio.file=regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg___DeBilt.rds")
-
-  #ref <- fread("regressionInput/temperature/KNMI14___2030_tg___19810101-20101231_v3.2_260.txt")
-  #expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
-
-  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"     # input file
-  ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
-  delta.file=NA            # file containing deltas
-  sc="GL"                    # scenario ("GL", "GH", "WL", "WH")
-  p=2030                     # time horizon (2030, 2050, 2085)
-  var="tg"                   # temperature characteristic ("tg" = mean,
-  #                             "tn" = min,
-  #                             "tx" = max)
-  regio.file="stationstabel" # table that links stations to region
-
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
-                                          ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
-                                          p=p,
-                                          var=var,
-                                          regio.file=regio.file)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg.rds")
 })
 
 test_that("Temperature regression test (with actual data) WH", {
@@ -151,10 +204,6 @@ test_that("Temperature regression test (with actual data) WH", {
                                           var=var,
                                           regio.file=regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2085_tg___DeBilt.rds")
-
-
-  #ref <- fread("regressionInput/temperature/KNMI14_WH_2050_tg___19810101-20101231_v3.2_260.txt")
-  #expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
 })
 
 test_that("Temperature regression test (with actual data) GL", {
@@ -191,10 +240,6 @@ test_that("Temperature regression test (with actual data) GL", {
                                           var=var,
                                           regio.file=regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tg___DeBilt.rds")
-
-
-  #ref <- fread("regressionInput/temperature/KNMI14_WH_2050_tg___19810101-20101231_v3.2_260.txt")
-  #expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
 })
 
 test_that("Temperature regression test (with actual data) GH", {
@@ -231,15 +276,11 @@ test_that("Temperature regression test (with actual data) GH", {
                                           var=var,
                                           regio.file=regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tg___DeBilt.rds")
-
-
-  #ref <- fread("regressionInput/temperature/KNMI14_WH_2050_tg___19810101-20101231_v3.2_260.txt")
-  #expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
 })
 
-test_that("Temperature regression test (with actual data) GH", {
+test_that("Temperature regression test (with actual data) WL", {
   ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
-  ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
+  ofile="uitvoer_tg.txt"      # output file (DEFAULT="uitvoer.txt")
   delta.file=NA            # file containing deltas
   # if delta.file is not provided (DEFAULT)
   # KNMI'14 deltas are used
@@ -262,17 +303,15 @@ test_that("Temperature regression test (with actual data) GH", {
                                           regio.file=regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tg___DeBilt.rds")
 
- # p = 2085
- # tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
- #                                         ofile=ofile,
- #                                         delta.file=delta.file,
- #                                         sc=sc,
- #                                         p=p,
- #                                         var=var,
- #                                         regio.file=regio.file)
- # expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tg___DeBilt.rds")
-
-
-  #ref <- fread("regressionInput/temperature/KNMI14_WH_2050_tg___19810101-20101231_v3.2_260.txt")
-  #expect_equal(tmp[, .(V1, round(V2, 1))], ref[, .(V1, round(V2, 1))])
+  # Regression test based only on the smaller subset used also for the other
+  # scenarios - on the web there is an extended version
+  p = 2085
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var,
+                                          regio.file=regio.file)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2085_tg___DeBilt.rds")
 })
