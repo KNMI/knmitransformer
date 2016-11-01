@@ -118,8 +118,8 @@ tm_trans_KNMI14 <- function(obs,
       b          <-  Y.percentiles[ip] - a * X.percentiles[ip]
       Y[x.ids]   <- a * X[x.ids] + b
 
-#     fut[days.im, is+1] <- round(Y,1)                           # round results and write to fut
-      fut[days.im, is+1] <- round(Y,2)                           # round results and write to fut  #20150626_JB
+      fut[days.im, is+1] <- round(Y,1)                           # round results and write to fut
+      # fut[days.im, is+1] <- round(Y,2)                           # round results and write to fut  #20150626_JB
     } # END MONTHLY LOOP
 
   } # END OF TRANSFORMATION LOOP
