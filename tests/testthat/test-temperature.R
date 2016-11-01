@@ -14,9 +14,9 @@ regio.file <- "stationstabel" # table that links stations to region
 
 test_that("2030 decadal prediction", {
   sc="GL"
-  p=2030
   var="tg"
 
+  p=2030
   tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
@@ -29,9 +29,9 @@ test_that("2030 decadal prediction", {
 
 test_that("Scenario WL", {
   sc="WL"
-  p=2050
   var="tg"
 
+  p=2050
   tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
@@ -56,9 +56,9 @@ test_that("Scenario WL", {
 
 test_that("Scenario WH", {
   sc="WH"
-  p=2050
   var="tg"
 
+  p=2050
   tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
@@ -81,9 +81,9 @@ test_that("Scenario WH", {
 
 test_that("Scenario GH", {
   sc="GH"
-  p=2050
   var="tg"
 
+  p=2050
   tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
@@ -106,9 +106,9 @@ test_that("Scenario GH", {
 
 test_that("Scenario GL", {
   sc="GL"
-  p=2050
   var="tg"
 
+  p=2050
   tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
