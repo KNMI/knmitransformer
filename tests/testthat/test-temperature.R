@@ -391,6 +391,22 @@ test_that("Test wrong user input", {
 
 })
 
+
+test_that("Procedure works for default region", {
+  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
+  sc="GL"
+  p=2030
+  var="tg"
+
+  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          var=var)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg_DefaultRegion.rds")
+})
+
 test_that("Procedure works for one station as well", {
   ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
   sc="GL"
