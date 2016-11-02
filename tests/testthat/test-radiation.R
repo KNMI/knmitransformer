@@ -63,7 +63,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_GH_2085_rsds.rds")
 })
 
-test_that("Scenario WH", {
+test_that("Scenario WH 2050", {
   sc="WH"
 
   p=2050
@@ -73,8 +73,11 @@ test_that("Scenario WH", {
                                           sc=sc,
                                           p=p)
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_WH_2050_rsds.rds")
+})
 
-  skip_on_travis({
+test_that("Scenario WH 2085", {
+  skip_on_travis()
+  sc="WH"
   p=2085 # This set is not produced by this version of the code - neither with
   # a factor of 0.7 or 0.75
   tmp <- straling_transformatie_KNMI14(ifile=ifile,
@@ -84,7 +87,6 @@ test_that("Scenario WH", {
                                           p=p)
 
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_WH_2085_rsds.rds")
-  })
 })
 
 test_that("Scenario WL", {
