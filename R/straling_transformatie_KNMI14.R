@@ -61,12 +61,20 @@ straling_transformatie_KNMI14 <- function(ifile,
                                           sc,
                                           p=NA) {
 
+  flog.info("Running temperature transformation")
   # CONSTANTS AND FUNCTIONS ###############################################################################
   version="v1.1"
+  flog.debug("Version={%s}", version)
 
+  if (!p %in% c(2030, 2050, 2085)) {
+    flog.error("p={%s} has to be a valid period", paste(p))
+    stop("Period must be valid, i.e. 2030, 2050, or 2085")
+  }
 
   # READ REFERENCE DATA FROM ifile
-  H.comments <- scan(ifile, character(0), sep = "\n") # select lines with "#" from reference file and ignore them
+  flog.info("Reading reference data, file={%s}", ifile)
+  H.comments <- scan(ifile, character(0), sep = "\n", quiet=TRUE) # select lines with "#" from reference file and ignore them
+  flog.debug("Scanning of the reference data returned n={%i} lines.", length(H.comments))
   H.comments <- H.comments[grep("#",H.comments)]      # (only necessary for output file)
 
   obs        <- read.table(ifile,header=F)            # read reference data (header wordt niet apart ingelezen)
@@ -83,23 +91,24 @@ straling_transformatie_KNMI14 <- function(ifile,
   }
 
   # READ CHANGE FACTORS (DELTAS)
-  if(!is.na(delta.file)) {
-    deltas <- read.table(delta.file,header=T)         # deltas are provided in file "delta.file"
-  } else {
-    if(p=="2030") {
-      deltas <- read.table(      "deltas-KNMI14__rsds_____2030.txt",header=T) # 2030 decadal prediction if p=2030
-    } else {
-      # str.ext is a function used to construct file.names if delta.file is not explicitly provided
-      str.ext <- function(var,ch,n) {paste(var,substr(paste(rep(ch,n),collapse=""),1,n-nchar(var)),sep="")}
-
-      deltas <- read.table(paste("deltas-KNMI14__rsds_",
-                                 str.ext( sc,"_",3),"_",
-                                 str.ext(  p,"_",4),".txt",sep=""),header=T)
-    }
-  }
+  deltas <- ReadChangeFactors(delta.file, "rsds", sc, p)
+  # if(!is.na(delta.file)) {
+  #   deltas <- read.table(delta.file,header=T)         # deltas are provided in file "delta.file"
+  # } else {
+  #   if(p=="2030") {
+  #     deltas <- read.table(      "deltas-KNMI14__rsds_____2030.txt",header=T) # 2030 decadal prediction if p=2030
+  #   } else {
+  #     # str.ext is a function used to construct file.names if delta.file is not explicitly provided
+  #     str.ext <- function(var,ch,n) {paste(var,substr(paste(rep(ch,n),collapse=""),1,n-nchar(var)),sep="")}
+  #
+  #     deltas <- read.table(paste("deltas-KNMI14__rsds_",
+  #                                str.ext( sc,"_",3),"_",
+  #                                str.ext(  p,"_",4),".txt",sep=""),header=T)
+  #   }
+  # }
 
   # TRANSFORMATION
-  source("rsds_trans_KNMI14.R")
+  # source("rsds_trans_KNMI14.R")
   fut <- rsds_trans_KNMI14(obs=obs, deltas=deltas, lat=lat)
 
   # OUTPUT #############################################################################################
@@ -139,6 +148,11 @@ straling_transformatie_KNMI14 <- function(ifile,
 
   sink()
 
+  result <- fread(ofile)
+
+  flog.debug("Radiation transformation ended successfully!")
+  flog.debug("")
+  return(result)
 } # end function straling_transformatie_KNMI14
 
 
