@@ -3,3 +3,7 @@
 ^Proposal\.Rmd$
 ^Proposal\.pdf$
 ^\.travis\.yml$
+^Proposal\.docx$
+^Proposal\.html$
+^uitvoertg\.txt$
+^uitvoer_DeBilt_tg\.txt$

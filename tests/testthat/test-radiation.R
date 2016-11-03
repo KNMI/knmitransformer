@@ -43,7 +43,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_GL_2085_rsds.rds")
 })
 
-test_that("Scenario GL", {
+test_that("Scenario GH", {
   sc="GH"
 
   p=2050
