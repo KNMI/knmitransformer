@@ -31,4 +31,8 @@ File should contain following compulsory column identified with compulsory heade
 \description{
 Transformation of radiation
 }
+\note{
+The 5th row of the ifile indicated by 00000000 must be given as it is
+interpreted to contain LATITUDES of station.
+}
 
