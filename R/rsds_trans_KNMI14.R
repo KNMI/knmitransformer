@@ -1,45 +1,18 @@
-###########################################################################################################
-#
-# rsds_trans_KNMI14.R    March 11, 2015
-#
-# author: Alexander Bakker (KNMI)
-#
-# Function 'transforms' a specific reference-dataset with time series of daily global radiation sums [kJ/m2]
-# to a dataset representative for a future climate scenario.
-#
-# Transformation developed for KNMI'14 climate change scenarios for the Netherlands:
-#
-# Bakker, A. (2015), Time series transformation tool: description of the program to generate time series
-# consistent with the KNMI’14 climate scenarios, Technical Report TR-348, De Bilt, the Netherlands
-#
-# Version History:
-#   v1.0 - October,  2014
-#   v1.1 - March 11, 2015 [adjustment factor to estimate clear sky radiation]
-#
-# THIS CODE IS PROVIDED AS-IS WITH NO WARRANTY (NEITHER EXPLICIT
-# NOT IMPLICIT).  KNMI SHARES THIS CODE IN HOPES THAT IT IS USEFUL,
-# BUT KNMI IS NOT LIABLE FOR THE BEHAVIOR OF THIS CODE IN YOUR OWN
-# APPLICATION. YOU ARE FREE TO SHARE THIS CODE SO LONG AS THE
-# AUTHOR(S) AND VERSION HISTORY REMAIN INTACT.
-#
-#
-# arguments:
-#
-# obs            data.frame or matrix:
-#                first column provides datestring YYYYMMDD
-#                other columns provide global radiation [kJ/m2] time series
-#                (each column represents specific station)
-#
-# deltas         data.frame or matrix that contains deltas (=change factors for the transformation)
-#                should contain following columns indicated by following headers
-#                HEADER
-#                "ave"       relative change [%] in mean shortwave surface radiation
-#
-# lat            this argument provides a vector with latitudes belonging to stations.
-#                location (row.number [i]) in vector refers to column in obs [i+1]
-#
-###########################################################################################################
-
+#' rsds_trans_KNMI14
+#' @description Function 'transforms' a specific reference-dataset with time
+#'  series of daily global radiation sums [kJ/m2] to a dataset representative
+#'  for a future climate scenario.
+#' @param obs            data.frame or matrix: \cr
+#'                first column provides datestring YYYYMMDD \cr
+#'                other columns provide global radiation [kJ/m2] time series
+#'                (each column represents specific station)
+#'
+#' @param deltas         data.frame or matrix that contains deltas (=change factors for the transformation)
+#'                should contain following columns indicated by following headers \cr
+#'                HEADER \cr
+#'                "ave"       relative change [\%] in mean shortwave surface radiation
+#' @param lat vector with latitudes belonging to stations.
+#'  location (row.number [i]) in vector refers to column in obs [i+1]
 rsds_trans_KNMI14 <- function(obs,
                               deltas,
                               lat) {
