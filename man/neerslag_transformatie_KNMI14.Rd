@@ -22,11 +22,11 @@ Format is similar to ifile}
 \item{delta.file}{[optional] Name of file that contains deltas (changes factors for the transformation)
                File should contain following compulsory columns identified with compulsory headers
                "wdf"       relative change in wet-day frequency
-                           (wet days are defined as days with 0.1 mm or more precipitation)
-               "ave"       relative change in mean precipitation
-               "p99.lower" lower   estimate of the relative change in the 99th percentile of wet-day amounts
-               "p99.centr" central estimate of the relative change in the 99th percentile of wet-day amounts
-               "p99.upper" upper   estimate of the relative change in the 99th percentile of wet-day amounts
+                           (wet days are defined as days with 0.1 mm or more precipitation) \cr
+               "ave"       relative change in mean precipitation \cr
+               "p99.lower" lower   estimate of the relative change in the 99th percentile of wet-day amounts \cr
+               "p99.centr" central estimate of the relative change in the 99th percentile of wet-day amounts \cr
+               "p99.upper" upper   estimate of the relative change in the 99th percentile of wet-day amounts \cr
 
                 (If delta.file is not provided, predefined deltas are derived dependening on <sc>, <p> and <scaling>)}
 
@@ -39,6 +39,8 @@ Format is similar to ifile}
 \item{version}{"v1.1" [DEFAULT] official version that belongs to KNMI'14}
 }
 \description{
-Transformation of precipitation
+Function reads 'reference data' with daily precipitation sums
+[mm] and 'change factors' from input files and applies them to function
+'rr_trans_KNMI14' to obtain 'future time series' that match a certain climate
 }
 

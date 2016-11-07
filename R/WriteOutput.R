@@ -1,4 +1,4 @@
-WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut) {
+WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut, scaling = NULL) {
   flog.info("Write output")
   sink(ofile)
 
@@ -7,6 +7,8 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut) {
     writeLines("# Transformed daily mean global radiation [kJ/m2] according to KNMI'14 transformation tool,")
   } else if (var %in% c("tg", "tn", "tx")) {
     writeLines("# Transformed daily temperature [deg.C] according to KNMI'14 transformation tool,")
+  } else if (var == "rr") {
+    writeLines("# Transformed daily precipitation sums [mm] according to KNMI'14 transformation tool,")
   } else {
     flog.error("variable not defined")
     stop()
@@ -23,6 +25,10 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut) {
   writeLines("# Bakker A. (2015), Time series transformation tool: description of the program to")
   writeLines("# generate time series consistent with the KNMI'14 climate scenarios, TR-349")
   writeLines("#")
+  if (var == "rr") {
+    writeLines(paste("# wet day scaling:",scaling))
+    writeLines("#")
+  }
   for(i in 1:length(H.comments)) writeLines(H.comments[i])
 
   write.table(format(header[1,], width = 8),              file = "", row.names = F, col.names = F, quote = F)
@@ -33,3 +39,6 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut) {
 
   fread(ofile)
 }
+
+
+

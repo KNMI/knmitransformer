@@ -29,7 +29,10 @@ File should contain following compulsory column identified with compulsory heade
 \item{p}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
 }
 \description{
-Transformation of radiation
+Function reads 'reference data' with time series of daily global
+ radiation sums [kJ/m2] and 'change factors' from input files and applies
+ them to function 'rsds_trans_KNMI14' to obtain 'future time series' that
+ match a certain climate
 }
 \note{
 The 5th row of the ifile indicated by 00000000 must be given as it is
