@@ -79,8 +79,17 @@ neerslag_transformatie_KNMI14 <- function(ifile,
                                           scaling="centr",
                                           version="v1.1") {
 
+  flog.info("Running temperature transformation")
+  flog.debug("Version={%s}", version)
+
+  if (!p %in% c(2030, 2050, 2085)) {
+    flog.error("p={%s} has to be a valid period", paste(p))
+    stop("Period must be valid, i.e. 2030, 2050, or 2085")
+  }
+
   # READ REFERENCE DATA FROM ifile
-  H.comments <- scan(ifile, character(0), sep = "\n") # select lines with "#" from reference file and ignore them
+  flog.info("Reading reference data, file={%s}", ifile)
+  H.comments <- scan(ifile, character(0), sep = "\n", quiet=TRUE) # select lines with "#" from reference file and ignore them
   H.comments <- H.comments[grep("#",H.comments)]      # (only necessary for output file)
 
   obs        <- read.table(ifile,header=F)            # read reference data (header wordt niet apart ingelezen)
@@ -94,47 +103,13 @@ neerslag_transformatie_KNMI14 <- function(ifile,
   deltas$P99 <- deltas[,paste("p99",scaling,sep=".")] # choose scaling ("lower", "centr" or "upper")
 
   # TRANSFORMATION
-  #source("rr_trans_KNMI14.R")
   fut <- rr_trans_KNMI14(obs=obs, deltas=deltas, version="v1.1")
 
-
   # OUTPUT
-  sink(ofile)
-
-  # comments
-  writeLines("# Transformed daily precipitation sums [mm] according to KNMI'14 transformation tool,")
-  writeLines(paste("# version ",version,sep=""))
-  if(is.na(p) | is.na(scaling)) {
-    writeLines(paste("# Deltas are derived from ",sc,sep=""))
-  } else {
-    if(p=="2030") {
-      writeLines("# Deltas are derived from the 2030 decadal prediction")
-    } else {
-      writeLines(paste("# Deltas are derived from ",sc," scenario",sep=""))
-      writeLines(paste("# around the time horizon ",p,sep=""))
-    }
-  }
-  writeLines(paste("# wet day scaling:",scaling))
-  writeLines("#")
-  writeLines("# Bakker A. (2015), Time series transformation tool: description of the program to")
-  writeLines("# generate time series consistent with the KNMI'14 climate scenarios, TR-349")
-  writeLines("#")
-  for(i in 1:length(H.comments)) writeLines(H.comments[i])
-
-  # header
-# write.table(format(header[1,],width=10,justify="right"),row.names=F,col.names=F,quote=F)
-# write.table(format(header[-1,],width=10,justify="right"),row.names=F,col.names=F,quote=F)
-# # transformed data
-# write.table(format(fut,width=10,digits=2,justify="right"),row.names=F,col.names=F,quote=F)
-#JB>
-  write.table(format(header[1,], width = 8),              file = "", row.names = F, col.names = F, quote = F)
-  write.table(format(header[-1,], width = 8, nsmall = 3), file = "", row.names = F, col.names = F, quote = F)
-  # transformed data
-  write.table(format(fut, width = 8, nsmall = 2),         file = "", row.names = F, col.names = F, quote = F)
-#JB<
-
-  sink()
-  fread(ofile)
+  result <- WriteOutput("rr", ofile, version, sc, p, H.comments, header, fut, scaling)
+  flog.debug("Precipiation transformation ended successfully!")
+  flog.debug("")
+  return(result)
 }
 
 
