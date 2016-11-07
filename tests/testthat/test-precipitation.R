@@ -47,6 +47,29 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2085_rr_lower.rds")
 })
 
+test_that("Scenario GH", {
+  sc="GH"
+
+  p=2050
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2050_rr_lower.rds")
+
+  p=2085
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2085_rr_lower.rds")
+})
+
+
 context("rr transformation (centr) - Entire station set")
 
 scaling    <- "centr"
@@ -89,6 +112,27 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2085_rr_centr.rds")
 })
 
+test_that("Scenario GH", {
+  sc="GH"
+
+  p=2050
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2050_rr_centr.rds")
+
+  p=2085
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2085_rr_centr.rds")
+})
 
 context("rr transformation (upper) - Entire station set")
 
@@ -132,3 +176,25 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2085_rr_upper.rds")
 })
 
+
+test_that("Scenario GH", {
+  sc="GH"
+
+  p=2050
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2050_rr_upper.rds")
+
+  p=2085
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2085_rr_upper.rds")
+})
