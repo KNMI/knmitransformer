@@ -17,12 +17,12 @@
 #' @param delta.file     [optional] Name of file that contains deltas (changes factors for the transformation)
 #'                File should contain following compulsory columns identified with compulsory headers
 #'               - HEADER -
-#'               "maand"     month for which deltas are valid (1,2,...,12)
-#'               "P01"       1st  percentile daily temperature
-#'               "P05"       5th  percentile daily temperature
-#'               "P50"       50th percentile daily temperature
-#'               "P95"       95th percentile daily temperature
-#'               "P99"       99th percentile daily temperature
+#'               "maand"     month for which deltas are valid (1,2,...,12) \cr
+#'               "P01"       1st  percentile daily temperature \cr
+#'               "P05"       5th  percentile daily temperature \cr
+#'               "P50"       50th percentile daily temperature \cr
+#'               "P95"       95th percentile daily temperature \cr
+#'               "P99"       99th percentile daily temperature \cr
 #'
 #'               following column is optional in case deltas vary with region
 #'               (is needed in case <regio.tabel> is provided)
@@ -68,24 +68,10 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
   }
 
   # READ REFERENCE DATA FROM ifile
-  flog.info("Reading reference data, file={%s}", ifile)
-  H.comments <- scan(ifile, character(0), sep = "\n", quiet=TRUE) # select lines with "#" from reference file and ignore them
-  flog.debug("Scanning of the reference data returned n={%i} lines.", length(H.comments))
-  H.comments <- H.comments[grep("#",H.comments)]      # (only necessary for output file)
-
-  obs        <- read.table(ifile,header=F)            # read reference data (header wordt niet apart ingelezen)
-  header     <- obs[which(obs[,1]==0),]               # header met stations meta-data etc.
-  header[,1] <- "00000000"
-  names(obs) <- c("date",round(obs[1,-1],0))          # station names are read from first line
-  obs        <- obs[which(obs[,1]!=0),]               # actual data
-
-  flog.debug("obs colnames={%s}", paste(names(obs), collapse = ", "))
-  #print(obs[1:10,])
+  input <- ReadInput(var, ifile)
 
   # READ CHANGE FACTORS (DELTAS)
   deltas <- ReadChangeFactors(delta.file, var, sc, p)
-
-  #print(deltas)
 
   # LINK STATIONS TO REGIONS
   if(is.na(regio.file)) {
@@ -93,17 +79,17 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
   } else {
     tmpPath <- system.file("extdata", "stationstabel", package="knmitransformer")
     stationstabel <- read.table(tmpPath)
-    regio.tabel   <- as.vector(stationstabel[match(names(obs)[-1],stationstabel[,1]),2])
+    regio.tabel   <- as.vector(stationstabel[match(names(input$obs)[-1],stationstabel[,1]),2])
   }
 
   flog.debug("regio.table={%s}", paste(regio.tabel, collapse = ", "))
 
   # TRANSFORMATION
   #source("tm_trans_KNMI14.R")
-  fut <- tm_trans_KNMI14(obs=obs, deltas=deltas, regio.tabel=regio.tabel)
+  fut <- tm_trans_KNMI14(obs=input$obs, deltas=deltas, regio.tabel=regio.tabel)
 
   # OUTPUT #############################################################################################
-  result <- WriteOutput(var, ofile, version, sc, p, H.comments, header, fut)
+  result <- WriteOutput(var, ofile, version, sc, p, input$comments, input$header, fut)
 
   flog.debug("Temperature transformation ended successfully!")
   flog.debug("")
