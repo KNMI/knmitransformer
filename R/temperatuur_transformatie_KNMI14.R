@@ -1,76 +1,8 @@
-###########################################################################################################
-#
-# temperatuur_transformatie_KNMI14.R    March 11, 2015
-#
-# author: Alexander Bakker (KNMI)
-#
-# Function reads 'reference data' with ime series of daily of mean, minimum or maximum temperature [degrees
-# Celsius] and 'change factors' from input files and applies them to function 'tm_trans_KNMI14' to obtain
-# 'future time series' that match a certain climate
-#
-# Transformation developed for KNMI'14 climate change scenarios for the Netherlands:
-#
-# Bakker, A. (2015), Time series transformation tool: description of the program to generate time series
-# consistent with the KNMI’14 climate scenarios, Technical Report TR-349, De Bilt, the Netherlands
-#
-#
-# THIS CODE IS PROVIDED AS-IS WITH NO WARRANTY (NEITHER EXPLICIT
-# NOT IMPLICIT).  KNMI SHARES THIS CODE IN HOPES THAT IT IS USEFUL,
-# BUT KNMI IS NOT LIABLE FOR THE BEHAVIOR OF THIS CODE IN YOUR OWN
-# APPLICATION. YOU ARE FREE TO SHARE THIS CODE SO LONG AS THE
-# AUTHOR(S) AND VERSION HISTORY REMAIN INTACT.
-#
-#
-# arguments:
-#
-# ifile          Name of the input file (ASCII) that contains reference data (all numerics) in which
-#                the columns provide time series for specific stations. The first column
-#                should provide either 00000000 or a datestring YYYYMMDD:
-#                Rows starting with 00000000 are considered station info (station number, lat, lon
-#                etc.) and are ignored.
-#                Rows starting with a datestring refer to a specific day in the time series.
-#                Rows starting with "#" are completely ignored and returned unchanged
-#
-# ofile          (DEFAULT="uitvoer.txt") Name of the output file to write the transformed data to.
-#                Format is similar to ifile
-#
-# delta.file     [optional] Name of file that contains deltas (changes factors for the transformation)
-#                File should contain following compulsory columns identified with compulsory headers
-#               - HEADER -
-#               "maand"     month for which deltas are valid (1,2,...,12)
-#               "P01"       1st  percentile daily temperature
-#               "P05"       5th  percentile daily temperature
-#               "P50"       50th percentile daily temperature
-#               "P95"       95th percentile daily temperature
-#               "P99"       99th percentile daily temperature
-#
-#               following column is optional in case deltas vary with region
-#               (is needed in case <regio.tabel> is provided)
-#               "regio"     region for which deltas are valid
-#                           KNMI14 distinguishes ("NWN", "ZWN", "NON", "MON", "ZON", "NLD")
-#
-#                 (If delta.file is not provided, predefined deltas are derived dependening on <sc>, <p> and
-#                  daily temperature characteristic of interest [mean, min or max])
-#
-# sc             scenario                      ["GL", "GH", "WL", "WH"]
-# p              time horizon                  [2030 (=DEFAULT), 2050, 2085]
-# var            kind of daily temperature variable ["tg" = daily mean,
-#                                                    "tn" = daily minimum,
-#                                                    "tx" = daily maximum]
-#
-# regio.file     this (optional) argument provides the name of an ASCII file that relates the stations to
-#                a particular region. First column is station id and second column region
-#                KNMI14 distinguishes following regions:
-#                <NLD> Nederland            [DEFAULT]
-#                <NWN> Noordwest Nederland
-#                <ZWN> Zuidwest Nederland
-#                <NON> Noordoost Nederland
-#                <MON> Middenoost Nederland
-#                <ZON> Zuidoost Nederland
-#
-###########################################################################################################
-
 #' Transformation of temperature
+#' @description Function reads 'reference data' with ime series of daily of
+#'  mean, minimum or maximum temperature [degrees Celsius] and 'change factors'
+#'  from input files and applies them to function 'tm_trans_KNMI14' to obtain
+#'  'future time series' that match a certain climate
 #' @param ifile          Name of the input file (ASCII) that contains reference data (all numerics) in which
 #'                the columns provide time series for specific stations. The first column
 #'                should provide either 00000000 or a datestring YYYYMMDD:
