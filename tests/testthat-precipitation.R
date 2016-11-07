@@ -1,4 +1,4 @@
 library(testthat)
 library(knmitransformer)
 
-test_check("knmitransformer", filter = "precipitation")
+#test_check("knmitransformer", filter = "precipitation")
