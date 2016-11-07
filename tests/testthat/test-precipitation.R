@@ -1,28 +1,68 @@
 context("Transformation of precipitation")
 
-## TODO: Rename context
-## TODO: Add more tests
+library(futile.logger)
+flog.threshold(DEBUG)
+flog.appender(appender.file('knmitransformer_temperature.log'))
+library(data.table)
 
-#test_that("Regression test", {
-#  ifile="neerslag_ref"     # input file
-#  ofile="uitvoer.txt"      # output file (DEFAULT="uitvoer.txt")
-#  delta.file=NA            # file containing deltas
-#  # if delta.file is not provided (DEFAULT)
-#  # KNMI'14 deltas are used
-#
-#  # deltas are derived from KNMI'14 deltas if delta.file is not specified
-#  # following arguments are used
-#  sc="WH"                  # scenario ("GL", "GH", "WL", "WH")
-#  p=2085                   # time horizon (2030, 2050, 2085)
-#  scaling="centr"          # scaling subscenario ("lower", "centr" [DEFAULT], "upper")
-#  version="v1.1."          # version of transformation ("v1.1" [DEFAULT], "v1.2")
-#
-#  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
-#                                       ofile=ofile,
-#                                       delta.file=delta.file,
-#                                       sc=sc,
-#                                       p=p,
-#                                       scaling=scaling,
-#                                       version=version)
-#
-#})
+context("rr transformation (lower) - Entire station set")
+
+scaling    <- "lower"
+ifile      <- "regressionInput/precipitation/KNMI14____ref_rrlower___19810101-20101231_v3.2.txt"
+ofile      <- "tmp.txt" # output file - used only temporary
+delta.file <- NA
+
+test_that("2030 decadal prediction", {
+  sc="GL"
+
+  p=2030
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14___2030_rr_lower.rds")
+})
+
+context("rr transformation (central) - Entire station set")
+
+scaling    <- "centr"
+ifile      <- "regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
+ofile      <- "tmp.txt" # output file - used only temporary
+delta.file <- NA
+
+test_that("2030 decadal prediction", {
+  sc="GL"
+
+  p=2030
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14___2030_rr_centr.rds")
+})
+
+
+context("rr transformation (upper) - Entire station set")
+
+scaling    <- "upper"
+ifile      <- "regressionInput/precipitation/KNMI14____ref_rrupper___19810101-20101231_v3.2.txt"
+ofile      <- "tmp.txt" # output file - used only temporary
+delta.file <- NA
+
+test_that("2030 decadal prediction", {
+  sc="GL"
+
+  p=2030
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                          ofile=ofile,
+                                          delta.file=delta.file,
+                                          sc=sc,
+                                          p=p,
+                                          scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14___2030_rr_upper.rds")
+})
+

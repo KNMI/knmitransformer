@@ -90,24 +90,11 @@ neerslag_transformatie_KNMI14 <- function(ifile,
   obs        <- obs[which(obs[,1]!=0),]               # actual data
 
   # READ CHANGE FACTORS (DELTAS)
-  if(!is.na(delta.file)) {
-    deltas <- read.table(delta.file,header=T)         # deltas are provided in file "delta.file"
-  } else {
-    if(p=="2030") {
-      deltas <- read.table(      "deltas-KNMI14__rr_______2030.txt",header=T) # 2030 decadal prediction if p=2030
-    } else {
-      # str.ext is a function used to construct file.names if delta.file is not explicitly provided
-      str.ext <- function(var,ch,n) {paste(var,substr(paste(rep(ch,n),collapse=""),1,n-nchar(var)),sep="")}
-
-      deltas <- read.table(paste("deltas-KNMI14__rr___",
-                                       str.ext( sc,"_",3),"_",
-                                       str.ext(  p,"_",4),".txt",sep=""),header=T)
-    }
-  }
+  deltas <- ReadChangeFactors(delta.file, "rr", sc, p)
   deltas$P99 <- deltas[,paste("p99",scaling,sep=".")] # choose scaling ("lower", "centr" or "upper")
 
   # TRANSFORMATION
-  source("rr_trans_KNMI14.R")
+  #source("rr_trans_KNMI14.R")
   fut <- rr_trans_KNMI14(obs=obs, deltas=deltas, version="v1.1")
 
 
@@ -147,6 +134,7 @@ neerslag_transformatie_KNMI14 <- function(ifile,
 #JB<
 
   sink()
+  fread(ofile)
 }
 
 
