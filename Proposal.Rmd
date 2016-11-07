@@ -1,0 +1,91 @@
+---
+title: "Proposal for knmitransformer package"
+author: "Christiana Photiadou and Martin Roth"
+date: "September 5, 2016"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+The KNMI climate change scenarios have gained a great deal of reputation not only in the Netherlands but also abroad. 
+Since their first edition in 2006 a new version was required to translate the findings of the IPCC report (2013) to the Netherlands. 
+For the delivery of the KNMI14 scenarios a necessary update of the code resulted -together with moving staff- in having multiple versions of the transformation code. 
+Today, there is no unified version and no responsible team to support it. 
+However, there is currently a transition at KNMI away from single scripts to encapsulated functions and towards version controlled development of these methods.
+This increases the user-friendliness and simplifies the distribution of the methods to interested parties. 
+As the transformation program is an important building block for applications inside and outside KNMI, we feel the need to update it to these new standards.
+
+With this project we propose to develop an open source R-package of the KNMI scenario transformation with unified functionality.
+The basic version of the proposed package will be validated such that it can be used to reproduce the KNMI14 (revised ‘15) scenarios (except for wind, humidity and fog).
+The unified functionality of the package together with the automated regression testing will allow us to update and maintain efficiently future versions.
+The R-package (library) will be distributed through the KNMI github account, where potential users, both inside and outside KNMI, will be able to obtain the package for individual use and projects.
+For the web application, a Fortran wrap will be used to call the R package.
+The output format (timeseries, dates, station id, etc) of the package will be decided within the team, following feedback from the expert users within KNMI.
+At this stage no visualization of the results will be discussed, as this package focuses on the transformation of the data.
+A detailed documentation with a flowchart of the functionality of the package will be available together with the package itself. 
+A sounding board will be created, where the team can discuss strategies/advice for further development, discuss the possible rigidity of the method vs. user requests, extended version of the package, etc.
+Finally, this way of developing will be helpful for the upcoming calculations for the future KNMI scenarios. The underlying methods are likely to change for the new scenarios and will lead to a new version of this package. 
+
+The following people are invited to participate and should be involved in the sounding board for future developments:
+
+- Christiana Photiadou
+- Martin Roth
+- Rudmer Jilderda 
+- extra person for development
+- Geert Jan van Oldenborgh 
+- Jules Beersma 
+- Janette Bessembinder
+- Geert Lenderink 
+
+
+#### A work package description follows with detailed steps and milestones:
+
+1.  Prepare for version controlled development  (Time: 20-25 days[^1])  
+    The declared aim of this first step is a repository, with the functions used to transform the reference data according to the KNMI14 scenarios.
+    This is needed to ensure the consistency of the package functionality.
+    - Set up the base version of the transformation package in a git repository  
+        * collection of all data (for temp, precip, global radiation and sunshine duration) for the reference period and the scenarios 
+        * deltas for all scenarios and time horizons (2030,2050,2085)
+        * two versions for precipitation (v1.1, v1.2) with different ways of handling wet/dry days. In the basic package, version v1.1 is used in the validation and v1.2 is kept in a separate branch
+    - Set up an additional repository for the indices calculations which are needed for the brochure. The rounding issue will be addressed here[^2]. 
+    - Manual regression test  
+    Here we test file by file if the input and output correspond to the results of KNMI14(‘15). 
+        * transforming the reference data should yield the same as the transformed data out from KDC; the same applies for the indices
+        * extra test is introduced for the consistency of the deltas
+
+2. Switch to package structure and use automatic regression tests (Time: 13 days)  
+   Automating the tests from above (manual testing) ensures consistency in the code development
+    - test De Bilt: for all variables, all scenarios
+    - profiling performance and remove of bottlenecks, multiple stations/grids 
+    - calculation of the indices by calling the new transformation package
+
+3. Communication: Fix appearance to user and output format (Time: 20 days)  
+    - agree on one general function to be used or a function per variable (temp, precip, etc)
+    - user testing
+    - fix output and input format (tidy data) 
+    - include metadata
+
+4. Outreach web application (Time: 15 days)
+    - longer time series
+    - interpolating time range e.g. 2075?
+    - Wrapper for climate explorer (has to save file)
+    - shiny app?
+
+
+#### Sounding board/ Extend basic version:  
+Here, ideas and wishes for further development of the R package are discussed.
+The ideas could be implemented through internships or further internal projects but all of them under version control.
+
+  - Numbering should be done according to the numbering in the documents (v4.0=v3.2(doc))
+  - interest in spatial correlations prior/past transformation between stations, and also correlations with gridded precipitation data
+  - look/test alternative ways of drying/wetting days
+  - method for transforming hourly precipitation data (consistency with daily precipitation).
+  - include transformation programs for humidity and wind speed
+    
+[^1]:
+Time calculated for an average R user
+[^2]:
+Rounding for the brochure was done manually 
