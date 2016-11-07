@@ -17,15 +17,37 @@ test_that("2030 decadal prediction", {
 
   p=2030
   tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
-                                          ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
-                                          p=p,
-                                          scaling=scaling)
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14___2030_rr_lower.rds")
 })
 
-context("rr transformation (central) - Entire station set")
+test_that("Scenario GL", {
+  sc="GL"
+
+  p=2050
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2050_rr_lower.rds")
+
+  p=2085
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2085_rr_lower.rds")
+})
+
+context("rr transformation (centr) - Entire station set")
 
 scaling    <- "centr"
 ifile      <- "regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
@@ -43,6 +65,28 @@ test_that("2030 decadal prediction", {
                                           p=p,
                                           scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14___2030_rr_centr.rds")
+})
+
+test_that("Scenario GL", {
+  sc="GL"
+
+  p=2050
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2050_rr_centr.rds")
+
+  p=2085
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2085_rr_centr.rds")
 })
 
 
@@ -64,5 +108,27 @@ test_that("2030 decadal prediction", {
                                           p=p,
                                           scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14___2030_rr_upper.rds")
+})
+
+test_that("Scenario GL", {
+  sc="GL"
+
+  p=2050
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2050_rr_upper.rds")
+
+  p=2085
+  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+                                       ofile=ofile,
+                                       delta.file=delta.file,
+                                       sc=sc,
+                                       p=p,
+                                       scaling=scaling)
+  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2085_rr_upper.rds")
 })
 
