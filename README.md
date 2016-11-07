@@ -3,14 +3,9 @@
 [![Travis-CI Build Status](https://travis-ci.org/MartinRoth/knmitransformer.svg?branch=master)](https://travis-ci.org/MartinRoth/knmitransformer)
 [![Coverage Status](https://img.shields.io/codecov/c/github/MartinRoth/knmitransformer/master.svg)](https://codecov.io/github/MartinRoth/knmitransformer?branch=master)
 
-'transformation program'  of the KNMI 2014 climate change scenarios for the
-Netherlands
-
-**Note so far only the temperature transformation has been implemented.**
-
-Bakker, A. (2015), Time series transformation tool: description of the program
-to generate time series consistent with the KNMI’14 climate scenarios, Technical
-Report TR-349, De Bilt, the Netherlands.
+The 'transformation program' of the KNMI 2014 climate change scenarios for the
+Netherlands. With this program current climate time series are transformed to
+represent the climate of the KNMI 2014 scenarios for 2030, 2050, and 2085.
 
 The actual transformation procedures for daily meteorological variables are
 written in R-code
@@ -43,14 +38,14 @@ The following files provide (elemetary) examples how to use above scripts.
 This is IMPORTANT
 
 * Transformation of different time series/stations at once is possible; stations
-  should be separated as columns in the inputfile (no additional loops are thus
-  required in the R-script)
+  should be separated as columns in the inputfile 
 * GLOBAL RADIATION input should be in kJ/m2 and not in J/cm2 (the difference is
   a factor 10)
 * GLOBAL RADIATION needs "latitude" as input; and this should be provided (for
   each station/column) in the fifth line in de header of the input file.
 * TEMPERATURE distinguishes between minimum temperature (tn), mean temperature
-  (tg) and maximum temperature (tx); this should be specified in the R-script
+  (tg) and maximum temperature (tx); this should be specified in the function
+  call
 * TEMPERATURE needs the "station number" as input; and this should be provided
   (for each station/column) in the first line in de header of the input file the
   "station number" is used by the TP to select the 'deltas' for the
@@ -63,7 +58,10 @@ This is IMPORTANT
 * For PRECIPITATION for each scenario there are three different transformations
   available, based on resp. the 'lower', 'centr' (=central) and 'upper' estimate 
   of the change in extreme daily precipitation. This should be specified in the
-  R-script.
-  The example script 'DeBilt_v6_homogenized_neerslag_all_scenarios_KNMI14.R'
-  already contains a loop for this.
+  function call, the default is set to 'centr'.
   
+##
+For more information, see:  
+Bakker, A. (2015), Time series transformation tool: description of the program
+to generate time series consistent with the KNMI’14 climate scenarios, Technical
+Report TR-349, De Bilt, the Netherlands.
