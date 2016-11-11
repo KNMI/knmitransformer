@@ -9,6 +9,8 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut, sca
     writeLines("# Transformed daily temperature [deg.C] according to KNMI'14 transformation tool,")
   } else if (var == "rr") {
     writeLines("# Transformed daily precipitation sums [mm] according to KNMI'14 transformation tool,")
+  } else if (var == "evmk") {
+    writeLines("# Transformed daily Makkink evaporation [mm] according to KNMI'14 transformation tool,")
   } else {
     flog.error("variable not defined")
     stop()
