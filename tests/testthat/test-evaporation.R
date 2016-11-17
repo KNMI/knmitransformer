@@ -5,7 +5,7 @@ flog.threshold(DEBUG)
 flog.appender(appender.file('knmitransformer_evaporation.log'))
 library(data.table)
 
-context("tg transformation - Entire station set")
+context("evmk transformation - Entire station set")
 
 var="evmk"
 ifile="regressionInput/evaporation/KNMI14____ref_evmk___19810101-20101231_v3.2.txt"
@@ -22,7 +22,7 @@ test_that("2030 decadal prediction", {
 
 
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
-                                   ofile="uitvoer.txt",
+                                   ofile=ofile,
                                    delta.file.rsds=delta.file.rsds,
                                    delta.file.tg = delta.file.tg,
                                    sc=sc,
@@ -37,7 +37,7 @@ test_that("Scenario WL", {
 
   p=2050
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
-                                   ofile="uitvoer.txt",
+                                   ofile=ofile,
                                    delta.file.rsds=delta.file.rsds,
                                    delta.file.tg = delta.file.tg,
                                    sc=sc,
@@ -49,7 +49,7 @@ test_that("Scenario WL", {
   # scenarios - on the web there is an extended version
   p = 2085
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
-                                   ofile="uitvoer.txt",
+                                   ofile=ofile,
                                    delta.file.rsds=delta.file.rsds,
                                    delta.file.tg = delta.file.tg,
                                    sc=sc,
@@ -63,7 +63,7 @@ test_that("Scenario WH", {
 
   p=2050
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
-                                   ofile="uitvoer.txt",
+                                   ofile=ofile,
                                    delta.file.rsds=delta.file.rsds,
                                    delta.file.tg = delta.file.tg,
                                    sc=sc,
@@ -73,7 +73,7 @@ test_that("Scenario WH", {
 
   p = 2085
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
-                                   ofile="uitvoer.txt",
+                                   ofile=ofile,
                                    delta.file.rsds=delta.file.rsds,
                                    delta.file.tg = delta.file.tg,
                                    sc=sc,
@@ -87,7 +87,7 @@ test_that("Scenario GH", {
 
   p=2050
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
-                                   ofile="uitvoer.txt",
+                                   ofile=ofile,
                                    delta.file.rsds=delta.file.rsds,
                                    delta.file.tg = delta.file.tg,
                                    sc=sc,
@@ -97,7 +97,7 @@ test_that("Scenario GH", {
 
   p = 2085
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
-                                   ofile="uitvoer.txt",
+                                   ofile=ofile,
                                    delta.file.rsds=delta.file.rsds,
                                    delta.file.tg = delta.file.tg,
                                    sc=sc,
@@ -111,7 +111,7 @@ test_that("Scenario GL", {
 
   p=2050
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
-                                   ofile="uitvoer.txt",
+                                   ofile=ofile,
                                    delta.file.rsds=delta.file.rsds,
                                    delta.file.tg = delta.file.tg,
                                    sc=sc,
@@ -121,7 +121,7 @@ test_that("Scenario GL", {
 
   p = 2085
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
-                                   ofile="uitvoer.txt",
+                                   ofile=ofile,
                                    delta.file.rsds=delta.file.rsds,
                                    delta.file.tg = delta.file.tg,
                                    sc=sc,
