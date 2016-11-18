@@ -6,7 +6,7 @@ makkink <- function(Tg,Q) {
   gamma  <- 0.646 + 0.0006*Tg					        # psychrometric constant    [hPa/K]
   lambda <- 1000 * (2501-2.38*Tg)					    # Enthalpy of vaporization  [J/kg]
 
-  evmk   <- Q * ( (1000*0.65*delta) /
+  evmk   <- (1000*Q) * ( (1000*0.65*delta) /
                     ((delta+gamma)*rho*lambda) )	# [mm/day]
   return(evmk)
 }
