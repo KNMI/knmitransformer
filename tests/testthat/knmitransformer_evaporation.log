@@ -88,3 +88,233 @@ INFO [2016-11-17 13:13:13] Running temperature transformation
 DEBUG [2016-11-17 13:13:13] Version={v1.1}
 INFO [2016-11-17 13:13:13] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
 DEBUG [2016-11-17 13:13:13] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:14:57] Running evaporation calculation
+DEBUG [2016-11-17 13:14:57] Version is 1.0
+INFO [2016-11-17 13:14:57] Running temperature transformation
+DEBUG [2016-11-17 13:14:57] Version={v1.1}
+INFO [2016-11-17 13:14:57] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:14:57] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:14:57] Running evaporation calculation
+DEBUG [2016-11-17 13:14:57] Version is 1.0
+INFO [2016-11-17 13:14:57] Running temperature transformation
+DEBUG [2016-11-17 13:14:57] Version={v1.1}
+INFO [2016-11-17 13:14:57] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:14:57] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:14:57] Running evaporation calculation
+DEBUG [2016-11-17 13:14:57] Version is 1.0
+INFO [2016-11-17 13:14:57] Running temperature transformation
+DEBUG [2016-11-17 13:14:57] Version={v1.1}
+INFO [2016-11-17 13:14:57] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:14:57] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:14:57] Running evaporation calculation
+DEBUG [2016-11-17 13:14:57] Version is 1.0
+INFO [2016-11-17 13:14:57] Running temperature transformation
+DEBUG [2016-11-17 13:14:57] Version={v1.1}
+INFO [2016-11-17 13:14:57] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:14:57] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:14:57] Running evaporation calculation
+DEBUG [2016-11-17 13:14:57] Version is 1.0
+INFO [2016-11-17 13:14:57] Running temperature transformation
+DEBUG [2016-11-17 13:14:57] Version={v1.1}
+INFO [2016-11-17 13:14:57] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:14:57] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:22:27] Running evaporation calculation
+DEBUG [2016-11-17 13:22:27] Version is 1.0
+INFO [2016-11-17 13:22:27] Running temperature transformation
+DEBUG [2016-11-17 13:22:27] Version={v1.1}
+INFO [2016-11-17 13:22:27] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:22:28] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:22:28] Running evaporation calculation
+DEBUG [2016-11-17 13:22:28] Version is 1.0
+INFO [2016-11-17 13:22:28] Running temperature transformation
+DEBUG [2016-11-17 13:22:28] Version={v1.1}
+INFO [2016-11-17 13:22:28] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:22:28] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:22:28] Running evaporation calculation
+DEBUG [2016-11-17 13:22:28] Version is 1.0
+INFO [2016-11-17 13:22:28] Running temperature transformation
+DEBUG [2016-11-17 13:22:28] Version={v1.1}
+INFO [2016-11-17 13:22:28] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:22:28] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:22:28] Running evaporation calculation
+DEBUG [2016-11-17 13:22:28] Version is 1.0
+INFO [2016-11-17 13:22:28] Running temperature transformation
+DEBUG [2016-11-17 13:22:28] Version={v1.1}
+INFO [2016-11-17 13:22:28] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:22:28] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:22:28] Running evaporation calculation
+DEBUG [2016-11-17 13:22:28] Version is 1.0
+INFO [2016-11-17 13:22:28] Running temperature transformation
+DEBUG [2016-11-17 13:22:28] Version={v1.1}
+INFO [2016-11-17 13:22:28] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:22:28] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:23:36] Running evaporation calculation
+DEBUG [2016-11-17 13:23:36] Version is 1.0
+INFO [2016-11-17 13:23:36] Running temperature transformation
+DEBUG [2016-11-17 13:23:36] Version={v1.1}
+INFO [2016-11-17 13:23:36] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:23:36] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:23:36] Running evaporation calculation
+DEBUG [2016-11-17 13:23:36] Version is 1.0
+INFO [2016-11-17 13:23:36] Running temperature transformation
+DEBUG [2016-11-17 13:23:36] Version={v1.1}
+INFO [2016-11-17 13:23:36] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:23:36] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:23:36] Running evaporation calculation
+DEBUG [2016-11-17 13:23:36] Version is 1.0
+INFO [2016-11-17 13:23:36] Running temperature transformation
+DEBUG [2016-11-17 13:23:36] Version={v1.1}
+INFO [2016-11-17 13:23:36] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:23:36] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:23:37] Running evaporation calculation
+DEBUG [2016-11-17 13:23:37] Version is 1.0
+INFO [2016-11-17 13:23:37] Running temperature transformation
+DEBUG [2016-11-17 13:23:37] Version={v1.1}
+INFO [2016-11-17 13:23:37] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:23:37] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:23:37] Running evaporation calculation
+DEBUG [2016-11-17 13:23:37] Version is 1.0
+INFO [2016-11-17 13:23:37] Running temperature transformation
+DEBUG [2016-11-17 13:23:37] Version={v1.1}
+INFO [2016-11-17 13:23:37] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:23:37] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:24:08] Running evaporation calculation
+DEBUG [2016-11-17 13:24:08] Version is 1.0
+INFO [2016-11-17 13:24:08] Running temperature transformation
+DEBUG [2016-11-17 13:24:08] Version={v1.1}
+INFO [2016-11-17 13:24:08] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:24:08] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:24:08] Running evaporation calculation
+DEBUG [2016-11-17 13:24:08] Version is 1.0
+INFO [2016-11-17 13:24:08] Running temperature transformation
+DEBUG [2016-11-17 13:24:08] Version={v1.1}
+INFO [2016-11-17 13:24:08] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:24:08] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:24:08] Running evaporation calculation
+DEBUG [2016-11-17 13:24:08] Version is 1.0
+INFO [2016-11-17 13:24:08] Running temperature transformation
+DEBUG [2016-11-17 13:24:08] Version={v1.1}
+INFO [2016-11-17 13:24:08] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:24:08] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:24:08] Running evaporation calculation
+DEBUG [2016-11-17 13:24:08] Version is 1.0
+INFO [2016-11-17 13:24:08] Running temperature transformation
+DEBUG [2016-11-17 13:24:08] Version={v1.1}
+INFO [2016-11-17 13:24:08] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:24:08] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:24:08] Running evaporation calculation
+DEBUG [2016-11-17 13:24:08] Version is 1.0
+INFO [2016-11-17 13:24:08] Running temperature transformation
+DEBUG [2016-11-17 13:24:08] Version={v1.1}
+INFO [2016-11-17 13:24:08] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:24:08] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:28:09] Running evaporation calculation
+DEBUG [2016-11-17 13:28:09] Version is 1.0
+INFO [2016-11-17 13:28:09] Running temperature transformation
+DEBUG [2016-11-17 13:28:09] Version={v1.1}
+INFO [2016-11-17 13:28:09] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:28:09] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:28:09] Running evaporation calculation
+DEBUG [2016-11-17 13:28:09] Version is 1.0
+INFO [2016-11-17 13:28:09] Running temperature transformation
+DEBUG [2016-11-17 13:28:09] Version={v1.1}
+INFO [2016-11-17 13:28:09] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:28:09] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:28:09] Running evaporation calculation
+DEBUG [2016-11-17 13:28:09] Version is 1.0
+INFO [2016-11-17 13:28:09] Running temperature transformation
+DEBUG [2016-11-17 13:28:09] Version={v1.1}
+INFO [2016-11-17 13:28:09] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:28:09] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:28:09] Running evaporation calculation
+DEBUG [2016-11-17 13:28:09] Version is 1.0
+INFO [2016-11-17 13:28:09] Running temperature transformation
+DEBUG [2016-11-17 13:28:09] Version={v1.1}
+INFO [2016-11-17 13:28:09] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:28:10] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:28:10] Running evaporation calculation
+DEBUG [2016-11-17 13:28:10] Version is 1.0
+INFO [2016-11-17 13:28:10] Running temperature transformation
+DEBUG [2016-11-17 13:28:10] Version={v1.1}
+INFO [2016-11-17 13:28:10] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:28:10] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:31:28] Running evaporation calculation
+DEBUG [2016-11-17 13:31:28] Version is 1.0
+INFO [2016-11-17 13:31:28] Running temperature transformation
+DEBUG [2016-11-17 13:31:28] Version={v1.1}
+INFO [2016-11-17 13:31:28] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:31:28] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:31:28] Running evaporation calculation
+DEBUG [2016-11-17 13:31:28] Version is 1.0
+INFO [2016-11-17 13:31:28] Running temperature transformation
+DEBUG [2016-11-17 13:31:28] Version={v1.1}
+INFO [2016-11-17 13:31:28] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:31:28] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:31:29] Running evaporation calculation
+DEBUG [2016-11-17 13:31:29] Version is 1.0
+INFO [2016-11-17 13:31:29] Running temperature transformation
+DEBUG [2016-11-17 13:31:29] Version={v1.1}
+INFO [2016-11-17 13:31:29] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:31:29] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:31:29] Running evaporation calculation
+DEBUG [2016-11-17 13:31:29] Version is 1.0
+INFO [2016-11-17 13:31:29] Running temperature transformation
+DEBUG [2016-11-17 13:31:29] Version={v1.1}
+INFO [2016-11-17 13:31:29] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:31:29] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-17 13:31:29] Running evaporation calculation
+DEBUG [2016-11-17 13:31:29] Version is 1.0
+INFO [2016-11-17 13:31:29] Running temperature transformation
+DEBUG [2016-11-17 13:31:29] Version={v1.1}
+INFO [2016-11-17 13:31:29] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-17 13:31:29] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 08:59:54] Running evaporation calculation
+DEBUG [2016-11-18 08:59:54] Version is 1.0
+INFO [2016-11-18 08:59:54] Running temperature transformation
+DEBUG [2016-11-18 08:59:54] Version={v1.1}
+INFO [2016-11-18 08:59:54] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 08:59:54] Running evaporation calculation
+DEBUG [2016-11-18 08:59:54] Version is 1.0
+INFO [2016-11-18 08:59:54] Running temperature transformation
+DEBUG [2016-11-18 08:59:54] Version={v1.1}
+INFO [2016-11-18 08:59:54] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 08:59:54] Running evaporation calculation
+DEBUG [2016-11-18 08:59:54] Version is 1.0
+INFO [2016-11-18 08:59:54] Running temperature transformation
+DEBUG [2016-11-18 08:59:54] Version={v1.1}
+INFO [2016-11-18 08:59:54] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 08:59:54] Running evaporation calculation
+DEBUG [2016-11-18 08:59:54] Version is 1.0
+INFO [2016-11-18 08:59:54] Running temperature transformation
+DEBUG [2016-11-18 08:59:54] Version={v1.1}
+INFO [2016-11-18 08:59:54] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 08:59:54] Running evaporation calculation
+DEBUG [2016-11-18 08:59:54] Version is 1.0
+INFO [2016-11-18 08:59:54] Running temperature transformation
+DEBUG [2016-11-18 08:59:54] Version={v1.1}
+INFO [2016-11-18 08:59:54] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 09:10:51] Running evaporation calculation
+DEBUG [2016-11-18 09:10:51] Version is 1.0
+INFO [2016-11-18 09:10:51] Running temperature transformation
+DEBUG [2016-11-18 09:10:51] Version={v1.1}
+INFO [2016-11-18 09:10:51] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 09:10:51] Running evaporation calculation
+DEBUG [2016-11-18 09:10:51] Version is 1.0
+INFO [2016-11-18 09:10:51] Running temperature transformation
+DEBUG [2016-11-18 09:10:51] Version={v1.1}
+INFO [2016-11-18 09:10:51] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 09:10:51] Running evaporation calculation
+DEBUG [2016-11-18 09:10:51] Version is 1.0
+INFO [2016-11-18 09:10:51] Running temperature transformation
+DEBUG [2016-11-18 09:10:51] Version={v1.1}
+INFO [2016-11-18 09:10:51] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 09:10:51] Running evaporation calculation
+DEBUG [2016-11-18 09:10:51] Version is 1.0
+INFO [2016-11-18 09:10:51] Running temperature transformation
+DEBUG [2016-11-18 09:10:51] Version={v1.1}
+INFO [2016-11-18 09:10:51] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 09:10:51] Running evaporation calculation
+DEBUG [2016-11-18 09:10:51] Version is 1.0
+INFO [2016-11-18 09:10:51] Running temperature transformation
+DEBUG [2016-11-18 09:10:51] Version={v1.1}
+INFO [2016-11-18 09:10:51] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
