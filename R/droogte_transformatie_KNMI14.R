@@ -75,9 +75,10 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
   rsds_input <- straling_transformatie_KNMI14(ifile = ifile_rsds, delta.file = delta.file.rsds, p=2030)
   tg_input <- temperatuur_transformatie_KNMI14(ifile = ifile_tg, var="tg" , delta.file = delta.file.tg)
 
-  #ev         <- rsds_input; ev[,-1] = NA
-  #ev[,-1]    <- round(makkink(tg[,-1],1000*rsds_input[,-1]),2)
-  fut    <- round(makkink(tg_input,1000*rsds_input),2)
+  fut    <- round(knmitransformer:::makkink(tg_input,rsds_input),2)
+
+  header <- rsds_input[1:5]
+  H.comments <- "Makkink Evaporation [mm] as derived from transformed tg & rsds "
 
   # OUTPUT #####################################################################
   result <- WriteOutput("evmk", ofile, version, sc, p, H.comments, header, fut)
