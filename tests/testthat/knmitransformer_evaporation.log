@@ -318,3 +318,1211 @@ DEBUG [2016-11-18 09:10:51] Version is 1.0
 INFO [2016-11-18 09:10:51] Running temperature transformation
 DEBUG [2016-11-18 09:10:51] Version={v1.1}
 INFO [2016-11-18 09:10:51] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 11:09:08] Running evaporation calculation
+DEBUG [2016-11-18 11:09:08] Version is 1.0
+INFO [2016-11-18 11:09:08] Running temperature transformation
+DEBUG [2016-11-18 11:09:08] Version={v1.1}
+INFO [2016-11-18 11:09:08] Reading reference data, file={tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 11:25:13] Running evaporation calculation
+DEBUG [2016-11-18 11:25:13] Version is 1.0
+INFO [2016-11-18 11:25:13] Running temperature transformation
+DEBUG [2016-11-18 11:25:13] Version={v1.1}
+INFO [2016-11-18 11:25:13] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:25:13] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:25:14] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:25:14] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:25:15] Write output
+DEBUG [2016-11-18 11:25:15] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:25:15] 
+INFO [2016-11-18 11:25:15] Running temperature transformation
+DEBUG [2016-11-18 11:25:15] Version is 1.0
+INFO [2016-11-18 11:25:15] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:25:15] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:25:15] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:25:15] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:25:15] regio.table={NA}
+DEBUG [2016-11-18 11:25:15] Running tm_trans_KNMI14
+INFO [2016-11-18 11:25:15] Write output
+DEBUG [2016-11-18 11:25:15] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:25:15] 
+INFO [2016-11-18 11:25:16] Write output
+DEBUG [2016-11-18 11:25:16] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:25:16] 
+INFO [2016-11-18 11:25:16] Running evaporation calculation
+DEBUG [2016-11-18 11:25:16] Version is 1.0
+INFO [2016-11-18 11:25:16] Running temperature transformation
+DEBUG [2016-11-18 11:25:16] Version={v1.1}
+INFO [2016-11-18 11:25:16] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:25:16] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:25:16] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:25:16] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:25:17] Write output
+DEBUG [2016-11-18 11:25:17] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:25:17] 
+INFO [2016-11-18 11:25:17] Running temperature transformation
+DEBUG [2016-11-18 11:25:17] Version is 1.0
+INFO [2016-11-18 11:25:17] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:25:17] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:25:17] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:25:17] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:25:17] regio.table={NA}
+DEBUG [2016-11-18 11:25:17] Running tm_trans_KNMI14
+INFO [2016-11-18 11:25:18] Write output
+DEBUG [2016-11-18 11:25:18] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:25:18] 
+INFO [2016-11-18 11:25:18] Write output
+DEBUG [2016-11-18 11:25:18] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:25:18] 
+INFO [2016-11-18 11:25:18] Running evaporation calculation
+DEBUG [2016-11-18 11:25:18] Version is 1.0
+INFO [2016-11-18 11:25:18] Running temperature transformation
+DEBUG [2016-11-18 11:25:18] Version={v1.1}
+INFO [2016-11-18 11:25:18] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:25:18] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:25:18] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:25:18] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:25:19] Write output
+DEBUG [2016-11-18 11:25:20] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:25:20] 
+INFO [2016-11-18 11:25:20] Running temperature transformation
+DEBUG [2016-11-18 11:25:20] Version is 1.0
+INFO [2016-11-18 11:25:20] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:25:20] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:25:20] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:25:20] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:25:20] regio.table={NA}
+DEBUG [2016-11-18 11:25:20] Running tm_trans_KNMI14
+INFO [2016-11-18 11:25:20] Write output
+DEBUG [2016-11-18 11:25:20] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:25:20] 
+INFO [2016-11-18 11:25:20] Write output
+DEBUG [2016-11-18 11:25:20] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:25:20] 
+INFO [2016-11-18 11:25:20] Running evaporation calculation
+DEBUG [2016-11-18 11:25:20] Version is 1.0
+INFO [2016-11-18 11:25:20] Running temperature transformation
+DEBUG [2016-11-18 11:25:20] Version={v1.1}
+INFO [2016-11-18 11:25:20] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:25:20] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:25:21] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:25:21] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:25:22] Write output
+DEBUG [2016-11-18 11:25:22] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:25:22] 
+INFO [2016-11-18 11:25:22] Running temperature transformation
+DEBUG [2016-11-18 11:25:22] Version is 1.0
+INFO [2016-11-18 11:25:22] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:25:22] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:25:22] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:25:22] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:25:22] regio.table={NA}
+DEBUG [2016-11-18 11:25:22] Running tm_trans_KNMI14
+INFO [2016-11-18 11:25:22] Write output
+DEBUG [2016-11-18 11:25:22] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:25:22] 
+INFO [2016-11-18 11:25:23] Write output
+DEBUG [2016-11-18 11:25:23] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:25:23] 
+INFO [2016-11-18 11:25:23] Running evaporation calculation
+DEBUG [2016-11-18 11:25:23] Version is 1.0
+INFO [2016-11-18 11:25:23] Running temperature transformation
+DEBUG [2016-11-18 11:25:23] Version={v1.1}
+INFO [2016-11-18 11:25:23] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:25:23] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:25:23] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:25:23] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:25:24] Write output
+DEBUG [2016-11-18 11:25:24] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:25:24] 
+INFO [2016-11-18 11:25:24] Running temperature transformation
+DEBUG [2016-11-18 11:25:24] Version is 1.0
+INFO [2016-11-18 11:25:24] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:25:24] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:25:24] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:25:24] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:25:24] regio.table={NA}
+DEBUG [2016-11-18 11:25:24] Running tm_trans_KNMI14
+INFO [2016-11-18 11:25:24] Write output
+DEBUG [2016-11-18 11:25:25] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:25:25] 
+INFO [2016-11-18 11:25:25] Write output
+DEBUG [2016-11-18 11:25:25] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:25:25] 
+INFO [2016-11-18 11:28:47] Running evaporation calculation
+DEBUG [2016-11-18 11:28:47] Version is 1.0
+INFO [2016-11-18 11:28:47] Running temperature transformation
+DEBUG [2016-11-18 11:28:47] Version={v1.1}
+INFO [2016-11-18 11:28:47] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:28:47] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:28:47] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:28:47] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:28:48] Write output
+DEBUG [2016-11-18 11:28:49] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:28:49] 
+INFO [2016-11-18 11:28:49] Running temperature transformation
+DEBUG [2016-11-18 11:28:49] Version is 1.0
+INFO [2016-11-18 11:28:49] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:28:49] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:28:49] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:28:49] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:28:49] regio.table={NA}
+DEBUG [2016-11-18 11:28:49] Running tm_trans_KNMI14
+INFO [2016-11-18 11:28:49] Write output
+DEBUG [2016-11-18 11:28:49] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:28:49] 
+INFO [2016-11-18 11:28:49] Write output
+DEBUG [2016-11-18 11:28:50] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:28:50] 
+INFO [2016-11-18 11:28:50] Running evaporation calculation
+DEBUG [2016-11-18 11:28:50] Version is 1.0
+INFO [2016-11-18 11:28:50] Running temperature transformation
+DEBUG [2016-11-18 11:28:50] Version={v1.1}
+INFO [2016-11-18 11:28:50] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:28:50] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:28:50] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:28:50] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:28:51] Write output
+DEBUG [2016-11-18 11:28:51] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:28:51] 
+INFO [2016-11-18 11:28:51] Running temperature transformation
+DEBUG [2016-11-18 11:28:51] Version is 1.0
+INFO [2016-11-18 11:28:51] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:28:51] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:28:51] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:28:51] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:28:51] regio.table={NA}
+DEBUG [2016-11-18 11:28:51] Running tm_trans_KNMI14
+INFO [2016-11-18 11:28:51] Write output
+DEBUG [2016-11-18 11:28:51] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:28:51] 
+INFO [2016-11-18 11:28:52] Write output
+DEBUG [2016-11-18 11:28:52] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:28:52] 
+INFO [2016-11-18 11:28:52] Running evaporation calculation
+DEBUG [2016-11-18 11:28:52] Version is 1.0
+INFO [2016-11-18 11:28:52] Running temperature transformation
+DEBUG [2016-11-18 11:28:52] Version={v1.1}
+INFO [2016-11-18 11:28:52] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:28:52] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:28:52] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:28:52] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:28:53] Write output
+DEBUG [2016-11-18 11:28:53] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:28:53] 
+INFO [2016-11-18 11:28:53] Running temperature transformation
+DEBUG [2016-11-18 11:28:53] Version is 1.0
+INFO [2016-11-18 11:28:53] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:28:53] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:28:53] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:28:53] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:28:53] regio.table={NA}
+DEBUG [2016-11-18 11:28:53] Running tm_trans_KNMI14
+INFO [2016-11-18 11:28:54] Write output
+DEBUG [2016-11-18 11:28:54] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:28:54] 
+INFO [2016-11-18 11:28:54] Write output
+DEBUG [2016-11-18 11:28:54] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:28:54] 
+INFO [2016-11-18 11:28:54] Running evaporation calculation
+DEBUG [2016-11-18 11:28:54] Version is 1.0
+INFO [2016-11-18 11:28:54] Running temperature transformation
+DEBUG [2016-11-18 11:28:54] Version={v1.1}
+INFO [2016-11-18 11:28:54] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:28:54] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:28:54] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:28:54] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:28:55] Write output
+DEBUG [2016-11-18 11:28:55] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:28:55] 
+INFO [2016-11-18 11:28:55] Running temperature transformation
+DEBUG [2016-11-18 11:28:55] Version is 1.0
+INFO [2016-11-18 11:28:55] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:28:56] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:28:56] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:28:56] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:28:56] regio.table={NA}
+DEBUG [2016-11-18 11:28:56] Running tm_trans_KNMI14
+INFO [2016-11-18 11:28:56] Write output
+DEBUG [2016-11-18 11:28:56] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:28:56] 
+INFO [2016-11-18 11:28:56] Write output
+DEBUG [2016-11-18 11:28:56] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:28:56] 
+INFO [2016-11-18 11:28:56] Running evaporation calculation
+DEBUG [2016-11-18 11:28:56] Version is 1.0
+INFO [2016-11-18 11:28:56] Running temperature transformation
+DEBUG [2016-11-18 11:28:56] Version={v1.1}
+INFO [2016-11-18 11:28:56] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:28:56] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:28:56] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:28:56] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:28:57] Write output
+DEBUG [2016-11-18 11:28:58] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:28:58] 
+INFO [2016-11-18 11:28:58] Running temperature transformation
+DEBUG [2016-11-18 11:28:58] Version is 1.0
+INFO [2016-11-18 11:28:58] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:28:58] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:28:58] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:28:58] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:28:58] regio.table={NA}
+DEBUG [2016-11-18 11:28:58] Running tm_trans_KNMI14
+INFO [2016-11-18 11:28:58] Write output
+DEBUG [2016-11-18 11:28:58] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:28:58] 
+INFO [2016-11-18 11:28:58] Write output
+DEBUG [2016-11-18 11:28:58] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:28:58] 
+INFO [2016-11-18 11:37:40] Running evaporation calculation
+DEBUG [2016-11-18 11:37:40] Version is 1.0
+INFO [2016-11-18 11:37:40] Running temperature transformation
+DEBUG [2016-11-18 11:37:40] Version={v1.1}
+INFO [2016-11-18 11:37:40] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:37:40] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:37:40] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:37:40] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:37:41] Write output
+DEBUG [2016-11-18 11:37:41] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:37:41] 
+INFO [2016-11-18 11:37:41] Running temperature transformation
+DEBUG [2016-11-18 11:37:41] Version is 1.0
+INFO [2016-11-18 11:37:41] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:37:41] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:37:41] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:37:41] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:37:41] regio.table={NA}
+DEBUG [2016-11-18 11:37:41] Running tm_trans_KNMI14
+INFO [2016-11-18 11:37:42] Write output
+DEBUG [2016-11-18 11:37:42] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:37:42] 
+INFO [2016-11-18 11:37:42] Write output
+DEBUG [2016-11-18 11:37:42] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:37:42] 
+INFO [2016-11-18 11:37:42] Running evaporation calculation
+DEBUG [2016-11-18 11:37:42] Version is 1.0
+INFO [2016-11-18 11:37:42] Running temperature transformation
+DEBUG [2016-11-18 11:37:42] Version={v1.1}
+INFO [2016-11-18 11:37:42] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:37:42] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:37:42] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:37:42] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:37:43] Write output
+DEBUG [2016-11-18 11:37:44] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:37:44] 
+INFO [2016-11-18 11:37:44] Running temperature transformation
+DEBUG [2016-11-18 11:37:44] Version is 1.0
+INFO [2016-11-18 11:37:44] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:37:44] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:37:44] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:37:44] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:37:44] regio.table={NA}
+DEBUG [2016-11-18 11:37:44] Running tm_trans_KNMI14
+INFO [2016-11-18 11:37:44] Write output
+DEBUG [2016-11-18 11:37:44] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:37:44] 
+INFO [2016-11-18 11:37:44] Write output
+DEBUG [2016-11-18 11:37:44] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:37:44] 
+INFO [2016-11-18 11:37:44] Running evaporation calculation
+DEBUG [2016-11-18 11:37:44] Version is 1.0
+INFO [2016-11-18 11:37:44] Running temperature transformation
+DEBUG [2016-11-18 11:37:44] Version={v1.1}
+INFO [2016-11-18 11:37:44] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:37:44] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:37:44] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:37:44] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:38:02] Running evaporation calculation
+DEBUG [2016-11-18 11:38:02] Version is 1.0
+INFO [2016-11-18 11:38:02] Running temperature transformation
+DEBUG [2016-11-18 11:38:02] Version={v1.1}
+INFO [2016-11-18 11:38:02] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:38:02] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:38:02] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:38:02] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:38:03] Write output
+DEBUG [2016-11-18 11:38:04] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:38:04] 
+INFO [2016-11-18 11:38:04] Running temperature transformation
+DEBUG [2016-11-18 11:38:04] Version is 1.0
+INFO [2016-11-18 11:38:04] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:38:04] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:38:04] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:38:04] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:38:04] regio.table={NA}
+DEBUG [2016-11-18 11:38:04] Running tm_trans_KNMI14
+INFO [2016-11-18 11:38:04] Write output
+DEBUG [2016-11-18 11:38:04] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:38:04] 
+INFO [2016-11-18 11:38:04] Write output
+DEBUG [2016-11-18 11:38:05] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:38:05] 
+INFO [2016-11-18 11:38:05] Running evaporation calculation
+DEBUG [2016-11-18 11:38:05] Version is 1.0
+INFO [2016-11-18 11:38:05] Running temperature transformation
+DEBUG [2016-11-18 11:38:05] Version={v1.1}
+INFO [2016-11-18 11:38:05] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:38:05] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:38:05] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:38:05] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:38:06] Write output
+DEBUG [2016-11-18 11:38:06] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:38:06] 
+INFO [2016-11-18 11:38:06] Running temperature transformation
+DEBUG [2016-11-18 11:38:06] Version is 1.0
+INFO [2016-11-18 11:38:06] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:38:06] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:38:06] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:38:06] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:38:06] regio.table={NA}
+DEBUG [2016-11-18 11:38:06] Running tm_trans_KNMI14
+INFO [2016-11-18 11:38:06] Write output
+DEBUG [2016-11-18 11:38:07] Temperature transformation ended successfully!
+DEBUG [2016-11-18 11:38:07] 
+INFO [2016-11-18 11:38:07] Write output
+DEBUG [2016-11-18 11:38:07] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 11:38:07] 
+INFO [2016-11-18 11:38:07] Running evaporation calculation
+DEBUG [2016-11-18 11:38:07] Version is 1.0
+INFO [2016-11-18 11:38:07] Running temperature transformation
+DEBUG [2016-11-18 11:38:07] Version={v1.1}
+INFO [2016-11-18 11:38:07] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:38:07] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 11:38:07] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 11:38:07] Running rsds_trans_KNMI14
+INFO [2016-11-18 11:38:08] Write output
+DEBUG [2016-11-18 11:38:08] Radiation transformation ended successfully!
+DEBUG [2016-11-18 11:38:08] 
+INFO [2016-11-18 11:38:08] Running temperature transformation
+DEBUG [2016-11-18 11:38:08] Version is 1.0
+INFO [2016-11-18 11:38:08] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 11:38:08] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 11:38:09] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 11:38:09] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 11:38:09] regio.table={NA}
+DEBUG [2016-11-18 11:38:09] Running tm_trans_KNMI14
+INFO [2016-11-18 12:26:52] Running evaporation calculation
+DEBUG [2016-11-18 12:26:52] Version is 1.0
+INFO [2016-11-18 12:26:52] Running temperature transformation
+DEBUG [2016-11-18 12:26:52] Version={v1.1}
+INFO [2016-11-18 12:26:52] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:26:52] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:26:52] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:26:52] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:26:53] Write output
+DEBUG [2016-11-18 12:26:53] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:26:53] 
+INFO [2016-11-18 12:26:53] Running temperature transformation
+DEBUG [2016-11-18 12:26:53] Version is 1.0
+INFO [2016-11-18 12:26:53] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:26:53] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:26:54] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:26:54] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:26:54] regio.table={NA}
+DEBUG [2016-11-18 12:26:54] Running tm_trans_KNMI14
+INFO [2016-11-18 12:26:54] Write output
+DEBUG [2016-11-18 12:26:54] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:26:54] 
+INFO [2016-11-18 12:26:54] Write output
+INFO [2016-11-18 12:26:54] Running evaporation calculation
+DEBUG [2016-11-18 12:26:54] Version is 1.0
+INFO [2016-11-18 12:26:54] Running temperature transformation
+DEBUG [2016-11-18 12:26:54] Version={v1.1}
+INFO [2016-11-18 12:26:54] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:26:54] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:26:54] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:26:54] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:26:55] Write output
+DEBUG [2016-11-18 12:26:55] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:26:55] 
+INFO [2016-11-18 12:26:55] Running temperature transformation
+DEBUG [2016-11-18 12:26:55] Version is 1.0
+INFO [2016-11-18 12:26:55] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:26:56] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:26:56] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:26:56] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:26:56] regio.table={NA}
+DEBUG [2016-11-18 12:26:56] Running tm_trans_KNMI14
+INFO [2016-11-18 12:26:56] Write output
+DEBUG [2016-11-18 12:26:56] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:26:56] 
+INFO [2016-11-18 12:26:56] Write output
+INFO [2016-11-18 12:26:56] Running evaporation calculation
+DEBUG [2016-11-18 12:26:56] Version is 1.0
+INFO [2016-11-18 12:26:56] Running temperature transformation
+DEBUG [2016-11-18 12:26:56] Version={v1.1}
+INFO [2016-11-18 12:26:56] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:26:56] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:26:56] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:26:56] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:26:57] Write output
+DEBUG [2016-11-18 12:26:58] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:26:58] 
+INFO [2016-11-18 12:26:58] Running temperature transformation
+DEBUG [2016-11-18 12:26:58] Version is 1.0
+INFO [2016-11-18 12:26:58] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:26:58] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:26:58] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:26:58] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:26:58] regio.table={NA}
+DEBUG [2016-11-18 12:26:58] Running tm_trans_KNMI14
+INFO [2016-11-18 12:26:58] Write output
+DEBUG [2016-11-18 12:26:58] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:26:58] 
+INFO [2016-11-18 12:26:58] Write output
+INFO [2016-11-18 12:26:58] Running evaporation calculation
+DEBUG [2016-11-18 12:26:58] Version is 1.0
+INFO [2016-11-18 12:26:58] Running temperature transformation
+DEBUG [2016-11-18 12:26:58] Version={v1.1}
+INFO [2016-11-18 12:26:58] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:26:58] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:26:58] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:26:58] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:26:59] Write output
+DEBUG [2016-11-18 12:26:59] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:26:59] 
+INFO [2016-11-18 12:26:59] Running temperature transformation
+DEBUG [2016-11-18 12:27:00] Version is 1.0
+INFO [2016-11-18 12:27:00] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:27:00] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:27:00] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:27:00] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:27:00] regio.table={NA}
+DEBUG [2016-11-18 12:27:00] Running tm_trans_KNMI14
+INFO [2016-11-18 12:27:00] Write output
+DEBUG [2016-11-18 12:27:00] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:27:00] 
+INFO [2016-11-18 12:27:00] Write output
+INFO [2016-11-18 12:27:00] Running evaporation calculation
+DEBUG [2016-11-18 12:27:00] Version is 1.0
+INFO [2016-11-18 12:27:00] Running temperature transformation
+DEBUG [2016-11-18 12:27:00] Version={v1.1}
+INFO [2016-11-18 12:27:00] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:27:00] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:27:00] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:27:00] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:27:01] Write output
+DEBUG [2016-11-18 12:27:01] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:27:01] 
+INFO [2016-11-18 12:27:01] Running temperature transformation
+DEBUG [2016-11-18 12:27:01] Version is 1.0
+INFO [2016-11-18 12:27:01] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:27:02] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:27:02] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:27:02] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:27:02] regio.table={NA}
+DEBUG [2016-11-18 12:27:02] Running tm_trans_KNMI14
+INFO [2016-11-18 12:27:02] Write output
+DEBUG [2016-11-18 12:27:02] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:27:02] 
+INFO [2016-11-18 12:27:02] Write output
+INFO [2016-11-18 12:27:19] Running evaporation calculation
+DEBUG [2016-11-18 12:27:19] Version is 1.0
+INFO [2016-11-18 12:27:19] Running temperature transformation
+DEBUG [2016-11-18 12:27:19] Version={v1.1}
+INFO [2016-11-18 12:27:19] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:27:19] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:27:19] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:27:19] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:27:20] Write output
+DEBUG [2016-11-18 12:27:20] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:27:20] 
+INFO [2016-11-18 12:27:20] Running temperature transformation
+DEBUG [2016-11-18 12:27:20] Version is 1.0
+INFO [2016-11-18 12:27:20] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:27:20] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:27:20] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:27:20] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:27:20] regio.table={NA}
+DEBUG [2016-11-18 12:27:20] Running tm_trans_KNMI14
+INFO [2016-11-18 12:27:21] Write output
+DEBUG [2016-11-18 12:27:21] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:27:21] 
+INFO [2016-11-18 12:27:21] Write output
+INFO [2016-11-18 12:27:21] Running evaporation calculation
+DEBUG [2016-11-18 12:27:21] Version is 1.0
+INFO [2016-11-18 12:27:21] Running temperature transformation
+DEBUG [2016-11-18 12:27:21] Version={v1.1}
+INFO [2016-11-18 12:27:21] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:27:21] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:27:21] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:27:21] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:27:22] Write output
+DEBUG [2016-11-18 12:27:22] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:27:22] 
+INFO [2016-11-18 12:27:22] Running temperature transformation
+DEBUG [2016-11-18 12:27:22] Version is 1.0
+INFO [2016-11-18 12:27:22] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:27:22] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:27:23] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:27:23] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:27:23] regio.table={NA}
+DEBUG [2016-11-18 12:27:23] Running tm_trans_KNMI14
+INFO [2016-11-18 12:27:23] Write output
+DEBUG [2016-11-18 12:27:23] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:27:23] 
+INFO [2016-11-18 12:27:23] Write output
+INFO [2016-11-18 12:27:23] Running evaporation calculation
+DEBUG [2016-11-18 12:27:23] Version is 1.0
+INFO [2016-11-18 12:27:23] Running temperature transformation
+DEBUG [2016-11-18 12:27:23] Version={v1.1}
+INFO [2016-11-18 12:27:23] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:27:23] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:27:23] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:27:23] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:27:24] Write output
+INFO [2016-11-18 12:51:44] Running evaporation calculation
+DEBUG [2016-11-18 12:51:44] Version is 1.0
+INFO [2016-11-18 12:51:44] Running temperature transformation
+DEBUG [2016-11-18 12:51:44] Version={v1.1}
+INFO [2016-11-18 12:51:44] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:51:44] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:51:44] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:51:44] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:51:45] Write output
+DEBUG [2016-11-18 12:51:45] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:51:45] 
+INFO [2016-11-18 12:51:45] Running temperature transformation
+DEBUG [2016-11-18 12:51:45] Version is 1.0
+INFO [2016-11-18 12:51:45] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:51:45] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:51:45] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:51:45] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:51:45] regio.table={NA}
+DEBUG [2016-11-18 12:51:45] Running tm_trans_KNMI14
+INFO [2016-11-18 12:51:46] Write output
+DEBUG [2016-11-18 12:51:46] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:51:46] 
+INFO [2016-11-18 12:51:46] Write output
+DEBUG [2016-11-18 12:51:46] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 12:51:46] 
+INFO [2016-11-18 12:57:50] Running evaporation calculation
+DEBUG [2016-11-18 12:57:50] Version is 1.0
+INFO [2016-11-18 12:57:50] Running temperature transformation
+DEBUG [2016-11-18 12:57:50] Version={v1.1}
+INFO [2016-11-18 12:57:50] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:57:50] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:57:50] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:57:50] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:57:51] Write output
+DEBUG [2016-11-18 12:57:51] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:57:51] 
+INFO [2016-11-18 12:57:51] Running temperature transformation
+DEBUG [2016-11-18 12:57:51] Version is 1.0
+INFO [2016-11-18 12:57:51] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:57:51] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:57:51] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:57:51] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:57:51] regio.table={NA}
+DEBUG [2016-11-18 12:57:51] Running tm_trans_KNMI14
+INFO [2016-11-18 12:57:52] Write output
+DEBUG [2016-11-18 12:57:52] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:57:52] 
+INFO [2016-11-18 12:57:52] Write output
+DEBUG [2016-11-18 12:57:52] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 12:57:52] 
+INFO [2016-11-18 12:57:52] Running evaporation calculation
+DEBUG [2016-11-18 12:57:52] Version is 1.0
+INFO [2016-11-18 12:57:52] Running temperature transformation
+DEBUG [2016-11-18 12:57:52] Version={v1.1}
+INFO [2016-11-18 12:57:52] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:57:52] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:57:52] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:57:52] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:57:53] Write output
+DEBUG [2016-11-18 12:57:54] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:57:54] 
+INFO [2016-11-18 12:57:54] Running temperature transformation
+DEBUG [2016-11-18 12:57:54] Version is 1.0
+INFO [2016-11-18 12:57:54] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:57:54] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:57:54] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:57:54] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:57:54] regio.table={NA}
+DEBUG [2016-11-18 12:57:54] Running tm_trans_KNMI14
+INFO [2016-11-18 12:57:54] Write output
+DEBUG [2016-11-18 12:57:54] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:57:54] 
+INFO [2016-11-18 12:57:54] Write output
+DEBUG [2016-11-18 12:57:54] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 12:57:54] 
+INFO [2016-11-18 12:57:55] Running evaporation calculation
+DEBUG [2016-11-18 12:57:55] Version is 1.0
+INFO [2016-11-18 12:57:55] Running temperature transformation
+DEBUG [2016-11-18 12:57:55] Version={v1.1}
+INFO [2016-11-18 12:57:55] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:57:55] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:57:55] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:57:55] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:57:56] Write output
+DEBUG [2016-11-18 12:57:56] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:57:56] 
+INFO [2016-11-18 12:57:56] Running temperature transformation
+DEBUG [2016-11-18 12:57:56] Version is 1.0
+INFO [2016-11-18 12:57:56] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:57:56] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:57:56] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:57:56] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:57:56] regio.table={NA}
+DEBUG [2016-11-18 12:57:56] Running tm_trans_KNMI14
+INFO [2016-11-18 12:57:56] Write output
+DEBUG [2016-11-18 12:57:56] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:57:56] 
+INFO [2016-11-18 12:57:57] Write output
+DEBUG [2016-11-18 12:57:57] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 12:57:57] 
+INFO [2016-11-18 12:57:57] Running evaporation calculation
+DEBUG [2016-11-18 12:57:57] Version is 1.0
+INFO [2016-11-18 12:57:57] Running temperature transformation
+DEBUG [2016-11-18 12:57:57] Version={v1.1}
+INFO [2016-11-18 12:57:57] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:57:57] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:57:57] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:57:57] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:57:58] Write output
+DEBUG [2016-11-18 12:57:58] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:57:58] 
+INFO [2016-11-18 12:57:58] Running temperature transformation
+DEBUG [2016-11-18 12:57:58] Version is 1.0
+INFO [2016-11-18 12:57:58] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:57:58] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:57:58] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:57:58] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:57:59] regio.table={NA}
+DEBUG [2016-11-18 12:57:59] Running tm_trans_KNMI14
+INFO [2016-11-18 12:57:59] Write output
+DEBUG [2016-11-18 12:57:59] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:57:59] 
+INFO [2016-11-18 12:57:59] Write output
+DEBUG [2016-11-18 12:57:59] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 12:57:59] 
+INFO [2016-11-18 12:57:59] Running evaporation calculation
+DEBUG [2016-11-18 12:57:59] Version is 1.0
+INFO [2016-11-18 12:57:59] Running temperature transformation
+DEBUG [2016-11-18 12:57:59] Version={v1.1}
+INFO [2016-11-18 12:57:59] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:57:59] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:57:59] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:57:59] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:58:00] Write output
+DEBUG [2016-11-18 12:58:01] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:58:01] 
+INFO [2016-11-18 12:58:01] Running temperature transformation
+DEBUG [2016-11-18 12:58:01] Version is 1.0
+INFO [2016-11-18 12:58:01] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:58:01] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:58:01] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:58:01] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:58:01] regio.table={NA}
+DEBUG [2016-11-18 12:58:01] Running tm_trans_KNMI14
+INFO [2016-11-18 12:58:01] Write output
+DEBUG [2016-11-18 12:58:01] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:58:01] 
+INFO [2016-11-18 12:58:01] Write output
+DEBUG [2016-11-18 12:58:01] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 12:58:01] 
+INFO [2016-11-18 12:58:01] Running evaporation calculation
+DEBUG [2016-11-18 12:58:01] Version is 1.0
+INFO [2016-11-18 12:58:01] Running temperature transformation
+DEBUG [2016-11-18 12:58:01] Version={v1.1}
+INFO [2016-11-18 12:58:01] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:58:01] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:58:02] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:58:02] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:58:03] Write output
+DEBUG [2016-11-18 12:58:03] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:58:03] 
+INFO [2016-11-18 12:58:03] Running temperature transformation
+DEBUG [2016-11-18 12:58:03] Version is 1.0
+INFO [2016-11-18 12:58:03] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:58:03] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:58:03] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:58:03] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:58:03] regio.table={NA}
+DEBUG [2016-11-18 12:58:03] Running tm_trans_KNMI14
+INFO [2016-11-18 12:58:03] Write output
+DEBUG [2016-11-18 12:58:03] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:58:03] 
+INFO [2016-11-18 12:58:04] Write output
+DEBUG [2016-11-18 12:58:04] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 12:58:04] 
+INFO [2016-11-18 12:58:04] Running evaporation calculation
+DEBUG [2016-11-18 12:58:04] Version is 1.0
+INFO [2016-11-18 12:58:04] Running temperature transformation
+DEBUG [2016-11-18 12:58:04] Version={v1.1}
+INFO [2016-11-18 12:58:04] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:58:04] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:58:04] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:58:04] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:58:05] Write output
+DEBUG [2016-11-18 12:58:05] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:58:05] 
+INFO [2016-11-18 12:58:05] Running temperature transformation
+DEBUG [2016-11-18 12:58:05] Version is 1.0
+INFO [2016-11-18 12:58:05] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:58:05] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:58:05] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:58:05] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:58:05] regio.table={NA}
+DEBUG [2016-11-18 12:58:05] Running tm_trans_KNMI14
+INFO [2016-11-18 12:58:06] Write output
+DEBUG [2016-11-18 12:58:06] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:58:06] 
+INFO [2016-11-18 12:58:06] Write output
+DEBUG [2016-11-18 12:58:06] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 12:58:06] 
+INFO [2016-11-18 12:58:06] Running evaporation calculation
+DEBUG [2016-11-18 12:58:06] Version is 1.0
+INFO [2016-11-18 12:58:06] Running temperature transformation
+DEBUG [2016-11-18 12:58:06] Version={v1.1}
+INFO [2016-11-18 12:58:06] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:58:06] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:58:06] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:58:06] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:58:07] Write output
+DEBUG [2016-11-18 12:58:08] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:58:08] 
+INFO [2016-11-18 12:58:08] Running temperature transformation
+DEBUG [2016-11-18 12:58:08] Version is 1.0
+INFO [2016-11-18 12:58:08] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:58:08] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:58:08] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:58:08] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:58:08] regio.table={NA}
+DEBUG [2016-11-18 12:58:08] Running tm_trans_KNMI14
+INFO [2016-11-18 12:58:08] Write output
+DEBUG [2016-11-18 12:58:08] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:58:08] 
+INFO [2016-11-18 12:58:08] Write output
+DEBUG [2016-11-18 12:58:08] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 12:58:08] 
+INFO [2016-11-18 12:58:08] Running evaporation calculation
+DEBUG [2016-11-18 12:58:08] Version is 1.0
+INFO [2016-11-18 12:58:08] Running temperature transformation
+DEBUG [2016-11-18 12:58:08] Version={v1.1}
+INFO [2016-11-18 12:58:08] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:58:08] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 12:58:09] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 12:58:09] Running rsds_trans_KNMI14
+INFO [2016-11-18 12:58:10] Write output
+DEBUG [2016-11-18 12:58:10] Radiation transformation ended successfully!
+DEBUG [2016-11-18 12:58:10] 
+INFO [2016-11-18 12:58:10] Running temperature transformation
+DEBUG [2016-11-18 12:58:10] Version is 1.0
+INFO [2016-11-18 12:58:10] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 12:58:10] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 12:58:10] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 12:58:10] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 12:58:10] regio.table={NA}
+DEBUG [2016-11-18 12:58:10] Running tm_trans_KNMI14
+INFO [2016-11-18 12:58:10] Write output
+DEBUG [2016-11-18 12:58:10] Temperature transformation ended successfully!
+DEBUG [2016-11-18 12:58:10] 
+INFO [2016-11-18 12:58:11] Write output
+DEBUG [2016-11-18 12:58:11] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 12:58:11] 
+INFO [2016-11-18 13:27:19] Running evaporation calculation
+DEBUG [2016-11-18 13:27:19] Version is 1.0
+INFO [2016-11-18 13:27:19] Running temperature transformation
+DEBUG [2016-11-18 13:27:19] Version={v1.1}
+INFO [2016-11-18 13:27:19] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:27:19] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:27:19] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:27:19] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:27:20] Write output
+DEBUG [2016-11-18 13:27:20] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:27:20] 
+INFO [2016-11-18 13:27:20] Running temperature transformation
+DEBUG [2016-11-18 13:27:20] Version is 1.0
+INFO [2016-11-18 13:27:20] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:27:20] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:27:20] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:27:20] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:27:20] regio.table={NA}
+DEBUG [2016-11-18 13:27:20] Running tm_trans_KNMI14
+INFO [2016-11-18 13:27:21] Write output
+DEBUG [2016-11-18 13:27:21] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:27:21] 
+INFO [2016-11-18 13:27:21] Running evaporation calculation
+DEBUG [2016-11-18 13:27:21] Version is 1.0
+INFO [2016-11-18 13:27:21] Running temperature transformation
+DEBUG [2016-11-18 13:27:21] Version={v1.1}
+INFO [2016-11-18 13:27:21] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:27:21] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:27:21] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:27:21] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:27:22] Write output
+DEBUG [2016-11-18 13:27:22] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:27:22] 
+INFO [2016-11-18 13:27:22] Running temperature transformation
+DEBUG [2016-11-18 13:27:22] Version is 1.0
+INFO [2016-11-18 13:27:22] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:27:22] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:27:23] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:27:23] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:27:23] regio.table={NA}
+DEBUG [2016-11-18 13:27:23] Running tm_trans_KNMI14
+INFO [2016-11-18 13:27:23] Write output
+DEBUG [2016-11-18 13:27:23] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:27:23] 
+INFO [2016-11-18 13:27:23] Running evaporation calculation
+DEBUG [2016-11-18 13:27:23] Version is 1.0
+INFO [2016-11-18 13:27:23] Running temperature transformation
+DEBUG [2016-11-18 13:27:23] Version={v1.1}
+INFO [2016-11-18 13:27:23] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:27:23] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:27:23] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:27:23] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:27:24] Write output
+DEBUG [2016-11-18 13:27:25] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:27:25] 
+INFO [2016-11-18 13:27:25] Running temperature transformation
+DEBUG [2016-11-18 13:27:25] Version is 1.0
+INFO [2016-11-18 13:27:25] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:27:25] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:27:25] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:27:25] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:27:25] regio.table={NA}
+DEBUG [2016-11-18 13:27:25] Running tm_trans_KNMI14
+INFO [2016-11-18 13:27:25] Write output
+DEBUG [2016-11-18 13:27:25] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:27:25] 
+INFO [2016-11-18 13:27:25] Running evaporation calculation
+DEBUG [2016-11-18 13:27:25] Version is 1.0
+INFO [2016-11-18 13:27:25] Running temperature transformation
+DEBUG [2016-11-18 13:27:25] Version={v1.1}
+INFO [2016-11-18 13:27:25] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:27:25] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:27:25] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:27:25] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:27:26] Write output
+DEBUG [2016-11-18 13:27:27] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:27:27] 
+INFO [2016-11-18 13:27:27] Running temperature transformation
+DEBUG [2016-11-18 13:27:27] Version is 1.0
+INFO [2016-11-18 13:27:27] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:27:27] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:27:27] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:27:27] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:27:27] regio.table={NA}
+DEBUG [2016-11-18 13:27:27] Running tm_trans_KNMI14
+INFO [2016-11-18 13:27:27] Write output
+DEBUG [2016-11-18 13:27:27] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:27:27] 
+INFO [2016-11-18 13:27:27] Running evaporation calculation
+DEBUG [2016-11-18 13:27:27] Version is 1.0
+INFO [2016-11-18 13:27:27] Running temperature transformation
+DEBUG [2016-11-18 13:27:27] Version={v1.1}
+INFO [2016-11-18 13:27:27] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:27:27] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:27:27] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:27:27] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:27:29] Write output
+DEBUG [2016-11-18 13:27:29] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:27:29] 
+INFO [2016-11-18 13:27:29] Running temperature transformation
+DEBUG [2016-11-18 13:27:29] Version is 1.0
+INFO [2016-11-18 13:27:29] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:27:29] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:27:29] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:27:29] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:27:29] regio.table={NA}
+DEBUG [2016-11-18 13:27:29] Running tm_trans_KNMI14
+INFO [2016-11-18 13:27:29] Write output
+DEBUG [2016-11-18 13:27:29] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:27:29] 
+INFO [2016-11-18 13:29:15] Running evaporation calculation
+DEBUG [2016-11-18 13:29:15] Version is 1.0
+INFO [2016-11-18 13:29:15] Running temperature transformation
+DEBUG [2016-11-18 13:29:15] Version={v1.1}
+INFO [2016-11-18 13:29:15] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:29:15] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:29:15] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:29:15] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:29:16] Write output
+DEBUG [2016-11-18 13:29:16] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:29:16] 
+INFO [2016-11-18 13:29:16] Running temperature transformation
+DEBUG [2016-11-18 13:29:16] Version is 1.0
+INFO [2016-11-18 13:29:16] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:29:16] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:29:16] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:29:16] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:29:16] regio.table={NA}
+DEBUG [2016-11-18 13:29:16] Running tm_trans_KNMI14
+INFO [2016-11-18 13:29:17] Write output
+DEBUG [2016-11-18 13:29:17] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:29:17] 
+INFO [2016-11-18 13:29:17] Running evaporation calculation
+DEBUG [2016-11-18 13:29:17] Version is 1.0
+INFO [2016-11-18 13:29:17] Running temperature transformation
+DEBUG [2016-11-18 13:29:17] Version={v1.1}
+INFO [2016-11-18 13:29:17] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:29:17] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:29:17] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:29:17] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:29:18] Write output
+DEBUG [2016-11-18 13:29:19] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:29:19] 
+INFO [2016-11-18 13:29:19] Running temperature transformation
+DEBUG [2016-11-18 13:29:19] Version is 1.0
+INFO [2016-11-18 13:29:19] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:29:19] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:29:19] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:29:19] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:29:19] regio.table={NA}
+DEBUG [2016-11-18 13:29:19] Running tm_trans_KNMI14
+INFO [2016-11-18 13:29:19] Write output
+DEBUG [2016-11-18 13:29:19] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:29:19] 
+INFO [2016-11-18 13:29:19] Running evaporation calculation
+DEBUG [2016-11-18 13:29:19] Version is 1.0
+INFO [2016-11-18 13:29:19] Running temperature transformation
+DEBUG [2016-11-18 13:29:19] Version={v1.1}
+INFO [2016-11-18 13:29:19] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:29:19] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:29:19] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:29:19] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:29:20] Write output
+DEBUG [2016-11-18 13:29:21] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:29:21] 
+INFO [2016-11-18 13:29:21] Running temperature transformation
+DEBUG [2016-11-18 13:29:21] Version is 1.0
+INFO [2016-11-18 13:29:21] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:29:21] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:29:21] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:29:21] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:29:21] regio.table={NA}
+DEBUG [2016-11-18 13:29:21] Running tm_trans_KNMI14
+INFO [2016-11-18 13:29:21] Write output
+DEBUG [2016-11-18 13:29:21] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:29:21] 
+INFO [2016-11-18 13:29:21] Running evaporation calculation
+DEBUG [2016-11-18 13:29:21] Version is 1.0
+INFO [2016-11-18 13:29:21] Running temperature transformation
+DEBUG [2016-11-18 13:29:21] Version={v1.1}
+INFO [2016-11-18 13:29:21] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+INFO [2016-11-18 13:29:55] Running evaporation calculation
+DEBUG [2016-11-18 13:29:55] Version is 1.0
+INFO [2016-11-18 13:29:55] Running temperature transformation
+DEBUG [2016-11-18 13:29:55] Version={v1.1}
+INFO [2016-11-18 13:29:55] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:29:55] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:29:55] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:29:55] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:29:56] Write output
+DEBUG [2016-11-18 13:29:57] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:29:57] 
+INFO [2016-11-18 13:29:57] Running temperature transformation
+DEBUG [2016-11-18 13:29:57] Version is 1.0
+INFO [2016-11-18 13:29:57] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:29:57] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:29:57] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:29:57] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:29:57] regio.table={NA}
+DEBUG [2016-11-18 13:29:57] Running tm_trans_KNMI14
+INFO [2016-11-18 13:29:57] Write output
+DEBUG [2016-11-18 13:29:57] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:29:57] 
+INFO [2016-11-18 13:29:57] Write output
+DEBUG [2016-11-18 13:29:57] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 13:29:57] 
+INFO [2016-11-18 13:29:57] Running evaporation calculation
+DEBUG [2016-11-18 13:29:57] Version is 1.0
+INFO [2016-11-18 13:29:58] Running temperature transformation
+DEBUG [2016-11-18 13:29:58] Version={v1.1}
+INFO [2016-11-18 13:29:58] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:29:58] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:29:58] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:29:58] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:29:59] Write output
+DEBUG [2016-11-18 13:29:59] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:29:59] 
+INFO [2016-11-18 13:29:59] Running temperature transformation
+DEBUG [2016-11-18 13:29:59] Version is 1.0
+INFO [2016-11-18 13:29:59] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:29:59] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:29:59] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:29:59] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:29:59] regio.table={NA}
+DEBUG [2016-11-18 13:29:59] Running tm_trans_KNMI14
+INFO [2016-11-18 13:29:59] Write output
+DEBUG [2016-11-18 13:29:59] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:29:59] 
+INFO [2016-11-18 13:30:00] Write output
+DEBUG [2016-11-18 13:30:00] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 13:30:00] 
+INFO [2016-11-18 13:30:00] Running evaporation calculation
+DEBUG [2016-11-18 13:30:00] Version is 1.0
+INFO [2016-11-18 13:30:00] Running temperature transformation
+DEBUG [2016-11-18 13:30:00] Version={v1.1}
+INFO [2016-11-18 13:30:00] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:00] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:30:00] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:30:00] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:30:01] Write output
+DEBUG [2016-11-18 13:30:01] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:30:01] 
+INFO [2016-11-18 13:30:01] Running temperature transformation
+DEBUG [2016-11-18 13:30:01] Version is 1.0
+INFO [2016-11-18 13:30:01] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:01] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:30:02] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:30:02] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:30:02] regio.table={NA}
+DEBUG [2016-11-18 13:30:02] Running tm_trans_KNMI14
+INFO [2016-11-18 13:30:02] Write output
+DEBUG [2016-11-18 13:30:02] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:30:02] 
+INFO [2016-11-18 13:30:02] Write output
+DEBUG [2016-11-18 13:30:02] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 13:30:02] 
+INFO [2016-11-18 13:30:02] Running evaporation calculation
+DEBUG [2016-11-18 13:30:02] Version is 1.0
+INFO [2016-11-18 13:30:02] Running temperature transformation
+DEBUG [2016-11-18 13:30:02] Version={v1.1}
+INFO [2016-11-18 13:30:02] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:02] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:30:02] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:30:02] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:30:04] Write output
+DEBUG [2016-11-18 13:30:04] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:30:04] 
+INFO [2016-11-18 13:30:04] Running temperature transformation
+DEBUG [2016-11-18 13:30:04] Version is 1.0
+INFO [2016-11-18 13:30:04] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:04] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:30:04] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:30:04] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:30:04] regio.table={NA}
+DEBUG [2016-11-18 13:30:04] Running tm_trans_KNMI14
+INFO [2016-11-18 13:30:04] Write output
+DEBUG [2016-11-18 13:30:04] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:30:04] 
+INFO [2016-11-18 13:30:04] Write output
+DEBUG [2016-11-18 13:30:04] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 13:30:04] 
+INFO [2016-11-18 13:30:05] Running evaporation calculation
+DEBUG [2016-11-18 13:30:05] Version is 1.0
+INFO [2016-11-18 13:30:05] Running temperature transformation
+DEBUG [2016-11-18 13:30:05] Version={v1.1}
+INFO [2016-11-18 13:30:05] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:05] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:30:05] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:30:05] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:30:06] Write output
+DEBUG [2016-11-18 13:30:06] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:30:06] 
+INFO [2016-11-18 13:30:06] Running temperature transformation
+DEBUG [2016-11-18 13:30:06] Version is 1.0
+INFO [2016-11-18 13:30:06] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:06] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:30:06] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:30:06] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:30:06] regio.table={NA}
+DEBUG [2016-11-18 13:30:06] Running tm_trans_KNMI14
+INFO [2016-11-18 13:30:06] Write output
+DEBUG [2016-11-18 13:30:07] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:30:07] 
+INFO [2016-11-18 13:30:07] Write output
+DEBUG [2016-11-18 13:30:07] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 13:30:07] 
+INFO [2016-11-18 13:30:07] Running evaporation calculation
+DEBUG [2016-11-18 13:30:07] Version is 1.0
+INFO [2016-11-18 13:30:07] Running temperature transformation
+DEBUG [2016-11-18 13:30:07] Version={v1.1}
+INFO [2016-11-18 13:30:07] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:07] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:30:07] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:30:07] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:30:08] Write output
+DEBUG [2016-11-18 13:30:08] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:30:08] 
+INFO [2016-11-18 13:30:08] Running temperature transformation
+DEBUG [2016-11-18 13:30:08] Version is 1.0
+INFO [2016-11-18 13:30:08] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:08] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:30:09] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:30:09] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:30:09] regio.table={NA}
+DEBUG [2016-11-18 13:30:09] Running tm_trans_KNMI14
+INFO [2016-11-18 13:30:09] Write output
+DEBUG [2016-11-18 13:30:09] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:30:09] 
+INFO [2016-11-18 13:30:09] Write output
+DEBUG [2016-11-18 13:30:09] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 13:30:09] 
+INFO [2016-11-18 13:30:09] Running evaporation calculation
+DEBUG [2016-11-18 13:30:09] Version is 1.0
+INFO [2016-11-18 13:30:09] Running temperature transformation
+DEBUG [2016-11-18 13:30:09] Version={v1.1}
+INFO [2016-11-18 13:30:09] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:09] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:30:09] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:30:09] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:30:11] Write output
+DEBUG [2016-11-18 13:30:11] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:30:11] 
+INFO [2016-11-18 13:30:11] Running temperature transformation
+DEBUG [2016-11-18 13:30:11] Version is 1.0
+INFO [2016-11-18 13:30:11] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:11] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:30:11] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:30:11] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:30:11] regio.table={NA}
+DEBUG [2016-11-18 13:30:11] Running tm_trans_KNMI14
+INFO [2016-11-18 13:30:11] Write output
+DEBUG [2016-11-18 13:30:11] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:30:11] 
+INFO [2016-11-18 13:30:11] Write output
+DEBUG [2016-11-18 13:30:11] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 13:30:11] 
+INFO [2016-11-18 13:30:12] Running evaporation calculation
+DEBUG [2016-11-18 13:30:12] Version is 1.0
+INFO [2016-11-18 13:30:12] Running temperature transformation
+DEBUG [2016-11-18 13:30:12] Version={v1.1}
+INFO [2016-11-18 13:30:12] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:12] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:30:12] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:30:12] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:30:13] Write output
+DEBUG [2016-11-18 13:30:13] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:30:13] 
+INFO [2016-11-18 13:30:13] Running temperature transformation
+DEBUG [2016-11-18 13:30:13] Version is 1.0
+INFO [2016-11-18 13:30:13] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:13] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:30:13] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:30:13] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:30:13] regio.table={NA}
+DEBUG [2016-11-18 13:30:13] Running tm_trans_KNMI14
+INFO [2016-11-18 13:30:13] Write output
+DEBUG [2016-11-18 13:30:14] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:30:14] 
+INFO [2016-11-18 13:30:14] Write output
+DEBUG [2016-11-18 13:30:14] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 13:30:14] 
+INFO [2016-11-18 13:30:14] Running evaporation calculation
+DEBUG [2016-11-18 13:30:14] Version is 1.0
+INFO [2016-11-18 13:30:14] Running temperature transformation
+DEBUG [2016-11-18 13:30:14] Version={v1.1}
+INFO [2016-11-18 13:30:14] Reading reference data, file={regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:14] Scanning of the reference data returned n={10964} lines.
+INFO [2016-11-18 13:30:14] Reading deltas, file={deltas-KNMI14__rsds_____2030.txt}
+DEBUG [2016-11-18 13:30:14] Running rsds_trans_KNMI14
+INFO [2016-11-18 13:30:15] Write output
+DEBUG [2016-11-18 13:30:15] Radiation transformation ended successfully!
+DEBUG [2016-11-18 13:30:15] 
+INFO [2016-11-18 13:30:15] Running temperature transformation
+DEBUG [2016-11-18 13:30:15] Version is 1.0
+INFO [2016-11-18 13:30:15] Reading reference data, file={regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt}
+DEBUG [2016-11-18 13:30:16] Scanning of the reference data returned n={10964} lines.
+DEBUG [2016-11-18 13:30:16] obs colnames={date, 210, 235, 240, 260, 270, 275, 280, 290, 310, 344, 350, 370, 375, 380}
+INFO [2016-11-18 13:30:16] Reading deltas, file={deltas-KNMI14__tg_______2030.txt}
+DEBUG [2016-11-18 13:30:16] regio.table={NA}
+DEBUG [2016-11-18 13:30:16] Running tm_trans_KNMI14
+INFO [2016-11-18 13:30:16] Write output
+DEBUG [2016-11-18 13:30:16] Temperature transformation ended successfully!
+DEBUG [2016-11-18 13:30:16] 
+INFO [2016-11-18 13:30:16] Write output
+DEBUG [2016-11-18 13:30:16] Evaporation calculation ended successfully!
+DEBUG [2016-11-18 13:30:16] 
