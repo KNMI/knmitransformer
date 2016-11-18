@@ -75,9 +75,16 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
   rsds_input <- straling_transformatie_KNMI14(ifile = ifile_rsds, delta.file = delta.file.rsds, p=2030)
   tg_input <- temperatuur_transformatie_KNMI14(ifile = ifile_tg, var="tg" , delta.file = delta.file.tg)
 
-  fut    <- round(knmitransformer:::makkink(tg_input,rsds_input),2)
+  rsds <- rsds_input[-(1:5)]
+  tg <- tg_input[-(1:5)]
+  fut <- rsds
+  fut[,2:15]<- NA
 
+  fut[,2:15] <- round(knmitransformer:::makkink(tg[,2:15,with=FALSE],rsds[,2:15,with=FALSE]),2)
+
+  # Have to add a test to make sure that the header here is the same as the header in the regressionInput files
   header <- rsds_input[1:5]
+  #header <- fread("tests/testthat/regressionInput/evaporation/header_evmk.txt")
   H.comments <- "Makkink Evaporation [mm] as derived from transformed tg & rsds "
 
   # OUTPUT #####################################################################
