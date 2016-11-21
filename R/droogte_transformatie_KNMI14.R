@@ -77,7 +77,7 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
     stop("Same stations should be used for temperature and radiation")
   }
   header <- rsds_input[1:5]
-  H.comments <- "Makkink Evaporation [mm] as derived from transformed tg & rsds "
+  H.comments <- "# Makkink Evaporation [mm] as derived from transformed tg & rsds "
 
   # OUTPUT #####################################################################
   result <- WriteOutput("evmk", ofile, version, sc, p, H.comments, header, fut)
