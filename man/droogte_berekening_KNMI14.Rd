@@ -8,6 +8,10 @@ droogte_berekening_KNMI14(ifile_tg, ifile_rsds, ofile = "uitvoer.txt",
   delta.file.rsds, delta.file.tg = NA, sc, p = NA, regio.file = NA)
 }
 \arguments{
+\item{ifile_tg}{Name of the input file for temperature}
+
+\item{ifile_rsds}{Name of the input file for radiation}
+
 \item{ofile}{(DEFAULT="uitvoer.txt") Name of the output file to write the transformed data to.
 Format is similar to ifile}
 
@@ -46,16 +50,6 @@ KNMI14 distinguishes following regions:
 <NON> Noordoost Nederland
 <MON> Middenoost Nederland
 <ZON> Zuidoost Nederland}
-
-\item{ifile}{Name of the input file (ASCII) that contains reference data (all numerics) in which
-the columns provide transformed time series for specific stations. The first column
-should provide either 00000000 or a datestring YYYYMMDD:
-Rows starting with 00000000 are considered station info (station number, lat, lon
-etc.) and are ignored.
-Rows starting with a datestring refer to a specific day in the time series.
-Rows starting with "#" are completely ignored and returned unchanged}
-
-\item{var}{daily Makkink evaporation [evmk= evaporation makkink]}
 }
 \description{
 Function reads transormed mean temperature and transformed global radiation

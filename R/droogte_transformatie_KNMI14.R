@@ -1,26 +1,18 @@
 #' Calculation of Makkink evaporation
 #' @description Function reads transormed mean temperature and transformed global radiation
 #' and calculates the Makkink evaporation for 'future time series' that match a certain climate
-#' @param ifile          Name of the input file (ASCII) that contains reference data (all numerics) in which
-#'                the columns provide transformed time series for specific stations. The first column
-#'                should provide either 00000000 or a datestring YYYYMMDD:
-#'                Rows starting with 00000000 are considered station info (station number, lat, lon
-#'                etc.) and are ignored.
-#'                Rows starting with a datestring refer to a specific day in the time series.
-#'                Rows starting with "#" are completely ignored and returned unchanged
-#'
+#' @param ifile_tg   Name of the input file for temperature
+#' @param ifile_rsds Name of the input file for radiation
 #' @param ofile          (DEFAULT="uitvoer.txt") Name of the output file to write the transformed data to.
 #'                Format is similar to ifile
 #'
 #' @param sc             scenario                      ["GL", "GH", "WL", "WH"]
 #' @param p              time horizon                  [2030 (=DEFAULT), 2050, 2085]
-#' @param var          daily Makkink evaporation [evmk= evaporation makkink]
-#'
-#'@param delta.file.rsds     [optional] Name of file that contains deltas (changes factors for the transformation)
-#'                File should contain following compulsory column identified with compulsory headers
-#'                - HEADER -
-#'                "ave"       relative change [\%] in mean shortwave surface radiation
-#'@param delta.file.tg    [optional] Name of file that contains deltas (changes factors for the transformation)
+#' @param delta.file.rsds     [optional] Name of file that contains deltas (changes factors for the transformation)
+#'                 File should contain following compulsory column identified with compulsory headers
+#'                 - HEADER -
+#'                 "ave"       relative change [\%] in mean shortwave surface radiation
+#' @param delta.file.tg    [optional] Name of file that contains deltas (changes factors for the transformation)
 #'                File should contain following compulsory columns identified with compulsory headers
 #'               - HEADER -
 #'               "maand"     month for which deltas are valid (1,2,...,12) \cr
@@ -48,10 +40,7 @@
 #'                <MON> Middenoost Nederland
 #'                <ZON> Zuidoost Nederland
 #'
-#' @importFrom data.table fread
 #' @export
-
-
 droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
                                       ofile="uitvoer.txt",
                                       delta.file.rsds,
@@ -80,11 +69,14 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
   fut <- rsds
   fut[,2:15]<- NA
 
-  fut[,2:15] <- round(knmitransformer:::makkink(tg[,2:15,with=FALSE],rsds[,2:15,with=FALSE]),2)
+  fut[,2:15] <- round(makkink(tg[,2:15,with=FALSE],rsds[,2:15,with=FALSE]),2)
 
   # Have to add a test to make sure that the header here is the same as the header in the regressionInput files
+  if (rsds_input[1:5] != tg_input[1:5]) {
+    flog.error("Same stations should be used for temperature and radiation")
+    stop("Same stations should be used for temperature and radiation")
+  }
   header <- rsds_input[1:5]
-  #header <- fread("tests/testthat/regressionInput/evaporation/header_evmk.txt")
   H.comments <- "Makkink Evaporation [mm] as derived from transformed tg & rsds "
 
   # OUTPUT #####################################################################
