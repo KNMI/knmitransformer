@@ -7,8 +7,8 @@ library(data.table)
 
 context("evmk transformation - Entire station set")
 
-ifile_tg="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
-ifile_rsds="regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
+ifile_tg   <- "regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
+ifile_rsds <- "regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
 ofile      <- "tmp.txt" # output file - used only temporary
 regio.file <- "stationstabel" # table that links stations to region
 

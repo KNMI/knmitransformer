@@ -26,9 +26,9 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
                                       regio.file = NA) {
 
   flog.info("Running evaporation calculation")
-  flog.debug("Version is 1.0")
-  # CONSTANTS AND FUNCTIONS ###############################################################################
   version="v1.0"
+  flog.debug("Version is={%s}", version)
+  # CONSTANTS AND FUNCTIONS ###############################################################################
 
   if (!p %in% c(2030, 2050, 2085)) {
     flog.error("p={%s} has to be a valid period", paste(p))
@@ -41,8 +41,8 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
   tg_input   <- temperatuur_transformatie_KNMI14(ifile = ifile_tg, var="tg", sc=sc, p=p, regio.file = regio.file)
 
   rsds <- rsds_input[-(1:5)]
-  tg <- tg_input[-(1:5)]
-  if (rsds_input[1:5] != tg_input[1:5]) {
+  tg   <- tg_input[-(1:5)]
+  if (!all(rsds_input[1:5] == tg_input[1:5])) {
     flog.error("Same stations should be used for temperature and radiation")
     stop("Same stations should be used for temperature and radiation")
   }
