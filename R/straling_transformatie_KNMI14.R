@@ -13,7 +13,7 @@
 #' @export
 straling_transformatie_KNMI14 <- function(ifile,
                                           ofile="uitvoer.txt",
-                                          delta.file,
+                                          delta.file = NA,
                                           sc,
                                           p=NA) {
 

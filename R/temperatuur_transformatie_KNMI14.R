@@ -47,8 +47,6 @@
 #'                <NON> Noordoost Nederland
 #'                <MON> Middenoost Nederland
 #'                <ZON> Zuidoost Nederland
-#'
-#' @importFrom data.table fread
 #' @export
 temperatuur_transformatie_KNMI14 <- function(ifile,
                                               ofile="uitvoer.txt",

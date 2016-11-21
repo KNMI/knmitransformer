@@ -10,8 +10,6 @@ context("evmk transformation - Entire station set")
 ifile_tg="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
 ifile_rsds="regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
 ofile      <- "tmp.txt" # output file - used only temporary
-delta.file.rsds <- NA
-delta.file.tg <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
 test_that("2030 decadal prediction", {
@@ -22,8 +20,6 @@ test_that("2030 decadal prediction", {
 
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   delta.file.rsds=delta.file.rsds,
-                                   delta.file.tg = delta.file.tg,
                                    sc=sc,
                                    p=p,
                                    regio.file = regio.file)
@@ -37,8 +33,6 @@ test_that("Scenario WL", {
   p=2050
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   delta.file.rsds=delta.file.rsds,
-                                   delta.file.tg = delta.file.tg,
                                    sc=sc,
                                    p=p,
                                    regio.file = regio.file)
@@ -49,8 +43,6 @@ test_that("Scenario WL", {
   p = 2085
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   delta.file.rsds=delta.file.rsds,
-                                   delta.file.tg = delta.file.tg,
                                    sc=sc,
                                    p=p,
                                    regio.file = regio.file)
@@ -63,8 +55,6 @@ test_that("Scenario WH", {
   p=2050
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   delta.file.rsds=delta.file.rsds,
-                                   delta.file.tg = delta.file.tg,
                                    sc=sc,
                                    p=p,
                                    regio.file = regio.file)
@@ -73,8 +63,6 @@ test_that("Scenario WH", {
   p = 2085
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   delta.file.rsds=delta.file.rsds,
-                                   delta.file.tg = delta.file.tg,
                                    sc=sc,
                                    p=p,
                                    regio.file = regio.file)
@@ -87,8 +75,6 @@ test_that("Scenario GH", {
   p=2050
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   delta.file.rsds=delta.file.rsds,
-                                   delta.file.tg = delta.file.tg,
                                    sc=sc,
                                    p=p,
                                    regio.file = regio.file)
@@ -97,8 +83,6 @@ test_that("Scenario GH", {
   p = 2085
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   delta.file.rsds=delta.file.rsds,
-                                   delta.file.tg = delta.file.tg,
                                    sc=sc,
                                    p=p,
                                    regio.file = regio.file)
@@ -111,8 +95,6 @@ test_that("Scenario GL", {
   p=2050
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   delta.file.rsds=delta.file.rsds,
-                                   delta.file.tg = delta.file.tg,
                                    sc=sc,
                                    p=p,
                                    regio.file = regio.file)
@@ -121,8 +103,6 @@ test_that("Scenario GL", {
   p = 2085
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   delta.file.rsds=delta.file.rsds,
-                                   delta.file.tg = delta.file.tg,
                                    sc=sc,
                                    p=p,
                                    regio.file = regio.file)
