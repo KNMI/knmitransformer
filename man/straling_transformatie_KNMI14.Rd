@@ -4,8 +4,8 @@
 \alias{straling_transformatie_KNMI14}
 \title{Transformation of radiation}
 \usage{
-straling_transformatie_KNMI14(ifile, ofile = "uitvoer.txt", delta.file, sc,
-  p = NA)
+straling_transformatie_KNMI14(ifile, ofile = "uitvoer.txt", delta.file = NA,
+  sc, p = NA)
 }
 \arguments{
 \item{ifile}{Name of the input file (ASCII) that contains reference data (all numerics) in which
