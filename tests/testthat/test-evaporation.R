@@ -38,8 +38,7 @@ test_that("Scenario WL", {
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WL_2050_evmk.rds")
 
-  # Regression test based only on the smaller subset used also for the other
-  # scenarios - on the web there is an extended version
+  # Difference of 0.07 instead of the usual 0.01
   p = 2085
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,

@@ -83,7 +83,6 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
   flog.debug("regio.table={%s}", paste(regio.tabel, collapse = ", "))
 
   # TRANSFORMATION
-  #source("tm_trans_KNMI14.R")
   fut <- tm_trans_KNMI14(obs=input$obs, deltas=deltas, regio.tabel=regio.tabel)
 
   # OUTPUT #############################################################################################
