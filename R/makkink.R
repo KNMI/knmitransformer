@@ -12,29 +12,34 @@ makkink <- function(Tg,Q) {
 }
 
 makkink2 <- function(Tg, Q) {
-  Q      <- Q * 1000
-  a      <- 6.1078 # mbar
-  b      <- 17.294
-  smallC <- 237.73
-  gamma  <- PsychrometricConstant(Tg)
-  lambda <- WaterVaporizationEnthalpy(Tg)
+  # obtained from https://nl.wikipedia.org/wiki/Referentie-gewasverdamping
+  Q      <- Q * 1e3
 
-  s <- a * b * smallC / (smallC + Tg)^2
-  s <- s * exp(b * Tg / (smallC + Tg))
-
-  DeBruinC <- 0.65
+  gamma    <- PsychrometricConstant(Tg)
+  lambda   <- WaterVaporizationEnthalpy(Tg)
+  s        <- SaturatedVaporPressureGradient(Tg)
+  DeBruinC <- 6.5e-1
 
   DeBruinC * s / (s + gamma) * Q / lambda
+}
+
+SaturatedVaporPressureGradient <- function(tg) {
+  # obtained from https://nl.wikipedia.org/wiki/Referentie-gewasverdamping
+  constA <- 6.1078 # mbar
+  constB <- 17.294
+  constC <- 237.73
+  s      <- constA * constB * constC / (constC + tg)^2
+  s * exp(constB * tg / (constC + tg))
 }
 
 PsychrometricConstant <- function(tg) {
   # normally depends on much more than the temperature
   # not clear where this simple linear fit comes from
-  0.646 + 0.0006 * tg
+  6.46e-1 + 6e-4 * tg
 }
 
 WaterVaporizationEnthalpy <- function(tg) {
   # This linear fit is not checked
   # and is definitely not valid for higher temperatures
-  1000 * (2501 - 2.38 * tg)
+  2.501e6 - 2.38e3 * tg
 }
