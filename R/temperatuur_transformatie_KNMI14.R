@@ -1,5 +1,5 @@
 #' Transformation of temperature
-#' @description Function reads 'reference data' with ime series of daily of
+#' @description Function reads 'reference data' with time series of daily of
 #'  mean, minimum or maximum temperature [degrees Celsius] and 'change factors'
 #'  from input files and applies them to function 'tm_trans_KNMI14' to obtain
 #'  'future time series' that match a certain climate
@@ -47,8 +47,6 @@
 #'                <NON> Noordoost Nederland
 #'                <MON> Middenoost Nederland
 #'                <ZON> Zuidoost Nederland
-#'
-#' @importFrom data.table fread
 #' @export
 temperatuur_transformatie_KNMI14 <- function(ifile,
                                               ofile="uitvoer.txt",
@@ -85,7 +83,6 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
   flog.debug("regio.table={%s}", paste(regio.tabel, collapse = ", "))
 
   # TRANSFORMATION
-  #source("tm_trans_KNMI14.R")
   fut <- tm_trans_KNMI14(obs=input$obs, deltas=deltas, regio.tabel=regio.tabel)
 
   # OUTPUT #############################################################################################

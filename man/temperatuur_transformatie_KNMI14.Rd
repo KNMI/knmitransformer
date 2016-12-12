@@ -56,7 +56,7 @@ KNMI14 distinguishes following regions:
 <ZON> Zuidoost Nederland}
 }
 \description{
-Function reads 'reference data' with ime series of daily of
+Function reads 'reference data' with time series of daily of
  mean, minimum or maximum temperature [degrees Celsius] and 'change factors'
  from input files and applies them to function 'tm_trans_KNMI14' to obtain
  'future time series' that match a certain climate
