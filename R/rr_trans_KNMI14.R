@@ -36,17 +36,17 @@
 #                "ave"       relative change [%] in mean precipitation
 #                "P99"       relative change [%] in the 99th percentile of wet-day amounts
 #
-# version        "v1.1" [default] official version belonging to KNMI'14
+# dryingScheme   "v1.1" [default] official version belonging to KNMI'14
 #                "v1.2" alternative way to dry wet days
 #
 ###########################################################################################################
 
-rr_trans_KNMI14 <- function(obs,
-                            deltas,
-                            version="v1.1") {
+rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
   flog.debug("Running rr_trans_KNMI14")
+  version <- packageVersion("knmitransformer")
   flog.debug("Version={%s}", version)
+  flog.debug("DryingScheme={%s}", dryingScheme)
 
   # DEFINE CONSTANTS
   th    <- 0.1    # wet-day threshold
@@ -67,15 +67,15 @@ rr_trans_KNMI14 <- function(obs,
 
   # PREPARE DATA
   # explore observations
-  ns         <- ncol(obs) - 1                      # number of stations (= number of columns minus 1)
-  mm         <- (obs[,1]%/%100)%%100               # the month that a day belongs to (1, 2, ..., 12)
-  nr         <- length(mm)                         # total number of days (in reference file)
+  ns         <- ncol(obs) - 1            # number of stations (= number of columns minus 1)
+  mm         <- (obs[,1] %/% 100) %% 100 # the month that a day belongs to (1, 2, ..., 12)
+  nr         <- length(mm)               # total number of days (in reference file)
 
   # determine observed wet-day frequency (wdf.obs), mean (mean.obs), wet-day mean (mwet.obs), wet-day 99th percentile
-  wdf.obs    <- as.matrix(aggregate(obs[,-1],by=list(mm),function(x)     mean(  x>=th      )))[,-1]
-  mean.obs   <- as.matrix(aggregate(obs[,-1],by=list(mm),function(x)     mean(x            )))[,-1]
-  mwet.obs   <- as.matrix(aggregate(obs[,-1],by=list(mm),function(x)     mean(x[x>=th]     )))[,-1]
-  q2.obs     <- as.matrix(aggregate(obs[,-1],by=list(mm),function(x) quantile(x[x>=th],0.90)))[,-1]
+  wdf.obs    <- as.matrix(aggregate(obs[, -1], by=list(mm), function(x)     mean(  x>=th      )))[, -1]
+  mean.obs   <- as.matrix(aggregate(obs[, -1], by=list(mm), function(x)     mean(x            )))[, -1]
+  mwet.obs   <- as.matrix(aggregate(obs[, -1], by=list(mm), function(x)     mean(x[x>=th]     )))[, -1]
+  q2.obs     <- as.matrix(aggregate(obs[, -1], by=list(mm), function(x) quantile(x[x>=th],0.90)))[, -1]
   q1.obs     <- q2.obs*ratio
 
   # apply deltas to observed climatology to obtain future climatology
@@ -93,11 +93,11 @@ rr_trans_KNMI14 <- function(obs,
     Y  <- obs[,is+1]                                  # original time series of station 'is'
                                                       # that will be adjusted
 
-    # DRYING WET DAYS #############################################################
-    if(sum(deltas$wdf<0) > 0) {                       # check if reduction in wet days is needed
+    # DRYING WET DAYS ##########################################################
+    if(sum(deltas$wdf<0) > 0) {   # check if reduction in wet days is needed
 
-      # VERSION V1.1 is official KNMI14 "drying procedure" (see TR-349)
-      if(version=="v1.1") {
+      # dryingSchme VERSION V1.1 is official KNMI14 "drying procedure" (see TR-349)
+      if(dryingScheme == "v1.1") {
 
         # select target values
         target.values <- vector()                       # vector containing 'target precipitation amounts' to dry

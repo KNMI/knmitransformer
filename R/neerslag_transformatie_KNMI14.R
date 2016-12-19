@@ -14,19 +14,21 @@
 #'
 #'                 (If delta.file is not provided, predefined deltas are derived dependening on <sc>, <p> and <scaling>)
 #' @param scaling        scaling extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]
-#' @param version        "v1.1" [DEFAULT] official version that belongs to KNMI'14
+#' @param dryingScheme "v1.1" [DEFAULT] official version that belongs to KNMI'14
 #                "v1.2" alternative procedure to dry wet days
 #' @export
 neerslag_transformatie_KNMI14 <- function(ifile,
-                                          ofile="uitvoer.txt",
-                                          delta.file=NA,
+                                          ofile = "uitvoer.txt",
+                                          delta.file = NA,
                                           sc,
-                                          p=2030,
-                                          scaling="centr",
-                                          version="v1.1") {
+                                          p = 2030,
+                                          scaling = "centr",
+                                          dryingScheme = "v1.1") {
 
   flog.info("Running temperature transformation")
+  version <- packageVersion("knmitransformer")
   flog.debug("Version={%s}", version)
+  flog.debug("DryingScheme={%s}", dryingScheme)
 
   if (!p %in% c(2030, 2050, 2085)) {
     flog.error("p={%s} has to be a valid period", paste(p))
@@ -46,13 +48,15 @@ neerslag_transformatie_KNMI14 <- function(ifile,
 
   # READ CHANGE FACTORS (DELTAS)
   deltas <- ReadChangeFactors(delta.file, "rr", sc, p)
-  deltas$P99 <- deltas[,paste("p99",scaling,sep=".")] # choose scaling ("lower", "centr" or "upper")
+  deltas$P99 <- deltas[, paste("p99", scaling, sep=".")] # choose scaling ("lower", "centr" or "upper")
 
   # TRANSFORMATION
-  fut <- rr_trans_KNMI14(obs=obs, deltas=deltas, version="v1.1")
+  fut <- rr_trans_KNMI14(obs = obs, deltas = deltas,
+                         dryingScheme = dryingScheme)
 
   # OUTPUT
-  result <- WriteOutput("rr", ofile, version, sc, p, H.comments, header, fut, scaling)
+  result <- WriteOutput("rr", ofile, version, sc, p, H.comments, header, fut,
+                        scaling, dryingScheme = dryingScheme)
   flog.debug("Precipiation transformation ended successfully!")
   flog.debug("")
   return(result)

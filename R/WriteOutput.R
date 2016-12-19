@@ -1,4 +1,5 @@
-WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut, scaling = NULL) {
+WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut,
+                        scaling = NULL, dryingScheme = NULL) {
   flog.info("Write output")
   sink(ofile)
 
@@ -9,6 +10,7 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut, sca
     writeLines("# Transformed daily temperature [deg.C] according to KNMI'14 transformation tool,")
   } else if (var == "rr") {
     writeLines("# Transformed daily precipitation sums [mm] according to KNMI'14 transformation tool,")
+    writeLines(paste("# drying scheme: ", dryingScheme))
   } else if (var == "evmk") {
     writeLines("# Transformed daily Makkink evaporation [mm] according to KNMI'14 transformation tool,")
   } else {
@@ -16,7 +18,7 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut, sca
     stop()
   }
 
-  writeLines(paste("# version ",version,sep=""))
+  writeLines(paste("# version ", version, sep=""))
   if(p=="2030") {
     writeLines("# Deltas are derived from the 2030 decadal prediction")
   } else {
