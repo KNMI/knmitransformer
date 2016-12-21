@@ -11,26 +11,26 @@ makkink <- function(Tg,Q) {
   return(evmk)
 }
 
-makkink2 <- function(Tg, Q) {
-  # obtained from https://nl.wikipedia.org/wiki/Referentie-gewasverdamping
-  Q      <- Q * 1e3
-
-  gamma    <- PsychrometricConstant(Tg)
-  lambda   <- WaterVaporizationEnthalpy(Tg)
-  s        <- SaturatedVaporPressureGradient(Tg)
-  DeBruinC <- 6.5e-1
-
-  DeBruinC * s / (s + gamma) * Q / lambda
-}
-
-SaturatedVaporPressureGradient <- function(tg) {
-  # obtained from https://nl.wikipedia.org/wiki/Referentie-gewasverdamping
-  constA <- 6.1078 # mbar
-  constB <- 17.294
-  constC <- 237.73
-  s      <- constA * constB * constC / (constC + tg)^2
-  s * exp(constB * tg / (constC + tg))
-}
+# makkink2 <- function(Tg, Q) {
+#   # obtained from https://nl.wikipedia.org/wiki/Referentie-gewasverdamping
+#   Q      <- Q * 1e3
+#
+#   gamma    <- PsychrometricConstant(Tg)
+#   lambda   <- WaterVaporizationEnthalpy(Tg)
+#   s        <- SaturatedVaporPressureGradient(Tg)
+#   DeBruinC <- 6.5e-1
+#
+#   DeBruinC * s / (s + gamma) * Q / lambda
+# }
+#
+# SaturatedVaporPressureGradient <- function(tg) {
+#   # obtained from https://nl.wikipedia.org/wiki/Referentie-gewasverdamping
+#   constA <- 6.1078 # mbar
+#   constB <- 17.294
+#   constC <- 237.73
+#   s      <- constA * constB * constC / (constC + tg)^2
+#   s * exp(constB * tg / (constC + tg))
+# }
 
 PsychrometricConstant <- function(tg) {
   # normally depends on much more than the temperature
