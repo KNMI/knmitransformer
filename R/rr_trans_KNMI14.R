@@ -58,8 +58,8 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
   nr <- length(mm)               # total number of days (in reference file)
 
   # future values (filled with NA)
-  fut      <- obs
-  fut[,-1] <- NA
+  fut       <- obs
+  fut[, -1] <- NA
 
   # add very small number (based on datestring) to ensure that all numbers in
   # time series are unique.

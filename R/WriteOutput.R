@@ -35,7 +35,7 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut,
   }
   for(i in 1:length(H.comments)) writeLines(H.comments[i])
 
-  write.table(format(header[1,], width = 8),              file = "", row.names = F, col.names = F, quote = F)
+  write.table(format(header[1,],  width = 8),             file = "", row.names = F, col.names = F, quote = F)
   write.table(format(header[-1,], width = 8, nsmall = 3), file = "", row.names = F, col.names = F, quote = F)
   write.table(format(fut, width = 8, nsmall = 2),         file = "", row.names = F, col.names = F, quote = F)
 
