@@ -67,30 +67,20 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
   # PREPARE DATA
   # explore observations
-  ns         <- ncol(obs) - 1            # number of stations (= number of columns minus 1)
-  mm         <- (obs[,1] %/% 100) %% 100 # the month that a day belongs to (1, 2, ..., 12)
-  nr         <- length(mm)               # total number of days (in reference file)
+  ns <- ncol(obs) - 1            # number of stations (= number of columns minus 1)
+  mm <- (obs[,1] %/% 100) %% 100 # the month that a day belongs to (1, 2, ..., 12)
+  nr <- length(mm)               # total number of days (in reference file)
 
-  # can the following two blocks be moved to the transformation function?
-  # determine observed wet-day frequency (wdf.obs), mean (mean.obs), wet-day mean (mwet.obs), wet-day 99th percentile
-  wdf.obs    <- as.matrix(aggregate(obs[, -1], by=list(mm), function(x)     mean(  x>=th      )))[, -1]
-  mean.obs   <- as.matrix(aggregate(obs[, -1], by=list(mm), function(x)     mean(x            )))[, -1]
-  mwet.obs   <- as.matrix(aggregate(obs[, -1], by=list(mm), function(x)     mean(x[x>=th]     )))[, -1]
-  q2.obs     <- as.matrix(aggregate(obs[, -1], by=list(mm), function(x) quantile(x[x>=th],0.90)))[, -1]
-  q1.obs     <- q2.obs*ratio
-
-  # apply deltas to observed climatology to obtain future climatology
-  fut      <- obs; fut[,-1] = NA                      # future values (filled with NA)
-  wdf.fut  <- wdf.obs  * (1 + deltas$wdf/100)         # future climatologies
-  mean.fut <- mean.obs * (1 + deltas$ave/100)
-  mwet.fut <- mean.fut / wdf.fut
-  q1.fut   <- q1.obs   * (1 + deltas$P99/100)
-
+  # future values (filled with NA)
+  fut      <- obs
+  fut[,-1] <- NA
 
   # TRANSFORMATION
   # apply transformation per station / time series
   for(is in 1:ns) {
     flog.debug("Number of column ={%s}", paste(is))
+
+    X <- obs[, is + 1]
 
     Y <- DryWetDays(obs, is, deltas$wdf, th, mm, dryingScheme)
 
@@ -101,13 +91,9 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
     # determine coefficients
     # NOTE that from here Y represents wet-day frequency adjusted time series
 
-    Y <- TransformWetDayAmounts(Y, mm, th,
-                                mwet.obs[, is], mwet.fut[, is],
-                                q1.obs[, is], q1.fut[, is])
+    Y <- TransformWetDayAmounts(Y, X, deltas, mm, th, ratio)
 
-
-
-    fut[,is+1] <- round(Y,1) # schrijf getransformeerde reeks naar tabel
+    fut[, is + 1] <- round(Y, 1) # schrijf getransformeerde reeks naar tabel
 
   } # END TRANSFORMATION LOOP
 
@@ -118,7 +104,7 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
 DryWetDays <- function(obs, is, wdf, th, mm, dryingScheme) {
 
-  Y  <- obs[,is+1]                                  # original time series of station 'is'
+  Y  <- obs[, is + 1] # original time series of station 'is'
   # that will be adjusted
 
   nr <- length(mm)
@@ -258,8 +244,25 @@ WetDryDays <- function(Y, wdf, th, mm) {
   return(Y)
 }
 
-TransformWetDayAmounts <- function(Y, mm, th, mwet.obs, mwet.fut,
-                                   q1.obs, q1.fut) {
+TransformWetDayAmounts <- function(Y, X, deltas, mm, th, ratio) {
+
+  # determine observed climatology:
+  # wet-day frequency (wdf.obs),
+  # mean (mean.obs),
+  # wet-day mean (mwet.obs),
+  # wet-day 99th percentile
+  wdf.obs  <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x >= th         )))[, -1]
+  mean.obs <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x               )))[, -1]
+  mwet.obs <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x[x >= th]      )))[, -1]
+  q2.obs   <- as.matrix(aggregate(X, by = list(mm), function(x) quantile(x[x >= th], 0.90)))[, -1]
+  q1.obs   <- q2.obs * ratio
+
+  # future climatologies
+  wdf.fut  <- wdf.obs  * (1 + deltas$wdf/100)
+  mean.fut <- mean.obs * (1 + deltas$ave/100)
+  mwet.fut <- mean.fut / wdf.fut
+  q1.fut   <- q1.obs   * (1 + deltas$P99/100)
+
   for(im in 1:12) {
     wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
     Xm     <- Y[wet.im]                  # select all wet day amounts
