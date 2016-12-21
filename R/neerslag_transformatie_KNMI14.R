@@ -47,8 +47,7 @@ neerslag_transformatie_KNMI14 <- function(ifile,
   obs        <- obs[which(obs[,1]!=0),]               # actual data
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(delta.file, "rr", sc, p)
-  deltas$P99 <- deltas[, paste("p99", scaling, sep=".")] # choose scaling ("lower", "centr" or "upper")
+  deltas <- ReadChangeFactors(delta.file, "rr", sc, p, scaling)
 
   # TRANSFORMATION
   fut <- rr_trans_KNMI14(obs = obs, deltas = deltas,
@@ -57,7 +56,7 @@ neerslag_transformatie_KNMI14 <- function(ifile,
   # OUTPUT
   result <- WriteOutput("rr", ofile, version, sc, p, H.comments, header, fut,
                         scaling, dryingScheme = dryingScheme)
-  flog.debug("Precipiation transformation ended successfully!")
+  flog.debug("Precipitation transformation ended successfully!")
   flog.debug("")
   return(result)
 }
