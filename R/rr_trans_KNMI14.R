@@ -243,22 +243,30 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
              2.336,
              2.18)
 
+  X2 <- data.table(mm = mm)
+  X2[, x := X]
+  setkey(X2, mm)
+
   # determine observed climatology:
   # wet-day frequency (wdf.obs),
   # mean (mean.obs),
   # wet-day mean (mwet.obs),
   # wet-day 99th percentile
-  wdf.obs  <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x >= th         )))[, -1]
+  # wdf.obs  <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x >= th         )))[, -1]
   mean.obs <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x               )))[, -1]
-  mwet.obs <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x[x >= th]      )))[, -1]
-  q2.obs   <- as.matrix(aggregate(X, by = list(mm), function(x) quantile(x[x >= th], 0.90)))[, -1]
+  # mwet.obs <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x[x >= th]      )))[, -1]
+  # q2.obs   <- as.matrix(aggregate(X, by = list(mm), function(x) quantile(x[x >= th], 0.90)))[, -1]
+  wdf.obs  <- X2[, mean(x >= th),              by = mm]$V1
+  # mean.obs <- X2[, mean(x),                    by = mm]$V1
+  mwet.obs <- X2[, mean(x[x >= th]),           by = mm]$V1
+  q2.obs   <- X2[, quantile(x[x >= th], 0.90), by = mm]$V1
   q1.obs   <- q2.obs * ratio
 
   # future climatologies
-  wdf.fut  <- wdf.obs  * (1 + deltas$wdf/100)
-  mean.fut <- mean.obs * (1 + deltas$ave/100)
+  wdf.fut  <- wdf.obs  * (1 + deltas$wdf / 100)
+  mean.fut <- mean.obs * (1 + deltas$ave / 100)
   mwet.fut <- mean.fut / wdf.fut
-  q1.fut   <- q1.obs   * (1 + deltas$P99/100)
+  q1.fut   <- q1.obs   * (1 + deltas$P99 / 100)
 
   for(im in 1:12) {
     wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
