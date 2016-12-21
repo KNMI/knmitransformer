@@ -36,26 +36,20 @@ neerslag_transformatie_KNMI14 <- function(ifile,
   }
 
   # READ REFERENCE DATA FROM ifile
-  flog.info("Reading reference data, file={%s}", ifile)
-  H.comments <- scan(ifile, character(0), sep = "\n", quiet=TRUE) # select lines with "#" from reference file and ignore them
-  H.comments <- H.comments[grep("#",H.comments)]      # (only necessary for output file)
-
-  obs        <- read.table(ifile,header=F)            # read reference data (header wordt niet apart ingelezen)
-  header     <- obs[which(obs[,1]==0),]               # header met stations meta-data etc.
-  header[,1] <- "00000000"
-  names(obs) <- c("date",round(obs[1,-1],0))          # station names are read from first line
-  obs        <- obs[which(obs[,1]!=0),]               # actual data
+  input <- ReadInput("rr", ifile)
 
   # READ CHANGE FACTORS (DELTAS)
   deltas <- ReadChangeFactors(delta.file, "rr", sc, p, scaling)
 
   # TRANSFORMATION
-  fut <- rr_trans_KNMI14(obs = obs, deltas = deltas,
+  fut <- rr_trans_KNMI14(obs = input$obs, deltas = deltas,
                          dryingScheme = dryingScheme)
 
   # OUTPUT
-  result <- WriteOutput("rr", ofile, version, sc, p, H.comments, header, fut,
-                        scaling, dryingScheme = dryingScheme)
+  result <- WriteOutput("rr", ofile, version, sc, p, input$comments,
+                        input$header, fut,
+                        scaling = scaling,
+                        dryingScheme = dryingScheme)
   flog.debug("Precipitation transformation ended successfully!")
   flog.debug("")
   return(result)

@@ -96,8 +96,8 @@ DryWetDays <- function(Y, wdf, th, mm, makeUnique, dryingScheme) {
     if(dryingScheme == "v1.1") {
 
       # select target values
-      target.values <- vector()                       # vector containing 'target precipitation amounts' to dry
-      target.months <- vector()                       # vector containing the specific month to which this target values belong
+      target.values <- vector() # vector containing 'target precipitation amounts' to dry
+      target.months <- vector() # vector containing the specific month to which this target values belong
 
       # add very small number (based on datestring) to ensure that all numbers in time series are unique.
       # necessary for the selection of 'days to dry'
@@ -229,6 +229,7 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
 
   # qq1   <- 0.99  # quantile of wet-day amounts that is used to estimate transformation coefficients
   # qq2   <- 0.90  # quantile of wet-day amounts that is used to estimate qq1 (robustly)
+  # national median of monthly ratios between qq1 and qq2 for 240 precipitation stations
   ratio <- c(2.22,
              2.271,
              2.366,
@@ -240,7 +241,7 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
              2.476,
              2.087,
              2.336,
-             2.18) # national median of monthly ratios between qq1 and qq2 for 240 precipitation stations
+             2.18)
 
   # determine observed climatology:
   # wet-day frequency (wdf.obs),
