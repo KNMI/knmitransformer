@@ -71,6 +71,7 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
   mm         <- (obs[,1] %/% 100) %% 100 # the month that a day belongs to (1, 2, ..., 12)
   nr         <- length(mm)               # total number of days (in reference file)
 
+  # can the following two blocks be moved to the transformation function?
   # determine observed wet-day frequency (wdf.obs), mean (mean.obs), wet-day mean (mwet.obs), wet-day 99th percentile
   wdf.obs    <- as.matrix(aggregate(obs[, -1], by=list(mm), function(x)     mean(  x>=th      )))[, -1]
   mean.obs   <- as.matrix(aggregate(obs[, -1], by=list(mm), function(x)     mean(x            )))[, -1]
@@ -97,49 +98,14 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
 
     # TRANSFORM WET-DAY AMOUNTS ####################################
-    #determine coefficients
-
+    # determine coefficients
     # NOTE that from here Y represents wet-day frequency adjusted time series
 
-    for(im in 1:12) {
-      wet.im <- which(im==mm & Y>=th)         # identify all wet days within calendar month <im>
-      Xm     <- Y[wet.im]                     # select all wet day amounts
-      mobs   <- as.numeric(mwet.obs[im,is])   # get climatologies for reference and future period
-      qobs   <- as.numeric(q1.obs[im,is])
-      mfut   <- as.numeric(mwet.fut[im,is])
-      qfut   <- as.numeric(q1.fut[im,is])
+    Y <- TransformWetDayAmounts(Y, mm, th,
+                                mwet.obs[, is], mwet.fut[, is],
+                                q1.obs[, is], q1.fut[, is])
 
-      # determine exponent 'b' of power-law correction function
 
-      # function to minimise to find optimal value for coefficient 'b'
-      f  <- function(b) {
-        qfut / mfut - (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
-      }
-
-      if(f(0.1) * f(3) < 0) {                             # root finding algorithm requires that both sides
-                                                      # of search space are of opposite sign
-        rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.001)  # root finding
-        b  <- rc$root
-      } else {                                        # if root is non-existent, alternative estimation for b
-                                                      # value closest to zero is searched for
-        bs <- (1:300) / 100                             # determine search space for 'b'
-        fs <- bs                                      # fs = f(bs)
-        for(ifs in 1:length(fs)) {
-          fs[ifs] <- f(bs[ifs])
-        }
-        b <- bs[which(abs(fs) == min(abs(fs)))]         # b for which f(b) is smallest is chosen
-      }
-
-      # straightforward estimation of coefficients a and c
-      a  <- qfut / (qobs^b)
-      c  <- a*(qobs^b) / qobs # multiplication factor for values larger than q99
-
-      # actual transformation of wet-day amounts (application of transformation function)
-      Y[wet.im]                      <- ifelse(Xm < qobs, a * Xm^b, c*Xm)
-
-      Y[wet.im][which(Y[wet.im] < th)] <- th # prevent days being dried by the wet-day transformation
-    }
-    # END TRANSFORMATION WET-DAY AMOUNTS
 
     fut[,is+1] <- round(Y,1) # schrijf getransformeerde reeks naar tabel
 
@@ -292,6 +258,51 @@ WetDryDays <- function(Y, wdf, th, mm) {
   return(Y)
 }
 
+TransformWetDayAmounts <- function(Y, mm, th, mwet.obs, mwet.fut,
+                                   q1.obs, q1.fut) {
+  for(im in 1:12) {
+    wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
+    Xm     <- Y[wet.im]                  # select all wet day amounts
+    mobs   <- as.numeric(mwet.obs[im])   # get climatologies for reference and future period
+    qobs   <- as.numeric(q1.obs[im])
+    mfut   <- as.numeric(mwet.fut[im])
+    qfut   <- as.numeric(q1.fut[im])
+
+    # determine exponent 'b' of power-law correction function
+
+    # function to minimise to find optimal value for coefficient 'b'
+    f  <- function(b) {
+      qfut / mfut -
+        (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
+    }
+
+    # root finding algorithm requires that both sides of search space are
+    # of opposite sign
+    if(f(0.1) * f(3) < 0) {
+      rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.001)  # root finding
+      b  <- rc$root
+    } else {# if root is non-existent, alternative estimation for b
+      # value closest to zero is searched for
+      bs <- (1:300) / 100                             # determine search space for 'b'
+      fs <- bs                                      # fs = f(bs)
+      for(ifs in 1:length(fs)) {
+        fs[ifs] <- f(bs[ifs])
+      }
+      b <- bs[which(abs(fs) == min(abs(fs)))]         # b for which f(b) is smallest is chosen
+    }
+
+    # straightforward estimation of coefficients a and c
+    a  <- qfut / (qobs^b)
+    c  <- a*(qobs^b) / qobs # multiplication factor for values larger than q99
+
+    # actual transformation of wet-day amounts (application of transformation function)
+    Y[wet.im]                      <- ifelse(Xm < qobs, a * Xm^b, c*Xm)
+
+    Y[wet.im][which(Y[wet.im] < th)] <- th # prevent days being dried by the wet-day transformation
+  }
+  # END TRANSFORMATION WET-DAY AMOUNTS
+  return(Y)
+}
 
 
 
