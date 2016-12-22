@@ -68,18 +68,18 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
   # TRANSFORMATION
   # apply transformation per station / time series
   for(is in 2:ncol(obs)) {
-    flog.debug("Transforming column={%s}", paste(is))
+    # flog.debug("Transforming column={%s}", paste(is))
 
-    X <- obs[, is]
-
-    Y <- DryWetDays(X, deltas$wdf, th, mm, makeUnique, dryingScheme)
-
-    Y <- WetDryDays(Y, deltas$wdf, th, mm)
-
-    Y <- TransformWetDayAmounts(Y, X, deltas, mm, th)
-
-    fut[, is] <- round(Y, 1)
+    fut[, is] <- DryWetDays(obs[, is], deltas$wdf, th, mm, makeUnique, dryingScheme)
   }
+
+  for(is in 2:ncol(obs)) {
+
+    fut[, is] <- WetDryDays(fut[, is], deltas$wdf, th, mm)
+
+    fut[, is] <- TransformWetDayAmounts(fut[, is], obs[, is], deltas, mm, th)
+  }
+
   return(fut)
 }
 
@@ -306,7 +306,7 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
     Y[wet.im][which(Y[wet.im] < th)] <- th # prevent days being dried by the wet-day transformation
   }
   # END TRANSFORMATION WET-DAY AMOUNTS
-  return(Y)
+  return(round(Y, 1))
 }
 
 
