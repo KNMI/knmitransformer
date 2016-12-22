@@ -71,9 +71,14 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
 DryWetDays <- function(obs, wdf, th, mm, dryingScheme) {
 
-  nr <- length(mm)
   # DRYING WET DAYS ##########################################################
   if(sum(wdf < 0) > 0) {   # check if reduction in wet days is needed
+
+    nr <- length(mm)
+    # add very small number (based on datestring) to ensure that all numbers in
+    # time series are unique.
+    # necessary for the selection of 'days to dry'
+    makeUnique <- obs[, 1] * 1e-10
 
     for(is in 2:ncol(obs)) {
       Y <- obs[, is]
@@ -85,10 +90,7 @@ DryWetDays <- function(obs, wdf, th, mm, dryingScheme) {
         target.values <- vector() # vector containing 'target precipitation amounts' to dry
         target.months <- vector() # vector containing the specific month to which this target values belong
 
-        # add very small number (based on datestring) to ensure that all numbers in
-        # time series are unique.
-        # necessary for the selection of 'days to dry'
-        makeUnique <- obs[, 1] * 1e-10
+        # make Y unique
         X          <- ifelse(Y < th, Y, Y + makeUnique)
 
         # loop all months for which a reduction of the wet day is projected
@@ -237,24 +239,23 @@ TransformWetDayAmounts <- function(fut, obs, deltas, mm, th) {
              2.336,
              2.18)
 
+  X <- data.table(mm = mm, x = NA_real_)
+
   for(is in 1:ncol(fut)) {
 
     Y <- fut[, is]
-    X <- obs[, is]
 
-    X2 <- data.table(mm = mm)
-    X2[, x := X]
-    setkey(X2, mm)
+    X[, x := obs[, is]]
 
     # determine observed climatology:
     # wet-day frequency (wdf.obs),
     # mean (mean.obs),
     # wet-day mean (mwet.obs),
     # wet-day 99th percentile
-    wdf.obs  <- X2[, mean(x >= th),              by = mm]$V1
-    mean.obs <- X2[, base::mean(x),              by = mm]$V1
-    mwet.obs <- X2[, mean(x[x >= th]),           by = mm]$V1
-    q2.obs   <- X2[, quantile(x[x >= th], 0.90), by = mm]$V1
+    wdf.obs  <- X[, mean(x >= th),              by = mm]$V1
+    mean.obs <- X[, base::mean(x),              by = mm]$V1
+    mwet.obs <- X[, mean(x[x >= th]),           by = mm]$V1
+    q2.obs   <- X[, quantile(x[x >= th], 0.90), by = mm]$V1
     q1.obs   <- q2.obs * ratio
 
     # future climatologies
