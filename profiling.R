@@ -26,10 +26,11 @@ profvis({
                                 scaling=scaling)
 })
 
-# Result:
-# ReadInput uses ~ 16%
-# rr_trans uses ~ 68% -> 74% due to TransformWetDayAmounts
-# WriteOutput uses ~ 15%
+# Result: 18660 ms (down from 23600 ms)
+# ReadInput uses ~ 20%
+# rr_trans uses ~ 59% -> 60% due to TransformWetDayAmounts -> Lion´s share by
+# uniroot
+# WriteOutput uses ~ 20%
 
 
 ###
@@ -44,6 +45,6 @@ microbenchmark(
 # Result:
 # Unit: seconds
 # min      lq       mean     median   uq       max         neval
-# 15.49553 15.59089 15.69025 15.66138 15.74696 16.04444    10
+# 10.38785 10.53096 10.64055 10.59913 10.67986 10.9697    10
 
 

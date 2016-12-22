@@ -252,12 +252,8 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
   # mean (mean.obs),
   # wet-day mean (mwet.obs),
   # wet-day 99th percentile
-  # wdf.obs  <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x >= th         )))[, -1]
-  mean.obs <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x               )))[, -1]
-  # mwet.obs <- as.matrix(aggregate(X, by = list(mm), function(x)     mean(x[x >= th]      )))[, -1]
-  # q2.obs   <- as.matrix(aggregate(X, by = list(mm), function(x) quantile(x[x >= th], 0.90)))[, -1]
   wdf.obs  <- X2[, mean(x >= th),              by = mm]$V1
-  # mean.obs <- X2[, mean(x),                    by = mm]$V1
+  mean.obs <- X2[, base::mean(x),              by = mm]$V1
   mwet.obs <- X2[, mean(x[x >= th]),           by = mm]$V1
   q2.obs   <- X2[, quantile(x[x >= th], 0.90), by = mm]$V1
   q1.obs   <- q2.obs * ratio
