@@ -54,31 +54,18 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
   # PREPARE DATA
   # explore observations
   mm <- (obs[,1] %/% 100) %% 100 # the month that a day belongs to (1, 2, ..., 12)
-  nr <- length(mm)               # total number of days (in reference file)
+  # nr <- length(mm)               # total number of days (in reference file)
 
   # future values (filled with NA)
   fut       <- obs
   fut[, -1] <- NA
 
-  # add very small number (based on datestring) to ensure that all numbers in
-  # time series are unique.
-  # necessary for the selection of 'days to dry'
-  makeUnique <- obs[, 1] * 1e-10
-
   # TRANSFORMATION
   # apply transformation per station / time series
-  # for(is in 2:ncol(obs)) {
-    # flog.debug("Transforming column={%s}", paste(is))
-  fut[, -1] <- DryWetDays(obs[, -1], deltas$wdf, th, mm, makeUnique, dryingScheme)
-  # }
-
-  # for(is in 2:ncol(obs)) {
+  fut[, -1] <- DryWetDays(obs      , deltas$wdf, th, mm, dryingScheme)
   fut[, -1] <- WetDryDays(fut[, -1], deltas$wdf, th, mm)
-  # }
 
-  for(is in 2:ncol(obs)) {
-    fut[, is] <- TransformWetDayAmounts(fut[, is], obs[, is], deltas, mm, th)
-  }
+  fut[, -1] <- TransformWetDayAmounts(fut[, -1], obs[, -1], deltas, mm, th)
 
   return(fut)
 }
@@ -90,9 +77,8 @@ DryWetDays <- function(obs, wdf, th, mm, makeUnique, dryingScheme) {
   # DRYING WET DAYS ##########################################################
   if(sum(wdf < 0) > 0) {   # check if reduction in wet days is needed
 
-    for(is in 1:ncol(obs)) {
+    for(is in 2:ncol(obs)) {
       Y <- obs[, is]
-
 
       # dryingSchme VERSION V1.1 is official KNMI14 "drying procedure" (see TR-349)
       if(dryingScheme == "v1.1") {
@@ -101,9 +87,11 @@ DryWetDays <- function(obs, wdf, th, mm, makeUnique, dryingScheme) {
         target.values <- vector() # vector containing 'target precipitation amounts' to dry
         target.months <- vector() # vector containing the specific month to which this target values belong
 
-        # add very small number (based on datestring) to ensure that all numbers in time series are unique.
+        # add very small number (based on datestring) to ensure that all numbers in
+        # time series are unique.
         # necessary for the selection of 'days to dry'
-        X  <- ifelse(Y < th, Y, Y + makeUnique)
+        makeUnique <- obs[, 1] * 1e-10
+        X          <- ifelse(Y < th, Y, Y + makeUnique)
 
         # loop all months for which a reduction of the wet day is projected
         for(im in which(wdf < 0)) {
@@ -176,14 +164,14 @@ DryWetDays <- function(obs, wdf, th, mm, makeUnique, dryingScheme) {
       obs[, is] <- Y
     } # END DRYING WET DAYS
   }
-  return(obs)
+  return(obs[, -1])
 }
 
-WetDryDays <- function(obs, wdf, th, mm) {
+WetDryDays <- function(fut, wdf, th, mm) {
 
-  for(is in 1:ncol(obs)) {
+  for(is in 1:ncol(fut)) {
     # WETTING DRY DAYS #######################
-    Y  <- obs[, is]
+    Y  <- fut[, is]
     X  <- Y             # time series after drying
     nr <- length(mm)
     X1 <- c(1, X[-nr])  # precipitation of preceding day (preceding day of first day is
@@ -228,12 +216,12 @@ WetDryDays <- function(obs, wdf, th, mm) {
         } # dfwet > 0
       } # days need to be added
     } # calander month
-    obs[, is] <- Y
+    fut[, is] <- Y
   }
-  return(obs)
+  return(fut)
 }
 
-TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
+TransformWetDayAmounts <- function(fut, obs, deltas, mm, th) {
 
   # qq1   <- 0.99  # quantile of wet-day amounts that is used to estimate transformation coefficients
   # qq2   <- 0.90  # quantile of wet-day amounts that is used to estimate qq1 (robustly)
@@ -251,71 +239,78 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
              2.336,
              2.18)
 
-  X2 <- data.table(mm = mm)
-  X2[, x := X]
-  setkey(X2, mm)
+  for(is in 1:ncol(fut)) {
 
-  # determine observed climatology:
-  # wet-day frequency (wdf.obs),
-  # mean (mean.obs),
-  # wet-day mean (mwet.obs),
-  # wet-day 99th percentile
-  wdf.obs  <- X2[, mean(x >= th),              by = mm]$V1
-  mean.obs <- X2[, base::mean(x),              by = mm]$V1
-  mwet.obs <- X2[, mean(x[x >= th]),           by = mm]$V1
-  q2.obs   <- X2[, quantile(x[x >= th], 0.90), by = mm]$V1
-  q1.obs   <- q2.obs * ratio
+    Y <- fut[, is]
+    X <- obs[, is]
 
-  # future climatologies
-  wdf.fut  <- wdf.obs  * (1 + deltas$wdf / 100)
-  mean.fut <- mean.obs * (1 + deltas$ave / 100)
-  mwet.fut <- mean.fut / wdf.fut
-  q1.fut   <- q1.obs   * (1 + deltas$P99 / 100)
+    X2 <- data.table(mm = mm)
+    X2[, x := X]
+    setkey(X2, mm)
 
-  for(im in 1:12) {
-    wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
-    Xm     <- Y[wet.im]                  # select all wet day amounts
-    # get climatologies for reference and future period for the month at hand
-    mobs   <- as.numeric(mwet.obs[im])
-    qobs   <- as.numeric(q1.obs[im])
-    mfut   <- as.numeric(mwet.fut[im])
-    qfut   <- as.numeric(q1.fut[im])
+    # determine observed climatology:
+    # wet-day frequency (wdf.obs),
+    # mean (mean.obs),
+    # wet-day mean (mwet.obs),
+    # wet-day 99th percentile
+    wdf.obs  <- X2[, mean(x >= th),              by = mm]$V1
+    mean.obs <- X2[, base::mean(x),              by = mm]$V1
+    mwet.obs <- X2[, mean(x[x >= th]),           by = mm]$V1
+    q2.obs   <- X2[, quantile(x[x >= th], 0.90), by = mm]$V1
+    q1.obs   <- q2.obs * ratio
 
-    # determine exponent 'b' of power-law correction function
+    # future climatologies
+    wdf.fut  <- wdf.obs  * (1 + deltas$wdf / 100)
+    mean.fut <- mean.obs * (1 + deltas$ave / 100)
+    mwet.fut <- mean.fut / wdf.fut
+    q1.fut   <- q1.obs   * (1 + deltas$P99 / 100)
 
-    # function to minimise to find optimal value for coefficient 'b'
-    f  <- function(b) {
-      qfut / mfut -
-        (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
-    }
+    for(im in 1:12) {
+      wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
+      Xm     <- Y[wet.im]                  # select all wet day amounts
+      # get climatologies for reference and future period for the month at hand
+      mobs   <- as.numeric(mwet.obs[im])
+      qobs   <- as.numeric(q1.obs[im])
+      mfut   <- as.numeric(mwet.fut[im])
+      qfut   <- as.numeric(q1.fut[im])
 
-    # root finding algorithm requires that both sides of search space are
-    # of opposite sign
-    if(f(0.1) * f(3) < 0) {
-      rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.001)  # root finding
-      b  <- rc$root
-    } else {
-      # if root is non-existent, alternative estimation for b
-      # value closest to zero is searched for
-      bs <- (1:300) / 100 # determine search space for 'b'
-      fs <- bs            # fs = f(bs)
-      for(ifs in 1:length(fs)) {
-        fs[ifs] <- f(bs[ifs])
+      # determine exponent 'b' of power-law correction function
+
+      # function to minimise to find optimal value for coefficient 'b'
+      f  <- function(b) {
+        qfut / mfut -
+          (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
       }
-      b <- bs[which(abs(fs) == min(abs(fs)))] # b for which f(b) is smallest is chosen
+
+      # root finding algorithm requires that both sides of search space are
+      # of opposite sign
+      if(f(0.1) * f(3) < 0) {
+        rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.001)  # root finding
+        b  <- rc$root
+      } else {
+        # if root is non-existent, alternative estimation for b
+        # value closest to zero is searched for
+        bs <- (1:300) / 100 # determine search space for 'b'
+        fs <- bs            # fs = f(bs)
+        for(ifs in 1:length(fs)) {
+          fs[ifs] <- f(bs[ifs])
+        }
+        b <- bs[which(abs(fs) == min(abs(fs)))] # b for which f(b) is smallest is chosen
+      }
+
+      # straightforward estimation of coefficients a and c
+      a  <- qfut / (qobs^b)
+      c  <- a*(qobs^b) / qobs # multiplication factor for values larger than q99
+
+      # actual transformation of wet-day amounts (application of transformation function)
+      Y[wet.im]                      <- ifelse(Xm < qobs, a * Xm^b, c*Xm)
+
+      Y[wet.im][which(Y[wet.im] < th)] <- th # prevent days being dried by the wet-day transformation
     }
-
-    # straightforward estimation of coefficients a and c
-    a  <- qfut / (qobs^b)
-    c  <- a*(qobs^b) / qobs # multiplication factor for values larger than q99
-
-    # actual transformation of wet-day amounts (application of transformation function)
-    Y[wet.im]                      <- ifelse(Xm < qobs, a * Xm^b, c*Xm)
-
-    Y[wet.im][which(Y[wet.im] < th)] <- th # prevent days being dried by the wet-day transformation
+    # END TRANSFORMATION WET-DAY AMOUNTS
+    fut[, is] <- round(Y, 1)
   }
-  # END TRANSFORMATION WET-DAY AMOUNTS
-  return(round(Y, 1))
+  return(fut)
 }
 
 
