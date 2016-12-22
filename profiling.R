@@ -26,25 +26,70 @@ profvis({
                                 scaling=scaling)
 })
 
-# Result: 18660 ms (down from 23600 ms)
-# ReadInput uses ~ 20%
-# rr_trans uses ~ 59% -> 60% due to TransformWetDayAmounts -> Lion´s share by
+# Result: 17250 ms
+# ReadInput uses ~ 22%
+# rr_trans uses ~ 57% -> 57% due to TransformWetDayAmounts -> Lion´s share by
 # uniroot
 # WriteOutput uses ~ 20%
 
 
-###
-input <- knmitransformer:::ReadInput("rr", ifile)
+# ------------------------------------------------------------------------------
+# Micro benchmark of the inner precipitation transformation
+# ------------------------------------------------------------------------------
+input  <- knmitransformer:::ReadInput("rr", ifile)
 deltas <- knmitransformer:::ReadChangeFactors(delta.file, "rr", sc, p, scaling)
 # fut <- knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas, dryingScheme = "v1.1")
 microbenchmark(
-  knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas, dryingScheme = "v1.1"),
+  knmitransformer:::rr_trans_KNMI14(   obs = input$obs, deltas = deltas, dryingScheme = "v1.1"),
+  # knmitransformer:::rr_trans_KNMI14_v2(obs = input$obs, deltas = deltas, dryingScheme = "v1.1"),
   times = 10
 )
 
 # Result:
 # Unit: seconds
 # min      lq       mean     median   uq       max         neval
-# 10.38785 10.53096 10.64055 10.59913 10.67986 10.9697    10
+# 9.201773 9.241318 9.491148 9.293264 9.515043 10.4904     10
 
+profvis({
+  library(knmitransformer)
+  knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas, dryingScheme = "v1.1")
+})
+
+# ------------------------------------------------------------------------------
+# Further zoom on TransformWetDayAmounts
+# ------------------------------------------------------------------------------
+th <- 0.1
+obs <- input$obs
+is <- 1
+
+ns <- ncol(obs) - 1            # number of stations (= number of columns minus 1)
+mm <- (obs[,1] %/% 100) %% 100 # the month that a day belongs to (1, 2, ..., 12)
+nr <- length(mm)
+
+makeUnique <- 0.01 * obs[, 1] / 100000000
+
+X <- obs[, is + 1]
+
+Y <- knmitransformer:::DryWetDays(X, deltas$wdf, th, mm, makeUnique, dryingScheme = "v1.1")
+
+Y <- knmitransformer:::WetDryDays(Y, deltas$wdf, th, mm)
+
+tmp1 <- knmitransformer:::TransformWetDayAmounts( Y, X, deltas, mm, th)
+#tmp2 <- knmitransformer:::TransformWetDayAmounts2(Y, X, deltas, mm, th)
+
+microbenchmark(
+  knmitransformer:::TransformWetDayAmounts( Y, X, deltas, mm, th),
+  #knmitransformer:::TransformWetDayAmounts2(Y, X, deltas, mm, th),
+  times = 100
+)
+
+profvis({
+  library(knmitransformer)
+  knmitransformer:::TransformWetDayAmounts( Y, X, deltas, mm, th)
+  }, interval = 0.005)
+
+profvis({
+  library(knmitransformer)
+  knmitransformer:::TransformWetDayAmounts2( Y, X, deltas, mm, th)
+  }, interval = 0.005)
 
