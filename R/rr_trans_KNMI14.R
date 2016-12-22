@@ -64,7 +64,7 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
   # add very small number (based on datestring) to ensure that all numbers in
   # time series are unique.
   # necessary for the selection of 'days to dry'
-  makeUnique <- 0.01 * obs[, 1] / 100000000
+  makeUnique <- obs[, 1] * 1e-10
 
   # TRANSFORMATION
   # apply transformation per station / time series
