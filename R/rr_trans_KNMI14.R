@@ -280,9 +280,8 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
 
     # function to minimise to find optimal value for coefficient 'b'
     f  <- function(b) {
-      isSmaller  <- Xm < qobs
-      meanChange <- mean(c(Xm[isSmaller]^b, Xm[!isSmaller] * qobs^(b-1)))
-      qfut / mfut - (qobs^b) / meanChange
+      qfut / mfut -
+        (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
     }
 
     # root finding algorithm requires that both sides of search space are
