@@ -185,10 +185,10 @@ WetDryDays <- function(Y, wdf, th, mm) {
 
     if(wdf[im] > 0) {                              # in case an increase of wdf is projected
 
-      rows    <- which(mm==im)                          # identify all days in month <im>
-      Xm      <-  X[rows]                               #   subset all days in month <im>
-      X1m     <- X1[rows]                               #      and all preceding days
-      Xw      <- sort(Xm[which(Xm >= th)])                # sort all wet day values
+      rows    <- which(mm==im)                       # identify all days in month <im>
+      Xm      <-  X[rows]                            #   subset all days in month <im>
+      X1m     <- X1[rows]                            #      and all preceding days
+      Xw      <- sort(Xm[which(Xm >= th)])           # sort all wet day values
       dwet    <- round((wdf[im] / 100) * length(Xw)) # number of 'dry days to wet'
       if(dwet > 0) {
 
@@ -197,16 +197,15 @@ WetDryDays <- function(Y, wdf, th, mm) {
         target.values <- Xw[round(((1:dwet) - 0.5) * step)] # determine target.values for month <im>
         # (homogeneously selected from sorted subset)
         # select days to wet
-        preceding.wet <- cumsum(Xm >= th) + step / 2        # cumulative number of preceding wet days in month <im>
-        # + stap/2
-        add     <- vector()                             # vector with days that should be wetted
+        preceding.wet <- cumsum(Xm >= th) + step / 2 # cumulative number of preceding wet days in month <im>
+        add     <- vector()                          # vector with days that should be wetted
 
         for(id in 1:dwet) {
           add     <- c(add,
-                       which(Xm < th &       # select 'first' 'dry' day that succeeds a wet' day,
-                             X1m >= th &       # for which <preceding.wet> exceeds the <step> size
+                       which(Xm < th &                   # select 'first' 'dry' day that succeeds a wet' day,
+                             X1m >= th &                 # for which <preceding.wet> exceeds the <step> size
                              preceding.wet >= step)[1])  # and add this day(id) to vector <add>
-          if(is.na(add[id])) {                           # if possible
+          if(is.na(add[id])) {
             add <- add[-id]
           } else {
             preceding.wet <- preceding.wet - step        # and decrease vector <preceding.wet> with <step>
@@ -266,7 +265,8 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
   for(im in 1:12) {
     wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
     Xm     <- Y[wet.im]                  # select all wet day amounts
-    mobs   <- as.numeric(mwet.obs[im])   # get climatologies for reference and future period
+    # get climatologies for reference and future period for the month at hand
+    mobs   <- as.numeric(mwet.obs[im])
     qobs   <- as.numeric(q1.obs[im])
     mfut   <- as.numeric(mwet.fut[im])
     qfut   <- as.numeric(q1.fut[im])
@@ -284,14 +284,15 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
     if(f(0.1) * f(3) < 0) {
       rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.001)  # root finding
       b  <- rc$root
-    } else {# if root is non-existent, alternative estimation for b
+    } else {
+      # if root is non-existent, alternative estimation for b
       # value closest to zero is searched for
-      bs <- (1:300) / 100                             # determine search space for 'b'
-      fs <- bs                                      # fs = f(bs)
+      bs <- (1:300) / 100 # determine search space for 'b'
+      fs <- bs            # fs = f(bs)
       for(ifs in 1:length(fs)) {
         fs[ifs] <- f(bs[ifs])
       }
-      b <- bs[which(abs(fs) == min(abs(fs)))]         # b for which f(b) is smallest is chosen
+      b <- bs[which(abs(fs) == min(abs(fs)))] # b for which f(b) is smallest is chosen
     }
 
     # straightforward estimation of coefficients a and c
