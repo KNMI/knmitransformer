@@ -72,9 +72,9 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
   fut[, -1] <- DryWetDays(obs[, -1], deltas$wdf, th, mm, makeUnique, dryingScheme)
   # }
 
-  for(is in 2:ncol(obs)) {
-    fut[, is] <- WetDryDays(fut[, is], deltas$wdf, th, mm)
-  }
+  # for(is in 2:ncol(obs)) {
+  fut[, -1] <- WetDryDays(fut[, -1], deltas$wdf, th, mm)
+  # }
 
   for(is in 2:ncol(obs)) {
     fut[, is] <- TransformWetDayAmounts(fut[, is], obs[, is], deltas, mm, th)
@@ -179,53 +179,58 @@ DryWetDays <- function(obs, wdf, th, mm, makeUnique, dryingScheme) {
   return(obs)
 }
 
-WetDryDays <- function(Y, wdf, th, mm) {
-  # WETTING DRY DAYS #######################
-  X  <- Y             # time series after drying
-  nr <- length(mm)
-  X1 <- c(1, X[-nr])  # precipitation of preceding day (preceding day of first day is
-  # assigned 1 mm)
+WetDryDays <- function(obs, wdf, th, mm) {
 
-  for(im in 1:12) {                                     # loop through 12 calendar months
+  for(is in 1:ncol(obs)) {
+    # WETTING DRY DAYS #######################
+    Y  <- obs[, is]
+    X  <- Y             # time series after drying
+    nr <- length(mm)
+    X1 <- c(1, X[-nr])  # precipitation of preceding day (preceding day of first day is
+    # assigned 1 mm)
 
-    if(wdf[im] > 0) {                              # in case an increase of wdf is projected
+    for(im in 1:12) {                                     # loop through 12 calendar months
 
-      rows    <- which(mm==im)                       # identify all days in month <im>
-      Xm      <-  X[rows]                            #   subset all days in month <im>
-      X1m     <- X1[rows]                            #      and all preceding days
-      Xw      <- sort(Xm[which(Xm >= th)])           # sort all wet day values
-      dwet    <- round((wdf[im] / 100) * length(Xw)) # number of 'dry days to wet'
-      if(dwet > 0) {
+      if(wdf[im] > 0) {                              # in case an increase of wdf is projected
 
-        # select target values
-        step    <- length(Xw) / dwet                      # step size to step through sorted step
-        target.values <- Xw[round(((1:dwet) - 0.5) * step)] # determine target.values for month <im>
-        # (homogeneously selected from sorted subset)
-        # select days to wet
-        preceding.wet <- cumsum(Xm >= th) + step / 2 # cumulative number of preceding wet days in month <im>
-        add     <- vector()                          # vector with days that should be wetted
+        rows    <- which(mm==im)                       # identify all days in month <im>
+        Xm      <-  X[rows]                            #   subset all days in month <im>
+        X1m     <- X1[rows]                            #      and all preceding days
+        Xw      <- sort(Xm[which(Xm >= th)])           # sort all wet day values
+        dwet    <- round((wdf[im] / 100) * length(Xw)) # number of 'dry days to wet'
+        if(dwet > 0) {
 
-        for(id in 1:dwet) {
-          add     <- c(add,
-                       which(Xm < th &                   # select 'first' 'dry' day that succeeds a wet' day,
-                             X1m >= th &                 # for which <preceding.wet> exceeds the <step> size
-                             preceding.wet >= step)[1])  # and add this day(id) to vector <add>
-          if(is.na(add[id])) {
-            add <- add[-id]
-          } else {
-            preceding.wet <- preceding.wet - step        # and decrease vector <preceding.wet> with <step>
-            preceding.wet[1:add[id]] <- 0
+          # select target values
+          step    <- length(Xw) / dwet                      # step size to step through sorted step
+          target.values <- Xw[round(((1:dwet) - 0.5) * step)] # determine target.values for month <im>
+          # (homogeneously selected from sorted subset)
+          # select days to wet
+          preceding.wet <- cumsum(Xm >= th) + step / 2 # cumulative number of preceding wet days in month <im>
+          add     <- vector()                          # vector with days that should be wetted
+
+          for(id in 1:dwet) {
+            add     <- c(add,
+                         which(Xm < th &                   # select 'first' 'dry' day that succeeds a wet' day,
+                               X1m >= th &                 # for which <preceding.wet> exceeds the <step> size
+                               preceding.wet >= step)[1])  # and add this day(id) to vector <add>
+            if(is.na(add[id])) {
+              add <- add[-id]
+            } else {
+              preceding.wet <- preceding.wet - step        # and decrease vector <preceding.wet> with <step>
+              preceding.wet[1:add[id]] <- 0
+            }
           }
-        }
 
-        # Finally, target.values are assigned to selected days
-        # on the basis of the rank order of the precipitation amount of the preceding wet day
-        Y[rows[add]] <- target.values[rank(X1m[add], ties.method = "first")]
+          # Finally, target.values are assigned to selected days
+          # on the basis of the rank order of the precipitation amount of the preceding wet day
+          Y[rows[add]] <- target.values[rank(X1m[add], ties.method = "first")]
 
-      } # dfwet > 0
-    } # days need to be added
-  } # calander month
-  return(Y)
+        } # dfwet > 0
+      } # days need to be added
+    } # calander month
+    obs[, is] <- Y
+  }
+  return(obs)
 }
 
 TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
