@@ -1,45 +1,34 @@
-###########################################################################################################
+################################################################################
 #
 # rr_trans_KNMI14.R    March 10, 2015
 #
 # author: Alexander Bakker (KNMI)
 #
-# Function 'transforms' a specific reference-dataset with daily precipitation sums [mm] to a dataset
-# representative for a future climate scenario.
-#
-# Transformation developed for KNMI'14 climate change scenarios for the Netherlands:
-#
-# Bakker, A. (2015), Time series transformation tool: description of the program to generate time series
-# consistent with the KNMI’14 climate scenarios, Technical Report TR-348, De Bilt, the Netherlands
-#
-# Version History:
-#   v1.1 / v1.2 - March 10, 2015
-#
-# THIS CODE IS PROVIDED AS-IS WITH NO WARRANTY (NEITHER EXPLICIT
-# NOT IMPLICIT).  KNMI SHARES THIS CODE IN HOPES THAT IT IS USEFUL,
-# BUT KNMI IS NOT LIABLE FOR THE BEHAVIOR OF THIS CODE IN YOUR OWN
-# APPLICATION. YOU ARE FREE TO SHARE THIS CODE SO LONG AS THE
-# AUTHOR(S) AND VERSION HISTORY REMAIN INTACT.
-#
+# Function 'transforms' a specific reference-dataset with daily precipitation
+# sums [mm] to a dataset representative for a future climate scenario.
 #
 # arguments:
 #
 # obs            data.frame or matrix:
 #                first column provides datestring YYYYMMDD
-#                other columns provide precipitation [mm] time series (each column represents specific station)
+#                other columns provide precipitation [mm] time series
+#                (each column represents specific station)
 #
-# deltas         data.frame or matrix that contains deltas (=change factors for the transformation)
-#                should contain following columns indicated by following headers
+# deltas         data.frame or matrix that contains deltas (=change factors
+#                for the transformation) should contain following columns
+#                indicated by following headers
 #                HEADER
 #                "wdf"       relative change [%] in wet-day frequency
-#                            (wet day is defined as day with 0.1 mm or more precipitation)
+#                            (wet day is defined as day with 0.1 mm or more
+#                            precipitation)
 #                "ave"       relative change [%] in mean precipitation
-#                "P99"       relative change [%] in the 99th percentile of wet-day amounts
+#                "P99"       relative change [%] in the 99th percentile of
+#                            wet-day amounts
 #
 # dryingScheme   "v1.1" [default] official version belonging to KNMI'14
 #                "v1.2" alternative way to dry wet days
 #
-###########################################################################################################
+################################################################################
 
 rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
@@ -53,7 +42,8 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
   # PREPARE DATA
   # explore observations
-  mm <- (obs[,1] %/% 100) %% 100 # the month that a day belongs to (1, 2, ..., 12)
+  mm          <- (obs[,1] %/% 100) %% 100 # the month of a day (1, 2, ..., 12)
+  climatology <- CalculateClimatology(obs[, -1], deltas, mm, th)
 
   # future values (filled with NA)
   fut       <- obs
@@ -63,7 +53,7 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
   # apply transformation per station / time series
   fut[, -1] <- DryWetDays(obs      , deltas$wdf, th, mm, dryingScheme)
   fut[, -1] <- WetDryDays(fut[, -1], deltas$wdf, th, mm)
-  fut[, -1] <- TransformWetDayAmounts(fut[, -1], obs[, -1], deltas, mm, th)
+  fut[, -1] <- TransformWetDayAmounts(fut[, -1], climatology, mm, th)
 
   return(fut)
 }
@@ -221,7 +211,7 @@ WetDryDays <- function(fut, wdf, th, mm) {
   return(fut)
 }
 
-TransformWetDayAmounts <- function(fut, obs, deltas, mm, th) {
+CalculateClimatology <- function(obs, deltas, mm, th) {
 
   # qq1   <- 0.99  # quantile of wet-day amounts that is used to estimate transformation coefficients
   # qq2   <- 0.90  # quantile of wet-day amounts that is used to estimate qq1 (robustly)
@@ -239,8 +229,6 @@ TransformWetDayAmounts <- function(fut, obs, deltas, mm, th) {
              2.336,
              2.18)
 
-  # X <- data.table(mm = mm, x = NA_real_)
-
   # determine observed wet-day frequency (wdf.obs), mean (mean.obs), wet-day mean (mwet.obs), wet-day 99th percentile
   wdf.obs    <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(  x>=th      )))[,-1]
   mean.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x            )))[,-1]
@@ -249,47 +237,41 @@ TransformWetDayAmounts <- function(fut, obs, deltas, mm, th) {
   q1.obs     <- q2.obs*ratio
 
   # apply deltas to observed climatology to obtain future climatology
-  wdf.fut  <- wdf.obs  * (1 + deltas$wdf/100)         # future climatologies
+  wdf.fut  <- wdf.obs  * (1 + deltas$wdf/100)
   mean.fut <- mean.obs * (1 + deltas$ave/100)
   mwet.fut <- mean.fut / wdf.fut
   q1.fut   <- q1.obs   * (1 + deltas$P99/100)
+
+  list(mwet.obs = RemoveDimNames(mwet.obs),
+       mwet.fut = RemoveDimNames(mwet.fut),
+       qobs     = RemoveDimNames(q1.obs),
+       qfut     = RemoveDimNames(q1.fut))
+}
+
+RemoveDimNames <- function(x) {
+  dims <- dim(x)
+  x <- as.numeric(x)
+  dim(x) <- dims
+  x
+}
+
+TransformWetDayAmounts <- function(fut, climatology, mm, th) {
 
 
   for(is in 1:ncol(fut)) {
 
     Y <- fut[, is]
 
-    # X[, x := obs[, is]]
-
-    # # determine observed climatology:
-    # # wet-day frequency (wdf.obs),
-    # # mean (mean.obs),
-    # # wet-day mean (mwet.obs),
-    # # wet-day 99th percentile
-    # wdf.obs  <- X[, mean(x >= th),              by = mm]$V1
-    # mean.obs <- X[, base::mean(x),              by = mm]$V1
-    # mwet.obs <- X[, mean(x[x >= th]),           by = mm]$V1
-    # q2.obs   <- X[, quantile(x[x >= th], 0.90), by = mm]$V1
-    # q1.obs   <- q2.obs * ratio
-    #
-    # # future climatologies
-    # wdf.fut  <- wdf.obs  * (1 + deltas$wdf / 100)
-    # mean.fut <- mean.obs * (1 + deltas$ave / 100)
-    # mwet.fut <- mean.fut / wdf.fut
-    # q1.fut   <- q1.obs   * (1 + deltas$P99 / 100)
 
     for(im in 1:12) {
       wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
       Xm     <- Y[wet.im]                  # select all wet day amounts
+
       # get climatologies for reference and future period for the month at hand
-      mobs   <- as.numeric(mwet.obs[im,is])
-      qobs   <- as.numeric(q1.obs[im,is])
-      mfut   <- as.numeric(mwet.fut[im,is])
-      qfut <- as.numeric(q1.fut[im,is])
-      # mobs   <- as.numeric(mwet.obs[im])
-      # qobs   <- as.numeric(q1.obs[im])
-      # mfut   <- as.numeric(mwet.fut[im])
-      # qfut   <- as.numeric(q1.fut[im])
+      mobs   <- climatology$mwet.obs[im,is]
+      qobs   <- climatology$qobs[im,is]
+      mfut   <- climatology$mwet.fut[im,is]
+      qfut   <- climatology$qfut[im,is]
 
       # determine exponent 'b' of power-law correction function
 
