@@ -54,7 +54,6 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
   # PREPARE DATA
   # explore observations
   mm <- (obs[,1] %/% 100) %% 100 # the month that a day belongs to (1, 2, ..., 12)
-  # nr <- length(mm)               # total number of days (in reference file)
 
   # future values (filled with NA)
   fut       <- obs
@@ -64,14 +63,13 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
   # apply transformation per station / time series
   fut[, -1] <- DryWetDays(obs      , deltas$wdf, th, mm, dryingScheme)
   fut[, -1] <- WetDryDays(fut[, -1], deltas$wdf, th, mm)
-
   fut[, -1] <- TransformWetDayAmounts(fut[, -1], obs[, -1], deltas, mm, th)
 
   return(fut)
 }
 
 
-DryWetDays <- function(obs, wdf, th, mm, makeUnique, dryingScheme) {
+DryWetDays <- function(obs, wdf, th, mm, dryingScheme) {
 
   nr <- length(mm)
   # DRYING WET DAYS ##########################################################
