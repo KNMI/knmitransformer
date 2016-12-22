@@ -239,39 +239,57 @@ TransformWetDayAmounts <- function(fut, obs, deltas, mm, th) {
              2.336,
              2.18)
 
-  X <- data.table(mm = mm, x = NA_real_)
+  # X <- data.table(mm = mm, x = NA_real_)
+
+  # determine observed wet-day frequency (wdf.obs), mean (mean.obs), wet-day mean (mwet.obs), wet-day 99th percentile
+  wdf.obs    <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(  x>=th      )))[,-1]
+  mean.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x            )))[,-1]
+  mwet.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x[x>=th]     )))[,-1]
+  q2.obs     <- as.matrix(aggregate(obs, by=list(mm),function(x) quantile(x[x>=th],0.90)))[,-1]
+  q1.obs     <- q2.obs*ratio
+
+  # apply deltas to observed climatology to obtain future climatology
+  wdf.fut  <- wdf.obs  * (1 + deltas$wdf/100)         # future climatologies
+  mean.fut <- mean.obs * (1 + deltas$ave/100)
+  mwet.fut <- mean.fut / wdf.fut
+  q1.fut   <- q1.obs   * (1 + deltas$P99/100)
+
 
   for(is in 1:ncol(fut)) {
 
     Y <- fut[, is]
 
-    X[, x := obs[, is]]
+    # X[, x := obs[, is]]
 
-    # determine observed climatology:
-    # wet-day frequency (wdf.obs),
-    # mean (mean.obs),
-    # wet-day mean (mwet.obs),
-    # wet-day 99th percentile
-    wdf.obs  <- X[, mean(x >= th),              by = mm]$V1
-    mean.obs <- X[, base::mean(x),              by = mm]$V1
-    mwet.obs <- X[, mean(x[x >= th]),           by = mm]$V1
-    q2.obs   <- X[, quantile(x[x >= th], 0.90), by = mm]$V1
-    q1.obs   <- q2.obs * ratio
-
-    # future climatologies
-    wdf.fut  <- wdf.obs  * (1 + deltas$wdf / 100)
-    mean.fut <- mean.obs * (1 + deltas$ave / 100)
-    mwet.fut <- mean.fut / wdf.fut
-    q1.fut   <- q1.obs   * (1 + deltas$P99 / 100)
+    # # determine observed climatology:
+    # # wet-day frequency (wdf.obs),
+    # # mean (mean.obs),
+    # # wet-day mean (mwet.obs),
+    # # wet-day 99th percentile
+    # wdf.obs  <- X[, mean(x >= th),              by = mm]$V1
+    # mean.obs <- X[, base::mean(x),              by = mm]$V1
+    # mwet.obs <- X[, mean(x[x >= th]),           by = mm]$V1
+    # q2.obs   <- X[, quantile(x[x >= th], 0.90), by = mm]$V1
+    # q1.obs   <- q2.obs * ratio
+    #
+    # # future climatologies
+    # wdf.fut  <- wdf.obs  * (1 + deltas$wdf / 100)
+    # mean.fut <- mean.obs * (1 + deltas$ave / 100)
+    # mwet.fut <- mean.fut / wdf.fut
+    # q1.fut   <- q1.obs   * (1 + deltas$P99 / 100)
 
     for(im in 1:12) {
       wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
       Xm     <- Y[wet.im]                  # select all wet day amounts
       # get climatologies for reference and future period for the month at hand
-      mobs   <- as.numeric(mwet.obs[im])
-      qobs   <- as.numeric(q1.obs[im])
-      mfut   <- as.numeric(mwet.fut[im])
-      qfut   <- as.numeric(q1.fut[im])
+      mobs   <- as.numeric(mwet.obs[im,is])
+      qobs   <- as.numeric(q1.obs[im,is])
+      mfut   <- as.numeric(mwet.fut[im,is])
+      qfut <- as.numeric(q1.fut[im,is])
+      # mobs   <- as.numeric(mwet.obs[im])
+      # qobs   <- as.numeric(q1.obs[im])
+      # mfut   <- as.numeric(mwet.fut[im])
+      # qfut   <- as.numeric(q1.fut[im])
 
       # determine exponent 'b' of power-law correction function
 
