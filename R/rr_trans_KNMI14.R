@@ -47,7 +47,6 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
   # future values (filled with NA)
   fut       <- obs
-  fut[, -1] <- NA
 
   # TRANSFORMATION
   # apply transformation per station / time series
@@ -232,7 +231,7 @@ CalculateClimatology <- function(obs, deltas, mm, th) {
   # determine observed wet-day frequency (wdf.obs), mean (mean.obs), wet-day mean (mwet.obs), wet-day 99th percentile
   wdf.obs    <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(  x>=th      )))[,-1]
   mean.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x            )))[,-1]
-  mwet.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x[x>=th]     )))[,-1]
+  #mwet.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x[x>=th]     )))[,-1]
   q2.obs     <- as.matrix(aggregate(obs, by=list(mm),function(x) quantile(x[x>=th],0.90)))[,-1]
   q1.obs     <- q2.obs*ratio
 
@@ -242,7 +241,7 @@ CalculateClimatology <- function(obs, deltas, mm, th) {
   mwet.fut <- mean.fut / wdf.fut
   q1.fut   <- q1.obs   * (1 + deltas$P99/100)
 
-  list(mwet.obs = RemoveDimNames(mwet.obs),
+  list(#mwet.obs = RemoveDimNames(mwet.obs),
        mwet.fut = RemoveDimNames(mwet.fut),
        qobs     = RemoveDimNames(q1.obs),
        qfut     = RemoveDimNames(q1.fut))
@@ -262,47 +261,25 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
 
     Y <- fut[, is]
 
-
     for(im in 1:12) {
       wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
       Xm     <- Y[wet.im]                  # select all wet day amounts
 
       # get climatologies for reference and future period for the month at hand
-      mobs   <- climatology$mwet.obs[im,is]
+      #mobs   <- climatology$mwet.obs[im,is]
       qobs   <- climatology$qobs[im,is]
       mfut   <- climatology$mwet.fut[im,is]
       qfut   <- climatology$qfut[im,is]
 
-      # determine exponent 'b' of power-law correction function
 
-      # function to minimise to find optimal value for coefficient 'b'
-      f  <- function(b) {
-        qfut / mfut -
-          (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
-      }
-
-      # root finding algorithm requires that both sides of search space are
-      # of opposite sign
-      if(f(0.1) * f(3) < 0) {
-        rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.001)  # root finding
-        b  <- rc$root
-      } else {
-        # if root is non-existent, alternative estimation for b
-        # value closest to zero is searched for
-        bs <- (1:300) / 100 # determine search space for 'b'
-        fs <- bs            # fs = f(bs)
-        for(ifs in 1:length(fs)) {
-          fs[ifs] <- f(bs[ifs])
-        }
-        b <- bs[which(abs(fs) == min(abs(fs)))] # b for which f(b) is smallest is chosen
-      }
+      b <- DeterminePowLawExponent(Xm, qfut, qobs, mfut)
 
       # straightforward estimation of coefficients a and c
       a  <- qfut / (qobs^b)
       c  <- a*(qobs^b) / qobs # multiplication factor for values larger than q99
 
       # actual transformation of wet-day amounts (application of transformation function)
-      Y[wet.im]                      <- ifelse(Xm < qobs, a * Xm^b, c*Xm)
+      Y[wet.im] <- ifelse(Xm < qobs, a * Xm^b, c*Xm)
 
       Y[wet.im][which(Y[wet.im] < th)] <- th # prevent days being dried by the wet-day transformation
     }
@@ -312,8 +289,29 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
   return(fut)
 }
 
+DeterminePowLawExponent <- function(Xm, qfut, qobs, mfut) {
+  # determine exponent 'b' of power-law correction function
 
+  # function to minimise to find optimal value for coefficient 'b'
+  f  <- function(b) {
+    qfut / mfut -
+      (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
+  }
 
-
-
+  # root finding algorithm requires that both sides of search space are
+  # of opposite sign
+  if(f(0.1) * f(3) < 0) {
+    rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.001)  # root finding
+    return(rc$root)
+  } else {
+    # if root is non-existent, alternative estimation for b
+    # value closest to zero is searched for
+    bs <- (1:300) / 100 # determine search space for 'b'
+    fs <- bs            # fs = f(bs)
+    for(ifs in 1:length(fs)) {
+      fs[ifs] <- f(bs[ifs])
+    }
+    return(bs[which(abs(fs) == min(abs(fs)))]) # b for which f(b) is smallest is chosen
+  }
+}
 
