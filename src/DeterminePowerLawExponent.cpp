@@ -1,14 +1,11 @@
 #include <Rcpp.h>
-#include "zeroin.hpp"
+#include "float.h"
+#include "math.h"
 
 using namespace Rcpp;
-//using namespace boost::math::tools;
 
 double myFunc(double x, NumericVector Xm, double qfut,
               double qobs, double mfut) {
-
-  // qfut / mfut -
-  //   (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
 
   int nx = Xm.length();
 
