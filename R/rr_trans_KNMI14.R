@@ -63,6 +63,8 @@ DryWetDays <- function(obs, wdf, th, mm, dryingScheme) {
   # DRYING WET DAYS ##########################################################
   if(sum(wdf < 0) > 0) {   # check if reduction in wet days is needed
 
+    flog.debug("Drying wet days")
+
     nr <- length(mm)
     # add very small number (based on datestring) to ensure that all numbers in
     # time series are unique.
@@ -158,6 +160,8 @@ DryWetDays <- function(obs, wdf, th, mm, dryingScheme) {
 
 WetDryDays <- function(fut, wdf, th, mm) {
 
+  flog.debug("Wetting dry days")
+
   for(is in 1:ncol(fut)) {
     # WETTING DRY DAYS #######################
     Y  <- fut[, is]
@@ -212,6 +216,8 @@ WetDryDays <- function(fut, wdf, th, mm) {
 
 CalculateClimatology <- function(obs, deltas, mm, th) {
 
+  flog.debug("Calculate climatology")
+
   # qq1   <- 0.99  # quantile of wet-day amounts that is used to estimate transformation coefficients
   # qq2   <- 0.90  # quantile of wet-day amounts that is used to estimate qq1 (robustly)
   # national median of monthly ratios between qq1 and qq2 for 240 precipitation stations
@@ -228,7 +234,11 @@ CalculateClimatology <- function(obs, deltas, mm, th) {
              2.336,
              2.18)
 
-  # determine observed wet-day frequency (wdf.obs), mean (mean.obs), wet-day mean (mwet.obs), wet-day 99th percentile
+  # determine observed:
+  # wet-day frequency (wdf.obs),
+  # mean (mean.obs),
+  # # wet-day mean (mwet.obs),
+  # wet-day 99th percentile (q1.obs)
   wdf.obs    <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(  x>=th      )))[,-1]
   mean.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x            )))[,-1]
   #mwet.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x[x>=th]     )))[,-1]
@@ -255,6 +265,8 @@ RemoveDimNames <- function(x) {
 }
 
 TransformWetDayAmounts <- function(fut, climatology, mm, th) {
+
+  flog.debug("Transform wet day amounts")
 
   for(is in 1:ncol(fut)) {
 
