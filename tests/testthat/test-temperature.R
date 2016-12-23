@@ -129,7 +129,7 @@ context("tx transformation - Entire station set")
 
 var="tx"
 ifile="regressionInput/temperature/KNMI14____ref_tx___19810101-20101231_v3.2.txt"
-ofile      <- "tmp.txt" # output file - used only temporary
+ofile      <- NA # output file - used only temporary
 delta.file <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
@@ -249,7 +249,7 @@ context("tn transformation - Entire station set")
 
 var="tn"
 ifile="regressionInput/temperature/KNMI14____ref_tn___19810101-20101231_v3.2.txt"
-ofile      <- "tmp.txt" # output file - used only temporary
+ofile      <- NA # output file - used only temporary
 delta.file <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
