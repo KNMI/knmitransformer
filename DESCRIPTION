@@ -16,9 +16,12 @@ Description: Transforms daily reference data into future climate, according to
 License: file LICENSE
 Imports:
   data.table,
-  futile.logger
+  futile.logger,
+    Rcpp
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Suggests:
   testthat,
   covr
+LinkingTo: 
+  Rcpp
