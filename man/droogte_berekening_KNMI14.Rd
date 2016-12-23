@@ -4,15 +4,16 @@
 \alias{droogte_berekening_KNMI14}
 \title{Calculation of Makkink evaporation}
 \usage{
-droogte_berekening_KNMI14(ifile_tg, ifile_rsds, ofile = "uitvoer.txt", sc,
-  p = NA, regio.file = NA)
+droogte_berekening_KNMI14(ifile_tg, ifile_rsds, ofile = NA, sc, p = NA,
+  regio.file = NA)
 }
 \arguments{
 \item{ifile_tg}{Name of the input file for temperature}
 
 \item{ifile_rsds}{Name of the input file for radiation}
 
-\item{ofile}{(DEFAULT="uitvoer.txt") Name of the output file to write the transformed data to.
+\item{ofile}{(DEFAULT=NA) Name of the output file to write the
+transformed data to.
 Format is similar to ifile}
 
 \item{sc}{scenario                      ["GL", "GH", "WL", "WH"]}

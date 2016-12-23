@@ -1,3 +1,7 @@
+### Version 0.1.4
+
+- introduced C++ uniroot 
+
 ### Version 0.1.3
 
 - Splitted rr_trans, rsds_trans into more comprehensible smaller functions

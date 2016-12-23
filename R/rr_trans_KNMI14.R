@@ -271,8 +271,7 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
       mfut   <- climatology$mwet.fut[im,is]
       qfut   <- climatology$qfut[im,is]
 
-
-      b <- DeterminePowerLawExponent(Xm, qfut, qobs, mfut)
+      b <- floor(DeterminePowerLawExponentCpp(Xm, qfut, qobs, mfut) * 1000) / 1000
 
       # straightforward estimation of coefficients a and c
       a  <- qfut / (qobs^b)
@@ -301,7 +300,7 @@ DeterminePowerLawExponent <- function(Xm, qfut, qobs, mfut) {
   # root finding algorithm requires that both sides of search space are
   # of opposite sign
   if(f(0.1) * f(3) < 0) {
-    rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.001)  # root finding
+    rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.00001)  # root finding
     return(rc$root)
   } else {
     # if root is non-existent, alternative estimation for b
