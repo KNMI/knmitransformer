@@ -272,7 +272,7 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
       qfut   <- climatology$qfut[im,is]
 
 
-      b <- floor(DeterminePowLawExponent(Xm, qfut, qobs, mfut) * 1000) / 1000
+      b <- floor(DeterminePowLawExponentCpp(Xm, qfut, qobs, mfut) * 1000) / 1000
       # b <- DeterminePowLawExponent(Xm, qfut, qobs, mfut)
 
       # straightforward estimation of coefficients a and c
