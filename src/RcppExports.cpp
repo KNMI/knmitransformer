@@ -5,9 +5,9 @@
 
 using namespace Rcpp;
 
-// DeterminePowLawExponentCpp
-double DeterminePowLawExponentCpp(NumericVector Xm, double qfut, double qobs, double mfut);
-RcppExport SEXP knmitransformer_DeterminePowLawExponentCpp(SEXP XmSEXP, SEXP qfutSEXP, SEXP qobsSEXP, SEXP mfutSEXP) {
+// DeterminePowerLawExponentCpp
+double DeterminePowerLawExponentCpp(NumericVector Xm, double qfut, double qobs, double mfut);
+RcppExport SEXP knmitransformer_DeterminePowerLawExponentCpp(SEXP XmSEXP, SEXP qfutSEXP, SEXP qobsSEXP, SEXP mfutSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -15,7 +15,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type qfut(qfutSEXP);
     Rcpp::traits::input_parameter< double >::type qobs(qobsSEXP);
     Rcpp::traits::input_parameter< double >::type mfut(mfutSEXP);
-    rcpp_result_gen = Rcpp::wrap(DeterminePowLawExponentCpp(Xm, qfut, qobs, mfut));
+    rcpp_result_gen = Rcpp::wrap(DeterminePowerLawExponentCpp(Xm, qfut, qobs, mfut));
     return rcpp_result_gen;
 END_RCPP
 }

@@ -24,12 +24,12 @@ double myFunc(double x, NumericVector Xm, double qfut,
 
 
 // [[Rcpp::export]]
-double DeterminePowLawExponentCpp(NumericVector Xm,
+double DeterminePowerLawExponentCpp(NumericVector Xm,
                                   double qfut, double qobs, double mfut)
 {
   double ax = 0.1;
   double bx = 3.0;
-  double tol = 0.0001;
+  double tol = 0.00001;
   double a,b,c;				/* Abscissae, descr. see above	*/
   double fa;				/* f(a)				*/
   double fb;				/* f(b)				*/
