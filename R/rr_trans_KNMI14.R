@@ -272,7 +272,7 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
       qfut   <- climatology$qfut[im,is]
 
 
-      b <- DeterminePowLawExponent(Xm, qfut, qobs, mfut)
+      b <- DeterminePowerLawExponent(Xm, qfut, qobs, mfut)
 
       # straightforward estimation of coefficients a and c
       a  <- qfut / (qobs^b)
@@ -289,7 +289,7 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
   return(fut)
 }
 
-DeterminePowLawExponent <- function(Xm, qfut, qobs, mfut) {
+DeterminePowerLawExponent <- function(Xm, qfut, qobs, mfut) {
   # determine exponent 'b' of power-law correction function
 
   # function to minimise to find optimal value for coefficient 'b'
