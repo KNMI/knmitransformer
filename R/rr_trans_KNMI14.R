@@ -53,7 +53,6 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
   # PREPARE DATA
   # explore observations
-  ns <- ncol(obs) - 1            # number of stations (= number of columns minus 1)
   mm <- (obs[,1] %/% 100) %% 100 # the month that a day belongs to (1, 2, ..., 12)
   nr <- length(mm)               # total number of days (in reference file)
 
@@ -68,10 +67,10 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
   # TRANSFORMATION
   # apply transformation per station / time series
-  for(is in 1:ns) {
+  for(is in 2:ncol(obs)) {
     flog.debug("Transforming column={%s}", paste(is))
 
-    X <- obs[, is + 1]
+    X <- obs[, is]
 
     Y <- DryWetDays(X, deltas$wdf, th, mm, makeUnique, dryingScheme)
 
@@ -79,11 +78,10 @@ rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
     Y <- TransformWetDayAmounts(Y, X, deltas, mm, th)
 
-    fut[, is + 1] <- round(Y, 1)
+    fut[, is] <- round(Y, 1)
   }
   return(fut)
 }
-
 
 DryWetDays <- function(Y, wdf, th, mm, makeUnique, dryingScheme) {
 
@@ -252,10 +250,10 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
   # mean (mean.obs),
   # wet-day mean (mwet.obs),
   # wet-day 99th percentile
-  wdf.obs  <- X2[, mean(x >= th),              by = mm]$V1
-  mean.obs <- X2[, base::mean(x),              by = mm]$V1
-  mwet.obs <- X2[, mean(x[x >= th]),           by = mm]$V1
-  q2.obs   <- X2[, quantile(x[x >= th], 0.90), by = mm]$V1
+  wdf.obs  <- X2[       , mean(x >= th),     by = mm]$V1
+  mean.obs <- X2[       , base::mean(x),     by = mm]$V1
+  mwet.obs <- X2[x >= th, base::mean(x),     by = mm]$V1
+  q2.obs   <- X2[x >= th, quantile(x, 0.90), by = mm]$V1
   q1.obs   <- q2.obs * ratio
 
   # future climatologies
@@ -276,8 +274,9 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
 
     # function to minimise to find optimal value for coefficient 'b'
     f  <- function(b) {
-      qfut / mfut -
-        (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
+      isSmaller  <- Xm < qobs
+      meanChange <- mean(c(Xm[isSmaller]^b, Xm[!isSmaller] * qobs^(b-1)))
+      qfut / mfut - (qobs^b) / meanChange
     }
 
     # root finding algorithm requires that both sides of search space are
@@ -287,12 +286,12 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
       b  <- rc$root
     } else {# if root is non-existent, alternative estimation for b
       # value closest to zero is searched for
-      bs <- (1:300) / 100                             # determine search space for 'b'
-      fs <- bs                                      # fs = f(bs)
+      bs <- (1:300) / 100                     # determine search space for 'b'
+      fs <- bs                                # fs = f(bs)
       for(ifs in 1:length(fs)) {
         fs[ifs] <- f(bs[ifs])
       }
-      b <- bs[which(abs(fs) == min(abs(fs)))]         # b for which f(b) is smallest is chosen
+      b <- bs[which(abs(fs) == min(abs(fs)))] # b for which f(b) is smallest is chosen
     }
 
     # straightforward estimation of coefficients a and c
@@ -307,9 +306,3 @@ TransformWetDayAmounts <- function(Y, X, deltas, mm, th) {
   # END TRANSFORMATION WET-DAY AMOUNTS
   return(Y)
 }
-
-
-
-
-
-
