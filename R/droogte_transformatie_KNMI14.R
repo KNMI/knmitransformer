@@ -56,7 +56,14 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
   H.comments <- "# Makkink Evaporation [mm] as derived from transformed tg & rsds "
 
   # OUTPUT #####################################################################
-  result <- WriteOutput("evmk", ofile, version, sc, p, H.comments, header, fut)
+  fut <- as.data.table(fut)
+  result <- rbind(header, fut, use.names = FALSE)
+  result[, V1 := as.integer(V1)]
+
+  writeToFile = FALSE
+  if (writeToFile) {
+    WriteOutput("evmk", ofile, version, sc, p, H.comments, result)
+  }
 
   flog.debug("Evaporation calculation ended successfully!")
   flog.debug("")

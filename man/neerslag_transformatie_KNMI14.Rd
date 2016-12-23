@@ -5,7 +5,8 @@
 \title{Transformation of precipitation}
 \usage{
 neerslag_transformatie_KNMI14(ifile, ofile = "uitvoer.txt", delta.file = NA,
-  sc, p = 2030, scaling = "centr", dryingScheme = "v1.1")
+  sc, p = 2030, scaling = "centr", dryingScheme = "v1.1",
+  writeToFile = FALSE)
 }
 \arguments{
 \item{ifile}{Name of the input file (ASCII) that contains reference data

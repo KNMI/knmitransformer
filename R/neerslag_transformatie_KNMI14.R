@@ -46,10 +46,16 @@ neerslag_transformatie_KNMI14 <- function(ifile,
                          dryingScheme = dryingScheme)
 
   # OUTPUT
-  result <- WriteOutput("rr", ofile, version, sc, p, input$comments,
-                        input$header, fut,
-                        scaling = scaling,
-                        dryingScheme = dryingScheme)
+  fut <- as.data.table(fut)
+  result <- rbind(input$header, fut, use.names = FALSE)
+  result[, V1 := as.integer(V1)]
+
+  writeToFile = FALSE
+  if (writeToFile) {
+    WriteOutput("rr", ofile, version, sc, p, input$comments, result,
+                scaling = scaling, dryingScheme = dryingScheme)
+  }
+
   flog.debug("Precipitation transformation ended successfully!")
   flog.debug("")
   return(result)

@@ -53,7 +53,14 @@ straling_transformatie_KNMI14 <- function(ifile,
   fut <- rsds_trans_KNMI14(obs=obs, deltas=deltas, lat=lat)
 
   # OUTPUT #####################################################################
-  result <- WriteOutput("rsds", ofile, version, sc, p, H.comments, header, fut)
+  fut <- as.data.table(fut)
+  result <- rbind(header, fut, use.names = FALSE)
+  result[, V1 := as.integer(V1)]
+
+  writeToFile = FALSE
+  if (writeToFile) {
+    WriteOutput("rsds", ofile, version, sc, p, input$comments, result)
+  }
 
   flog.debug("Radiation transformation ended successfully!")
   flog.debug("")

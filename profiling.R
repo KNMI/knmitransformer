@@ -26,11 +26,14 @@ profvis({
                                 scaling=scaling)
 })
 
-# Result: 17250 ms
-# ReadInput uses ~ 22%
-# rr_trans uses ~ 57% -> 57% due to TransformWetDayAmounts -> Lion´s share by
-# uniroot
-# WriteOutput uses ~ 20%
+# Result: 15380 ms
+# ReadInput uses ~ 27%
+# rr_trans uses ~ 49% -> more or less evenly spread between
+#   CalculateClimatology
+#   DryWetDays
+#   WetDryDays
+#   TransformWetDayAmouns
+# WriteOutput uses ~ 25%
 
 
 # ------------------------------------------------------------------------------

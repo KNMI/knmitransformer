@@ -99,8 +99,14 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
                          regio.tabel = regio.tabel)
 
   # OUTPUT #####################################################################
-  result <- WriteOutput(var, ofile, version, sc, p, input$comments,
-                        input$header, fut)
+  fut <- as.data.table(fut)
+  result <- rbind(input$header, fut, use.names = FALSE)
+  result[, V1 := as.integer(V1)]
+
+  writeToFile = FALSE
+  if (writeToFile) {
+    WriteOutput(var, ofile, version, sc, p, input$comments, result)
+  }
 
   flog.debug("Temperature transformation ended successfully!")
   flog.debug("")
