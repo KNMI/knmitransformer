@@ -12,7 +12,7 @@
 #' interpreted to contain LATITUDES of station.
 #' @export
 straling_transformatie_KNMI14 <- function(ifile,
-                                          ofile="uitvoer.txt",
+                                          ofile=NA,
                                           delta.file = NA,
                                           sc,
                                           p=NA) {
@@ -53,7 +53,13 @@ straling_transformatie_KNMI14 <- function(ifile,
   fut <- rsds_trans_KNMI14(obs=obs, deltas=deltas, lat=lat)
 
   # OUTPUT #####################################################################
-  result <- WriteOutput("rsds", ofile, version, sc, p, H.comments, header, fut)
+  fut <- as.data.table(fut)
+  result <- rbind(header, fut, use.names = FALSE)
+  result[, V1 := as.integer(V1)]
+
+  if (!is.na(ofile)) {
+    WriteOutput("rsds", ofile, version, sc, p, input$comments, result)
+  }
 
   flog.debug("Radiation transformation ended successfully!")
   flog.debug("")

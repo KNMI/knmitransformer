@@ -26,25 +26,35 @@ profvis({
                                 scaling=scaling)
 })
 
-# Result: 18660 ms (down from 23600 ms)
-# ReadInput uses ~ 20%
-# rr_trans uses ~ 59% -> 60% due to TransformWetDayAmounts -> Lion´s share by
-# uniroot
-# WriteOutput uses ~ 20%
+# Result: 15380 ms
+# ReadInput uses ~ 27%
+# rr_trans uses ~ 49% -> more or less evenly spread between
+#   CalculateClimatology
+#   DryWetDays
+#   WetDryDays
+#   TransformWetDayAmouns
+# WriteOutput uses ~ 25%
 
 
-###
-input <- knmitransformer:::ReadInput("rr", ifile)
+# ------------------------------------------------------------------------------
+# Micro benchmark of the inner precipitation transformation
+# ------------------------------------------------------------------------------
+input  <- knmitransformer:::ReadInput("rr", ifile)
 deltas <- knmitransformer:::ReadChangeFactors(delta.file, "rr", sc, p, scaling)
 # fut <- knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas, dryingScheme = "v1.1")
 microbenchmark(
-  knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas, dryingScheme = "v1.1"),
+  knmitransformer:::rr_trans_KNMI14(   obs = input$obs, deltas = deltas, dryingScheme = "v1.1"),
+  # knmitransformer:::rr_trans_KNMI14_v2(obs = input$obs, deltas = deltas, dryingScheme = "v1.1"),
   times = 10
 )
 
 # Result:
 # Unit: seconds
 # min      lq       mean     median   uq       max         neval
-# 10.38785 10.53096 10.64055 10.59913 10.67986 10.9697    10
+# 9.201773 9.241318 9.491148 9.293264 9.515043 10.4904     10
 
+profvis({
+  library(knmitransformer)
+  knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas, dryingScheme = "v1.1")
+})
 
