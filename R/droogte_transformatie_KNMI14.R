@@ -1,13 +1,9 @@
 #' Calculation of Makkink evaporation
 #' @description Function reads transormed mean temperature and transformed global radiation
 #' and calculates the Makkink evaporation for 'future time series' that match a certain climate
+#' @inheritParams temperatuur_transformatie_KNMI14
 #' @param ifile_tg   Name of the input file for temperature
 #' @param ifile_rsds Name of the input file for radiation
-#' @param ofile          (DEFAULT="uitvoer.txt") Name of the output file to write the transformed data to.
-#'                Format is similar to ifile
-#'
-#' @param sc             scenario                      ["GL", "GH", "WL", "WH"]
-#' @param p              time horizon                  [2030 (=DEFAULT), 2050, 2085]
 #' @param regio.file     this (optional) argument provides the name of an ASCII file that relates the stations to
 #'                a particular region. First column is station id and second column region
 #'                KNMI14 distinguishes following regions:
@@ -20,7 +16,7 @@
 #'
 #' @export
 droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
-                                      ofile="uitvoer.txt",
+                                      ofile=NA,
                                       sc,
                                       p=NA,
                                       regio.file = NA) {
@@ -60,8 +56,7 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
   result <- rbind(header, fut, use.names = FALSE)
   result[, V1 := as.integer(V1)]
 
-  writeToFile = FALSE
-  if (writeToFile) {
+  if (!is.na(ofile)) {
     WriteOutput("evmk", ofile, version, sc, p, H.comments, result)
   }
 

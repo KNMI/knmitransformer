@@ -4,8 +4,8 @@
 \alias{neerslag_transformatie_KNMI14}
 \title{Transformation of precipitation}
 \usage{
-neerslag_transformatie_KNMI14(ifile, ofile = "uitvoer.txt", delta.file = NA,
-  sc, p = 2030, scaling = "centr", dryingScheme = "v1.1")
+neerslag_transformatie_KNMI14(ifile, ofile = NA, delta.file = NA, sc,
+  p = 2030, scaling = "centr", dryingScheme = "v1.1")
 }
 \arguments{
 \item{ifile}{Name of the input file (ASCII) that contains reference data
@@ -20,7 +20,7 @@ time series.
 Rows starting with "#" are completely ignored and returned
 unchanged.}
 
-\item{ofile}{(DEFAULT="uitvoer.txt") Name of the output file to write the
+\item{ofile}{(DEFAULT=NA) Name of the output file to write the
 transformed data to.
 Format is similar to ifile}
 

@@ -10,7 +10,7 @@ context("rr transformation (centr) - Entire station set")
 
 scaling    <- "centr"
 ifile      <- "regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
-ofile      <- "tmp.txt" # output file - used only temporary
+ofile      <- NA
 delta.file <- NA
 
 test_that("2030 decadal prediction", {

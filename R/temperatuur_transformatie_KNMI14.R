@@ -15,7 +15,7 @@
 #'               Rows starting with "#" are completely ignored and returned
 #'               unchanged.
 #'
-#' @param ofile  (DEFAULT="uitvoer.txt") Name of the output file to write the
+#' @param ofile  (DEFAULT=NA) Name of the output file to write the
 #'               transformed data to.
 #'               Format is similar to ifile
 #'
@@ -58,7 +58,7 @@
 #'                <ZON> Zuidoost Nederland
 #' @export
 temperatuur_transformatie_KNMI14 <- function(ifile,
-                                              ofile = "uitvoer.txt",
+                                              ofile = NA,
                                               delta.file = NA,
                                               sc,
                                               p = 2030,
@@ -103,8 +103,7 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
   result <- rbind(input$header, fut, use.names = FALSE)
   result[, V1 := as.integer(V1)]
 
-  writeToFile = FALSE
-  if (writeToFile) {
+  if (!is.na(ofile)) {
     WriteOutput(var, ofile, version, sc, p, input$comments, result)
   }
 

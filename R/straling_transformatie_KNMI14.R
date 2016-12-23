@@ -12,7 +12,7 @@
 #' interpreted to contain LATITUDES of station.
 #' @export
 straling_transformatie_KNMI14 <- function(ifile,
-                                          ofile="uitvoer.txt",
+                                          ofile=NA,
                                           delta.file = NA,
                                           sc,
                                           p=NA) {
@@ -57,8 +57,7 @@ straling_transformatie_KNMI14 <- function(ifile,
   result <- rbind(header, fut, use.names = FALSE)
   result[, V1 := as.integer(V1)]
 
-  writeToFile = FALSE
-  if (writeToFile) {
+  if (!is.na(ofile)) {
     WriteOutput("rsds", ofile, version, sc, p, input$comments, result)
   }
 

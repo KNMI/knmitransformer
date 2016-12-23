@@ -18,7 +18,7 @@
 #                "v1.2" alternative procedure to dry wet days
 #' @export
 neerslag_transformatie_KNMI14 <- function(ifile,
-                                          ofile = "uitvoer.txt",
+                                          ofile = NA,
                                           delta.file = NA,
                                           sc,
                                           p = 2030,
@@ -50,8 +50,7 @@ neerslag_transformatie_KNMI14 <- function(ifile,
   result <- rbind(input$header, fut, use.names = FALSE)
   result[, V1 := as.integer(V1)]
 
-  writeToFile = FALSE
-  if (writeToFile) {
+  if (!is.na(ofile)) {
     WriteOutput("rr", ofile, version, sc, p, input$comments, result,
                 scaling = scaling, dryingScheme = dryingScheme)
   }
