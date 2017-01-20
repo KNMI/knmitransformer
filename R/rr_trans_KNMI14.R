@@ -299,28 +299,28 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
   return(fut)
 }
 
-DeterminePowerLawExponent <- function(Xm, qfut, qobs, mfut) {
-  # determine exponent 'b' of power-law correction function
-
-  # function to minimise to find optimal value for coefficient 'b'
-  f  <- function(b) {
-    qfut / mfut -
-      (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
-  }
-
-  # root finding algorithm requires that both sides of search space are
-  # of opposite sign
-  if(f(0.1) * f(3) < 0) {
-    rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.00001)  # root finding
-    return(rc$root)
-  } else {
-    # if root is non-existent, alternative estimation for b
-    # value closest to zero is searched for
-    bs <- (1:300) / 100 # determine search space for 'b'
-    fs <- bs            # fs = f(bs)
-    for(ifs in 1:length(fs)) {
-      fs[ifs] <- f(bs[ifs])
-    }
-    return(bs[which(abs(fs) == min(abs(fs)))]) # b for which f(b) is smallest is chosen
-  }
-}
+# DeterminePowerLawExponent <- function(Xm, qfut, qobs, mfut) {
+#   # determine exponent 'b' of power-law correction function
+#
+#   # function to minimise to find optimal value for coefficient 'b'
+#   f  <- function(b) {
+#     qfut / mfut -
+#       (qobs^b) / mean(ifelse(Xm < qobs, Xm^b, Xm * (qobs^b) / qobs))
+#   }
+#
+#   # root finding algorithm requires that both sides of search space are
+#   # of opposite sign
+#   if(f(0.1) * f(3) < 0) {
+#     rc <- uniroot(f, lower = 0.1, upper = 3, tol = 0.00001)  # root finding
+#     return(rc$root)
+#   } else {
+#     # if root is non-existent, alternative estimation for b
+#     # value closest to zero is searched for
+#     bs <- (1:300) / 100 # determine search space for 'b'
+#     fs <- bs            # fs = f(bs)
+#     for(ifs in 1:length(fs)) {
+#       fs[ifs] <- f(bs[ifs])
+#     }
+#     return(bs[which(abs(fs) == min(abs(fs)))]) # b for which f(b) is smallest is chosen
+#   }
+# }
