@@ -20,7 +20,7 @@ ReadInput <- function(var, ifile) {
       flog.error("Check input file: Latitude NOT (or not properly) provided.")
       stop()
     } else {
-      input <- c(input, lat = lat)
+      input$lat = lat
     }
   }
   input
