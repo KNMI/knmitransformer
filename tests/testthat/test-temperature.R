@@ -389,6 +389,15 @@ test_that("Test wrong user input", {
                                    ),
                "Period must be valid, i.e. 2030, 2050, or 2085")
 
+  expect_error(temperatuur_transformatie_KNMI14(ifile=ifile,
+                                   ofile=ofile,
+                                   delta.file=delta.file,
+                                   sc="GL",
+                                   p=p,
+                                   var="blub"
+                                   ),
+               "variable not defined.")
+
 })
 
 

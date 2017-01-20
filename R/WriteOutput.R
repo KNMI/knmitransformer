@@ -13,9 +13,6 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
     writeLines(paste("# drying scheme: ", dryingScheme))
   } else if (var == "evmk") {
     writeLines("# Transformed daily Makkink evaporation [mm] according to KNMI'14 transformation tool,")
-  } else {
-    flog.error("variable not defined")
-    stop()
   }
 
   writeLines(paste("# version ", version, sep=""))

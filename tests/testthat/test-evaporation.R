@@ -19,7 +19,7 @@ test_that("2030 decadal prediction", {
 
 
   tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
-                                   ofile=ofile,
+                                   ofile="tmp.txt",
                                    sc=sc,
                                    p=p,
                                    regio.file = regio.file)

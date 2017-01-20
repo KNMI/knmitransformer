@@ -18,7 +18,7 @@ test_that("2030 decadal prediction", {
 
   p=2030
   tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
-                                          ofile=ofile,
+                                          ofile="tmp.txt",
                                           delta.file=delta.file,
                                           sc=sc,
                                           p=p,

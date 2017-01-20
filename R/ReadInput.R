@@ -1,4 +1,11 @@
 ReadInput <- function(var, ifile) {
+
+  types <- c("rr", "evmk", "rsds", "tg", "tn", "tx")
+  if (!(var %in% types)) {
+    flog.error("variable not defined.")
+    stop("variable not defined.")
+  }
+
   flog.info("Reading reference data, file={%s}", ifile)
   H.comments <- scan(ifile, character(0), sep = "\n", quiet=TRUE) # select lines with "#" from reference file and ignore them
   flog.debug("Scanning of the reference data returned n={%i} lines.", length(H.comments))
