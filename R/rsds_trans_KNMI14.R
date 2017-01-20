@@ -42,29 +42,6 @@ rsds_trans_KNMI14 <- function(obs,
     return(a)
   }
 
-  # "Angot" or "Top Of Atmoshphere" radiation
-  Angot <- function(datestring_YYYYMMDD,lat) {
-    Gsc <- 0.0820 # solar constant [MJ/m2/min]
-    phi <- pi*lat/180
-    J <- daynumber(datestring_YYYYMMDD)
-    dr <- 1 + 0.033*cos(2*pi*J/365)
-    delta <- 0.409*sin(2*pi*J/365-1.39)
-    omega <- acos(-tan(phi)*tan(delta))
-    Ra <- (24*60/pi) * Gsc * dr*(omega *sin(phi)*sin(delta) + sin(omega)*cos(phi)*cos(delta))
-    return(Ra)
-  }
-
-  # Derive daynumber within year (1-366)
-  daynumber <- function(datestring_YYYYMMDD) {
-    dpm <- c(0,31,59,90,120,151,181,212,243,273,304,334)
-    id <- floor( datestring_YYYYMMDD %%   100)
-    im <- floor((datestring_YYYYMMDD %% 10000)  / 100)
-    iy <- floor( datestring_YYYYMMDD  / 10000) %%   4
-    dnr <- dpm[im] + id + (iy==0 & im >2)
-    return(dnr)
-  }
-
-
   # TRANSFORMATION
   # apply transformation per station / time series <is> and per calendar month <im>
   for(is in 1:ns) {
@@ -95,3 +72,24 @@ rsds_trans_KNMI14 <- function(obs,
 } # end function rsds_trans_KNMI14
 
 
+# "Angot" or "Top Of Atmoshphere" radiation
+Angot <- function(datestring_YYYYMMDD,lat) {
+  Gsc <- 0.0820 # solar constant [MJ/m2/min]
+  phi <- pi*lat/180
+  J <- daynumber(datestring_YYYYMMDD)
+  dr <- 1 + 0.033*cos(2*pi*J/365)
+  delta <- 0.409*sin(2*pi*J/365-1.39)
+  omega <- acos(-tan(phi)*tan(delta))
+  Ra <- (24*60/pi) * Gsc * dr*(omega *sin(phi)*sin(delta) + sin(omega)*cos(phi)*cos(delta))
+  return(Ra)
+}
+
+# Derive daynumber within year (1-366)
+daynumber <- function(datestring_YYYYMMDD) {
+  dpm <- c(0,31,59,90,120,151,181,212,243,273,304,334)
+  id <- floor( datestring_YYYYMMDD %%   100)
+  im <- floor((datestring_YYYYMMDD %% 10000)  / 100)
+  iy <- floor( datestring_YYYYMMDD  / 10000) %%   4
+  dnr <- dpm[im] + id + (iy==0 & im >2)
+  return(dnr)
+}

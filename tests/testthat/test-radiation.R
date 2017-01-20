@@ -8,7 +8,7 @@ library(data.table)
 context("rsds transformation - Entire station set")
 
 ifile="regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
-ofile      <- "tmp.txt" # output file - used only temporary
+ofile      <- NA
 delta.file <- NA
 
 test_that("2030 decadal prediction", {
@@ -16,7 +16,7 @@ test_that("2030 decadal prediction", {
 
   p=2030
   tmp <- straling_transformatie_KNMI14(ifile=ifile,
-                                          ofile=ofile,
+                                          ofile="tmp.txt",
                                           delta.file=delta.file,
                                           sc=sc,
                                           p=p)

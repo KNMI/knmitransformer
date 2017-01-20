@@ -4,23 +4,30 @@
 \alias{temperatuur_transformatie_KNMI14}
 \title{Transformation of temperature}
 \usage{
-temperatuur_transformatie_KNMI14(ifile, ofile = "uitvoer.txt",
-  delta.file = NA, sc, p = 2030, var, regio.file = NA)
+temperatuur_transformatie_KNMI14(ifile, ofile = NA, delta.file = NA, sc,
+  p = 2030, var, regio.file = NA)
 }
 \arguments{
-\item{ifile}{Name of the input file (ASCII) that contains reference data (all numerics) in which
-the columns provide time series for specific stations. The first column
-should provide either 00000000 or a datestring YYYYMMDD:
-Rows starting with 00000000 are considered station info (station number, lat, lon
-etc.) and are ignored.
-Rows starting with a datestring refer to a specific day in the time series.
-Rows starting with "#" are completely ignored and returned unchanged}
+\item{ifile}{Name of the input file (ASCII) that contains reference data
+(all numerics) in which the columns provide time series for
+specific stations.
+The first column should provide either 00000000 or a
+datestring YYYYMMDD:
+Rows starting with 00000000 are considered station info
+(station number, lat, lon etc.) and are ignored.
+Rows starting with a datestring refer to a specific day in the
+time series.
+Rows starting with "#" are completely ignored and returned
+unchanged.}
 
-\item{ofile}{(DEFAULT="uitvoer.txt") Name of the output file to write the transformed data to.
+\item{ofile}{(DEFAULT=NA) Name of the output file to write the
+transformed data to.
 Format is similar to ifile}
 
-\item{delta.file}{[optional] Name of file that contains deltas (changes factors for the transformation)
-               File should contain following compulsory columns identified with compulsory headers
+\item{delta.file}{[optional] Name of file that contains deltas
+              (changes factors for the transformation)
+               File should contain following compulsory columns identified
+               with compulsory headers
               - HEADER -
               "maand"     month for which deltas are valid (1,2,...,12) \cr
               "P01"       1st  percentile daily temperature \cr
@@ -32,31 +39,33 @@ Format is similar to ifile}
               following column is optional in case deltas vary with region
               (is needed in case <regio.tabel> is provided)
               "regio"     region for which deltas are valid
-                          KNMI14 distinguishes ("NWN", "ZWN", "NON", "MON", "ZON", "NLD")
+                          KNMI14 distinguishes
+                          ("NWN", "ZWN", "NON", "MON", "ZON", "NLD")
 
-                (If delta.file is not provided, predefined deltas are derived dependening on <sc>, <p> and
-                 daily temperature characteristic of interest [mean, min or max])}
+                (If delta.file is not provided, predefined deltas are derived
+                dependening on <sc>, <p> and daily temperature characteristic
+                of interest [mean, min or max])}
 
 \item{sc}{scenario                      ["GL", "GH", "WL", "WH"]}
 
 \item{p}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
 
-\item{var}{kind of daily temperature variable ["tg" = daily mean,
-"tn" = daily minimum,
-"tx" = daily maximum]}
+\item{var}{kind of daily temperature variable
+["tg" = daily mean, "tn" = daily minimum, "tx" = daily maximum]}
 
-\item{regio.file}{this (optional) argument provides the name of an ASCII file that relates the stations to
-a particular region. First column is station id and second column region
-KNMI14 distinguishes following regions:
-<NLD> Nederland            [DEFAULT]
-<NWN> Noordwest Nederland
-<ZWN> Zuidwest Nederland
-<NON> Noordoost Nederland
-<MON> Middenoost Nederland
-<ZON> Zuidoost Nederland}
+\item{regio.file}{this (optional) argument provides the name of an ASCII file
+that relates the stations to a particular region.
+First column is station id and second column region
+ KNMI14 distinguishes following regions:
+ <NLD> Nederland            [DEFAULT]
+ <NWN> Noordwest Nederland
+ <ZWN> Zuidwest Nederland
+ <NON> Noordoost Nederland
+ <MON> Middenoost Nederland
+ <ZON> Zuidoost Nederland}
 }
 \description{
-Function reads 'reference data' with ime series of daily of
+Function reads 'reference data' with time series of daily of
  mean, minimum or maximum temperature [degrees Celsius] and 'change factors'
  from input files and applies them to function 'tm_trans_KNMI14' to obtain
  'future time series' that match a certain climate

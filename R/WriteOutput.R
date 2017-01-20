@@ -1,4 +1,5 @@
-WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut, scaling = NULL) {
+WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
+                        scaling = NULL, dryingScheme = NULL) {
   flog.info("Write output")
   sink(ofile)
 
@@ -9,12 +10,12 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut, sca
     writeLines("# Transformed daily temperature [deg.C] according to KNMI'14 transformation tool,")
   } else if (var == "rr") {
     writeLines("# Transformed daily precipitation sums [mm] according to KNMI'14 transformation tool,")
-  } else {
-    flog.error("variable not defined")
-    stop()
+    writeLines(paste("# drying scheme: ", dryingScheme))
+  } else if (var == "evmk") {
+    writeLines("# Transformed daily Makkink evaporation [mm] according to KNMI'14 transformation tool,")
   }
 
-  writeLines(paste("# version ",version,sep=""))
+  writeLines(paste("# version ", version, sep=""))
   if(p=="2030") {
     writeLines("# Deltas are derived from the 2030 decadal prediction")
   } else {
@@ -31,13 +32,11 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, header, fut, sca
   }
   for(i in 1:length(H.comments)) writeLines(H.comments[i])
 
-  write.table(format(header[1,], width = 8),              file = "", row.names = F, col.names = F, quote = F)
-  write.table(format(header[-1,], width = 8, nsmall = 3), file = "", row.names = F, col.names = F, quote = F)
-  write.table(format(fut, width = 8, nsmall = 2),         file = "", row.names = F, col.names = F, quote = F)
+  write.table(format(dat[1,      ], width = 8),             file = "", row.names = F, col.names = F, quote = F)
+  write.table(format(dat[2:5,    ], width = 8, nsmall = 3), file = "", row.names = F, col.names = F, quote = F)
+  write.table(format(dat[-(1:5), ], width = 8, nsmall = 2), file = "", row.names = F, col.names = F, quote = F)
 
   sink()
-
-  fread(ofile)
 }
 
 

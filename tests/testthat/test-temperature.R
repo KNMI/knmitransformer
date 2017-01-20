@@ -9,7 +9,7 @@ context("tg transformation - Entire station set")
 
 var="tg"
 ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
-ofile      <- "tmp.txt" # output file - used only temporary
+ofile      <- NA
 delta.file <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
@@ -129,7 +129,7 @@ context("tx transformation - Entire station set")
 
 var="tx"
 ifile="regressionInput/temperature/KNMI14____ref_tx___19810101-20101231_v3.2.txt"
-ofile      <- "tmp.txt" # output file - used only temporary
+ofile      <- NA # output file - used only temporary
 delta.file <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
@@ -249,7 +249,7 @@ context("tn transformation - Entire station set")
 
 var="tn"
 ifile="regressionInput/temperature/KNMI14____ref_tn___19810101-20101231_v3.2.txt"
-ofile      <- "tmp.txt" # output file - used only temporary
+ofile      <- NA # output file - used only temporary
 delta.file <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
@@ -388,6 +388,15 @@ test_that("Test wrong user input", {
                                    var=var
                                    ),
                "Period must be valid, i.e. 2030, 2050, or 2085")
+
+  expect_error(temperatuur_transformatie_KNMI14(ifile=ifile,
+                                   ofile=ofile,
+                                   delta.file=delta.file,
+                                   sc="GL",
+                                   p=p,
+                                   var="blub"
+                                   ),
+               "variable not defined.")
 
 })
 

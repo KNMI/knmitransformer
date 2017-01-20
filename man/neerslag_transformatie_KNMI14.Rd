@@ -4,19 +4,24 @@
 \alias{neerslag_transformatie_KNMI14}
 \title{Transformation of precipitation}
 \usage{
-neerslag_transformatie_KNMI14(ifile, ofile = "uitvoer.txt", delta.file = NA,
-  sc, p = 2030, scaling = "centr", version = "v1.1")
+neerslag_transformatie_KNMI14(ifile, ofile = NA, delta.file = NA, sc,
+  p = 2030, scaling = "centr", dryingScheme = "v1.1")
 }
 \arguments{
-\item{ifile}{Name of the input file (ASCII) that contains reference data (all numerics) in which
-the columns provide time series for specific stations. The first column
-should provide either 00000000 or a datestring YYYYMMDD:
-Rows starting with 00000000 are considered station info (station number, lat, lon
-etc.) and are ignored.
-Rows starting with a datestring refer to a specific day in the time series.
-Rows starting with "#" are completely ignored and returned unchanged}
+\item{ifile}{Name of the input file (ASCII) that contains reference data
+(all numerics) in which the columns provide time series for
+specific stations.
+The first column should provide either 00000000 or a
+datestring YYYYMMDD:
+Rows starting with 00000000 are considered station info
+(station number, lat, lon etc.) and are ignored.
+Rows starting with a datestring refer to a specific day in the
+time series.
+Rows starting with "#" are completely ignored and returned
+unchanged.}
 
-\item{ofile}{(DEFAULT="uitvoer.txt") Name of the output file to write the transformed data to.
+\item{ofile}{(DEFAULT=NA) Name of the output file to write the
+transformed data to.
 Format is similar to ifile}
 
 \item{delta.file}{[optional] Name of file that contains deltas (changes factors for the transformation)
@@ -36,7 +41,7 @@ Format is similar to ifile}
 
 \item{scaling}{scaling extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]}
 
-\item{version}{"v1.1" [DEFAULT] official version that belongs to KNMI'14}
+\item{dryingScheme}{"v1.1" [DEFAULT] official version that belongs to KNMI'14}
 }
 \description{
 Function reads 'reference data' with daily precipitation sums
