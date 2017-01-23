@@ -1,0 +1,37 @@
+\documentclass{beamer}
+
+\usepackage{knmiBeamer}
+\Engelstrue
+
+\usepackage{verbatim}
+
+
+\begin{document}
+
+
+\begin{frame}
+\maketitle
+\end{frame}
+
+
+\begin{frame}
+Base version  calculates:
+\begin{item}
+\item
+\end{item}
+\end{frame}
+
+
+
+\begin{frame}
+ello
+
+<<rplot, echo=TRUE, eval=TRUE>>=
+futureData <- neerslag_transformatie_KNMI14()
+futurePrecip <- FuturePrecip()
+futureData <- Transform("precip",...)
+@
+
+\end{frame}
+
+\end{document}
