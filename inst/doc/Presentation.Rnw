@@ -14,19 +14,10 @@
 \end{frame}
 
 
-\begin{frame}
-Base version  calculates:
-\begin{item}
-\item
-\end{item}
-\end{frame}
+\begin{frame}[fragile]
+Hello
 
-
-
-\begin{frame}
-ello
-
-<<rplot, echo=TRUE, eval=TRUE>>=
+<<rplot, echo=TRUE, eval=FALSE>>=
 futureData <- neerslag_transformatie_KNMI14()
 futurePrecip <- FuturePrecip()
 futureData <- Transform("precip",...)
