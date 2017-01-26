@@ -41,8 +41,6 @@ This is IMPORTANT
 
 * Transformation of different time series/stations at once is possible; stations
   should be separated as columns in the inputfile 
-* GLOBAL RADIATION input should be in kJ/m2 and not in J/cm2 (the difference is
-  a factor 10)
 * GLOBAL RADIATION needs "latitude" as input; and this should be provided (for
   each station/column) in the fifth line in de header of the input file.
 * TEMPERATURE distinguishes between minimum temperature (tn), mean temperature

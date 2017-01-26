@@ -52,7 +52,7 @@ rsds_trans_KNMI14 <- function(obs,
 
       # clear sky radiation for all days in month <im>
       # version v1.0 applied accidently factor 0.7 (rather than 0.75)
-      Rx            <- 0.7 * 1000 * Angot(obs[days.im,1], lat[is])
+      Rx            <- 0.7 * Angot(obs[days.im,1], lat[is])
 
       # determine coefficient a for transformation function
       delta <- deltas[im,2]/100                # relative change of average in month <im>
@@ -81,7 +81,7 @@ Angot <- function(datestring_YYYYMMDD,lat) {
   delta <- 0.409*sin(2*pi*J/365-1.39)
   omega <- acos(-tan(phi)*tan(delta))
   Ra <- (24*60/pi) * Gsc * dr*(omega *sin(phi)*sin(delta) + sin(omega)*cos(phi)*cos(delta))
-  return(Ra)
+  1000*Ra # unit is kJ/m2
 }
 
 # Derive daynumber within year (1-366)
