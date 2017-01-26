@@ -1,0 +1,112 @@
+\documentclass{beamer}
+
+\usepackage{knmiBeamer}
+\Engelstrue
+
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{amssymb}
+
+\addtobeamertemplate{frametitle}{\vskip-5ex}{}
+\title[KNMI Transformer]{KNMI Transformer \\ Base version: results, evaluation \& next steps}
+\author[]{\tiny{Martin Roth \& Christiana Photiadou}}
+
+\begin{document}
+\maketitle
+
+\begin{frame}[fragile]
+\frametitle{Base version}
+Calculates:
+  \begin{itemize}
+    \item precipitation (sum)
+    \item temperature (mean, min and max)
+    \item global radiation (sum)
+    \item droogte berekening
+    \item regression test for all functions, stations, scenarios, time horizons, web data
+    \item all test run in 10 min
+    \item logging files
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Base version: results}
+  \begin{itemize}
+    \item EVMK WL 2085
+     \begin{itemize}
+        \item Although temperature and radiation can be reproduced evaporation cannot
+        \item regression test $\neq$ web data
+        \item reference file for temperature on the web has more stations
+        \item could not reproduced ...
+    \end{itemize}
+    \item Makkink function (needs more than an excel macro)
+    \item Agnot 0.7
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \includegraphics[width=10cm]{figure/Logfile.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Base version: results}
+ \begin{itemize}
+  \item header
+  \item tidy dataset
+
+  \begin{tabular}{ccccc}
+    Date     & StationId & lat   & lon & tg [$^\circ$\,C]\\
+    19810101 & 260       & 52.12 & 5.2 & $-1$ \\
+    $\vdots$ &           &       &     & $\vdots$
+  \end{tabular}
+
+  Not tidy but more user friendly
+  \begin{tabular}{cccc}
+    Date/Station & 260   & 270 &\ldots \\
+    lat          & 52.12 & &\ldots  \\
+    lon          &  5.2  & &\ldots \\
+    19810101     & $-1$  & &\ldots \\
+    $\vdots$     &   $\vdots$ &
+  \end{tabular}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{next steps}\tiny
+coding style google says:
+FunctionName
+
+ GOOD:
+<<goodnames, eval=FALSE>>=
+CalculateAvgClicks
+@
+
+ BAD:
+<<badnames, eval=FALSE>>=
+  calculate_avg_clicks, calculateAvgClicks
+@
+Make function names verbs.
+
+<<rplot, echo=TRUE, eval=FALSE>>=
+futureData <- neerslag_transformatie_KNMI14(ifile, ofile=NA,
+                delta.file=NA, sc, p=2030,
+                scaling="centr", dryingScheme="v1.1")
+futureData <- TransformPrecip(...)
+futureData <- Transform("precip",...)
+
+@
+\end{frame}
+
+\begin{frame}
+\frametitle{Questions}
+\begin{itemize}
+  \item Factor 0.7 or 0.75?
+  \item Delta files for radiation WL and WH 2085?
+  \item Do we need one temperature file with more stations?
+  \item Does the scaling affect the drying scheme?
+  \item Can we remove delta files from argument list?
+\end{itemize}
+\end{frame}
+
+\end{document}
