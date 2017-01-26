@@ -4,25 +4,59 @@
 \Engelstrue
 
 \usepackage{verbatim}
+\usepackage{amssymb}
 
+\addtobeamertemplate{frametitle}{\vskip-5ex}{}
+\title[KNMI Transformer]{KNMI Transformer \\ Base version: results, evaluation \& next steps}
+\author[]{\tiny{Martin Roth \& Christiana Photiadou}}
 
 \begin{document}
+\maketitle
+
+\begin{frame}[fragile]
+\frametitle{Base version}
+Calculates:
+  \begin{itemize}
+    \item precipitation (sum)
+    \item temperature (mean, min and max)
+    \item global radiation (sum)
+    \item droogte berekening
+    \item regression test for all functions, stations, scenarios, time horizons, web data
+    \item all test run in 10 min
+    \item logging files
+  \end{itemize}
+\end{frame}
 
 
 \begin{frame}
-\maketitle
+\frametitle{Base version: results}
+  \begin{itemize}
+    \item EVMK WL 2085
+     \begin{itemize}
+        \item regression test $\neg$ web data
+        \item reference file for temperature on the web has more stations
+    \end{itemize}
+    \item Makkink function
+    \item Agnot 0.7
+  \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Base version: results}
+ \begin{itemize}
+  \item header, functionality wirte function
+  \item tidy dataset
+\end{itemize}
+
+\end{frame}
 
 \begin{frame}[fragile]
-Hello
-
+\frametitle{next steps}
+coding style
 <<rplot, echo=TRUE, eval=FALSE>>=
-futureData <- neerslag_transformatie_KNMI14()
-futurePrecip <- FuturePrecip()
-futureData <- Transform("precip",...)
+futureData <- neerslag_transformatie_KNMI14(ifile,ofile=NA,delta.file=NA,sc,p=2030,scaling="centr",dryingScheme="v1.1")
 @
-
 \end{frame}
+
 
 \end{document}
