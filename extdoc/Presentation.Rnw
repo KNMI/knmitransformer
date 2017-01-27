@@ -9,22 +9,45 @@
 
 \addtobeamertemplate{frametitle}{\vskip-5ex}{}
 \title[KNMI Transformer]{KNMI Transformer \\ Base version: results, evaluation \& next steps}
-\author[]{\tiny{Martin Roth \& Christiana Photiadou}}
+\author[]{\tiny{Christiana Photiadou \& Martin Roth}}
 
 \begin{document}
 \maketitle
 
 \begin{frame}[fragile]
-\frametitle{Base version}
-Calculates:
+\frametitle{Base version}\small
+Calculates, transforms:
   \begin{itemize}
-    \item precipitation (sum)
-    \item temperature (mean, min and max)
-    \item global radiation (sum)
+    \item precipitation (sum) [mm]
+<<precip, eval=FALSE>>=
+rr_trans_KNMI14.R
+neerslag_transformatie_KNMI14
+@
+    \item temperature (mean, min, max) [$^\circ$C]
+<<temp, eval=FALSE>>=
+tm_trans_KNMI14.R
+temperatuur_transformatie_KNMI14
+@
+    \item global radiation (sum) [kJ/m2]
+<<radiation, eval=FALSE>>=
+rsds_trans_KNMI14.R
+straling_transformatie_KNMI14.R
+@
     \item droogte berekening
+<<evmk, eval=FALSE>>=
+droogte_transformatie_KNMI14.R
+@
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Base version}
+  \begin{itemize}
     \item regression test for all functions, stations, scenarios, time horizons, web data
     \item all test run in 10 min
     \item logging files
+     \includegraphics[width=10cm]{figure/Logfile.png}
+
   \end{itemize}
 \end{frame}
 
@@ -44,9 +67,7 @@ Calculates:
   \end{itemize}
 \end{frame}
 
-\begin{frame}
- \includegraphics[width=10cm]{figure/Logfile.png}
-\end{frame}
+
 
 \begin{frame}
 \frametitle{Base version: results}
@@ -73,25 +94,22 @@ Calculates:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{next steps}\tiny
-coding style google says:
-FunctionName
-
+\frametitle{coding style}\small
+google says: FunctionName
  GOOD:
 <<goodnames, eval=FALSE>>=
 CalculateAvgClicks
 @
-
  BAD:
 <<badnames, eval=FALSE>>=
   calculate_avg_clicks, calculateAvgClicks
 @
 Make function names verbs.
-
 <<rplot, echo=TRUE, eval=FALSE>>=
-futureData <- neerslag_transformatie_KNMI14(ifile, ofile=NA,
-                delta.file=NA, sc, p=2030,
-                scaling="centr", dryingScheme="v1.1")
+futureData <- neerslag_transformatie_KNMI14(ifile,
+                ofile=NA,delta.file=NA, sc, p=2030,
+                scaling="centr",
+                dryingScheme="v1.1")
 futureData <- TransformPrecip(...)
 futureData <- Transform("precip",...)
 
