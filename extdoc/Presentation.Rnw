@@ -15,104 +15,127 @@
 \maketitle
 
 \begin{frame}[fragile]
-\frametitle{Base version}\small
-Calculates, transforms:
+\frametitle{Functions:}\small
+  \vspace*{4mm}
   \begin{itemize}
     \item precipitation (sum) [mm]
 <<precip, eval=FALSE>>=
-rr_trans_KNMI14.R
+rr_trans_KNMI14
 neerslag_transformatie_KNMI14
 @
     \item temperature (mean, min, max) [$^\circ$C]
 <<temp, eval=FALSE>>=
-tm_trans_KNMI14.R
+tm_trans_KNMI14
 temperatuur_transformatie_KNMI14
 @
     \item global radiation (sum) [kJ/m2]
 <<radiation, eval=FALSE>>=
-rsds_trans_KNMI14.R
-straling_transformatie_KNMI14.R
+rsds_trans_KNMI14
+straling_transformatie_KNMI14
 @
-    \item droogte berekening
+    \item \alert{Makkink crop reference evaporation} [mm]
 <<evmk, eval=FALSE>>=
-droogte_transformatie_KNMI14.R
+droogte_berekening_KNMI14
 @
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Base version}
+\frametitle{Testing}
   \begin{itemize}
-    \item regression test for all functions, stations, scenarios, time horizons, web data
-    \item all test run in 10 min
-    \item logging files
+    \item manual regression test (comparison with web data) for all functions,
+      stations, scenarios, and time horizons
+    \item switch to automatic regression tests (all tests in $\sim$ 12 min)
+    \item produce logging information \\[5mm]
      \includegraphics[width=10cm]{figure/Logfile.png}
 
   \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]\scriptsize
+ \frametitle{Profiling}
+ \includegraphics[width=\linewidth]{figure/ExampleProfiling.png}
+ \begin{itemize}
+  \item
+<<ReadInput, eval=FALSE>>=
+ReadInput() Takes more than 25%
+@
+  \item
+<<rsdstrans, eval=FALSE>>=
+rr_trans_KNMI14() around 50%
+split into smaller sub routines
+@
+  \item
+<<WriteOutput, eval=FALSE>>=
+WriteOutput() Takes another 25%
+@
+ \end{itemize}
+\end{frame}
 
 \begin{frame}
-\frametitle{Base version: results}
-  \begin{itemize}
-    \item EVMK WL 2085
-     \begin{itemize}
-        \item Although temperature and radiation can be reproduced evaporation cannot
-        \item regression test $\neq$ web data
-        \item reference file for temperature on the web has more stations
-        \item could not reproduced ...
-    \end{itemize}
-    \item Makkink function (needs more than an excel macro)
-    \item Agnot 0.7
-  \end{itemize}
+\frametitle{Issues discovered}
+  \begin{block}{temperature}
+   for WL 2085 more stations in the web (normal subset is reproduced)
+  \end{block}
+  \begin{block}{radiation}
+   \begin{itemize}
+    \item 0.7 (not 0.75) $*$ Agnot value
+    \item for WH 2085 old delta file
+   \end{itemize}
+  \end{block}
+  \begin{block}{evaporation}
+   \begin{itemize}
+    \item Makking function needs more documentation
+    \item WL 2085 could not be reproduced
+   \end{itemize}
+  \end{block}
 \end{frame}
 
 
 
 \begin{frame}
-\frametitle{Base version: results}
- \begin{itemize}
-  \item header
-  \item tidy dataset
+\frametitle{Data format?}
 
+
+ \begin{block}{Tidy data}
+  \vspace*{2mm}
   \begin{tabular}{ccccc}
     Date     & StationId & lat   & lon & tg [$^\circ$\,C]\\
     19810101 & 260       & 52.12 & 5.2 & $-1$ \\
+    $\vdots$ &           &       &     & $\vdots$ \\
+    19810101 & 270       & 53.2  & 5.8 & 0 \\
     $\vdots$ &           &       &     & $\vdots$
   \end{tabular}
+ \end{block}
 
-  Not tidy but more user friendly
+ \begin{block}{Not tidy but more user friendly}
+  \vspace*{2mm}
   \begin{tabular}{cccc}
-    Date/Station & 260   & 270 &\ldots \\
-    lat          & 52.12 & &\ldots  \\
-    lon          &  5.2  & &\ldots \\
-    19810101     & $-1$  & &\ldots \\
-    $\vdots$     &   $\vdots$ &
+    Date/StationId & 260   & 270  &\ldots \\
+    lat            & 52.12 & 53.2 &\ldots  \\
+    lon            &  5.2  &  5.8 &\ldots \\
+    19810101       & $-1$  & 0    &\ldots \\
+    $\vdots$       &       & $\vdots$ &
   \end{tabular}
-\end{itemize}
+ \end{block}
+ \vspace*{-5mm}
 
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{coding style}\small
-google says: FunctionName
- GOOD:
-<<goodnames, eval=FALSE>>=
-CalculateAvgClicks
-@
- BAD:
+\frametitle{Rename functions}\small
+
+Following the Google R-coding style
 <<badnames, eval=FALSE>>=
-  calculate_avg_clicks, calculateAvgClicks
-@
-Make function names verbs.
-<<rplot, echo=TRUE, eval=FALSE>>=
 futureData <- neerslag_transformatie_KNMI14(ifile,
                 ofile=NA,delta.file=NA, sc, p=2030,
                 scaling="centr",
                 dryingScheme="v1.1")
+@
+is not recommended. \pause Preferable are e.g.
+<<goodnames, eval=FALSE>>=
 futureData <- TransformPrecip(...)
 futureData <- Transform("precip",...)
-
 @
 \end{frame}
 
@@ -121,8 +144,7 @@ futureData <- Transform("precip",...)
 \begin{itemize}
   \item Factor 0.7 or 0.75?
   \item Delta files for radiation WL and WH 2085?
-  \item Do we need one temperature file with more stations?
-  \item Does the scaling affect the drying scheme?
+  \item Do we need more reference stations for temperature?
   \item Can we remove delta files from argument list?
 \end{itemize}
 \end{frame}
