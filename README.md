@@ -1,5 +1,6 @@
 # knmitransformer
 
+[![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 [![Travis-CI Build Status](https://travis-ci.org/MartinRoth/knmitransformer.svg?branch=master)](https://travis-ci.org/MartinRoth/knmitransformer)
 [![Coverage Status](https://img.shields.io/codecov/c/github/MartinRoth/knmitransformer/master.svg)](https://codecov.io/github/MartinRoth/knmitransformer?branch=master)
 
@@ -41,8 +42,6 @@ This is IMPORTANT
 
 * Transformation of different time series/stations at once is possible; stations
   should be separated as columns in the inputfile 
-* GLOBAL RADIATION input should be in kJ/m2 and not in J/cm2 (the difference is
-  a factor 10)
 * GLOBAL RADIATION needs "latitude" as input; and this should be provided (for
   each station/column) in the fifth line in de header of the input file.
 * TEMPERATURE distinguishes between minimum temperature (tn), mean temperature

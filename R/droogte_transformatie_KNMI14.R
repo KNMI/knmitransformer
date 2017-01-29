@@ -21,15 +21,10 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
                                       p=NA,
                                       regio.file = NA) {
 
-  flog.info("Running evaporation calculation")
-  version <- packageVersion("knmitransformer")
-  flog.debug("Version is={%s}", version)
+  version <- ReturnPackageVersion()
   # CONSTANTS AND FUNCTIONS ###############################################################################
 
-  if (!p %in% c(2030, 2050, 2085)) {
-    flog.error("p={%s} has to be a valid period", paste(p))
-    stop("Period must be valid, i.e. 2030, 2050, or 2085")
-  }
+  CheckPeriod(p)
 
   ## Need to add an IF for delta.files of rsds & tg = need to be for the same p and the same sc
 

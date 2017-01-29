@@ -79,7 +79,7 @@ test_that("Scenario WH 2085", {
   #skip_on_travis()
   sc="WH"
   p=2085 # This set is not produced by this version of the code - neither with
-  # a factor of 0.7 or 0.75
+  # a factor of 0.7 or 0.75 with old delta file it works
   oldDeltaFile = "regressionInput/radiation/deltas-KNMI14__rsds_WH__2085_v201504.txt"
   tmp <- straling_transformatie_KNMI14(ifile=ifile,
                                           ofile=ofile,
