@@ -64,9 +64,7 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
                                               p = 2030,
                                               var,
                                               regio.file = NA) {
-  flog.info("Running temperature transformation")
-  version <- packageVersion("knmitransformer")
-  flog.debug("Version={%s}", version)
+  version <- ReturnPackageVersion()
 
   # CONSTANTS AND FUNCTIONS ####################################################
 

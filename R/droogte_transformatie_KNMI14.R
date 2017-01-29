@@ -21,9 +21,7 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
                                       p=NA,
                                       regio.file = NA) {
 
-  flog.info("Running evaporation calculation")
-  version <- packageVersion("knmitransformer")
-  flog.debug("Version is={%s}", version)
+  version <- ReturnPackageVersion()
   # CONSTANTS AND FUNCTIONS ###############################################################################
 
   CheckPeriod(p)

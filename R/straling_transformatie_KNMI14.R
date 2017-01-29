@@ -17,10 +17,7 @@ straling_transformatie_KNMI14 <- function(ifile,
                                           sc,
                                           p=NA) {
 
-  flog.info("Running temperature transformation")
-  # CONSTANTS AND FUNCTIONS ####################################################
-  version <- packageVersion("knmitransformer")
-  flog.debug("Version={%s}", version)
+  version <- ReturnPackageVersion()
 
   CheckPeriod(p)
 

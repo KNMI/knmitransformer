@@ -4,3 +4,10 @@ CheckPeriod <- function(p) {
     stop("Period must be valid, i.e. 2030, 2050, or 2085")
   }
 }
+
+ReturnPackageVersion <- function() {
+  flog.info("Running temperature transformation")
+  version <- paste0(packageVersion("knmitransformer"))
+  flog.debug("Version={%s}", version)
+  version
+}

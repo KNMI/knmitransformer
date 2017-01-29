@@ -25,9 +25,7 @@ neerslag_transformatie_KNMI14 <- function(ifile,
                                           scaling = "centr",
                                           dryingScheme = "v1.1") {
 
-  flog.info("Running temperature transformation")
-  version <- packageVersion("knmitransformer")
-  flog.debug("Version={%s}", version)
+  version <- ReturnPackageVersion()
   flog.debug("DryingScheme={%s}", dryingScheme)
 
   CheckPeriod(p)
