@@ -4,7 +4,7 @@
 \alias{TransformRadiation}
 \title{Transformation of radiation}
 \usage{
-TransformRadiation(ifile, ofile = NA, delta.file = NA, sc, p = NA)
+TransformRadiation(ifile, ofile = NA, delta.file = NA, sc, horizon = 2030)
 }
 \arguments{
 \item{ifile}{Name of the input file (ASCII) that contains reference data
@@ -30,7 +30,7 @@ File should contain following compulsory column identified with compulsory heade
 
 \item{sc}{scenario                      ["GL", "GH", "WL", "WH"]}
 
-\item{p}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
+\item{horizon}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
 }
 \description{
 Function reads 'reference data' with time series of daily global

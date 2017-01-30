@@ -4,7 +4,7 @@
 \alias{TransformTemp}
 \title{Transformation of temperature}
 \usage{
-TransformTemp(ifile, ofile = NA, delta.file = NA, sc, p = 2030, var,
+TransformTemp(ifile, ofile = NA, delta.file = NA, sc, horizon = 2030, var,
   regio.file = NA)
 }
 \arguments{
@@ -48,7 +48,7 @@ Format is similar to ifile}
 
 \item{sc}{scenario                      ["GL", "GH", "WL", "WH"]}
 
-\item{p}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
+\item{horizon}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
 
 \item{var}{kind of daily temperature variable
 ["tg" = daily mean, "tn" = daily minimum, "tx" = daily maximum]}

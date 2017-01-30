@@ -21,7 +21,7 @@ TransformPrecip <- function(ifile,
                             ofile = NA,
                             delta.file = NA,
                             sc,
-                            p = 2030,
+                            horizon = 2030,
                             scaling = "centr",
                             dryingScheme = "v1.1") {
 
@@ -34,7 +34,7 @@ TransformPrecip <- function(ifile,
   input <- ReadInput("rr", ifile)
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(delta.file, "rr", sc, p, scaling)
+  deltas <- ReadChangeFactors(delta.file, "rr", sc, horizon, scaling)
 
   # TRANSFORMATION
   fut <- rr_trans_KNMI14(obs = input$obs, deltas = deltas,
@@ -46,7 +46,7 @@ TransformPrecip <- function(ifile,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput("rr", ofile, version, sc, p, input$comments, result,
+    WriteOutput("rr", ofile, version, sc, horizon, input$comments, result,
                 scaling = scaling, dryingScheme = dryingScheme)
   }
 

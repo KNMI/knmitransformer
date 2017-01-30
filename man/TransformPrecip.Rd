@@ -4,7 +4,7 @@
 \alias{TransformPrecip}
 \title{Transformation of precipitation}
 \usage{
-TransformPrecip(ifile, ofile = NA, delta.file = NA, sc, p = 2030,
+TransformPrecip(ifile, ofile = NA, delta.file = NA, sc, horizon = 2030,
   scaling = "centr", dryingScheme = "v1.1")
 }
 \arguments{
@@ -37,7 +37,7 @@ Format is similar to ifile}
 
 \item{sc}{scenario                      ["GL", "GH", "WL", "WH"]}
 
-\item{p}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
+\item{horizon}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
 
 \item{scaling}{scaling extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]}
 

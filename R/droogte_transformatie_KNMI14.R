@@ -6,20 +6,18 @@
 #' @param ifile_rsds Name of the input file for radiation
 #' @export
 TransformEvap <- function(ifile_tg, ifile_rsds,
-                          ofile=NA,
+                          ofile = NA,
                           sc,
-                          p=NA,
+                          horizon = NA,
                           regio.file = NA) {
 
   version <- ReturnPackageVersion()
-  # CONSTANTS AND FUNCTIONS ###############################################################################
 
   CheckPeriod(p)
 
-  ## Need to add an IF for delta.files of rsds & tg = need to be for the same p and the same sc
-
-  rsds_input <- TransformRadiation(ifile = ifile_rsds, sc=sc, p=p)
-  tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", sc=sc, p=p, regio.file = regio.file)
+  rsds_input <- TransformRadiation(ifile = ifile_rsds, sc=sc, horizon = horizon)
+  tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", sc=sc,
+                              horizon = horizon, regio.file = regio.file)
 
   rsds <- rsds_input[-(1:5)]
   tg   <- tg_input[-(1:5)]
@@ -42,7 +40,7 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput("evmk", ofile, version, sc, p, H.comments, result)
+    WriteOutput("evmk", ofile, version, sc, horizon, H.comments, result)
   }
 
   flog.debug("Evaporation calculation ended successfully!")

@@ -15,7 +15,7 @@ TransformRadiation <- function(ifile,
                                ofile=NA,
                                delta.file = NA,
                                sc,
-                               p=NA) {
+                               horizon = 2030) {
 
   version <- ReturnPackageVersion()
 
@@ -24,7 +24,7 @@ TransformRadiation <- function(ifile,
   input <- ReadInput("rsds", ifile)
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(delta.file, "rsds", sc, p)
+  deltas <- ReadChangeFactors(delta.file, "rsds", sc, horizon)
 
   # TRANSFORMATION
   fut <- rsds_trans_KNMI14(obs=input$obs, deltas=deltas, lat=input$lat)
@@ -35,7 +35,7 @@ TransformRadiation <- function(ifile,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput("rsds", ofile, version, sc, p, input$comments, result)
+    WriteOutput("rsds", ofile, version, sc, horizon, input$comments, result)
   }
 
   flog.debug("Radiation transformation ended successfully!")

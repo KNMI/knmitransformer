@@ -42,7 +42,7 @@
 #'                 of interest [mean, min or max])
 #'
 #' @param sc     scenario                      ["GL", "GH", "WL", "WH"]
-#' @param p      time horizon                  [2030 (=DEFAULT), 2050, 2085]
+#' @param horizon      time horizon                  [2030 (=DEFAULT), 2050, 2085]
 #' @param var    kind of daily temperature variable
 #'               ["tg" = daily mean, "tn" = daily minimum, "tx" = daily maximum]
 #'
@@ -61,7 +61,7 @@ TransformTemp <- function(ifile,
                           ofile = NA,
                           delta.file = NA,
                           sc,
-                          p = 2030,
+                          horizon = 2030,
                           var,
                           regio.file = NA) {
   version <- ReturnPackageVersion()
@@ -74,7 +74,7 @@ TransformTemp <- function(ifile,
   input <- ReadInput(var, ifile)
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(delta.file, var, sc, p)
+  deltas <- ReadChangeFactors(delta.file, var, sc, horizon)
 
   # LINK STATIONS TO REGIONS
   if(is.na(regio.file)) {
@@ -99,7 +99,7 @@ TransformTemp <- function(ifile,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput(var, ofile, version, sc, p, input$comments, result)
+    WriteOutput(var, ofile, version, sc, horizon, input$comments, result)
   }
 
   flog.debug("Temperature transformation ended successfully!")

@@ -4,7 +4,7 @@
 \alias{TransformEvap}
 \title{Calculation of Makkink evaporation}
 \usage{
-TransformEvap(ifile_tg, ifile_rsds, ofile = NA, sc, p = NA,
+TransformEvap(ifile_tg, ifile_rsds, ofile = NA, sc, horizon = NA,
   regio.file = NA)
 }
 \arguments{
@@ -18,7 +18,7 @@ Format is similar to ifile}
 
 \item{sc}{scenario                      ["GL", "GH", "WL", "WH"]}
 
-\item{p}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
+\item{horizon}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
 
 \item{regio.file}{this (optional) argument provides the name of an ASCII file
 that relates the stations to a particular region.
