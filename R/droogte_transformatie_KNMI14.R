@@ -4,16 +4,6 @@
 #' @inheritParams temperatuur_transformatie_KNMI14
 #' @param ifile_tg   Name of the input file for temperature
 #' @param ifile_rsds Name of the input file for radiation
-#' @param regio.file     this (optional) argument provides the name of an ASCII file that relates the stations to
-#'                a particular region. First column is station id and second column region
-#'                KNMI14 distinguishes following regions:
-#'                <NLD> Nederland            [DEFAULT]
-#'                <NWN> Noordwest Nederland
-#'                <ZWN> Zuidwest Nederland
-#'                <NON> Noordoost Nederland
-#'                <MON> Middenoost Nederland
-#'                <ZON> Zuidoost Nederland
-#'
 #' @export
 droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
                                       ofile=NA,
