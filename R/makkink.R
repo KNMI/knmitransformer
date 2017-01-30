@@ -1,5 +1,6 @@
 makkink <- function(Tg,Q) {
-  # Tg = mean daily temperature [oC] Q = global radiation [J/m2]
+  # http://projects.knmi.nl/hawa/pdf/Handboek_H10.pdf onder 5.Herleiding parameters
+  # Tg = mean daily temperature [oC] Q = global radiation [kJ/m2]
   rho  	 <- 1000		                          # water mass density   			[kg/m3]
   vps    <- 6.107 * 10^((7.5*Tg)/(237.3+Tg))  # saturated vapor pressure [hPa]
   delta  <- ((7.5*237.3)/(237.3+Tg)^2) * log(10) * vps	# vps gradient   [hPa/K]
