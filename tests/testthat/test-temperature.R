@@ -17,7 +17,7 @@ test_that("2030 decadal prediction", {
   sc="GL"
 
   p=2030
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -31,7 +31,7 @@ test_that("Scenario WL", {
   sc="WL"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -43,7 +43,7 @@ test_that("Scenario WL", {
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -57,7 +57,7 @@ test_that("Scenario WH", {
   sc="WH"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -67,7 +67,7 @@ test_that("Scenario WH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tg.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -81,7 +81,7 @@ test_that("Scenario GH", {
   sc="GH"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -91,7 +91,7 @@ test_that("Scenario GH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tg.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -105,7 +105,7 @@ test_that("Scenario GL", {
   sc="GL"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -115,7 +115,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tg.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -137,7 +137,7 @@ test_that("2030 decadal prediction", {
   sc="GL"
 
   p=2030
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -151,7 +151,7 @@ test_that("Scenario WL", {
   sc="WL"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -163,7 +163,7 @@ test_that("Scenario WL", {
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -177,7 +177,7 @@ test_that("Scenario WH", {
   sc="WH"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -187,7 +187,7 @@ test_that("Scenario WH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tx.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -201,7 +201,7 @@ test_that("Scenario GH", {
   sc="GH"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -211,7 +211,7 @@ test_that("Scenario GH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tx.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -225,7 +225,7 @@ test_that("Scenario GL", {
   sc="GL"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -235,7 +235,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tx.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -257,7 +257,7 @@ test_that("2030 decadal prediction", {
   sc="GL"
 
   p=2030
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -271,7 +271,7 @@ test_that("Scenario WL", {
   sc="WL"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -283,7 +283,7 @@ test_that("Scenario WL", {
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -297,7 +297,7 @@ test_that("Scenario WH", {
   sc="WH"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -307,7 +307,7 @@ test_that("Scenario WH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tn.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -321,7 +321,7 @@ test_that("Scenario GH", {
   sc="GH"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -331,7 +331,7 @@ test_that("Scenario GH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tn.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -345,7 +345,7 @@ test_that("Scenario GL", {
   sc="GL"
 
   p=2050
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -355,7 +355,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tn.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -380,7 +380,7 @@ test_that("Test wrong user input", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  expect_error(temperatuur_transformatie_KNMI14(ifile=ifile,
+  expect_error(TransformTemp(ifile=ifile,
                                    ofile=ofile,
                                    delta.file=delta.file,
                                    sc="GL",
@@ -389,7 +389,7 @@ test_that("Test wrong user input", {
                                    ),
                "Period must be valid, i.e. 2030, 2050, or 2085")
 
-  expect_error(temperatuur_transformatie_KNMI14(ifile=ifile,
+  expect_error(TransformTemp(ifile=ifile,
                                    ofile=ofile,
                                    delta.file=delta.file,
                                    sc="GL",
@@ -407,7 +407,7 @@ test_that("Procedure works for default region", {
   p=2030
   var="tg"
 
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -422,7 +422,7 @@ test_that("Procedure works for one station as well", {
   p=2030
   var="tg"
 
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -448,7 +448,7 @@ test_that("Temperature regression test (with actual data) WH", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -458,7 +458,7 @@ test_that("Temperature regression test (with actual data) WH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tg___DeBilt.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -484,7 +484,7 @@ test_that("Temperature regression test (with actual data) GL", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -494,7 +494,7 @@ test_that("Temperature regression test (with actual data) GL", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tg___DeBilt.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -520,7 +520,7 @@ test_that("Temperature regression test (with actual data) GH", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -530,7 +530,7 @@ test_that("Temperature regression test (with actual data) GH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tg___DeBilt.rds")
 
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -556,7 +556,7 @@ test_that("Temperature regression test (with actual data) WL", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -568,7 +568,7 @@ test_that("Temperature regression test (with actual data) WL", {
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
   p = 2085
-  tmp <- temperatuur_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,

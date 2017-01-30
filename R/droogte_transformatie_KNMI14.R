@@ -1,7 +1,7 @@
 #' Calculation of Makkink evaporation
 #' @description Function reads transormed mean temperature and transformed global radiation
 #' and calculates the Makkink evaporation for 'future time series' that match a certain climate
-#' @inheritParams temperatuur_transformatie_KNMI14
+#' @inheritParams TransformTemp
 #' @param ifile_tg   Name of the input file for temperature
 #' @param ifile_rsds Name of the input file for radiation
 #' @export

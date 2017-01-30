@@ -21,7 +21,7 @@ written in R-code
 The R-functions
 
 - 'TransformPrecip'
-- 'temperatuur_transformatie_KNMI14'
+- 'TransformTemp
 - 'straling_transformatie_KNMI14'
    
 are meant to read and transform ASCII files in a format often used by KNMI to

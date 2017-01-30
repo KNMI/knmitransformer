@@ -57,13 +57,13 @@
 #'                <MON> Middenoost Nederland
 #'                <ZON> Zuidoost Nederland
 #' @export
-temperatuur_transformatie_KNMI14 <- function(ifile,
-                                              ofile = NA,
-                                              delta.file = NA,
-                                              sc,
-                                              p = 2030,
-                                              var,
-                                              regio.file = NA) {
+TransformTemp <- function(ifile,
+                          ofile = NA,
+                          delta.file = NA,
+                          sc,
+                          p = 2030,
+                          var,
+                          regio.file = NA) {
   version <- ReturnPackageVersion()
 
   # CONSTANTS AND FUNCTIONS ####################################################

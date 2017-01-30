@@ -3,7 +3,7 @@
 #'  radiation sums [kJ/m2] and 'change factors' from input files and applies
 #'  them to function 'rsds_trans_KNMI14' to obtain 'future time series' that
 #'  match a certain climate
-#' @inheritParams temperatuur_transformatie_KNMI14
+#' @inheritParams TransformTemp
 #' @param delta.file     [optional] Name of file that contains deltas (changes factors for the transformation)
 #'                File should contain following compulsory column identified with compulsory headers
 #'                - HEADER -
