@@ -13,7 +13,7 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
 
   version <- ReturnPackageVersion()
 
-  CheckPeriod(p)
+  CheckPeriod(horizon)
 
   rsds_input <- TransformRadiation(ifile = ifile_rsds, sc=sc, horizon = horizon)
   tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", sc=sc,

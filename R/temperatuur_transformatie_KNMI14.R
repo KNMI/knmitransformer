@@ -68,7 +68,7 @@ TransformTemp <- function(ifile,
 
   # CONSTANTS AND FUNCTIONS ####################################################
 
-  CheckPeriod(p)
+  CheckPeriod(horizon)
 
   # READ REFERENCE DATA FROM ifile
   input <- ReadInput(var, ifile)

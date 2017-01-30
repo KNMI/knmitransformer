@@ -1,5 +1,5 @@
 WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
-                        scaling = NULL, dryingScheme = NULL) {
+                        subscenario = NULL, dryingScheme = NULL) {
   flog.info("Write output")
   sink(ofile)
 
@@ -27,7 +27,7 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
   writeLines("# generate time series consistent with the KNMI'14 climate scenarios, TR-349")
   writeLines("#")
   if (var == "rr") {
-    writeLines(paste("# wet day scaling:",scaling))
+    writeLines(paste("# wet day subscenario:", subscenario))
     writeLines("#")
   }
   for(i in 1:length(H.comments)) writeLines(H.comments[i])

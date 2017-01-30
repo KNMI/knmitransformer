@@ -4,8 +4,8 @@
 \alias{TransformPrecip}
 \title{Transformation of precipitation}
 \usage{
-TransformPrecip(ifile, ofile = NA, delta.file = NA, sc, horizon = 2030,
-  scaling = "centr", dryingScheme = "v1.1")
+TransformPrecip(ifile, ofile = NA, sc, horizon = 2030,
+  subscenario = "centr", dryingScheme = "v1.1")
 }
 \arguments{
 \item{ifile}{Name of the input file (ASCII) that contains reference data
@@ -24,22 +24,11 @@ unchanged.}
 transformed data to.
 Format is similar to ifile}
 
-\item{delta.file}{[optional] Name of file that contains deltas (changes factors for the transformation)
-               File should contain following compulsory columns identified with compulsory headers
-               "wdf"       relative change in wet-day frequency
-                           (wet days are defined as days with 0.1 mm or more precipitation) \cr
-               "ave"       relative change in mean precipitation \cr
-               "p99.lower" lower   estimate of the relative change in the 99th percentile of wet-day amounts \cr
-               "p99.centr" central estimate of the relative change in the 99th percentile of wet-day amounts \cr
-               "p99.upper" upper   estimate of the relative change in the 99th percentile of wet-day amounts \cr
-
-                (If delta.file is not provided, predefined deltas are derived dependening on <sc>, <p> and <scaling>)}
-
 \item{sc}{scenario                      ["GL", "GH", "WL", "WH"]}
 
 \item{horizon}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
 
-\item{scaling}{scaling extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]}
+\item{subscenario}{subscenario for extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]}
 
 \item{dryingScheme}{"v1.1" [DEFAULT] official version that belongs to KNMI'14}
 }

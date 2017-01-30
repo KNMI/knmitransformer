@@ -19,7 +19,7 @@ TransformRadiation <- function(ifile,
 
   version <- ReturnPackageVersion()
 
-  CheckPeriod(p)
+  CheckPeriod(horizon)
 
   input <- ReadInput("rsds", ifile)
 

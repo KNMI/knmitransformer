@@ -1,3 +1,9 @@
+### Version 0.1.5
+
+- renamed the functions (English / Google code style)
+- renamed 'p' argument to 'horizon'
+
+
 ### Version 0.1.4
 
 - introduced C++ uniroot 
