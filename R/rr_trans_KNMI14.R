@@ -33,9 +33,9 @@
 rr_trans_KNMI14 <- function(obs, deltas, dryingScheme = "v1.1") {
 
   flog.debug("Running rr_trans_KNMI14")
-  version <- packageVersion("knmitransformer")
-  flog.debug("Version={%s}", version)
-  flog.debug("DryingScheme={%s}", dryingScheme)
+  # version <- packageVersion("knmitransformer")
+  # flog.debug("Version={%s}", version)
+  # flog.debug("DryingScheme={%s}", dryingScheme)
 
   # DEFINE CONSTANTS
   th <- 0.1    # wet-day threshold

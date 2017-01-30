@@ -36,7 +36,6 @@ tm_trans_KNMI14 <- function(obs,
                             regio.tabel=NA) {
 
   flog.debug("Running tm_trans_KNMI14")
-  version="v1.0"
 
   # PREPARE DATA
   # explore observations

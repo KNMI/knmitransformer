@@ -18,7 +18,6 @@ rsds_trans_KNMI14 <- function(obs,
                               lat) {
 
   flog.debug("Running rsds_trans_KNMI14")
-  version="v1.1"
 
   # PREPARE DATA
   # explore observations
