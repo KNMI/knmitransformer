@@ -4,6 +4,9 @@
 [![Travis-CI Build Status](https://travis-ci.org/MartinRoth/knmitransformer.svg?branch=master)](https://travis-ci.org/MartinRoth/knmitransformer)
 [![Coverage Status](https://img.shields.io/codecov/c/github/MartinRoth/knmitransformer/master.svg)](https://codecov.io/github/MartinRoth/knmitransformer?branch=master)
 
+Please, if there is an issue of any kind, file it 
+[here](https://github.com/MartinRoth/knmitransformer/issues) 
+
 The 'transformation program' of the KNMI 2014 climate change scenarios for the
 Netherlands. With this program current climate time series are transformed to
 represent the climate of the KNMI 2014 scenarios for 2030, 2050, and 2085.
