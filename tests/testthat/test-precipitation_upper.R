@@ -16,7 +16,7 @@ test_that("2030 decadal prediction", {
   sc="GL"
 
   p=2030
-  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformPrecip(ifile=ifile,
                                           ofile=ofile,
                                           delta.file=delta.file,
                                           sc=sc,
@@ -29,7 +29,7 @@ test_that("Scenario GL", {
   sc="GL"
 
   p=2050
-  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
@@ -38,7 +38,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2050_rr_upper.rds")
 
   p=2085
-  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
@@ -52,7 +52,7 @@ test_that("Scenario GH", {
   sc="GH"
 
   p=2050
-  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
@@ -61,7 +61,7 @@ test_that("Scenario GH", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2050_rr_upper.rds")
 
   p=2085
-  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
@@ -74,7 +74,7 @@ test_that("Scenario WH", {
   sc="WH"
 
   p=2050
-  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
@@ -83,7 +83,7 @@ test_that("Scenario WH", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WH_2050_rr_upper.rds")
 
   p=2085
-  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
@@ -96,7 +96,7 @@ test_that("Scenario WL", {
   sc="WL"
 
   p=2050
-  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
@@ -105,7 +105,7 @@ test_that("Scenario WL", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WL_2050_rr_upper.rds")
 
   p=2085
-  tmp <- neerslag_transformatie_KNMI14(ifile=ifile,
+  tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,

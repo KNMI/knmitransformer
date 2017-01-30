@@ -14,15 +14,15 @@ represent the climate of the KNMI 2014 scenarios for 2030, 2050, and 2085.
 The actual transformation procedures for daily meteorological variables are
 written in R-code
 
-- 'rr_trans_KNMI14.R'  : precipitation    (sum)                [mm]             
-- 'tm_trans_KNMI14.R'  : temperature      (mean, min and max)  [degrees Celsius] 
-- 'rsds_trans_KNMI14.R': global radiation (sum)                [kJ/m2]
+- 'rr_trans_KNMI14'  : precipitation    (sum)                [mm]             
+- 'tm_trans_KNMI14'  : temperature      (mean, min and max)  [degrees Celsius] 
+- 'rsds_trans_KNMI14': global radiation (sum)                [kJ/m2]
 
 The R-functions
 
-- 'neerslag_transformatie_KNMI14.R'
-- 'temperatuur_transformatie_KNMI14.R'
-- 'straling_transformatie_KNMI14.R'
+- 'TransformPrecip'
+- 'temperatuur_transformatie_KNMI14'
+- 'straling_transformatie_KNMI14'
    
 are meant to read and transform ASCII files in a format often used by KNMI to
 provide data to professional users (see example *.dat files mentioned below).

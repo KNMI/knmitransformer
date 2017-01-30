@@ -17,13 +17,13 @@
 #' @param dryingScheme "v1.1" [DEFAULT] official version that belongs to KNMI'14
 #                "v1.2" alternative procedure to dry wet days
 #' @export
-neerslag_transformatie_KNMI14 <- function(ifile,
-                                          ofile = NA,
-                                          delta.file = NA,
-                                          sc,
-                                          p = 2030,
-                                          scaling = "centr",
-                                          dryingScheme = "v1.1") {
+TransformPrecip <- function(ifile,
+                            ofile = NA,
+                            delta.file = NA,
+                            sc,
+                            p = 2030,
+                            scaling = "centr",
+                            dryingScheme = "v1.1") {
 
   version <- ReturnPackageVersion()
   flog.debug("DryingScheme={%s}", dryingScheme)
