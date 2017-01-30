@@ -7,16 +7,16 @@
 #' @export
 TransformEvap <- function(ifile_tg, ifile_rsds,
                           ofile = NA,
-                          sc,
-                          horizon = NA,
+                          scenario,
+                          horizon = 2030,
                           regio.file = NA) {
 
   version <- ReturnPackageVersion()
 
   CheckPeriod(horizon)
 
-  rsds_input <- TransformRadiation(ifile = ifile_rsds, sc=sc, horizon = horizon)
-  tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", sc=sc,
+  rsds_input <- TransformRadiation(ifile = ifile_rsds, scenario=scenario, horizon = horizon)
+  tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", scenario=scenario,
                               horizon = horizon, regio.file = regio.file)
 
   rsds <- rsds_input[-(1:5)]
@@ -40,7 +40,7 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput("evmk", ofile, version, sc, horizon, H.comments, result)
+    WriteOutput("evmk", ofile, version, scenario, horizon, H.comments, result)
   }
 
   flog.debug("Evaporation calculation ended successfully!")

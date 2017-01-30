@@ -4,7 +4,8 @@
 \alias{TransformRadiation}
 \title{Transformation of radiation}
 \usage{
-TransformRadiation(ifile, ofile = NA, delta.file = NA, sc, horizon = 2030)
+TransformRadiation(ifile, ofile = NA, delta.file = NA, scenario,
+  horizon = 2030)
 }
 \arguments{
 \item{ifile}{Name of the input file (ASCII) that contains reference data
@@ -28,7 +29,7 @@ File should contain following compulsory column identified with compulsory heade
 - HEADER -
 "ave"       relative change [\%] in mean shortwave surface radiation}
 
-\item{sc}{scenario                      ["GL", "GH", "WL", "WH"]}
+\item{scenario}{scenario ["GL", "GH", "WL", "WH"]}
 
 \item{horizon}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
 }

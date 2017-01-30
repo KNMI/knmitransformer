@@ -5,25 +5,20 @@ library(futile.logger)
 flog.threshold(WARN)
 # flog.threshold(DEBUG)
 
-scaling    <- "centr"
-ifile      <- "tests/testthat/regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
-ofile      <- "tmp.txt" # output file - used only temporary
-delta.file <- NA
-sc="GL"
-
-p=2030
+subscenario <- "centr"
+ifile       <- "tests/testthat/regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
+ofile       <- "tmp.txt" # output file - used only temporary
+delta.file  <- NA
+scenario    <- "GL"
+horizon     <- 2030
 
 # ------------------------------------------------------------------------------
 # Full precipitation transformation profile
 # ------------------------------------------------------------------------------
 profvis({
   library(knmitransformer)
-  neerslag_transformatie_KNMI14(ifile=ifile,
-                                ofile=ofile,
-                                delta.file=delta.file,
-                                sc=sc,
-                                p=p,
-                                scaling=scaling)
+  TransformPrecip(ifile=ifile, ofile=ofile, scenario=scenario, horizon=horizon,
+                  subscenario=subscenario)
 })
 
 # Result: 15380 ms

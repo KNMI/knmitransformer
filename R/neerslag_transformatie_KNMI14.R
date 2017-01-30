@@ -4,17 +4,15 @@
 #' 'rr_trans_KNMI14' to obtain 'future time series' that match a certain climate
 #' @inheritParams TransformTemp
 #' @param subscenario  subscenario for extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]
-#' @param dryingScheme "v1.1" [DEFAULT] official version that belongs to KNMI'14
-#                "v1.2" alternative procedure to dry wet days
 #' @export
 TransformPrecip <- function(ifile,
                             ofile = NA,
-                            sc,
+                            scenario,
                             horizon = 2030,
-                            subscenario = "centr",
-                            dryingScheme = "v1.1") {
+                            subscenario = "centr") {
 
   version <- ReturnPackageVersion()
+  dryingScheme = "v1.1"
   flog.debug("DryingScheme={%s}", dryingScheme)
 
   CheckPeriod(horizon)
@@ -23,7 +21,7 @@ TransformPrecip <- function(ifile,
   input <- ReadInput("rr", ifile)
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(NA, "rr", sc, horizon, subscenario)
+  deltas <- ReadChangeFactors(NA, "rr", scenario, horizon, subscenario)
 
   # TRANSFORMATION
   fut <- rr_trans_KNMI14(obs = input$obs, deltas = deltas,
@@ -35,7 +33,7 @@ TransformPrecip <- function(ifile,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput("rr", ofile, version, sc, horizon, input$comments, result,
+    WriteOutput("rr", ofile, version, scenario, horizon, input$comments, result,
                 subscenario = subscenario, dryingScheme = dryingScheme)
   }
 

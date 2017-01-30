@@ -1,7 +1,9 @@
 ### Version 0.1.5
 
 - renamed the functions (English / Google code style)
+- renamed 'sc' to scenario
 - renamed 'p' argument to 'horizon'
+- renamed 'scaling' to subscenario
 
 
 ### Version 0.1.4

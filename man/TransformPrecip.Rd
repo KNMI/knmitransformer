@@ -4,8 +4,8 @@
 \alias{TransformPrecip}
 \title{Transformation of precipitation}
 \usage{
-TransformPrecip(ifile, ofile = NA, sc, horizon = 2030,
-  subscenario = "centr", dryingScheme = "v1.1")
+TransformPrecip(ifile, ofile = NA, scenario, horizon = 2030,
+  subscenario = "centr")
 }
 \arguments{
 \item{ifile}{Name of the input file (ASCII) that contains reference data
@@ -24,13 +24,11 @@ unchanged.}
 transformed data to.
 Format is similar to ifile}
 
-\item{sc}{scenario                      ["GL", "GH", "WL", "WH"]}
+\item{scenario}{scenario ["GL", "GH", "WL", "WH"]}
 
 \item{horizon}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
 
 \item{subscenario}{subscenario for extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]}
-
-\item{dryingScheme}{"v1.1" [DEFAULT] official version that belongs to KNMI'14}
 }
 \description{
 Function reads 'reference data' with daily precipitation sums

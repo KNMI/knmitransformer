@@ -13,14 +13,14 @@ ofile      <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
 test_that("2030 decadal prediction", {
-  sc="GL"
+  scenario="GL"
 
   horizon = 2030
 
 
   tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile="tmp.txt",
-                                   sc=sc,
+                                   scenario=scenario,
                                    horizon = horizon,
                                    regio.file = regio.file)
 
@@ -28,12 +28,12 @@ test_that("2030 decadal prediction", {
 })
 
 test_that("Scenario WL", {
-  sc="WL"
+  scenario="WL"
 
   horizon = 2050
   tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
+                                   scenario=scenario,
                                    horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WL_2050_evmk.rds")
@@ -42,19 +42,19 @@ test_that("Scenario WL", {
   horizon =  2085
   tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
+                                   scenario=scenario,
                                    horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WL_2085_evmk.rds")
 })
 
 test_that("Scenario WH", {
-  sc="WH"
+  scenario="WH"
 
   horizon = 2050
   tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
+                                   scenario=scenario,
                                    horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WH_2050_evmk.rds")
@@ -62,19 +62,19 @@ test_that("Scenario WH", {
   horizon =  2085
   tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
+                                   scenario=scenario,
                                    horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WH_2085_evmk.rds")
 })
 
 test_that("Scenario GH", {
-  sc="GH"
+  scenario="GH"
 
   horizon = 2050
   tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
+                                   scenario=scenario,
                                    horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GH_2050_evmk.rds")
@@ -82,19 +82,19 @@ test_that("Scenario GH", {
   horizon =  2085
   tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
+                                   scenario=scenario,
                                    horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GH_2085_evmk.rds")
 })
 
 test_that("Scenario GL", {
-  sc="GL"
+  scenario="GL"
 
   horizon = 2050
   tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
+                                   scenario=scenario,
                                    horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GL_2050_evmk.rds")
@@ -102,7 +102,7 @@ test_that("Scenario GL", {
   horizon =  2085
   tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
+                                   scenario=scenario,
                                    horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GL_2085_evmk.rds")

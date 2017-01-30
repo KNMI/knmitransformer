@@ -10,17 +10,15 @@ context("tg transformation - Entire station set")
 var="tg"
 ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
 ofile      <- NA
-delta.file <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
 test_that("2030 decadal prediction", {
-  sc="GL"
+  scenario="GL"
 
   horizon = 2030
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -28,13 +26,12 @@ test_that("2030 decadal prediction", {
 })
 
 test_that("Scenario WL", {
-  sc="WL"
+  scenario="WL"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -45,8 +42,7 @@ test_that("Scenario WL", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -54,13 +50,12 @@ test_that("Scenario WL", {
 })
 
 test_that("Scenario WH", {
-  sc="WH"
+  scenario="WH"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -69,8 +64,7 @@ test_that("Scenario WH", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -78,13 +72,12 @@ test_that("Scenario WH", {
 })
 
 test_that("Scenario GH", {
-  sc="GH"
+  scenario="GH"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -93,8 +86,7 @@ test_that("Scenario GH", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -102,13 +94,12 @@ test_that("Scenario GH", {
 })
 
 test_that("Scenario GL", {
-  sc="GL"
+  scenario="GL"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -117,8 +108,7 @@ test_that("Scenario GL", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -130,17 +120,15 @@ context("tx transformation - Entire station set")
 var="tx"
 ifile="regressionInput/temperature/KNMI14____ref_tx___19810101-20101231_v3.2.txt"
 ofile      <- NA # output file - used only temporary
-delta.file <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
 test_that("2030 decadal prediction", {
-  sc="GL"
+  scenario="GL"
 
   horizon = 2030
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -148,13 +136,12 @@ test_that("2030 decadal prediction", {
 })
 
 test_that("Scenario WL", {
-  sc="WL"
+  scenario="WL"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -165,8 +152,7 @@ test_that("Scenario WL", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -174,13 +160,12 @@ test_that("Scenario WL", {
 })
 
 test_that("Scenario WH", {
-  sc="WH"
+  scenario="WH"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -189,8 +174,7 @@ test_that("Scenario WH", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -198,13 +182,12 @@ test_that("Scenario WH", {
 })
 
 test_that("Scenario GH", {
-  sc="GH"
+  scenario="GH"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -213,8 +196,7 @@ test_that("Scenario GH", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -222,13 +204,12 @@ test_that("Scenario GH", {
 })
 
 test_that("Scenario GL", {
-  sc="GL"
+  scenario="GL"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -237,8 +218,7 @@ test_that("Scenario GL", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -250,17 +230,15 @@ context("tn transformation - Entire station set")
 var="tn"
 ifile="regressionInput/temperature/KNMI14____ref_tn___19810101-20101231_v3.2.txt"
 ofile      <- NA # output file - used only temporary
-delta.file <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
 test_that("2030 decadal prediction", {
-  sc="GL"
+  scenario="GL"
 
   horizon = 2030
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -268,13 +246,12 @@ test_that("2030 decadal prediction", {
 })
 
 test_that("Scenario WL", {
-  sc="WL"
+  scenario="WL"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -285,8 +262,7 @@ test_that("Scenario WL", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -294,13 +270,12 @@ test_that("Scenario WL", {
 })
 
 test_that("Scenario WH", {
-  sc="WH"
+  scenario="WH"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -309,8 +284,7 @@ test_that("Scenario WH", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -318,13 +292,12 @@ test_that("Scenario WH", {
 })
 
 test_that("Scenario GH", {
-  sc="GH"
+  scenario="GH"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -333,8 +306,7 @@ test_that("Scenario GH", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -342,13 +314,12 @@ test_that("Scenario GH", {
 })
 
 test_that("Scenario GL", {
-  sc="GL"
+  scenario="GL"
 
   horizon = 2050
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -357,8 +328,7 @@ test_that("Scenario GL", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -372,8 +342,7 @@ context("Temperature transformation - Single station exercises")
 test_that("Test wrong user input", {
   ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
-  delta.file=NA            # file containing deltas
-  sc="GL"                    # scenario ("GL", "GH", "WL", "WH")
+  scenario="GL"                    # scenario ("GL", "GH", "WL", "WH")
   horizon = 2030                     # time horizon (2030, 2050, 2085)
   var="tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
@@ -382,8 +351,7 @@ test_that("Test wrong user input", {
 
   expect_error(TransformTemp(ifile=ifile,
                                    ofile=ofile,
-                                   delta.file=delta.file,
-                                   sc="GL",
+                                   scenario="GL",
                                    horizon = NA,
                                    var=var
                                    ),
@@ -391,8 +359,7 @@ test_that("Test wrong user input", {
 
   expect_error(TransformTemp(ifile=ifile,
                                    ofile=ofile,
-                                   delta.file=delta.file,
-                                   sc="GL",
+                                   scenario="GL",
                                    horizon = horizon,
                                    var="blub"
                                    ),
@@ -403,14 +370,13 @@ test_that("Test wrong user input", {
 
 test_that("Procedure works for default region", {
   ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
-  sc="GL"
+  scenario="GL"
   horizon = 2030
   var="tg"
 
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg_DefaultRegion.rds")
@@ -418,14 +384,13 @@ test_that("Procedure works for default region", {
 
 test_that("Procedure works for one station as well", {
   ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
-  sc="GL"
+  scenario="GL"
   horizon = 2030
   var="tg"
 
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -435,13 +400,8 @@ test_that("Procedure works for one station as well", {
 test_that("Temperature regression test (with actual data) WH", {
   ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
-  delta.file=NA            # file containing deltas
-  # if delta.file is not provided (DEFAULT)
-  # KNMI'14 deltas are used
 
-  # deltas are derived from KNMI'14 deltas if delta.file is not specified
-  # following arguments are used
-  sc="WH"                    # scenario ("GL", "GH", "WL", "WH")
+  scenario="WH"                    # scenario ("GL", "GH", "WL", "WH")
   horizon = 2050                     # time horizon (2030, 2050, 2085)
   var="tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
@@ -450,8 +410,7 @@ test_that("Temperature regression test (with actual data) WH", {
 
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -460,8 +419,7 @@ test_that("Temperature regression test (with actual data) WH", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -471,13 +429,8 @@ test_that("Temperature regression test (with actual data) WH", {
 test_that("Temperature regression test (with actual data) GL", {
   ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
-  delta.file=NA            # file containing deltas
-  # if delta.file is not provided (DEFAULT)
-  # KNMI'14 deltas are used
 
-  # deltas are derived from KNMI'14 deltas if delta.file is not specified
-  # following arguments are used
-  sc="GL"                    # scenario ("GL", "GH", "WL", "WH")
+  scenario="GL"                    # scenario ("GL", "GH", "WL", "WH")
   horizon = 2050                     # time horizon (2030, 2050, 2085)
   var="tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
@@ -486,8 +439,7 @@ test_that("Temperature regression test (with actual data) GL", {
 
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -496,8 +448,7 @@ test_that("Temperature regression test (with actual data) GL", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -507,13 +458,7 @@ test_that("Temperature regression test (with actual data) GL", {
 test_that("Temperature regression test (with actual data) GH", {
   ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
-  delta.file=NA            # file containing deltas
-  # if delta.file is not provided (DEFAULT)
-  # KNMI'14 deltas are used
-
-  # deltas are derived from KNMI'14 deltas if delta.file is not specified
-  # following arguments are used
-  sc="GH"                    # scenario ("GL", "GH", "WL", "WH")
+  scenario="GH"                    # scenario ("GL", "GH", "WL", "WH")
   horizon = 2050                     # time horizon (2030, 2050, 2085)
   var="tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
@@ -522,8 +467,7 @@ test_that("Temperature regression test (with actual data) GH", {
 
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -532,8 +476,7 @@ test_that("Temperature regression test (with actual data) GH", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -543,13 +486,7 @@ test_that("Temperature regression test (with actual data) GH", {
 test_that("Temperature regression test (with actual data) WL", {
   ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile="uitvoer_tg.txt"      # output file (DEFAULT="uitvoer.txt")
-  delta.file=NA            # file containing deltas
-  # if delta.file is not provided (DEFAULT)
-  # KNMI'14 deltas are used
-
-  # deltas are derived from KNMI'14 deltas if delta.file is not specified
-  # following arguments are used
-  sc="WL"                    # scenario ("GL", "GH", "WL", "WH")
+  scenario="WL"                    # scenario ("GL", "GH", "WL", "WH")
   horizon = 2050                     # time horizon (2030, 2050, 2085)
   var="tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
@@ -558,8 +495,7 @@ test_that("Temperature regression test (with actual data) WL", {
 
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
@@ -570,8 +506,7 @@ test_that("Temperature regression test (with actual data) WL", {
   horizon = 2085
   tmp <- TransformTemp(ifile=ifile,
                                           ofile=ofile,
-                                          delta.file=delta.file,
-                                          sc=sc,
+                                          scenario=scenario,
                                           horizon = horizon,
                                           var=var,
                                           regio.file=regio.file)
