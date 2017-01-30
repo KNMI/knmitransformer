@@ -21,8 +21,9 @@ written in R-code
 The R-functions
 
 - 'TransformPrecip'
-- 'TransformTemp
-- 'straling_transformatie_KNMI14'
+- 'TransformTemp'
+- 'TransformRadiation'
+- 'TransformEvap'
    
 are meant to read and transform ASCII files in a format often used by KNMI to
 provide data to professional users (see example *.dat files mentioned below).

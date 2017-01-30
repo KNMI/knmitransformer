@@ -11,11 +11,11 @@
 #' @note The 5th row of the ifile indicated by 00000000 must be given as it is
 #' interpreted to contain LATITUDES of station.
 #' @export
-straling_transformatie_KNMI14 <- function(ifile,
-                                          ofile=NA,
-                                          delta.file = NA,
-                                          sc,
-                                          p=NA) {
+TransformRadiation <- function(ifile,
+                               ofile=NA,
+                               delta.file = NA,
+                               sc,
+                               p=NA) {
 
   version <- ReturnPackageVersion()
 

@@ -5,11 +5,11 @@
 #' @param ifile_tg   Name of the input file for temperature
 #' @param ifile_rsds Name of the input file for radiation
 #' @export
-droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
-                                      ofile=NA,
-                                      sc,
-                                      p=NA,
-                                      regio.file = NA) {
+TransformEvap <- function(ifile_tg, ifile_rsds,
+                          ofile=NA,
+                          sc,
+                          p=NA,
+                          regio.file = NA) {
 
   version <- ReturnPackageVersion()
   # CONSTANTS AND FUNCTIONS ###############################################################################
@@ -18,8 +18,8 @@ droogte_berekening_KNMI14 <- function(ifile_tg, ifile_rsds,
 
   ## Need to add an IF for delta.files of rsds & tg = need to be for the same p and the same sc
 
-  rsds_input <- straling_transformatie_KNMI14(ifile = ifile_rsds, sc=sc, p=p)
-  tg_input   <- temperatuur_transformatie_KNMI14(ifile = ifile_tg, var="tg", sc=sc, p=p, regio.file = regio.file)
+  rsds_input <- TransformRadiation(ifile = ifile_rsds, sc=sc, p=p)
+  tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", sc=sc, p=p, regio.file = regio.file)
 
   rsds <- rsds_input[-(1:5)]
   tg   <- tg_input[-(1:5)]
