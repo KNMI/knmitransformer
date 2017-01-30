@@ -15,12 +15,12 @@ delta.file <- NA
 test_that("2030 decadal prediction", {
   sc="GL"
 
-  p=2030
+  horizon = 2030
   tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
-                                       p=p,
+                                       horizon = horizon,
                                        scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14___2030_rr_lower.rds")
 })
@@ -28,21 +28,21 @@ test_that("2030 decadal prediction", {
 test_that("Scenario GL", {
   sc="GL"
 
-  p=2050
+  horizon = 2050
   tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
-                                       p=p,
+                                       horizon = horizon,
                                        scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2050_rr_lower.rds")
 
-  p=2085
+  horizon = 2085
   tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
-                                       p=p,
+                                       horizon = horizon,
                                        scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2085_rr_lower.rds")
 })
@@ -50,21 +50,21 @@ test_that("Scenario GL", {
 test_that("Scenario GH", {
   sc="GH"
 
-  p=2050
+  horizon = 2050
   tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
-                                       p=p,
+                                       horizon = horizon,
                                        scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2050_rr_lower.rds")
 
-  p=2085
+  horizon = 2085
   tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
-                                       p=p,
+                                       horizon = horizon,
                                        scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2085_rr_lower.rds")
 })
@@ -72,21 +72,21 @@ test_that("Scenario GH", {
 test_that("Scenario WH", {
   sc="WH"
 
-  p=2050
+  horizon = 2050
   tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
-                                       p=p,
+                                       horizon = horizon,
                                        scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WH_2050_rr_lower.rds")
 
-  p=2085
+  horizon = 2085
   tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
-                                       p=p,
+                                       horizon = horizon,
                                        scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WH_2085_rr_lower.rds")
 })
@@ -94,21 +94,21 @@ test_that("Scenario WH", {
 test_that("Scenario WL", {
   sc="WL"
 
-  p=2050
+  horizon = 2050
   tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
-                                       p=p,
+                                       horizon = horizon,
                                        scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WL_2050_rr_lower.rds")
 
-  p=2085
+  horizon = 2085
   tmp <- TransformPrecip(ifile=ifile,
                                        ofile=ofile,
                                        delta.file=delta.file,
                                        sc=sc,
-                                       p=p,
+                                       horizon = horizon,
                                        scaling=scaling)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WL_2085_rr_lower.rds")
 })
