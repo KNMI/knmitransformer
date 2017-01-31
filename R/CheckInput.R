@@ -5,8 +5,15 @@ CheckPeriod <- function(p) {
   }
 }
 
-ReturnPackageVersion <- function() {
-  flog.info("Running temperature transformation")
+ReturnPackageVersion <- function(var) {
+  switch(var,
+         "tg"   =  flog.info("Running temperature transformation"),
+         "tn"   =  flog.info("Running temperature transformation"),
+         "tx"   =  flog.info("Running temperature transformation"),
+         "rr"   =  flog.info("Running precipitation transformation"),
+         "rsds" =  flog.info("Running radiation transformation"),
+         "evmk" =  flog.info("Running evaporation transformation")
+         )
   version <- paste0(packageVersion("knmitransformer"))
   flog.debug("Version={%s}", version)
   version

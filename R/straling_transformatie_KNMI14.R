@@ -3,28 +3,23 @@
 #'  radiation sums [kJ/m2] and 'change factors' from input files and applies
 #'  them to function 'rsds_trans_KNMI14' to obtain 'future time series' that
 #'  match a certain climate
-#' @inheritParams temperatuur_transformatie_KNMI14
-#' @param delta.file     [optional] Name of file that contains deltas (changes factors for the transformation)
-#'                File should contain following compulsory column identified with compulsory headers
-#'                - HEADER -
-#'                "ave"       relative change [\%] in mean shortwave surface radiation
+#' @inheritParams TransformTemp
 #' @note The 5th row of the ifile indicated by 00000000 must be given as it is
 #' interpreted to contain LATITUDES of station.
 #' @export
-straling_transformatie_KNMI14 <- function(ifile,
-                                          ofile=NA,
-                                          delta.file = NA,
-                                          sc,
-                                          p=NA) {
+TransformRadiation <- function(ifile,
+                               ofile=NA,
+                               scenario,
+                               horizon = 2030) {
 
-  version <- ReturnPackageVersion()
+  version <- ReturnPackageVersion("rsds")
 
-  CheckPeriod(p)
+  CheckPeriod(horizon)
 
   input <- ReadInput("rsds", ifile)
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(delta.file, "rsds", sc, p)
+  deltas <- ReadChangeFactors(NA, "rsds", scenario, horizon)
 
   # TRANSFORMATION
   fut <- rsds_trans_KNMI14(obs=input$obs, deltas=deltas, lat=input$lat)
@@ -35,7 +30,7 @@ straling_transformatie_KNMI14 <- function(ifile,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput("rsds", ofile, version, sc, p, input$comments, result)
+    WriteOutput("rsds", ofile, version, scenario, horizon, input$comments, result)
   }
 
   flog.debug("Radiation transformation ended successfully!")

@@ -18,31 +18,8 @@
 #' @param ofile  (DEFAULT=NA) Name of the output file to write the
 #'               transformed data to.
 #'               Format is similar to ifile
-#'
-#' @param delta.file [optional] Name of file that contains deltas
-#'               (changes factors for the transformation)
-#'                File should contain following compulsory columns identified
-#'                with compulsory headers
-#'               - HEADER -
-#'               "maand"     month for which deltas are valid (1,2,...,12) \cr
-#'               "P01"       1st  percentile daily temperature \cr
-#'               "P05"       5th  percentile daily temperature \cr
-#'               "P50"       50th percentile daily temperature \cr
-#'               "P95"       95th percentile daily temperature \cr
-#'               "P99"       99th percentile daily temperature \cr
-#'
-#'               following column is optional in case deltas vary with region
-#'               (is needed in case <regio.tabel> is provided)
-#'               "regio"     region for which deltas are valid
-#'                           KNMI14 distinguishes
-#'                           ("NWN", "ZWN", "NON", "MON", "ZON", "NLD")
-#'
-#'                 (If delta.file is not provided, predefined deltas are derived
-#'                 dependening on <sc>, <p> and daily temperature characteristic
-#'                 of interest [mean, min or max])
-#'
-#' @param sc     scenario                      ["GL", "GH", "WL", "WH"]
-#' @param p      time horizon                  [2030 (=DEFAULT), 2050, 2085]
+#' @param scenario scenario ["GL", "GH", "WL", "WH"]
+#' @param horizon  time horizon                  [2030 (=DEFAULT), 2050, 2085]
 #' @param var    kind of daily temperature variable
 #'               ["tg" = daily mean, "tn" = daily minimum, "tx" = daily maximum]
 #'
@@ -57,24 +34,23 @@
 #'                <MON> Middenoost Nederland
 #'                <ZON> Zuidoost Nederland
 #' @export
-temperatuur_transformatie_KNMI14 <- function(ifile,
-                                              ofile = NA,
-                                              delta.file = NA,
-                                              sc,
-                                              p = 2030,
-                                              var,
-                                              regio.file = NA) {
-  version <- ReturnPackageVersion()
+TransformTemp <- function(ifile,
+                          ofile = NA,
+                          scenario,
+                          horizon = 2030,
+                          var,
+                          regio.file = NA) {
+  version <- ReturnPackageVersion(var)
 
   # CONSTANTS AND FUNCTIONS ####################################################
 
-  CheckPeriod(p)
+  CheckPeriod(horizon)
 
   # READ REFERENCE DATA FROM ifile
   input <- ReadInput(var, ifile)
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(delta.file, var, sc, p)
+  deltas <- ReadChangeFactors(NA, var, scenario, horizon)
 
   # LINK STATIONS TO REGIONS
   if(is.na(regio.file)) {
@@ -99,7 +75,7 @@ temperatuur_transformatie_KNMI14 <- function(ifile,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput(var, ofile, version, sc, p, input$comments, result)
+    WriteOutput(var, ofile, version, scenario, horizon, input$comments, result)
   }
 
   flog.debug("Temperature transformation ended successfully!")

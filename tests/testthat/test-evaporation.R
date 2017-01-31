@@ -13,97 +13,97 @@ ofile      <- NA
 regio.file <- "stationstabel" # table that links stations to region
 
 test_that("2030 decadal prediction", {
-  sc="GL"
+  scenario="GL"
 
-  p=2030
+  horizon = 2030
 
 
-  tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
+  tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile="tmp.txt",
-                                   sc=sc,
-                                   p=p,
+                                   scenario=scenario,
+                                   horizon = horizon,
                                    regio.file = regio.file)
 
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14___2030_evmk.rds")
 })
 
 test_that("Scenario WL", {
-  sc="WL"
+  scenario="WL"
 
-  p=2050
-  tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
+  horizon = 2050
+  tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
-                                   p=p,
+                                   scenario=scenario,
+                                   horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WL_2050_evmk.rds")
 
   # Difference of 0.07 instead of the usual 0.01
-  p = 2085
-  tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
+  horizon =  2085
+  tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
-                                   p=p,
+                                   scenario=scenario,
+                                   horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WL_2085_evmk.rds")
 })
 
 test_that("Scenario WH", {
-  sc="WH"
+  scenario="WH"
 
-  p=2050
-  tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
+  horizon = 2050
+  tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
-                                   p=p,
+                                   scenario=scenario,
+                                   horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WH_2050_evmk.rds")
 
-  p = 2085
-  tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
+  horizon =  2085
+  tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
-                                   p=p,
+                                   scenario=scenario,
+                                   horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WH_2085_evmk.rds")
 })
 
 test_that("Scenario GH", {
-  sc="GH"
+  scenario="GH"
 
-  p=2050
-  tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
+  horizon = 2050
+  tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
-                                   p=p,
+                                   scenario=scenario,
+                                   horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GH_2050_evmk.rds")
 
-  p = 2085
-  tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
+  horizon =  2085
+  tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
-                                   p=p,
+                                   scenario=scenario,
+                                   horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GH_2085_evmk.rds")
 })
 
 test_that("Scenario GL", {
-  sc="GL"
+  scenario="GL"
 
-  p=2050
-  tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
+  horizon = 2050
+  tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
-                                   p=p,
+                                   scenario=scenario,
+                                   horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GL_2050_evmk.rds")
 
-  p = 2085
-  tmp <- droogte_berekening_KNMI14(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
+  horizon =  2085
+  tmp <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds,
                                    ofile=ofile,
-                                   sc=sc,
-                                   p=p,
+                                   scenario=scenario,
+                                   horizon = horizon,
                                    regio.file = regio.file)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GL_2085_evmk.rds")
 })

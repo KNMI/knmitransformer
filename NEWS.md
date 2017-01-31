@@ -1,3 +1,13 @@
+### Version 0.1.5
+
+- renamed the functions (English / Google code style)
+- renamed 'sc' to scenario
+- renamed 'p' argument to 'horizon'
+- renamed 'scaling' to subscenario
+- removed 'delta.file' argument (introduced new reference set for RSDS WH 2085)
+- removed 'dryingScheme' argument
+
+
 ### Version 0.1.4
 
 - introduced C++ uniroot 
