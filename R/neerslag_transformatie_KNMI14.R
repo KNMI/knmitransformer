@@ -11,7 +11,7 @@ TransformPrecip <- function(ifile,
                             horizon = 2030,
                             subscenario = "centr") {
 
-  version <- ReturnPackageVersion()
+  version <- ReturnPackageVersion("rr")
   dryingScheme = "v1.1"
   flog.debug("DryingScheme={%s}", dryingScheme)
 

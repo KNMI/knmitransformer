@@ -12,7 +12,7 @@ TransformRadiation <- function(ifile,
                                scenario,
                                horizon = 2030) {
 
-  version <- ReturnPackageVersion()
+  version <- ReturnPackageVersion("rsds")
 
   CheckPeriod(horizon)
 

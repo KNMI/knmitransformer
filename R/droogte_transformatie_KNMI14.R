@@ -11,7 +11,7 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
                           horizon = 2030,
                           regio.file = NA) {
 
-  version <- ReturnPackageVersion()
+  version <- ReturnPackageVersion("evmk")
 
   CheckPeriod(horizon)
 

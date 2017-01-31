@@ -40,7 +40,7 @@ TransformTemp <- function(ifile,
                           horizon = 2030,
                           var,
                           regio.file = NA) {
-  version <- ReturnPackageVersion()
+  version <- ReturnPackageVersion(var)
 
   # CONSTANTS AND FUNCTIONS ####################################################
 
