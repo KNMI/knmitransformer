@@ -11,27 +11,20 @@ The 'transformation program' of the KNMI 2014 climate change scenarios for the
 Netherlands. With this program current climate time series are transformed to
 represent the climate of the KNMI 2014 scenarios for 2030, 2050, and 2085.
 
-The actual transformation procedures for daily meteorological variables are
-written in R-code
+The following R-functions for the transformation of daily meteorological 
+variables are provided:
 
-- 'rr_trans_KNMI14'  : precipitation    (sum)                [mm]             
-- 'tm_trans_KNMI14'  : temperature      (mean, min and max)  [degrees Celsius] 
-- 'rsds_trans_KNMI14': global radiation (sum)                [kJ/m2]
+- 'TransformPrecip'      precipitation       (sum)                [mm] 
+- 'TransformTemp'        temperature         (mean, min and max)  [degrees Celsius] 
+- 'TransformRadiation'   global radiation    (sum)                [kJ/m2]
+- 'TransformEvap'        Makkink Evaporation (sum)                [mm]
 
-The R-functions
+The routines and the used change factors are developed for the use within the
+Netherlands.
 
-- 'TransformPrecip'
-- 'TransformTemp'
-- 'TransformRadiation'
-- 'TransformEvap'
-   
-are meant to read and transform ASCII files in a format often used by KNMI to
-provide data to professional users (see example *.dat files mentioned below).
-   
-If not provided as argument the  change factors / deltas the official KNMI
-deltas are used.
 One can inspect the official KNMI14 change factors / deltas in the 
 'inst/extData' folder.
+
 
 <!-- # Examples should be given to users
 The following files provide (elemetary) examples how to use above scripts.
@@ -60,7 +53,7 @@ This is IMPORTANT
   their official station number. 
   ALWAYS CHECK if the station that you want to transform is listed in
   "stationtabel", if not you have to (edit this file and) ADD it.
-* For PRECIPITATION for each scenario there are three different transformations
+* For PRECIPITATION for each scenario there are three different subscenarios
   available, based on resp. the 'lower', 'centr' (=central) and 'upper' estimate 
   of the change in extreme daily precipitation. This should be specified in the
   function call, the default is set to 'centr'.
