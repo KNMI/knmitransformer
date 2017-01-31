@@ -14,14 +14,17 @@ Authors@R: as.person(c(
 Description: Transforms daily reference data into future climate, according to
   the KNMI 14 scenarios.
 License: file LICENSE
-Imports:
+Imports: 
   data.table,
   futile.logger,
   Rcpp
 LazyData: TRUE
 RoxygenNote: 5.0.1
-Suggests:
+Suggests: 
   testthat,
-  covr
+  covr,
+    knitr,
+    rmarkdown
 LinkingTo: 
   Rcpp
+VignetteBuilder: knitr

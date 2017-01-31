@@ -26,14 +26,6 @@ One can inspect the official KNMI14 change factors / deltas in the
 'inst/extData' folder.
 
 
-<!-- # Examples should be given to users
-The following files provide (elemetary) examples how to use above scripts.
-
-- 'example_neerslag_transformatie_KNMI14.R'
-- 'example_temperatuur_transformatie_KNMI14.R'
-- 'example_straling_transformatie_KNMI14.R'
--->
-
 ##
 This is IMPORTANT
 
