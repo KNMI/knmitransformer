@@ -19,7 +19,7 @@ TransformRadiation <- function(ifile,
   input <- ReadInput("rsds", ifile)
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(NA, "rsds", scenario, horizon)
+  deltas <- ReadChangeFactors("rsds", scenario, horizon)
 
   # TRANSFORMATION
   fut <- rsds_trans_KNMI14(obs=input$obs, deltas=deltas, lat=input$lat)

@@ -50,7 +50,7 @@ TransformTemp <- function(ifile,
   input <- ReadInput(var, ifile)
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(NA, var, scenario, horizon)
+  deltas <- ReadChangeFactors(var, scenario, horizon)
 
   # LINK STATIONS TO REGIONS
   if(is.na(regio.file)) {
