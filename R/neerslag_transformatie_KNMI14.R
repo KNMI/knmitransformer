@@ -2,58 +2,42 @@
 #' @description Function reads 'reference data' with daily precipitation sums
 #' [mm] and 'change factors' from input files and applies them to function
 #' 'rr_trans_KNMI14' to obtain 'future time series' that match a certain climate
-#' @inheritParams temperatuur_transformatie_KNMI14
-#' @param delta.file     [optional] Name of file that contains deltas (changes factors for the transformation)
-#'                File should contain following compulsory columns identified with compulsory headers
-#'                "wdf"       relative change in wet-day frequency
-#'                            (wet days are defined as days with 0.1 mm or more precipitation) \cr
-#'                "ave"       relative change in mean precipitation \cr
-#'                "p99.lower" lower   estimate of the relative change in the 99th percentile of wet-day amounts \cr
-#'                "p99.centr" central estimate of the relative change in the 99th percentile of wet-day amounts \cr
-#'                "p99.upper" upper   estimate of the relative change in the 99th percentile of wet-day amounts \cr
-#'
-#'                 (If delta.file is not provided, predefined deltas are derived dependening on <sc>, <p> and <scaling>)
-#' @param scaling        scaling extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]
-#' @param version        "v1.1" [DEFAULT] official version that belongs to KNMI'14
-#                "v1.2" alternative procedure to dry wet days
+#' @inheritParams TransformTemp
+#' @param subscenario  subscenario for extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]
 #' @export
-neerslag_transformatie_KNMI14 <- function(ifile,
-                                          ofile="uitvoer.txt",
-                                          delta.file=NA,
-                                          sc,
-                                          p=2030,
-                                          scaling="centr",
-                                          version="v1.1") {
+TransformPrecip <- function(ifile,
+                            ofile = NA,
+                            scenario,
+                            horizon = 2030,
+                            subscenario = "centr") {
 
-  flog.info("Running temperature transformation")
-  flog.debug("Version={%s}", version)
+  version <- ReturnPackageVersion("rr")
+  dryingScheme = "v1.1"
+  flog.debug("DryingScheme={%s}", dryingScheme)
 
-  if (!p %in% c(2030, 2050, 2085)) {
-    flog.error("p={%s} has to be a valid period", paste(p))
-    stop("Period must be valid, i.e. 2030, 2050, or 2085")
-  }
+  CheckPeriod(horizon)
 
   # READ REFERENCE DATA FROM ifile
-  flog.info("Reading reference data, file={%s}", ifile)
-  H.comments <- scan(ifile, character(0), sep = "\n", quiet=TRUE) # select lines with "#" from reference file and ignore them
-  H.comments <- H.comments[grep("#",H.comments)]      # (only necessary for output file)
-
-  obs        <- read.table(ifile,header=F)            # read reference data (header wordt niet apart ingelezen)
-  header     <- obs[which(obs[,1]==0),]               # header met stations meta-data etc.
-  header[,1] <- "00000000"
-  names(obs) <- c("date",round(obs[1,-1],0))          # station names are read from first line
-  obs        <- obs[which(obs[,1]!=0),]               # actual data
+  input <- ReadInput("rr", ifile)
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(delta.file, "rr", sc, p)
-  deltas$P99 <- deltas[,paste("p99",scaling,sep=".")] # choose scaling ("lower", "centr" or "upper")
+  deltas <- ReadChangeFactors(NA, "rr", scenario, horizon, subscenario)
 
   # TRANSFORMATION
-  fut <- rr_trans_KNMI14(obs=obs, deltas=deltas, version="v1.1")
+  fut <- rr_trans_KNMI14(obs = input$obs, deltas = deltas,
+                         dryingScheme = dryingScheme)
 
   # OUTPUT
-  result <- WriteOutput("rr", ofile, version, sc, p, H.comments, header, fut, scaling)
-  flog.debug("Precipiation transformation ended successfully!")
+  fut <- as.data.table(fut)
+  result <- rbind(input$header, fut, use.names = FALSE)
+  result[, V1 := as.integer(V1)]
+
+  if (!is.na(ofile)) {
+    WriteOutput("rr", ofile, version, scenario, horizon, input$comments, result,
+                subscenario = subscenario, dryingScheme = dryingScheme)
+  }
+
+  flog.debug("Precipitation transformation ended successfully!")
   flog.debug("")
   return(result)
 }

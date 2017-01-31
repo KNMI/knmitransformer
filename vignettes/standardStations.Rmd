@@ -1,0 +1,87 @@
+---
+title: "knmitransformer - standard stations"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{StandardStations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r LoadLibraries, include=FALSE}
+library(knmitransformer)
+```
+
+## Precipitation:
+```{r precipSelection}
+subscenario <- "centr"
+ifile       <- "../tests/testthat/regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
+ofile       <- "tmp.txt" # output file - used only temporary
+scenario    <- "GL"
+horizon     <- 2030
+```
+
+```{r precipTransformation}
+futPrecip <- TransformPrecip(ifile=ifile, ofile=NA,
+                             scenario=scenario, horizon=horizon,
+                             subscenario=subscenario)
+```
+
+```{r precipShowResult}
+head(futPrecip[, 1 : 5])
+```
+
+## Temperature:
+```{r tempSelection}
+var        <- "tg"
+ifile      <- "../tests/testthat/regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
+regio.file <- "stationstabel"
+scenario   <- "GL"
+horizon    <- 2030
+```
+
+```{r tempTransformation}
+futTemp <- TransformTemp(ifile=ifile, ofile=NA,
+                         scenario=scenario, horizon=horizon,
+                         var=var, regio.file=regio.file)
+```
+
+```{r tempShowResult}
+head(futTemp[, 1 : 5])
+```
+
+## Radiation:
+```{r radSelection}
+ifile      <- "../tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
+scenario   <- "GL"
+horizon    <- 2030
+```
+
+```{r radTransformation}
+futRad <- TransformRadiation(ifile=ifile, ofile=NA,
+                         scenario=scenario, horizon=horizon)
+```
+
+```{r radShowResult}
+head(futRad[, 1 : 5])
+```
+
+## Makkink evaporation:
+```{r evapSelection}
+ifile_tg   <- "../tests/testthat/regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
+ifile_rsds <- "../tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
+scenario   <- "GL"
+horizon    <- 2030
+regio.file <- "stationstabel"
+```
+
+```{r evapTransformation}
+futEvap <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds, ofile=NA,
+                         scenario=scenario, horizon=horizon,
+                        regio.file="stationstabel")
+```
+
+```{r evapShowResult}
+head(futEvap[, 1 : 5])
+```

@@ -1,24 +1,23 @@
-#' rsds_trans_KNMI14
-#' @description Function 'transforms' a specific reference-dataset with time
-#'  series of daily global radiation sums [kJ/m2] to a dataset representative
-#'  for a future climate scenario.
-#' @param obs            data.frame or matrix: \cr
-#'                first column provides datestring YYYYMMDD \cr
-#'                other columns provide global radiation [kJ/m2] time series
-#'                (each column represents specific station)
-#'
-#' @param deltas         data.frame or matrix that contains deltas (=change factors for the transformation)
-#'                should contain following columns indicated by following headers \cr
-#'                HEADER \cr
-#'                "ave"       relative change [\%] in mean shortwave surface radiation
-#' @param lat vector with latitudes belonging to stations.
-#'  location (row.number [i]) in vector refers to column in obs [i+1]
+# rsds_trans_KNMI14
+# @description Function 'transforms' a specific reference-dataset with time
+#  series of daily global radiation sums [kJ/m2] to a dataset representative
+#  for a future climate scenario.
+# @param obs            data.frame or matrix: \cr
+#                first column provides datestring YYYYMMDD \cr
+#                other columns provide global radiation [kJ/m2] time series
+#                (each column represents specific station)
+#
+# @param deltas         data.frame or matrix that contains deltas (=change factors for the transformation)
+#                should contain following columns indicated by following headers \cr
+#                HEADER \cr
+#                "ave"       relative change [\%] in mean shortwave surface radiation
+# @param lat vector with latitudes belonging to stations.
+#  location (row.number [i]) in vector refers to column in obs [i+1]
 rsds_trans_KNMI14 <- function(obs,
                               deltas,
                               lat) {
 
   flog.debug("Running rsds_trans_KNMI14")
-  version="v1.1"
 
   # PREPARE DATA
   # explore observations
@@ -42,29 +41,6 @@ rsds_trans_KNMI14 <- function(obs,
     return(a)
   }
 
-  # "Angot" or "Top Of Atmoshphere" radiation
-  Angot <- function(datestring_YYYYMMDD,lat) {
-    Gsc <- 0.0820 # solar constant [MJ/m2/min]
-    phi <- pi*lat/180
-    J <- daynumber(datestring_YYYYMMDD)
-    dr <- 1 + 0.033*cos(2*pi*J/365)
-    delta <- 0.409*sin(2*pi*J/365-1.39)
-    omega <- acos(-tan(phi)*tan(delta))
-    Ra <- (24*60/pi) * Gsc * dr*(omega *sin(phi)*sin(delta) + sin(omega)*cos(phi)*cos(delta))
-    return(Ra)
-  }
-
-  # Derive daynumber within year (1-366)
-  daynumber <- function(datestring_YYYYMMDD) {
-    dpm <- c(0,31,59,90,120,151,181,212,243,273,304,334)
-    id <- floor( datestring_YYYYMMDD %%   100)
-    im <- floor((datestring_YYYYMMDD %% 10000)  / 100)
-    iy <- floor( datestring_YYYYMMDD  / 10000) %%   4
-    dnr <- dpm[im] + id + (iy==0 & im >2)
-    return(dnr)
-  }
-
-
   # TRANSFORMATION
   # apply transformation per station / time series <is> and per calendar month <im>
   for(is in 1:ns) {
@@ -75,7 +51,7 @@ rsds_trans_KNMI14 <- function(obs,
 
       # clear sky radiation for all days in month <im>
       # version v1.0 applied accidently factor 0.7 (rather than 0.75)
-      Rx            <- 0.7 * 1000 * Angot(obs[days.im,1], lat[is])
+      Rx            <- 0.7 * Angot(obs[days.im,1], lat[is])
 
       # determine coefficient a for transformation function
       delta <- deltas[im,2]/100                # relative change of average in month <im>
@@ -95,3 +71,24 @@ rsds_trans_KNMI14 <- function(obs,
 } # end function rsds_trans_KNMI14
 
 
+# "Angot" or "Top Of Atmoshphere" radiation
+Angot <- function(datestring_YYYYMMDD,lat) {
+  Gsc <- 0.0820 # solar constant [MJ/m2/min]
+  phi <- pi*lat/180
+  J <- daynumber(datestring_YYYYMMDD)
+  dr <- 1 + 0.033*cos(2*pi*J/365)
+  delta <- 0.409*sin(2*pi*J/365-1.39)
+  omega <- acos(-tan(phi)*tan(delta))
+  Ra <- (24*60/pi) * Gsc * dr*(omega *sin(phi)*sin(delta) + sin(omega)*cos(phi)*cos(delta))
+  1000*Ra # unit is kJ/m2
+}
+
+# Derive daynumber within year (1-366)
+daynumber <- function(datestring_YYYYMMDD) {
+  dpm <- c(0,31,59,90,120,151,181,212,243,273,304,334)
+  id <- floor( datestring_YYYYMMDD %%   100)
+  im <- floor((datestring_YYYYMMDD %% 10000)  / 100)
+  iy <- floor( datestring_YYYYMMDD  / 10000) %%   4
+  dnr <- dpm[im] + id + (iy==0 & im >2)
+  return(dnr)
+}
