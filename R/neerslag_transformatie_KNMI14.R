@@ -21,11 +21,10 @@ TransformPrecip <- function(ifile,
   input <- ReadInput("rr", ifile)
 
   # READ CHANGE FACTORS (DELTAS)
-  deltas <- ReadChangeFactors(NA, "rr", scenario, horizon, subscenario)
+  deltas <- ReadChangeFactors("rr", scenario, horizon, subscenario)
 
   # TRANSFORMATION
-  fut <- rr_trans_KNMI14(obs = input$obs, deltas = deltas,
-                         dryingScheme = dryingScheme)
+  fut <- rr_trans_KNMI14(obs = input$obs, deltas = deltas)
 
   # OUTPUT
   fut <- as.data.table(fut)
@@ -34,7 +33,7 @@ TransformPrecip <- function(ifile,
 
   if (!is.na(ofile)) {
     WriteOutput("rr", ofile, version, scenario, horizon, input$comments, result,
-                subscenario = subscenario, dryingScheme = dryingScheme)
+                subscenario = subscenario)
   }
 
   flog.debug("Precipitation transformation ended successfully!")

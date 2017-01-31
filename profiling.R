@@ -8,7 +8,6 @@ flog.threshold(WARN)
 subscenario <- "centr"
 ifile       <- "tests/testthat/regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
 ofile       <- "tmp.txt" # output file - used only temporary
-delta.file  <- NA
 scenario    <- "GL"
 horizon     <- 2030
 
@@ -35,7 +34,7 @@ profvis({
 # Micro benchmark of the inner precipitation transformation
 # ------------------------------------------------------------------------------
 input  <- knmitransformer:::ReadInput("rr", ifile)
-deltas <- knmitransformer:::ReadChangeFactors(delta.file, "rr", scenario, horizon, subscenario)
+deltas <- knmitransformer:::ReadChangeFactors("rr", scenario, horizon, subscenario)
 # fut <- knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas, dryingScheme = "v1.1")
 microbenchmark(
   knmitransformer:::rr_trans_KNMI14(   obs = input$obs, deltas = deltas, dryingScheme = "v1.1"),

@@ -1,5 +1,5 @@
 WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
-                        subscenario = NULL, dryingScheme = NULL) {
+                        subscenario = NULL) {
   flog.info("Write output")
   sink(ofile)
 
@@ -10,7 +10,6 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
     writeLines("# Transformed daily temperature [deg.C] according to KNMI'14 transformation tool,")
   } else if (var == "rr") {
     writeLines("# Transformed daily precipitation sums [mm] according to KNMI'14 transformation tool,")
-    writeLines(paste("# drying scheme: ", dryingScheme))
   } else if (var == "evmk") {
     writeLines("# Transformed daily Makkink evaporation [mm] according to KNMI'14 transformation tool,")
   }
