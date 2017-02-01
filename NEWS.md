@@ -1,3 +1,8 @@
+### Version 0.1.6
+
+- added AppVeyor support (Windows build)
+- Improved file description in WriteOutput
+
 ### Version 0.1.5
 
 - renamed the functions (English / Google code style)

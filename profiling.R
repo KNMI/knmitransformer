@@ -9,7 +9,7 @@ subscenario <- "centr"
 ifile       <- "tests/testthat/regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
 ofile       <- "tmp.txt" # output file - used only temporary
 scenario    <- "GL"
-horizon     <- 2030
+horizon     <- 2050
 
 # ------------------------------------------------------------------------------
 # Full precipitation transformation profile
@@ -97,3 +97,52 @@ microbenchmark(
   knmitransformer:::TransformWetDayAmounts(fut[, -1][, 1 : 20], climatology, mm, th),
   times = 10
 )
+
+# ------------------------------------------------------------------------------
+# Full temperature transformation profile
+# ------------------------------------------------------------------------------
+
+var        <- "tg"
+ifile      <- "tests/testthat/regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
+regio.file <- "stationstabel"
+scenario   <- "GL"
+horizon    <- 2050
+ofile       <- "tmp.txt" # output file - used only temporary
+
+profvis({
+  library(knmitransformer)
+  TransformTemp(ifile=ifile, ofile=ofile, scenario=scenario, horizon=horizon,
+                var=var, regio.file = regio.file)
+})
+
+# ------------------------------------------------------------------------------
+# Full radiation transformation profile
+# ------------------------------------------------------------------------------
+ifile      <- "tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
+scenario   <- "GL"
+horizon    <- 2030
+ofile       <- "tmp.txt" # output file - used only temporary
+
+profvis({
+  library(knmitransformer)
+  TransformRadiation(ifile=ifile, ofile=ofile,
+                     scenario=scenario, horizon=horizon)
+})
+
+# ------------------------------------------------------------------------------
+# Full evaporation transformation profile
+# ------------------------------------------------------------------------------
+
+ifile_tg    <- "tests/testthat/regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
+ifile_rsds  <- "tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
+scenario    <- "GL"
+horizon     <- 2050
+regio.file  <- "stationstabel"
+ofile       <- "tmp.txt" # output file - used only temporary
+
+profvis({
+  library(knmitransformer)
+  TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds, ofile=ofile,
+                scenario=scenario, horizon=horizon,
+                regio.file="stationstabel")
+})
