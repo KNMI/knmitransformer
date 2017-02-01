@@ -9,3 +9,4 @@
 ^uitvoer_DeBilt_tg\.txt$
 ^profiling\.R$
 ^inst/doc/$
+^appveyor\.yml$
