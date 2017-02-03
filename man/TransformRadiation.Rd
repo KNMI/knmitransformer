@@ -23,18 +23,17 @@ unchanged.}
 transformed data to.
 Format is similar to ifile}
 
-\item{scenario}{scenario ["GL", "GH", "WL", "WH"]}
+\item{scenario}{scenario ("GL", "GH", "WL", "WH")}
 
-\item{horizon}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
+\item{horizon}{time horizon (2030=DEFAULT, 2050, 2085)}
 }
 \description{
 Function reads 'reference data' with time series of daily global
- radiation sums [kJ/m2] and 'change factors' from input files and applies
- them to function 'rsds_trans_KNMI14' to obtain 'future time series' that
- match a certain climate
+radiation sums \code{[kJ/m2]} and 'change factors' from input files and applies
+them to function 'rsds_trans_KNMI14' to obtain 'future time series' that
+match a certain climate
 }
 \note{
 The 5th row of the ifile indicated by 00000000 must be given as it is
 interpreted to contain LATITUDES of station.
 }
-

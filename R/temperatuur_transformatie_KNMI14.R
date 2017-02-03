@@ -1,6 +1,6 @@
 #' Transformation of temperature
 #' @description Function reads 'reference data' with time series of daily of
-#'  mean, minimum or maximum temperature [degrees Celsius] and 'change factors'
+#'  mean, minimum or maximum temperature `[degree Celsius]` and 'change factors'
 #'  from input files and applies them to function 'tm_trans_KNMI14' to obtain
 #'  'future time series' that match a certain climate
 #' @param ifile  Name of the input file (ASCII) that contains reference data
@@ -18,16 +18,16 @@
 #' @param ofile  (DEFAULT=NA) Name of the output file to write the
 #'               transformed data to.
 #'               Format is similar to ifile
-#' @param scenario scenario ["GL", "GH", "WL", "WH"]
-#' @param horizon  time horizon                  [2030 (=DEFAULT), 2050, 2085]
+#' @param scenario scenario ("GL", "GH", "WL", "WH")
+#' @param horizon  time horizon (2030=DEFAULT, 2050, 2085)
 #' @param var    kind of daily temperature variable
-#'               ["tg" = daily mean, "tn" = daily minimum, "tx" = daily maximum]
+#'               ("tg" = daily mean, "tn" = daily minimum, "tx" = daily maximum)
 #'
 #' @param regio.file this (optional) argument provides the name of an ASCII file
 #'               that relates the stations to a particular region.
 #'               First column is station id and second column region
 #'                KNMI14 distinguishes following regions:
-#'                <NLD> Nederland            [DEFAULT]
+#'                <NLD> Nederland            (DEFAULT)
 #'                <NWN> Noordwest Nederland
 #'                <ZWN> Zuidwest Nederland
 #'                <NON> Noordoost Nederland

@@ -1,9 +1,10 @@
 #' Transformation of precipitation
 #' @description Function reads 'reference data' with daily precipitation sums
-#' [mm] and 'change factors' from input files and applies them to function
+#' `[mm]` and 'change factors' from input files and applies them to function
 #' 'rr_trans_KNMI14' to obtain 'future time series' that match a certain climate
 #' @inheritParams TransformTemp
-#' @param subscenario  subscenario for extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]
+#' @param subscenario  subscenario for extreme precipitation
+#' ("lower", "centr" (=DEFAULT), "upper")
 #' @export
 TransformPrecip <- function(ifile,
                             ofile = NA,
