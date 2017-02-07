@@ -2,7 +2,7 @@ Package: knmitransformer
 Type: Package
 Title: Transformation program
 Version: 0.1.6
-Date: 2016-12-21
+Date: 2017-02-07
 Authors@R: as.person(c(
     "Alexander Bakker [aut]",
     "Martin Roth <roth@knmi.nl> [aut, cre]",

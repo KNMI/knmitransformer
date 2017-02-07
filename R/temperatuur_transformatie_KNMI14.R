@@ -82,3 +82,11 @@ TransformTemp <- function(ifile,
   flog.debug("")
   return(result)
 } # end function temp.trans_KNMI14
+
+#' Show station table
+#' @export
+ShowStationTable <- function() {
+  tmp <- system.file("extdata", "stationstabel",
+              package = "knmitransformer")
+  system(paste0("less ", tmp))
+}

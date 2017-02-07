@@ -10,3 +10,5 @@
 ^profiling\.R$
 ^inst/doc/$
 ^appveyor\.yml$
+^README\.Rmd$
+^README-.*\.png$
