@@ -16,23 +16,22 @@ TransformEvap(ifile_tg, ifile_rsds, ofile = NA, scenario, horizon = 2030,
 transformed data to.
 Format is similar to ifile}
 
-\item{scenario}{scenario ["GL", "GH", "WL", "WH"]}
+\item{scenario}{scenario ("GL", "GH", "WL", "WH")}
 
-\item{horizon}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
+\item{horizon}{time horizon (2030=DEFAULT, 2050, 2085)}
 
 \item{regio.file}{this (optional) argument provides the name of an ASCII file
 that relates the stations to a particular region.
 First column is station id and second column region
- KNMI14 distinguishes following regions:
- <NLD> Nederland            [DEFAULT]
- <NWN> Noordwest Nederland
- <ZWN> Zuidwest Nederland
- <NON> Noordoost Nederland
- <MON> Middenoost Nederland
- <ZON> Zuidoost Nederland}
+KNMI14 distinguishes following regions:
+<NLD> Nederland            (DEFAULT)
+<NWN> Noordwest Nederland
+<ZWN> Zuidwest Nederland
+<NON> Noordoost Nederland
+<MON> Middenoost Nederland
+<ZON> Zuidoost Nederland}
 }
 \description{
 Function reads transormed mean temperature and transformed global radiation
 and calculates the Makkink evaporation for 'future time series' that match a certain climate
 }
-

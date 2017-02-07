@@ -50,8 +50,7 @@ rsds_trans_KNMI14 <- function(obs,
       X             <- obs[days.im,is+1]     # select all obs in month <im> of station <is>
 
       # clear sky radiation for all days in month <im>
-      # version v1.0 applied accidently factor 0.7 (rather than 0.75)
-      Rx            <- 0.7 * Angot(obs[days.im,1], lat[is])
+      Rx            <- 0.75 * Angot(obs[days.im,1], lat[is])
 
       # determine coefficient a for transformation function
       delta <- deltas[im,2]/100                # relative change of average in month <im>

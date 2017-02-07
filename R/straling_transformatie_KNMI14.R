@@ -1,6 +1,6 @@
 #' Transformation of radiation
 #' @description Function reads 'reference data' with time series of daily global
-#'  radiation sums [kJ/m2] and 'change factors' from input files and applies
+#'  radiation sums `[kJ/m2]` and 'change factors' from input files and applies
 #'  them to function 'rsds_trans_KNMI14' to obtain 'future time series' that
 #'  match a certain climate
 #' @inheritParams TransformTemp

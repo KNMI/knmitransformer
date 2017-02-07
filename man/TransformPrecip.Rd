@@ -24,15 +24,15 @@ unchanged.}
 transformed data to.
 Format is similar to ifile}
 
-\item{scenario}{scenario ["GL", "GH", "WL", "WH"]}
+\item{scenario}{scenario ("GL", "GH", "WL", "WH")}
 
-\item{horizon}{time horizon                  [2030 (=DEFAULT), 2050, 2085]}
+\item{horizon}{time horizon (2030=DEFAULT, 2050, 2085)}
 
-\item{subscenario}{subscenario for extreme precipitation ["lower", "centr" (=DEFAULT), "upper"]}
+\item{subscenario}{subscenario for extreme precipitation
+("lower", "centr" (=DEFAULT), "upper")}
 }
 \description{
 Function reads 'reference data' with daily precipitation sums
-[mm] and 'change factors' from input files and applies them to function
+\code{[mm]} and 'change factors' from input files and applies them to function
 'rr_trans_KNMI14' to obtain 'future time series' that match a certain climate
 }
-

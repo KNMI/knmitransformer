@@ -1,8 +1,8 @@
 Package: knmitransformer
 Type: Package
 Title: Transformation program
-Version: 0.1.5
-Date: 2016-12-21
+Version: 0.1.6
+Date: 2017-02-07
 Authors@R: as.person(c(
     "Alexander Bakker [aut]",
     "Martin Roth <roth@knmi.nl> [aut, cre]",
@@ -12,19 +12,19 @@ Authors@R: as.person(c(
     "KNMI [cph]"
   ))
 Description: Transforms daily reference data into future climate, according to
-  the KNMI 14 scenarios.
+    the KNMI 14 scenarios.
 License: file LICENSE
-Imports: 
-  data.table,
-  futile.logger,
-  Rcpp
+Imports:
+    data.table,
+    futile.logger,
+    Rcpp
 LazyData: TRUE
-RoxygenNote: 5.0.1
-Suggests: 
-  testthat,
-  covr,
+RoxygenNote: 6.0.0
+Roxygen: list(markdown = TRUE)
+Suggests:
+    testthat,
+    covr,
     knitr,
     rmarkdown
-LinkingTo: 
-  Rcpp
+LinkingTo: Rcpp
 VignetteBuilder: knitr

@@ -1,9 +1,9 @@
 # Sample .travis.yml for R projects
 
 # blocklist
-branches:
-  except:
-  - appveyor
+#branches:
+#  except:
+#  - appveyor
 
 language: r
 warnings_are_errors: true
