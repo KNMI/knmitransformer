@@ -15,7 +15,8 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
 
   CheckPeriod(horizon)
 
-  rsds_input <- TransformRadiation(ifile = ifile_rsds, scenario=scenario, horizon = horizon)
+  rsds_input <- TransformRadiation(ifile = ifile_rsds, scenario = scenario,
+                                   horizon = horizon)
   tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", scenario=scenario,
                               horizon = horizon, regio.file = regio.file)
 
@@ -28,7 +29,8 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
 
   fut               <- rsds
   fut[,2:ncol(fut)] <- NA
-  fut[,2:ncol(fut)] <- round(makkink(tg[,2:ncol(fut),with=FALSE],rsds[,2:ncol(fut),with=FALSE]),2)
+  fut[,2:ncol(fut)] <- round(makkink(tg[,2:ncol(fut),with=FALSE],
+                                     rsds[,2:ncol(fut),with=FALSE]),2)
 
   # Have to add a test to make sure that the header here is the same as the header in the regressionInput files
   header     <- rsds_input[1:5]
