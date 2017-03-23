@@ -19,7 +19,7 @@ Imports:
     futile.logger,
     Rcpp
 LazyData: TRUE
-RoxygenNote: 6.0.0
+RoxygenNote: 5.0.1
 Roxygen: list(markdown = TRUE)
 Suggests:
     testthat,
