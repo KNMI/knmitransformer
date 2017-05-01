@@ -15,7 +15,7 @@ ReadInput <- function(var, ifile) {
   header     <- obs[which(obs[, 1] == 0), ]       # header met stations meta-data etc.
   header[,1] <- paste0(rep(0, 8), collapse = "")  # "00000000"
 
-  names(obs) <- c("date", round(obs[1, -1], 0))   # station names are read from first line
+  names(obs) <- c("date", as.integer(obs[1, -1])) # station names are read from first line
   obs        <- obs[which(obs[, 1] != 0), ]       # actual data
   flog.debug("obs colnames={%s}", paste(names(obs), collapse = ", "))
 
