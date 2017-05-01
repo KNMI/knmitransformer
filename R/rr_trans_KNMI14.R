@@ -288,7 +288,7 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
       Y[wet.im][which(Y[wet.im] < th)] <- th # prevent days being dried by the wet-day transformation
     }
     # END TRANSFORMATION WET-DAY AMOUNTS
-    fut[, is] <- round(Y, 1)
+    fut[, is] <- Y
   }
   return(fut)
 }

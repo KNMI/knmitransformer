@@ -60,8 +60,7 @@ rsds_trans_KNMI14 <- function(obs,
         a <- 1 + delta
       }
       Y <- tf(a, X, Rx)                      # transform
-      fut[days.im,is+1] <- round(Y,1)
-      # fut[days.im,is+1] <- round(Y,2)        # round results and write to fut  #20150629_JB
+      fut[days.im,is+1] <- Y
      }
   } # END  TRANSFORMATION LOOP
 

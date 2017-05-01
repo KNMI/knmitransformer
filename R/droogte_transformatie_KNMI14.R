@@ -28,7 +28,7 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
 
   fut               <- rsds
   fut[,2:ncol(fut)] <- NA
-  fut[,2:ncol(fut)] <- round(makkink(tg[,2:ncol(fut),with=FALSE],rsds[,2:ncol(fut),with=FALSE]),2)
+  fut[,2:ncol(fut)] <- makkink(tg[,2:ncol(fut),with=FALSE],rsds[,2:ncol(fut),with=FALSE])
 
   # Have to add a test to make sure that the header here is the same as the header in the regressionInput files
   header     <- rsds_input[1:5]
