@@ -1,7 +1,9 @@
 ### Version 0.1.6
 
 - added AppVeyor support (Windows build)
-- Improved file description in WriteOutput
+- improved file description in WriteOutput
+- added ShowStationTable
+- switch to a factor of 0.75 in rsds
 
 ### Version 0.1.5
 

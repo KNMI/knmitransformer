@@ -50,7 +50,6 @@ rsds_trans_KNMI14 <- function(obs,
       X             <- obs[days.im,is+1]     # select all obs in month <im> of station <is>
 
       # clear sky radiation for all days in month <im>
-      # version v1.0 applied accidently factor 0.7 (rather than 0.75)
       Rx            <- 0.7 * Angot(obs[days.im,1], lat[is])
 
       # determine coefficient a for transformation function
@@ -61,8 +60,7 @@ rsds_trans_KNMI14 <- function(obs,
         a <- 1 + delta
       }
       Y <- tf(a, X, Rx)                      # transform
-      fut[days.im,is+1] <- round(Y,1)
-      # fut[days.im,is+1] <- round(Y,2)        # round results and write to fut  #20150629_JB
+      fut[days.im,is+1] <- Y
      }
   } # END  TRANSFORMATION LOOP
 

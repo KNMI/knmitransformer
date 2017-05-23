@@ -22,6 +22,8 @@ or
 devtools::install_github("MartinRoth/knmitransformer")
 ```
 
+Note that the installation (i.e. the download) can take quite some time, owing to the large test folder.
+
 ### Content
 
 The following R-functions for the transformation of daily meteorological variables are provided:

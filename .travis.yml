@@ -8,6 +8,7 @@
 language: r
 warnings_are_errors: true
 sudo: required
+dist: trusty
 cache: packages
 
 r_packages:

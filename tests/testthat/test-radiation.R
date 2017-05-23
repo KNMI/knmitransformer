@@ -71,7 +71,7 @@ test_that("Scenario WH 2050", {
 test_that("Scenario WH 2085", {
   #skip_on_travis()
   scenario="WH"
-  horizon = 2085 # This set is not produced by this version of the code - neither with
+  horizon = 2085
   tmp <- TransformRadiation(ifile=ifile,
                                           ofile=ofile,
                                           scenario=scenario,

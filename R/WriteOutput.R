@@ -36,7 +36,16 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
 
   write.table(format(dat[1,      ], width = 8),             file = "", row.names = F, col.names = F, quote = F)
   write.table(format(dat[2:5,    ], width = 8, nsmall = 3), file = "", row.names = F, col.names = F, quote = F)
-  write.table(format(dat[-(1:5), ], width = 8, nsmall = 2), file = "", row.names = F, col.names = F, quote = F)
+  # write.table(format(dat[-(1:5), ], width = 8, nsmall = 2), file = "", row.names = F, col.names = F, quote = F)
+  date <- dat[-(1:5), 1]
+  tmp  <- dat[-(1:5), -1]
+  if (var == "rsds") {
+    write.table(format(cbind(date, round(tmp)), width = 8, nsmall = 0), file = "", row.names = F, col.names = F, quote = F)
+  } else if (var == "evmk") {
+    write.table(format(cbind(date, round(tmp, 2)), width = 8, nsmall = 2), file = "", row.names = F, col.names = F, quote = F)
+  } else {
+    write.table(format(cbind(date, round(tmp, 1)), width = 8, nsmall = 1), file = "", row.names = F, col.names = F, quote = F)
+  }
 
   sink()
 }
