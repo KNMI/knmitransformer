@@ -33,7 +33,7 @@
 #'                <NON> Noordoost Nederland
 #'                <MON> Middenoost Nederland
 #'                <ZON> Zuidoost Nederland
-#' @param rounding Logical if results should be rounded
+#' @param rounding Logical (default = TRUE) if results should be rounded
 #' @export
 TransformTemp <- function(ifile,
                           ofile = NA,
@@ -73,7 +73,7 @@ TransformTemp <- function(ifile,
 
   # OUTPUT #####################################################################
   if(rounding) {
-    fut[, -1] <- round(fut[, -1])
+    fut[, -1] <- round(fut[, -1], 1)
   }
   fut <- as.data.table(fut)
   result <- rbind(input$header, fut, use.names = FALSE)

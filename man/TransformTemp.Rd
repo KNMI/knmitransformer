@@ -42,7 +42,7 @@ KNMI14 distinguishes following regions:
 <MON> Middenoost Nederland
 <ZON> Zuidoost Nederland}
 
-\item{rounding}{Logical if results should be rounded}
+\item{rounding}{Logical (default = TRUE) if results should be rounded}
 }
 \description{
 Function reads 'reference data' with time series of daily of
