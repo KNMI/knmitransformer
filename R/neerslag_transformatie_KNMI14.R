@@ -10,7 +10,8 @@ TransformPrecip <- function(ifile,
                             ofile = NA,
                             scenario,
                             horizon = 2030,
-                            subscenario = "centr") {
+                            subscenario = "centr",
+                            rounding = TRUE) {
 
   version <- ReturnPackageVersion("rr")
   dryingScheme = "v1.1"
@@ -28,6 +29,9 @@ TransformPrecip <- function(ifile,
   fut <- rr_trans_KNMI14(obs = input$obs, deltas = deltas)
 
   # OUTPUT
+  if(rounding) {
+    fut[, -1] <- round(fut[, -1], 1)
+  }
   fut <- as.data.table(fut)
   result <- rbind(input$header, fut, use.names = FALSE)
   result[, V1 := as.integer(V1)]

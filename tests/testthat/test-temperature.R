@@ -7,8 +7,8 @@ library(data.table)
 
 context("tg transformation - Entire station set")
 
-var="tg"
-ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
+var        <- "tg"
+ifile      <- "regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
 ofile      <- NA
 regio.file <- "stationstabel" # table that links stations to region
 rounding   <- FALSE
@@ -26,6 +26,15 @@ test_that("2030 decadal prediction", {
                        rounding=rounding
                        )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg.rds")
+
+  tmp <- TransformTemp(ifile=ifile,
+                       ofile=ofile,
+                       scenario=scenario,
+                       horizon = horizon,
+                       var=var,
+                       regio.file=regio.file,
+                       rounding=TRUE)
+  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg_rounded.rds")
 })
 
 test_that("Scenario WL", {
@@ -134,10 +143,11 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tg.rds")
 })
 
+# ------------------------------------------------------------------------------
 context("tx transformation - Entire station set")
 
-var="tx"
-ifile="regressionInput/temperature/KNMI14____ref_tx___19810101-20101231_v3.2.txt"
+var        <- "tx"
+ifile      <- "regressionInput/temperature/KNMI14____ref_tx___19810101-20101231_v3.2.txt"
 ofile      <- NA # output file - used only temporary
 regio.file <- "stationstabel" # table that links stations to region
 
@@ -264,8 +274,8 @@ test_that("Scenario GL", {
 
 context("tn transformation - Entire station set")
 
-var="tn"
-ifile="regressionInput/temperature/KNMI14____ref_tn___19810101-20101231_v3.2.txt"
+var        <- "tn"
+ifile      <- "regressionInput/temperature/KNMI14____ref_tn___19810101-20101231_v3.2.txt"
 ofile      <- NA # output file - used only temporary
 regio.file <- "stationstabel" # table that links stations to region
 
@@ -395,31 +405,31 @@ test_that("Scenario GL", {
 context("Temperature transformation - Single station exercises")
 
 test_that("Test wrong user input", {
-  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
-  ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
-  scenario="GL"                    # scenario ("GL", "GH", "WL", "WH")
-  horizon = 2030                     # time horizon (2030, 2050, 2085)
-  var="tg"                   # temperature characteristic ("tg" = mean,
+  ifile    = "regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
+  ofile    = "uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
+  scenario = "GL"                    # scenario ("GL", "GH", "WL", "WH")
+  horizon  = 2030                     # time horizon (2030, 2050, 2085)
+  var      = "tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
   expect_error(TransformTemp(ifile=ifile,
-                                   ofile=ofile,
-                                   scenario="GL",
-                                   horizon = NA,
-                                   var=var,
-                                   rounding = rounding
-                                   ),
+                             ofile=ofile,
+                             scenario="GL",
+                             horizon = NA,
+                             var=var,
+                             rounding = rounding
+                             ),
                "Period must be valid, i.e. 2030, 2050, or 2085")
 
   expect_error(TransformTemp(ifile=ifile,
-                                   ofile=ofile,
-                                   scenario="GL",
-                                   horizon = horizon,
-                                   var="blub",
+                             ofile=ofile,
+                             scenario="GL",
+                             horizon = horizon,
+                             var="blub",
                              rounding = rounding
-                                   ),
+                             ),
                "variable not defined.")
 
 })
@@ -432,10 +442,10 @@ test_that("Procedure works for default region", {
   var="tg"
 
   tmp <- TransformTemp(ifile=ifile,
-                                          ofile=ofile,
-                                          scenario=scenario,
-                                          horizon = horizon,
-                                          var=var,
+                       ofile=ofile,
+                       scenario=scenario,
+                       horizon = horizon,
+                       var=var,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg_DefaultRegion.rds")
 })

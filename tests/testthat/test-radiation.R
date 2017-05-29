@@ -7,18 +7,27 @@ library(data.table)
 
 context("rsds transformation - Entire station set")
 
-ifile="regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
-ofile      <- NA
+ifile    <- "regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
+ofile    <- NA
+rounding <- FALSE
 
 test_that("2030 decadal prediction", {
   scenario="GL"
 
   horizon = 2030
   tmp <- TransformRadiation(ifile=ifile,
-                                          ofile="tmp.txt",
-                                          scenario=scenario,
-                                          horizon = horizon)
+                            ofile="tmp.txt",
+                            scenario=scenario,
+                            horizon = horizon,
+                            rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14___2030_rsds.rds")
+
+  tmp <- TransformRadiation(ifile=ifile,
+                            ofile="tmp.txt",
+                            scenario=scenario,
+                            horizon = horizon,
+                            rounding = TRUE)
+  expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14___2030_rsds_rounded.rds")
 })
 
 test_that("Scenario GL", {
@@ -26,16 +35,18 @@ test_that("Scenario GL", {
 
   horizon = 2050
   tmp <- TransformRadiation(ifile=ifile,
-                                          ofile=ofile,
-                                          scenario=scenario,
-                                          horizon = horizon)
+                            ofile=ofile,
+                            scenario=scenario,
+                            horizon = horizon,
+                            rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_GL_2050_rsds.rds")
 
   horizon = 2085
   tmp <- TransformRadiation(ifile=ifile,
-                                          ofile=ofile,
-                                          scenario=scenario,
-                                          horizon = horizon)
+                            ofile=ofile,
+                            scenario=scenario,
+                            horizon = horizon,
+                            rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_GL_2085_rsds.rds")
 })
 
@@ -44,16 +55,18 @@ test_that("Scenario GH", {
 
   horizon = 2050
   tmp <- TransformRadiation(ifile=ifile,
-                                          ofile=ofile,
-                                          scenario=scenario,
-                                          horizon = horizon)
+                            ofile=ofile,
+                            scenario=scenario,
+                            horizon = horizon,
+                            rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_GH_2050_rsds.rds")
 
   horizon = 2085
   tmp <- TransformRadiation(ifile=ifile,
-                                          ofile=ofile,
-                                          scenario=scenario,
-                                          horizon = horizon)
+                            ofile=ofile,
+                            scenario=scenario,
+                            horizon = horizon,
+                            rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_GH_2085_rsds.rds")
 })
 
@@ -62,9 +75,10 @@ test_that("Scenario WH 2050", {
 
   horizon = 2050
   tmp <- TransformRadiation(ifile=ifile,
-                                          ofile=ofile,
-                                          scenario=scenario,
-                                          horizon = horizon)
+                            ofile=ofile,
+                            scenario=scenario,
+                            horizon = horizon,
+                            rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_WH_2050_rsds.rds")
 })
 
@@ -73,9 +87,10 @@ test_that("Scenario WH 2085", {
   scenario="WH"
   horizon = 2085
   tmp <- TransformRadiation(ifile=ifile,
-                                          ofile=ofile,
-                                          scenario=scenario,
-                                          horizon = horizon)
+                            ofile=ofile,
+                            scenario=scenario,
+                            horizon = horizon,
+                            rounding = rounding)
 
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_WH_2085_rsds.rds")
 })
@@ -85,15 +100,17 @@ test_that("Scenario WL", {
 
   horizon = 2050
   tmp <- TransformRadiation(ifile=ifile,
-                                          ofile=ofile,
-                                          scenario=scenario,
-                                          horizon = horizon)
+                            ofile=ofile,
+                            scenario=scenario,
+                            horizon = horizon,
+                            rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_WL_2050_rsds.rds")
 
   horizon = 2085
   tmp <- TransformRadiation(ifile=ifile,
-                                          ofile=ofile,
-                                          scenario=scenario,
-                                          horizon = horizon)
+                            ofile=ofile,
+                            scenario=scenario,
+                            horizon = horizon,
+                            rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/radiation/KNMI14_WL_2085_rsds.rds")
 })

@@ -5,7 +5,7 @@
 \title{Calculation of Makkink evaporation}
 \usage{
 TransformEvap(ifile_tg, ifile_rsds, ofile = NA, scenario, horizon = 2030,
-  regio.file = NA)
+  regio.file = NA, rounding = TRUE)
 }
 \arguments{
 \item{ifile_tg}{Name of the input file for temperature}
@@ -30,6 +30,8 @@ KNMI14 distinguishes following regions:
 <NON> Noordoost Nederland
 <MON> Middenoost Nederland
 <ZON> Zuidoost Nederland}
+
+\item{rounding}{Logical (default = TRUE) if results should be rounded}
 }
 \description{
 Function reads transormed mean temperature and transformed global radiation

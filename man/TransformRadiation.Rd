@@ -4,7 +4,8 @@
 \alias{TransformRadiation}
 \title{Transformation of radiation}
 \usage{
-TransformRadiation(ifile, ofile = NA, scenario, horizon = 2030)
+TransformRadiation(ifile, ofile = NA, scenario, horizon = 2030,
+  rounding = TRUE)
 }
 \arguments{
 \item{ifile}{Name of the input file (ASCII) that contains reference data
@@ -26,6 +27,8 @@ Format is similar to ifile}
 \item{scenario}{scenario ("GL", "GH", "WL", "WH")}
 
 \item{horizon}{time horizon (2030=DEFAULT, 2050, 2085)}
+
+\item{rounding}{Logical (default = TRUE) if results should be rounded}
 }
 \description{
 Function reads 'reference data' with time series of daily global

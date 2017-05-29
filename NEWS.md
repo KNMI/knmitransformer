@@ -1,3 +1,7 @@
+### Version 0.1.7
+
+- made rounding optional (on by default) this allows more thoroughly testing
+
 ### Version 0.1.6
 
 - added AppVeyor support (Windows build)
