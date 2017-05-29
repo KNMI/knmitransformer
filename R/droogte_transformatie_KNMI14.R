@@ -18,7 +18,7 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
   rsds_input <- TransformRadiation(ifile = ifile_rsds, scenario = scenario,
                                    horizon = horizon)
   tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", scenario=scenario,
-                              horizon = horizon, regio.file = regio.file)
+                              horizon = horizon, regio.file = regio.file, rounding = FALSE)
 
   rsds <- rsds_input[-(1:5)]
   tg   <- tg_input[-(1:5)]
