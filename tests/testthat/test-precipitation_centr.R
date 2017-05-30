@@ -26,7 +26,7 @@ test_that("2030 decadal prediction", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14___2030_rr_centr.rds")
 
   tmp <- TransformPrecip(ifile=ifile,
-                         ofile="tmp.txt",
+                         ofile=ofile,
                          scenario=scenario,
                          horizon = horizon,
                          subscenario=subscenario,

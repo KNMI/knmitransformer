@@ -34,8 +34,11 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
 
   #for(i in 1:length(H.comments)) writeLines(H.comments[i])
 
-  write.table(format(dat[1,      ], width = 8),             file = "", row.names = F, col.names = F, quote = F)
-  write.table(format(dat[2:5,    ], width = 8, nsmall = 3), file = "", row.names = F, col.names = F, quote = F)
+  header <- as.data.frame(dat[1:5, ])
+  header[, 1] <- paste0(rep(0, 8), collapse = "")
+
+  write.table(format(header[1,      ], width = 8),             file = "", row.names = F, col.names = F, quote = F)
+  write.table(format(header[2:5,    ], width = 8, nsmall = 3), file = "", row.names = F, col.names = F, quote = F)
   # write.table(format(dat[-(1:5), ], width = 8, nsmall = 2), file = "", row.names = F, col.names = F, quote = F)
   date <- dat[-(1:5), 1]
   tmp  <- dat[-(1:5), -1]
