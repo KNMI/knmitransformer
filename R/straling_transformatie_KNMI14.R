@@ -10,7 +10,8 @@
 TransformRadiation <- function(ifile,
                                ofile=NA,
                                scenario,
-                               horizon = 2030) {
+                               horizon = 2030,
+                               rounding = TRUE) {
 
   version <- ReturnPackageVersion("rsds")
 
@@ -25,6 +26,9 @@ TransformRadiation <- function(ifile,
   fut <- rsds_trans_KNMI14(obs=input$obs, deltas=deltas, lat=input$lat)
 
   # OUTPUT #####################################################################
+  if(rounding) {
+    fut[, -1] <- round(fut[, -1])
+  }
   fut <- as.data.table(fut)
   result <- rbind(input$header, fut, use.names = FALSE)
   result[, V1 := as.integer(V1)]

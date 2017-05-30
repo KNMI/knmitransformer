@@ -5,7 +5,7 @@
 \title{Transformation of precipitation}
 \usage{
 TransformPrecip(ifile, ofile = NA, scenario, horizon = 2030,
-  subscenario = "centr")
+  subscenario = "centr", rounding = TRUE)
 }
 \arguments{
 \item{ifile}{Name of the input file (ASCII) that contains reference data
@@ -30,6 +30,8 @@ Format is similar to ifile}
 
 \item{subscenario}{subscenario for extreme precipitation
 ("lower", "centr" (=DEFAULT), "upper")}
+
+\item{rounding}{Logical (default = TRUE) if results should be rounded}
 }
 \description{
 Function reads 'reference data' with daily precipitation sums

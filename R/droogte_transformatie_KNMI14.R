@@ -9,19 +9,22 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
                           ofile = NA,
                           scenario,
                           horizon = 2030,
-                          regio.file = NA) {
+                          regio.file = NA,
+                          rounding = TRUE) {
 
   version <- ReturnPackageVersion("evmk")
 
   CheckPeriod(horizon)
 
-  rsds_input <- TransformRadiation(ifile = ifile_rsds, scenario=scenario, horizon = horizon)
+  rsds_input <- TransformRadiation(ifile = ifile_rsds, scenario=scenario, horizon = horizon,
+                                   rounding = FALSE)
   tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", scenario=scenario,
-                              horizon = horizon, regio.file = regio.file)
+                              horizon = horizon, regio.file = regio.file,
+                              rounding = FALSE)
 
-  rsds <- rsds_input[-(1:5)]
-  tg   <- tg_input[-(1:5)]
-  if (!all(rsds_input[1:5] == tg_input[1:5])) {
+  rsds <- rsds_input[-(1:5), ]
+  tg   <- tg_input[-(1:5), ]
+  if (!all(rsds_input[1:5, ] == tg_input[1:5, ])) {
     flog.error("Same stations should be used for temperature and radiation")
     stop("Same stations should be used for temperature and radiation")
   }
@@ -31,10 +34,14 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
   fut[,2:ncol(fut)] <- makkink(tg[,2:ncol(fut),with=FALSE],rsds[,2:ncol(fut),with=FALSE])
 
   # Have to add a test to make sure that the header here is the same as the header in the regressionInput files
-  header     <- rsds_input[1:5]
+  header     <- rsds_input[1:5, ]
   H.comments <- "# Makkink Evaporation [mm] as derived from transformed tg & rsds "
 
   # OUTPUT #####################################################################
+  if(rounding) {
+    fut <- as.data.frame(fut)
+    fut[, -1] <- round(fut[, -1], 2)
+  }
   fut <- as.data.table(fut)
   result <- rbind(header, fut, use.names = FALSE)
   result[, V1 := as.integer(V1)]

@@ -25,7 +25,7 @@ ReadInput <- function(var, ifile) {
     # Expected as the fifth line of the header (comment added 20150601_JB)
     if (length(which(is.na(lat) == TRUE)) > 0) {
       flog.error("Check input file: Latitude NOT (or not properly) provided.")
-      stop()
+      stop("Check input file: Latitude NOT (or not properly) provided.")
     } else {
       input$lat = lat
     }

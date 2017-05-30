@@ -5,7 +5,7 @@
 \title{Transformation of temperature}
 \usage{
 TransformTemp(ifile, ofile = NA, scenario, horizon = 2030, var,
-  regio.file = NA)
+  regio.file = NA, rounding = TRUE)
 }
 \arguments{
 \item{ifile}{Name of the input file (ASCII) that contains reference data
@@ -41,6 +41,8 @@ KNMI14 distinguishes following regions:
 <NON> Noordoost Nederland
 <MON> Middenoost Nederland
 <ZON> Zuidoost Nederland}
+
+\item{rounding}{Logical (default = TRUE) if results should be rounded}
 }
 \description{
 Function reads 'reference data' with time series of daily of

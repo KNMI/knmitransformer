@@ -33,13 +33,15 @@
 #'                <NON> Noordoost Nederland
 #'                <MON> Middenoost Nederland
 #'                <ZON> Zuidoost Nederland
+#' @param rounding Logical (default = TRUE) if results should be rounded
 #' @export
 TransformTemp <- function(ifile,
                           ofile = NA,
                           scenario,
                           horizon = 2030,
                           var,
-                          regio.file = NA) {
+                          regio.file = NA,
+                          rounding = TRUE) {
   version <- ReturnPackageVersion(var)
 
   # CONSTANTS AND FUNCTIONS ####################################################
@@ -70,6 +72,9 @@ TransformTemp <- function(ifile,
                          regio.tabel = regio.tabel)
 
   # OUTPUT #####################################################################
+  if(rounding) {
+    fut[, -1] <- round(fut[, -1], 1)
+  }
   fut <- as.data.table(fut)
   result <- rbind(input$header, fut, use.names = FALSE)
   result[, V1 := as.integer(V1)]
