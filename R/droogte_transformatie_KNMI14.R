@@ -16,11 +16,14 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
 
   CheckPeriod(horizon)
 
+  # in the official branch we decided not to round intermediate results
+  # we are aware that this leads to small difference when comparing to
+  # makkink directly claculated from input files (which are rounded)
   rsds_input <- TransformRadiation(ifile = ifile_rsds, scenario = scenario,
-                                   horizon = horizon, rounding = FALSE)
+                                   horizon = horizon, rounding = TRUE)
   tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", scenario=scenario,
                               horizon = horizon, regio.file = regio.file,
-                              rounding = FALSE)
+                              rounding = TRUE)
 
   rsds <- rsds_input[-(1:5), ]
   tg   <- tg_input[-(1:5), ]
