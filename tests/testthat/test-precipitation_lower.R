@@ -8,7 +8,9 @@ library(data.table)
 context("rr transformation (lower) - Entire station set")
 
 subscenario <- "lower"
-ifile       <- "regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
+ifile       <- system.file("refdata",
+                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
+                           package="knmitransformer")
 ofile       <- NA
 rounding    <- FALSE
 
