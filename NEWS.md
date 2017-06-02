@@ -1,3 +1,7 @@
+### Version 0.2.1
+
+- moved reference files fully to the revData folder
+
 ### Version 0.1.7
 
 - made rounding optional (on by default) this allows more thoroughly testing

@@ -5,8 +5,8 @@ flog.threshold(DEBUG)
 flog.appender(appender.file('knmitransformer_evaporation.log'))
 library(data.table)
 
-ifile_tg   <- "regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
-ifile_rsds <- "regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_wrong2.txt"
+ifile_tg   <- "regressionInput/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
+ifile_rsds <- "regressionInput/KNMI14____ref_rsds___19810101-20101231_wrong2.txt"
 ofile      <- NA
 regio.file <- "stationstabel" # table that links stations to region
 rounding   <- FALSE
@@ -22,8 +22,12 @@ test_that("differences in header are discovered", {
 
 context("evmk transformation - Entire station set")
 
-ifile_tg   <- "regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
-ifile_rsds <- "regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
+ifile_tg   <- system.file("refdata",
+                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
+ifile_rsds <- system.file("refdata",
+                          "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
 ofile      <- NA
 regio.file <- "stationstabel" # table that links stations to region
 rounding   <- FALSE

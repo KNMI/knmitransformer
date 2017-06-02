@@ -16,7 +16,9 @@ library(knmitransformer)
 ## Precipitation:
 ```{r precipSelection}
 subscenario <- "centr"
-ifile       <- "../tests/testthat/regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
+ifile       <- system.file("refdata",
+                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
+                           package="knmitransformer")
 ofile       <- "tmp.txt" # output file - used only temporary
 scenario    <- "GL"
 horizon     <- 2030
@@ -35,7 +37,9 @@ head(futPrecip[, 1 : 5])
 ## Temperature:
 ```{r tempSelection}
 var        <- "tg"
-ifile      <- "../tests/testthat/regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
+ifile      <- system.file("refdata",
+                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
 regio.file <- "stationstabel"
 scenario   <- "GL"
 horizon    <- 2030
@@ -53,7 +57,9 @@ head(futTemp[, 1 : 5])
 
 ## Radiation:
 ```{r radSelection}
-ifile      <- "../tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
+ifile      <- system.file("refdata",
+                        "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
+                        package="knmitransformer")
 scenario   <- "GL"
 horizon    <- 2030
 ```
@@ -69,8 +75,12 @@ head(futRad[, 1 : 5])
 
 ## Makkink evaporation:
 ```{r evapSelection}
-ifile_tg   <- "../tests/testthat/regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
-ifile_rsds <- "../tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
+ifile_tg   <- system.file("refdata",
+                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
+ifile_rsds <- system.file("refdata",
+                        "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
+                        package="knmitransformer")
 scenario   <- "GL"
 horizon    <- 2030
 regio.file <- "stationstabel"

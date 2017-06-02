@@ -8,7 +8,9 @@ library(data.table)
 context("tg transformation - Entire station set")
 
 var        <- "tg"
-ifile      <- "regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
+ifile      <- system.file("refdata",
+                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
 ofile      <- NA
 regio.file <- "stationstabel" # table that links stations to region
 rounding   <- FALSE
@@ -147,7 +149,9 @@ test_that("Scenario GL", {
 context("tx transformation - Entire station set")
 
 var        <- "tx"
-ifile      <- "regressionInput/temperature/KNMI14____ref_tx___19810101-20101231_v3.2.txt"
+ifile      <- system.file("refdata",
+                          "KNMI14____ref_tx___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
 ofile      <- NA # output file - used only temporary
 regio.file <- "stationstabel" # table that links stations to region
 
@@ -275,7 +279,9 @@ test_that("Scenario GL", {
 context("tn transformation - Entire station set")
 
 var        <- "tn"
-ifile      <- "regressionInput/temperature/KNMI14____ref_tn___19810101-20101231_v3.2.txt"
+ifile      <- system.file("refdata",
+                          "KNMI14____ref_tn___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
 ofile      <- NA # output file - used only temporary
 regio.file <- "stationstabel" # table that links stations to region
 
@@ -403,9 +409,9 @@ test_that("Scenario GL", {
 
 
 context("Temperature transformation - Single station exercises")
+ifile <- "regressionInput/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
 
 test_that("Test wrong user input", {
-  ifile    = "regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile    = "uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
   scenario = "GL"                    # scenario ("GL", "GH", "WL", "WH")
   horizon  = 2030                     # time horizon (2030, 2050, 2085)
@@ -436,7 +442,6 @@ test_that("Test wrong user input", {
 
 
 test_that("Procedure works for default region", {
-  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
   scenario="GL"
   horizon = 2030
   var="tg"
@@ -451,7 +456,6 @@ test_that("Procedure works for default region", {
 })
 
 test_that("Procedure works for one station as well", {
-  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
   scenario="GL"
   horizon = 2030
   var="tg"
@@ -467,7 +471,6 @@ test_that("Procedure works for one station as well", {
 })
 
 test_that("Temperature regression test (with actual data) WH", {
-  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
 
   scenario="WH"                    # scenario ("GL", "GH", "WL", "WH")
@@ -498,7 +501,6 @@ test_that("Temperature regression test (with actual data) WH", {
 })
 
 test_that("Temperature regression test (with actual data) GL", {
-  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
 
   scenario="GL"                    # scenario ("GL", "GH", "WL", "WH")
@@ -529,7 +531,6 @@ test_that("Temperature regression test (with actual data) GL", {
 })
 
 test_that("Temperature regression test (with actual data) GH", {
-  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile="uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
   scenario="GH"                    # scenario ("GL", "GH", "WL", "WH")
   horizon = 2050                     # time horizon (2030, 2050, 2085)
@@ -559,7 +560,6 @@ test_that("Temperature regression test (with actual data) GH", {
 })
 
 test_that("Temperature regression test (with actual data) WL", {
-  ifile="regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"     # input file
   ofile="uitvoer_tg.txt"      # output file (DEFAULT="uitvoer.txt")
   scenario="WL"                    # scenario ("GL", "GH", "WL", "WH")
   horizon = 2050                     # time horizon (2030, 2050, 2085)
