@@ -5,11 +5,12 @@ flog.threshold(DEBUG)
 flog.appender(appender.file('knmitransformer_precipitation.log'))
 library(data.table)
 
-
 context("rr transformation (centr) - Entire station set")
 
 subscenario <- "centr"
-ifile       <- "regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
+ifile       <- system.file("refdata",
+                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
+                           package="knmitransformer")
 ofile       <- NA
 rounding    <- FALSE
 
