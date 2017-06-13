@@ -145,4 +145,10 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
   sink()
 }
 
-
+#' Show station table
+#' @keywords internal
+ShowStationTable <- function() {
+  tmp <- system.file("extdata", "stationstabel",
+                     package = "knmitransformer")
+  system(paste0("less ", tmp))
+}

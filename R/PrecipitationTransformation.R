@@ -1,32 +1,22 @@
-################################################################################
-#
-# rr_trans_KNMI14.R    March 10, 2015
-#
-# author: Alexander Bakker (KNMI)
-#
-# Function 'transforms' a specific reference-dataset with daily precipitation
-# sums [mm] to a dataset representative for a future climate scenario.
-#
-# arguments:
-#
-# obs            data.frame or matrix:
-#                first column provides datestring YYYYMMDD
-#                other columns provide precipitation [mm] time series
-#                (each column represents specific station)
-#
-# deltas         data.frame or matrix that contains deltas (=change factors
-#                for the transformation) should contain following columns
-#                indicated by following headers
-#                HEADER
-#                "wdf"       relative change [%] in wet-day frequency
-#                            (wet day is defined as day with 0.1 mm or more
-#                            precipitation)
-#                "ave"       relative change [%] in mean precipitation
-#                "P99"       relative change [%] in the 99th percentile of
-#                            wet-day amounts
-#
-################################################################################
-
+#' rr_trans_KNMI14.R
+#' @description Function 'transforms' a specific reference-dataset with daily
+#'  precipitation sums (mm) to a dataset representative for a future climate
+#'  scenario.
+#' @param obs data.frame or matrix: \cr
+#'                first column provides datestring YYYYMMDD \cr
+#'                other columns provide precipitation (mm) time series
+#'                (each column represents specific station)
+#' @param deltas  data.frame or matrix that contains deltas (=change factors
+#'                for the transformation) should contain following columns
+#'                indicated by following headers
+#'                HEADER\cr
+#'                "wdf"       relative change (\%) in wet-day frequency
+#'                            (wet day is defined as day with 0.1 mm or more
+#'                            precipitation) \cr
+#'                "ave"       relative change (\%) in mean precipitation \cr
+#'                "P99"       relative change (\%) in the 99th percentile of
+#'                            wet-day amounts
+#' @keywords internal
 rr_trans_KNMI14 <- function(obs, deltas) {
 
   flog.debug("Running rr_trans_KNMI14")

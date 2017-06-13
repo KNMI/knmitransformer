@@ -88,13 +88,7 @@ TransformTemp <- function(ifile,
   return(result)
 } # end function temp.trans_KNMI14
 
-#' Show station table
-#' @export
-ShowStationTable <- function() {
-  tmp <- system.file("extdata", "stationstabel",
-                     package = "knmitransformer")
-  system(paste0("less ", tmp))
-}
+
 
 #' Transformation of radiation
 #' @description Function reads 'reference data' with time series of daily global
