@@ -1,6 +1,6 @@
 #' rsds_trans_KNMI14
 #' @description Function 'transforms' a specific reference-dataset with time
-#'  series of daily global radiation sums (kJ/m2) to a dataset representative
+#'  series of daily global radiation sums `[kJ/m2]` to a dataset representative
 #'  for a future climate scenario.
 #' @param obs            data.frame or matrix: \cr
 #'                first column provides datestring YYYYMMDD \cr

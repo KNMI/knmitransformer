@@ -22,7 +22,7 @@ location (row.number (i) in vector refers to column in obs (i+1)}
 }
 \description{
 Function 'transforms' a specific reference-dataset with time
-series of daily global radiation sums (kJ/m2) to a dataset representative
+series of daily global radiation sums \code{[kJ/m2]} to a dataset representative
 for a future climate scenario.
 }
 \keyword{internal}
