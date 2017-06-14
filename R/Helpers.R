@@ -196,8 +196,12 @@ CreateKnmiTFInput <- function(data, stationID, lat, lon, comment = NULL) {
   }
   necessaryDates <- as.integer(format(seq.Date(as.Date("1981-01-01"), as.Date("2010-12-31"), by = 1), "%Y%m%d"))
   if (! all(necessaryDates %in% data[, date])) {
-    err <- "The date column should contain the full period from 19810101 to
-               20101231"
+    err <- "The date column should contain the full period from 19810101 to 20101231"
+    flog.error(err)
+    stop(err)
+  }
+  if (! all(data[, date] %in%  necessaryDates)) {
+    err <- "Currently the period is limited to the official thirty year period 1981-2010"
     flog.error(err)
     stop(err)
   }
@@ -206,7 +210,6 @@ CreateKnmiTFInput <- function(data, stationID, lat, lon, comment = NULL) {
     stop("lat and lon should be of length 1")
   }
   obs <- as.data.frame(data, stringsAsFactors = FALSE)
-  names(obs) <- c("date", "station")
   knmiRdCoords <- spTransform(SpatialPoints(cbind(lon, lat),
                                             CRS("+proj=longlat +datum=WGS84")), CRS("+init=epsg:28992"))@coords / 1000
   header <- data.frame(V1 = rep("00000000", 5),
