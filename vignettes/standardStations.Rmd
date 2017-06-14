@@ -10,6 +10,7 @@ vignette: >
 ---
 
 ```{r LoadLibraries, include=FALSE}
+library(data.table)
 library(knmitransformer)
 ```
 
@@ -95,3 +96,69 @@ futEvap <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds, ofile=NA,
 ```{r evapShowResult}
 head(futEvap[, 1 : 5])
 ```
+
+## User provided examples:
+Below we show a daily temperature data set, which was downloaded from the
+climate explorer.
+As you can see it has a slightly different format:
+```{r LoadTGClimateExplorer, echo = FALSE}
+filename <- system.file("exampledata",
+                         "tgtg260.dat",
+                         package="knmitransformer")
+tgData <- fread(filename, skip = 6)
+head(tgData, n = 10)
+```
+
+We append one single date column, which is necessary:
+```{r CorrectDate}
+tgData[, date := as.integer(format(as.Date(paste(V1, V2, V3, sep = "-"),
+                        format = "%Y-%m-%d"), format = "%Y%m%d"))]
+head(tgData, n = 10)
+```
+  
+In order to use the data we only have to subset the correct period and ensure
+that the column names are date and values. 
+Keep in mind that the transformation programm was written with the base period
+1981 - 2010 in mind.
+Latitude and longitude should be provided as well
+
+```{r FinalPreparations}
+tgData <- tgData[V1 %in% 1981 : 2010, .(date, values = V4)]
+head(tgData, n = 10)
+lat <- 52.1
+lon <- 5.18
+```
+
+Now we can create the input object and transform it in the next step.
+```{r CreateValidatedInput}
+input <- CreateKnmiTFInput(tgData, 1, lat, lon)
+inputTrans <- TransformTemp(input, NA, "GL", var = "tg", horizon = 2030,
+                            regio.file = "MON") 
+head(inputTrans, n = 15)
+```
+
+The first five lines of the second column of the transformed input represent the
+station number, rd northing and rd easting, lat and lon. 
+
+For precipitation we can perform a similar exercise ...
+```{r}
+filename <- system.file("exampledata",
+                        "hom1951550.dat",
+                        package="knmitransformer")
+precipData <- fread(filename, skip = 6)
+
+setnames(precipData, c("date", "values"))
+
+precipData <- precipData[date %/% 10000 %in% 1981 : 2010, ]
+head(precipData, n = 10)
+
+input <- CreateKnmiTFInput(precipData, 550, lat, lon)
+
+inputTrans <- TransformPrecip(input, "tmp.txt", "GL")
+head(inputTrans, n = 15)
+```
+
+
+
+
+  

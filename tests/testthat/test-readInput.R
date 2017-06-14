@@ -44,6 +44,8 @@ test_that("Input assertion", {
   tgData <- tgData[year %in% 1981 : 2010]
   expect_error(CreateKnmiTFInput(tgData[, .(date, values = tg)], 1, rep(lat, 2), lon, comment),
                "lat and lon should be of length 1")
+  expect_error(CreateKnmiTFInput(tgData[, .(date, values = as.character(tg))], 1, rep(lat, 2), lon, comment),
+               "Values should be of class numeric")
   expect_equal_to_reference(CreateKnmiTFInput(tgData[, .(date, values = tg)], 1, lat, lon, comment),
                             file = "regressionOutput/additional/CreateInput.rds")
 })

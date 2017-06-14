@@ -190,7 +190,7 @@ CreateKnmiTFInput <- function(data, stationID, lat, lon, comment = NULL) {
     stop(err)
   }
   if (class(data$values) != "numeric") {
-    err <- "Column values should be of class numeric"
+    err <- "Values should be of class numeric"
     flog.error(err)
     stop(err)
   }
