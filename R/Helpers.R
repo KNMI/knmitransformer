@@ -1,5 +1,10 @@
 ReadInput <- function(var, ifile) {
 
+  if (! file.exists(ifile)) {
+    flog.error("Input file does not exist.")
+    stop("Input file does not exist.")
+  }
+
   types <- c("rr", "evmk", "rsds", "tg", "tn", "tx")
   if (!(var %in% types)) {
     flog.error("variable not defined.")
@@ -30,7 +35,7 @@ ReadInput <- function(var, ifile) {
       input$lat = lat
     }
   }
-  input
+  structure(input, class = "knmiTF")
 }
 
 CheckPeriod <- function(p) {
@@ -91,7 +96,7 @@ ReadChangeFactors <- function(var, scenario, period, subscenario = NULL) {
 
 
 WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
-                        subscenario = NULL) {
+                        subscenario = NULL, userProvided = TRUE) {
   flog.info("Write output")
   sink(ofile)
 
@@ -106,12 +111,16 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
     writeLines("# Transformed daily Makkink evaporation [mm]")
   }
   writeLines("# according to KNMI'14 climate change scenarios.")
-  if (var == "rr") {
-    writeLines("# File created from daily (homogenised) observations of")
+  if (userProvided) {
+    writeLines("# File created from user provided data.")
   } else {
-    writeLines("# File created from daily observations of")
+    if (var == "rr") {
+      writeLines("# File created from daily (homogenised) observations of")
+    } else {
+      writeLines("# File created from daily observations of")
+    }
+    writeLines("# Royal Netherlands Meteorological Institute (KNMI).")
   }
-  writeLines("# Royal Netherlands Meteorological Institute (KNMI).")
 
   writeLines("#")
   writeLines(paste0("# Time horizon: ", p))
@@ -122,6 +131,8 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
     writeLines(paste0("# Subscenario: ", subscenario))
   }
   writeLines(paste0("# Version ", version))
+  writeLines(timestamp(stamp = format(Sys.time(), "%B %d, %Y"),
+                       prefix = "# Created: ", suffix = "", quiet = TRUE))
   writeLines("#")
 
   #for(i in 1:length(H.comments)) writeLines(H.comments[i])
@@ -145,10 +156,84 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
   sink()
 }
 
+#' Create valid input from user specified data
+#'
+#' @description can be used if one does not have the KNMI standard format
+#'
+#' @note Currently for single stations only
+#'
+#' @param data a data.frame of two columns
+#' \describe{
+#'   \item{date}{integer vector date format yyyymmdd }
+#'   \item{values}{numeric values of observation}
+#' }
+#'
+#' @param stationID numeric (either official station number or self-chosen /
+#'   recommendations?)
+#'
+#' @param lat numeric latitude
+#' @param lon numeric longitude
+#'
+#' @param comment user specified comment (should start with '#') default is the
+#'   current timestamp
+#' @export
+CreateKnmiTFInput <- function(data, stationID, lat, lon, comment = NULL) {
+  # include test on structure of data
+  if (!all(c("date", "values") %in% colnames(data)) | ncol(data) != 2) {
+    err <- "Data should contain only column date and column values"
+    flog.error(err)
+    stop(err)
+  }
+  if (class(data$date) != "integer") {
+    err <- "Date col should contain date in integer format 'yyyymmdd'"
+    flog.error(err)
+    stop(err)
+  }
+  if (class(data$values) != "numeric") {
+    err <- "Values should be of class numeric"
+    flog.error(err)
+    stop(err)
+  }
+  necessaryDates <- as.integer(format(seq.Date(as.Date("1981-01-01"), as.Date("2010-12-31"), by = 1), "%Y%m%d"))
+  if (! all(necessaryDates %in% data[, date])) {
+    err <- "The date column should contain the full period from 19810101 to 20101231"
+    flog.error(err)
+    stop(err)
+  }
+  if (! all(data[, date] %in%  necessaryDates)) {
+    err <- "Currently the period is limited to the official thirty year period 1981-2010"
+    flog.error(err)
+    stop(err)
+  }
+  if (is.null(comment)) comment <- timestamp(quiet = TRUE)
+  if (length(lat) != 1 | length(lon) != 1) {
+    stop("lat and lon should be of length 1")
+  }
+  obs <- as.data.frame(data, stringsAsFactors = FALSE)
+  knmiRdCoords <- spTransform(SpatialPoints(cbind(lon, lat),
+                                            CRS("+proj=longlat +datum=WGS84")), CRS("+init=epsg:28992"))@coords / 1000
+  header <- data.frame(V1 = rep("00000000", 5),
+                       V2 = c(stationID, knmiRdCoords[1], knmiRdCoords[2],
+                              lon, lat),
+                       stringsAsFactors = FALSE)
+  # Check that comments are inline with rest
+  structure(list(obs = obs, coords = c(lat, lon), comment = comment,
+                 header = header), class = "knmiTF")
+}
+
 #' Show station table
-#' @keywords internal
+#' @export
 ShowStationTable <- function() {
   tmp <- system.file("extdata", "stationstabel",
                      package = "knmitransformer")
   system(paste0("less ", tmp))
+}
+
+CheckIfUserProvided <- function(x) {
+  admissibleNames <- c("tx", "tn", "tg", "rsds", "rrcentr", "evmk")
+  admissibleNames <- paste0("KNMI14____ref_", admissibleNames,
+                            "___19810101-20101231_v3.2.txt")
+  ifelse(class(x) != "character", TRUE,
+         !(grepl("knmitransformer/refdata/", x) &
+           basename(x) %in% admissibleNames))
 }

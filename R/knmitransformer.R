@@ -3,17 +3,15 @@
 #'  mean, minimum or maximum temperature `[degree Celsius]` and 'change factors'
 #'  from input files and applies them to function 'tm_trans_KNMI14' to obtain
 #'  'future time series' that match a certain climate
-#' @param ifile  Name of the input file (ASCII) that contains reference data
-#'               (all numerics) in which the columns provide time series for
-#'               specific stations.
-#'               The first column should provide either 00000000 or a
-#'               datestring YYYYMMDD:
-#'               Rows starting with 00000000 are considered station info
-#'               (station number, lat, lon etc.) and are ignored.
-#'               Rows starting with a datestring refer to a specific day in the
-#'               time series.
-#'               Rows starting with "#" are completely ignored and returned
-#'               unchanged.
+#' @param input  knmiTF object or name of the input file (ASCII) that contains
+#'  reference data (all numerics) in which the columns provide time series for
+#'  specific stations. The first column should provide either 00000000 or a
+#'  datestring YYYYMMDD: \cr
+#'  Rows starting with 00000000 are considered station info (station number,
+#'  lat, lon etc.) and are ignored. \cr
+#'  Rows starting with a datestring refer to a specific day in the time series. \cr
+#'  Rows starting with "#" are completely ignored and returned
+#'  unchanged.
 #'
 #' @param ofile  (DEFAULT=NA) Name of the output file to write the
 #'               transformed data to.
@@ -35,7 +33,7 @@
 #'                <ZON> Zuidoost Nederland
 #' @param rounding Logical (default = TRUE) if results should be rounded
 #' @export
-TransformTemp <- function(ifile,
+TransformTemp <- function(input,
                           ofile = NA,
                           scenario,
                           horizon = 2030,
@@ -48,8 +46,11 @@ TransformTemp <- function(ifile,
 
   CheckPeriod(horizon)
 
-  # READ REFERENCE DATA FROM ifile
-  input <- ReadInput(var, ifile)
+  userProvided <- CheckIfUserProvided(input)
+  if (class(input) != "knmiTF") {
+    input <- ReadInput(var, input)
+  }
+
 
   # READ CHANGE FACTORS (DELTAS)
   deltas <- ReadChangeFactors(var, scenario, horizon)
@@ -57,12 +58,14 @@ TransformTemp <- function(ifile,
   # LINK STATIONS TO REGIONS
   if(is.na(regio.file)) {
     regio.tabel <- NA
-  } else {
+  } else if (regio.file == "stationstabel") {
     tmpPath <- system.file("extdata", "stationstabel",
                            package = "knmitransformer")
     stationstabel <- read.table(tmpPath)
     regio.tabel   <- as.vector(stationstabel[match(names(input$obs)[-1],
                                                    stationstabel[, 1]), 2])
+  } else {
+    regio.tabel <- regio.file
   }
 
   flog.debug("regio.table={%s}", paste(regio.tabel, collapse = ", "))
@@ -80,7 +83,8 @@ TransformTemp <- function(ifile,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput(var, ofile, version, scenario, horizon, input$comments, result)
+    WriteOutput(var, ofile, version, scenario, horizon, input$comments, result,
+                userProvided = userProvided)
   }
 
   flog.debug("Temperature transformation ended successfully!")
@@ -99,7 +103,7 @@ TransformTemp <- function(ifile,
 #' @note The 5th row of the ifile indicated by 00000000 must be given as it is
 #' interpreted to contain LATITUDES of station.
 #' @export
-TransformRadiation <- function(ifile,
+TransformRadiation <- function(input,
                                ofile=NA,
                                scenario,
                                horizon = 2030,
@@ -109,7 +113,11 @@ TransformRadiation <- function(ifile,
 
   CheckPeriod(horizon)
 
-  input <- ReadInput("rsds", ifile)
+  userProvided <- CheckIfUserProvided(input)
+  if (class(input) != "knmiTF") {
+    input <- ReadInput("rsds", input)
+  }
+
 
   # READ CHANGE FACTORS (DELTAS)
   deltas <- ReadChangeFactors("rsds", scenario, horizon)
@@ -126,7 +134,8 @@ TransformRadiation <- function(ifile,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput("rsds", ofile, version, scenario, horizon, input$comments, result)
+    WriteOutput("rsds", ofile, version, scenario, horizon, input$comments,
+                result, userProvided = userProvided)
   }
 
   flog.debug("Radiation transformation ended successfully!")
@@ -142,7 +151,7 @@ TransformRadiation <- function(ifile,
 #' @param subscenario  subscenario for extreme precipitation
 #' ("lower", "centr" (=DEFAULT), "upper")
 #' @export
-TransformPrecip <- function(ifile,
+TransformPrecip <- function(input,
                             ofile = NA,
                             scenario,
                             horizon = 2030,
@@ -156,7 +165,10 @@ TransformPrecip <- function(ifile,
   CheckPeriod(horizon)
 
   # READ REFERENCE DATA FROM ifile
-  input <- ReadInput("rr", ifile)
+  userProvided <- CheckIfUserProvided(input)
+  if (class(input) != "knmiTF") {
+    input <- ReadInput("rr", input)
+  }
 
   # READ CHANGE FACTORS (DELTAS)
   deltas <- ReadChangeFactors("rr", scenario, horizon, subscenario)
@@ -174,7 +186,7 @@ TransformPrecip <- function(ifile,
 
   if (!is.na(ofile)) {
     WriteOutput("rr", ofile, version, scenario, horizon, input$comments, result,
-                subscenario = subscenario)
+                subscenario = subscenario, userProvided = userProvided)
   }
 
   flog.debug("Precipitation transformation ended successfully!")
@@ -186,10 +198,10 @@ TransformPrecip <- function(ifile,
 #' @description Function reads transformed mean temperature and transformed global radiation
 #' and calculates the Makkink evaporation for 'future time series' that match a certain climate
 #' @inheritParams TransformTemp
-#' @param ifile_tg   Name of the input file for temperature
-#' @param ifile_rsds Name of the input file for radiation
+#' @param input_tg   Name of the input file for temperature
+#' @param input_rsds Name of the input file for radiation
 #' @export
-TransformEvap <- function(ifile_tg, ifile_rsds,
+TransformEvap <- function(input_tg, input_rsds,
                           ofile = NA,
                           scenario,
                           horizon = 2030,
@@ -200,9 +212,14 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
 
   CheckPeriod(horizon)
 
-  rsds_input <- TransformRadiation(ifile = ifile_rsds, scenario=scenario, horizon = horizon,
+  userProvided <- CheckIfUserProvided(input_tg) |
+    CheckIfUserProvided(input_rsds)
+
+
+  rsds_input <- TransformRadiation(input = input_rsds, scenario=scenario,
+                                   horizon = horizon,
                                    rounding = FALSE)
-  tg_input   <- TransformTemp(ifile = ifile_tg, var="tg", scenario=scenario,
+  tg_input   <- TransformTemp(input = input_tg, var="tg", scenario=scenario,
                               horizon = horizon, regio.file = regio.file,
                               rounding = FALSE)
 
@@ -215,9 +232,11 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
 
   fut               <- rsds
   fut[,2:ncol(fut)] <- NA
-  fut[,2:ncol(fut)] <- makkink(tg[,2:ncol(fut),with=FALSE],rsds[,2:ncol(fut),with=FALSE])
+  fut[,2:ncol(fut)] <- makkink(tg[,2:ncol(fut),with=FALSE],
+                               rsds[,2:ncol(fut),with=FALSE])
 
-  # Have to add a test to make sure that the header here is the same as the header in the regressionInput files
+  # Have to add a test to make sure that the header here is the same as the
+  # header in the regressionInput files
   header     <- rsds_input[1:5, ]
   H.comments <- "# Makkink Evaporation [mm] as derived from transformed tg & rsds "
 
@@ -231,7 +250,8 @@ TransformEvap <- function(ifile_tg, ifile_rsds,
   result[, V1 := as.integer(V1)]
 
   if (!is.na(ofile)) {
-    WriteOutput("evmk", ofile, version, scenario, horizon, H.comments, result)
+    WriteOutput("evmk", ofile, version, scenario, horizon, H.comments, result,
+                userProvided = userProvided)
   }
 
   flog.debug("Evaporation calculation ended successfully!")

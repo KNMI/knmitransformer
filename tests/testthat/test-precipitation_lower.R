@@ -8,9 +8,9 @@ library(data.table)
 context("rr transformation (lower) - Entire station set")
 
 subscenario <- "lower"
-ifile       <- system.file("refdata",
-                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
-                           package="knmitransformer")
+input       <- ReadInput("rr", system.file("refdata",
+                                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
+                                           package="knmitransformer"))
 ofile       <- NA
 rounding    <- FALSE
 
@@ -18,7 +18,7 @@ test_that("2030 decadal prediction", {
   scenario="GL"
 
   horizon = 2030
-  tmp <- TransformPrecip(ifile=ifile,
+  tmp <- TransformPrecip(input=input,
                          ofile=ofile,
                          scenario=scenario,
                          horizon = horizon,
@@ -31,7 +31,7 @@ test_that("Scenario GL", {
   scenario="GL"
 
   horizon = 2050
-  tmp <- TransformPrecip(ifile=ifile,
+  tmp <- TransformPrecip(input=input,
                          ofile=ofile,
                          scenario=scenario,
                          horizon = horizon,
@@ -40,7 +40,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2050_rr_lower.rds")
 
   horizon = 2085
-  tmp <- TransformPrecip(ifile=ifile,
+  tmp <- TransformPrecip(input=input,
                          ofile=ofile,
                          scenario=scenario,
                          horizon = horizon,
@@ -53,7 +53,7 @@ test_that("Scenario GH", {
   scenario="GH"
 
   horizon = 2050
-  tmp <- TransformPrecip(ifile=ifile,
+  tmp <- TransformPrecip(input=input,
                          ofile=ofile,
                          scenario=scenario,
                          horizon = horizon,
@@ -62,7 +62,7 @@ test_that("Scenario GH", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2050_rr_lower.rds")
 
   horizon = 2085
-  tmp <- TransformPrecip(ifile=ifile,
+  tmp <- TransformPrecip(input=input,
                          ofile=ofile,
                          scenario=scenario,
                          horizon = horizon,
@@ -75,7 +75,7 @@ test_that("Scenario WH", {
   scenario="WH"
 
   horizon = 2050
-  tmp <- TransformPrecip(ifile=ifile,
+  tmp <- TransformPrecip(input=input,
                          ofile=ofile,
                          scenario=scenario,
                          horizon = horizon,
@@ -84,7 +84,7 @@ test_that("Scenario WH", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WH_2050_rr_lower.rds")
 
   horizon = 2085
-  tmp <- TransformPrecip(ifile=ifile,
+  tmp <- TransformPrecip(input=input,
                          ofile=ofile,
                          scenario=scenario,
                          horizon = horizon,
@@ -97,7 +97,7 @@ test_that("Scenario WL", {
   scenario="WL"
 
   horizon = 2050
-  tmp <- TransformPrecip(ifile=ifile,
+  tmp <- TransformPrecip(input=input,
                          ofile=ofile,
                          scenario=scenario,
                          horizon = horizon,
@@ -106,7 +106,7 @@ test_that("Scenario WL", {
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WL_2050_rr_lower.rds")
 
   horizon = 2085
-  tmp <- TransformPrecip(ifile=ifile,
+  tmp <- TransformPrecip(input=input,
                          ofile=ofile,
                          scenario=scenario,
                          horizon = horizon,
