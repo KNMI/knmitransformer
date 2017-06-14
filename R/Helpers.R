@@ -230,7 +230,10 @@ ShowStationTable <- function() {
 }
 
 CheckIfUserProvided <- function(x) {
-  ifelse(class(x) != "character", TRUE, !(
-    grepl("library/knmitransformer/refdata/", x) &
-    grepl("KNMI14.*ref.*v3.2.txt", x)))
+  admissibleNames <- c("tx", "tn", "tg", "rsds", "rrcentr", "evmk")
+  admissibleNames <- paste0("KNMI14____ref_", admissibleNames,
+                            "___19810101-20101231_v3.2.txt")
+  ifelse(class(x) != "character", TRUE,
+         !(grepl("knmitransformer/refdata/", x) &
+           basename(x) %in% admissibleNames))
 }
