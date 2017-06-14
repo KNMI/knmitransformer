@@ -16,7 +16,7 @@ library(knmitransformer)
 ## Precipitation:
 ```{r precipSelection}
 subscenario <- "centr"
-ifile       <- system.file("refdata",
+input       <- system.file("refdata",
                            "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
                            package="knmitransformer")
 ofile       <- "tmp.txt" # output file - used only temporary
@@ -25,7 +25,7 @@ horizon     <- 2030
 ```
 
 ```{r precipTransformation}
-futPrecip <- TransformPrecip(ifile=ifile, ofile=NA,
+futPrecip <- TransformPrecip(input=input, ofile=NA,
                              scenario=scenario, horizon=horizon,
                              subscenario=subscenario)
 ```
@@ -37,7 +37,7 @@ head(futPrecip[, 1 : 5])
 ## Temperature:
 ```{r tempSelection}
 var        <- "tg"
-ifile      <- system.file("refdata",
+input      <- system.file("refdata",
                           "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
 regio.file <- "stationstabel"
@@ -46,7 +46,7 @@ horizon    <- 2030
 ```
 
 ```{r tempTransformation}
-futTemp <- TransformTemp(ifile=ifile, ofile=NA,
+futTemp <- TransformTemp(input=input, ofile=NA,
                          scenario=scenario, horizon=horizon,
                          var=var, regio.file=regio.file)
 ```
@@ -57,7 +57,7 @@ head(futTemp[, 1 : 5])
 
 ## Radiation:
 ```{r radSelection}
-ifile      <- system.file("refdata",
+input      <- system.file("refdata",
                         "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
                         package="knmitransformer")
 scenario   <- "GL"
@@ -65,7 +65,7 @@ horizon    <- 2030
 ```
 
 ```{r radTransformation}
-futRad <- TransformRadiation(ifile=ifile, ofile=NA,
+futRad <- TransformRadiation(input=input, ofile=NA,
                          scenario=scenario, horizon=horizon)
 ```
 
@@ -75,10 +75,10 @@ head(futRad[, 1 : 5])
 
 ## Makkink evaporation:
 ```{r evapSelection}
-ifile_tg   <- system.file("refdata",
+input_tg   <- system.file("refdata",
                           "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
-ifile_rsds <- system.file("refdata",
+input_rsds <- system.file("refdata",
                         "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
                         package="knmitransformer")
 scenario   <- "GL"
@@ -87,7 +87,7 @@ regio.file <- "stationstabel"
 ```
 
 ```{r evapTransformation}
-futEvap <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds, ofile=NA,
+futEvap <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds, ofile=NA,
                          scenario=scenario, horizon=horizon,
                         regio.file="stationstabel")
 ```
