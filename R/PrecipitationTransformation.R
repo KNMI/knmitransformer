@@ -1,32 +1,22 @@
-################################################################################
-#
-# rr_trans_KNMI14.R    March 10, 2015
-#
-# author: Alexander Bakker (KNMI)
-#
-# Function 'transforms' a specific reference-dataset with daily precipitation
-# sums [mm] to a dataset representative for a future climate scenario.
-#
-# arguments:
-#
-# obs            data.frame or matrix:
-#                first column provides datestring YYYYMMDD
-#                other columns provide precipitation [mm] time series
-#                (each column represents specific station)
-#
-# deltas         data.frame or matrix that contains deltas (=change factors
-#                for the transformation) should contain following columns
-#                indicated by following headers
-#                HEADER
-#                "wdf"       relative change [%] in wet-day frequency
-#                            (wet day is defined as day with 0.1 mm or more
-#                            precipitation)
-#                "ave"       relative change [%] in mean precipitation
-#                "P99"       relative change [%] in the 99th percentile of
-#                            wet-day amounts
-#
-################################################################################
-
+#' rr_trans_KNMI14.R
+#' @description Function 'transforms' a specific reference-dataset with daily
+#'  precipitation sums (mm) to a dataset representative for a future climate
+#'  scenario.
+#' @param obs data.frame or matrix: \cr
+#'                first column provides datestring YYYYMMDD \cr
+#'                other columns provide precipitation (mm) time series
+#'                (each column represents specific station)
+#' @param deltas  data.frame or matrix that contains deltas (=change factors
+#'                for the transformation) should contain following columns
+#'                indicated by following headers
+#'                HEADER\cr
+#'                "wdf"       relative change (\%) in wet-day frequency
+#'                            (wet day is defined as day with 0.1 mm or more
+#'                            precipitation) \cr
+#'                "ave"       relative change (\%) in mean precipitation \cr
+#'                "P99"       relative change (\%) in the 99th percentile of
+#'                            wet-day amounts
+#' @keywords internal
 rr_trans_KNMI14 <- function(obs, deltas) {
 
   flog.debug("Running rr_trans_KNMI14")
@@ -37,7 +27,7 @@ rr_trans_KNMI14 <- function(obs, deltas) {
   # PREPARE DATA
   # explore observations
   mm          <- (obs[,1] %/% 100) %% 100 # the month of a day (1, 2, ..., 12)
-  climatology <- CalculateClimatology(obs[, -1], deltas, mm, th)
+  climatology <- CalculateClimatology(obs[, -1, drop = FALSE], deltas, mm, th)
 
   # future values (filled with NA)
   fut       <- obs
@@ -45,8 +35,8 @@ rr_trans_KNMI14 <- function(obs, deltas) {
   # TRANSFORMATION
   # apply transformation per station / time series
   fut[, -1] <- DryWetDays(obs      , deltas$wdf, th, mm)
-  fut[, -1] <- WetDryDays(fut[, -1], deltas$wdf, th, mm)
-  fut[, -1] <- TransformWetDayAmounts(fut[, -1], climatology, mm, th)
+  fut[, -1] <- WetDryDays(fut[, -1, drop = FALSE], deltas$wdf, th, mm)
+  fut[, -1] <- TransformWetDayAmounts(fut[, -1, drop = FALSE], climatology, mm, th)
 
   return(fut)
 }
@@ -233,10 +223,10 @@ CalculateClimatology <- function(obs, deltas, mm, th) {
   # mean (mean.obs),
   # # wet-day mean (mwet.obs),
   # wet-day 99th percentile (q1.obs)
-  wdf.obs    <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(  x>=th      )))[,-1]
-  mean.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x            )))[,-1]
-  #mwet.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x[x>=th]     )))[,-1]
-  q2.obs     <- as.matrix(aggregate(obs, by=list(mm),function(x) quantile(x[x>=th],0.90)))[,-1]
+  wdf.obs    <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(  x>=th      )))[,-1, drop = FALSE]
+  mean.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x            )))[,-1, drop = FALSE]
+  #mwet.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x[x>=th]     )))[,-1, drop = FALSE]
+  q2.obs     <- as.matrix(aggregate(obs, by=list(mm),function(x) quantile(x[x>=th],0.90)))[,-1, drop = FALSE]
   q1.obs     <- q2.obs*ratio
 
   # apply deltas to observed climatology to obtain future climatology

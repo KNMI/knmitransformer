@@ -1,3 +1,14 @@
+### Version 0.2.3
+
+- input replaced infile and can now be an object of class knmiTF
+- CreateKnmiTFInput aids the user in the creation of own input (single station
+  only so far)
+- Added examples for user defined time series in the vignette
+
+Bug fixes:
+- regio.file did not influence the outcome
+- TransformPrecip did not work for sinlge stations
+  
 ### Version 0.2.1
 
 - moved reference files fully to the revData folder

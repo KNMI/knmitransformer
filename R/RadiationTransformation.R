@@ -1,18 +1,19 @@
-# rsds_trans_KNMI14
-# @description Function 'transforms' a specific reference-dataset with time
-#  series of daily global radiation sums [kJ/m2] to a dataset representative
-#  for a future climate scenario.
-# @param obs            data.frame or matrix: \cr
-#                first column provides datestring YYYYMMDD \cr
-#                other columns provide global radiation [kJ/m2] time series
-#                (each column represents specific station)
-#
-# @param deltas         data.frame or matrix that contains deltas (=change factors for the transformation)
-#                should contain following columns indicated by following headers \cr
-#                HEADER \cr
-#                "ave"       relative change [\%] in mean shortwave surface radiation
-# @param lat vector with latitudes belonging to stations.
-#  location (row.number [i]) in vector refers to column in obs [i+1]
+#' rsds_trans_KNMI14
+#' @description Function 'transforms' a specific reference-dataset with time
+#'  series of daily global radiation sums `[kJ/m2]` to a dataset representative
+#'  for a future climate scenario.
+#' @param obs            data.frame or matrix: \cr
+#'                first column provides datestring YYYYMMDD \cr
+#'                other columns provide global radiation (kJ/m2) time series
+#'                (each column represents specific station)
+#'
+#' @param deltas         data.frame or matrix that contains deltas (=change factors for the transformation)
+#'                should contain following columns indicated by following headers \cr
+#'                HEADER \cr
+#'                "ave"       relative change (\%) in mean shortwave surface radiation
+#' @param lat vector with latitudes belonging to stations.
+#'  location (row.number (i) in vector refers to column in obs (i+1)
+#' @keywords internal
 rsds_trans_KNMI14 <- function(obs,
                               deltas,
                               lat) {
