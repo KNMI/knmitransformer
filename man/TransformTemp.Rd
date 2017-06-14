@@ -4,19 +4,17 @@
 \alias{TransformTemp}
 \title{Transformation of temperature}
 \usage{
-TransformTemp(ifile, ofile = NA, scenario, horizon = 2030, var,
+TransformTemp(input, ofile = NA, scenario, horizon = 2030, var,
   regio.file = NA, rounding = TRUE)
 }
 \arguments{
-\item{ifile}{Name of the input file (ASCII) that contains reference data
-(all numerics) in which the columns provide time series for
-specific stations.
-The first column should provide either 00000000 or a
-datestring YYYYMMDD:
-Rows starting with 00000000 are considered station info
-(station number, lat, lon etc.) and are ignored.
-Rows starting with a datestring refer to a specific day in the
-time series.
+\item{input}{knmiTF object or name of the input file (ASCII) that contains
+reference data (all numerics) in which the columns provide time series for
+specific stations. The first column should provide either 00000000 or a
+datestring YYYYMMDD: \cr
+Rows starting with 00000000 are considered station info (station number,
+lat, lon etc.) and are ignored. \cr
+Rows starting with a datestring refer to a specific day in the time series. \cr
 Rows starting with "#" are completely ignored and returned
 unchanged.}
 

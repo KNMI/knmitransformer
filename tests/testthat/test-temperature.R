@@ -8,7 +8,7 @@ library(data.table)
 context("tg transformation - Entire station set")
 
 var        <- "tg"
-ifile      <- system.file("refdata",
+input      <- system.file("refdata",
                           "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
 ofile      <- NA
@@ -19,7 +19,7 @@ test_that("2030 decadal prediction", {
   scenario="GL"
 
   horizon = 2030
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -29,7 +29,7 @@ test_that("2030 decadal prediction", {
                        )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg.rds")
 
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -43,7 +43,7 @@ test_that("Scenario WL", {
   scenario="WL"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -56,7 +56,7 @@ test_that("Scenario WL", {
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -71,7 +71,7 @@ test_that("Scenario WH", {
   scenario="WH"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -82,7 +82,7 @@ test_that("Scenario WH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tg.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -97,7 +97,7 @@ test_that("Scenario GH", {
   scenario="GH"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -108,7 +108,7 @@ test_that("Scenario GH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tg.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -123,7 +123,7 @@ test_that("Scenario GL", {
   scenario="GL"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -134,7 +134,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tg.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -149,7 +149,7 @@ test_that("Scenario GL", {
 context("tx transformation - Entire station set")
 
 var        <- "tx"
-ifile      <- system.file("refdata",
+input      <- system.file("refdata",
                           "KNMI14____ref_tx___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
 ofile      <- NA # output file - used only temporary
@@ -159,7 +159,7 @@ test_that("2030 decadal prediction", {
   scenario="GL"
 
   horizon = 2030
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -174,7 +174,7 @@ test_that("Scenario WL", {
   scenario="WL"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -187,7 +187,7 @@ test_that("Scenario WL", {
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -202,7 +202,7 @@ test_that("Scenario WH", {
   scenario="WH"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -213,7 +213,7 @@ test_that("Scenario WH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tx.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -228,7 +228,7 @@ test_that("Scenario GH", {
   scenario="GH"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -239,7 +239,7 @@ test_that("Scenario GH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tx.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -254,7 +254,7 @@ test_that("Scenario GL", {
   scenario="GL"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -265,7 +265,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tx.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -279,7 +279,7 @@ test_that("Scenario GL", {
 context("tn transformation - Entire station set")
 
 var        <- "tn"
-ifile      <- system.file("refdata",
+input      <- system.file("refdata",
                           "KNMI14____ref_tn___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
 ofile      <- NA # output file - used only temporary
@@ -289,7 +289,7 @@ test_that("2030 decadal prediction", {
   scenario="GL"
 
   horizon = 2030
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -304,7 +304,7 @@ test_that("Scenario WL", {
   scenario="WL"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -317,7 +317,7 @@ test_that("Scenario WL", {
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -332,7 +332,7 @@ test_that("Scenario WH", {
   scenario="WH"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -343,7 +343,7 @@ test_that("Scenario WH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tn.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -358,7 +358,7 @@ test_that("Scenario GH", {
   scenario="GH"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -369,7 +369,7 @@ test_that("Scenario GH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tn.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -384,7 +384,7 @@ test_that("Scenario GL", {
   scenario="GL"
 
   horizon = 2050
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -395,7 +395,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tn.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -409,7 +409,7 @@ test_that("Scenario GL", {
 
 
 context("Temperature transformation - Single station exercises")
-ifile <- "regressionInput/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
+input <- "regressionInput/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
 
 test_that("Test wrong user input", {
   ofile    = "uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
@@ -420,7 +420,7 @@ test_that("Test wrong user input", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  expect_error(TransformTemp(ifile=ifile,
+  expect_error(TransformTemp(input=input,
                              ofile=ofile,
                              scenario="GL",
                              horizon = NA,
@@ -429,7 +429,7 @@ test_that("Test wrong user input", {
                              ),
                "Period must be valid, i.e. 2030, 2050, or 2085")
 
-  expect_error(TransformTemp(ifile=ifile,
+  expect_error(TransformTemp(input=input,
                              ofile=ofile,
                              scenario="GL",
                              horizon = horizon,
@@ -446,7 +446,7 @@ test_that("Procedure works for default region", {
   horizon = 2030
   var="tg"
 
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
@@ -460,7 +460,7 @@ test_that("Procedure works for one station as well", {
   horizon = 2030
   var="tg"
 
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
@@ -480,7 +480,7 @@ test_that("Temperature regression test (with actual data) WH", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
@@ -490,7 +490,7 @@ test_that("Temperature regression test (with actual data) WH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tg___DeBilt.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
@@ -510,7 +510,7 @@ test_that("Temperature regression test (with actual data) GL", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
@@ -520,7 +520,7 @@ test_that("Temperature regression test (with actual data) GL", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tg___DeBilt.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
@@ -539,7 +539,7 @@ test_that("Temperature regression test (with actual data) GH", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
@@ -549,7 +549,7 @@ test_that("Temperature regression test (with actual data) GH", {
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tg___DeBilt.rds")
 
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
@@ -568,7 +568,7 @@ test_that("Temperature regression test (with actual data) WL", {
   #                             "tx" = max)
   regio.file="stationstabel" # table that links stations to region
 
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
@@ -580,7 +580,7 @@ test_that("Temperature regression test (with actual data) WL", {
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
   horizon = 2085
-  tmp <- TransformTemp(ifile=ifile,
+  tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,

@@ -4,13 +4,13 @@
 \alias{TransformEvap}
 \title{Calculation of Makkink evaporation}
 \usage{
-TransformEvap(ifile_tg, ifile_rsds, ofile = NA, scenario, horizon = 2030,
+TransformEvap(input_tg, input_rsds, ofile = NA, scenario, horizon = 2030,
   regio.file = NA, rounding = TRUE)
 }
 \arguments{
-\item{ifile_tg}{Name of the input file for temperature}
+\item{input_tg}{Name of the input file for temperature}
 
-\item{ifile_rsds}{Name of the input file for radiation}
+\item{input_rsds}{Name of the input file for radiation}
 
 \item{ofile}{(DEFAULT=NA) Name of the output file to write the
 transformed data to.
