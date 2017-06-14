@@ -18,7 +18,9 @@ test_that("2030 decadal prediction", {
   scenario="GL"
 
   horizon = 2030
-  tmp <- TransformPrecip(input=input,
+  tmp <- TransformPrecip(input=system.file("refdata",
+                                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
+                                           package="knmitransformer"),
                          ofile="tmp.txt",
                          scenario=scenario,
                          horizon = horizon,
