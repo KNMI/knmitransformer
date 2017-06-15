@@ -1,3 +1,9 @@
+#' Reads knmi standard file
+#'
+#' @param var type `[rr, evmk, rsds, tg, tn, tx]`
+#' @param ifile filename
+#' @return list with comments, header and observations
+#' @export
 ReadInput <- function(var, ifile) {
 
   if (! file.exists(ifile)) {
@@ -94,6 +100,18 @@ ReadChangeFactors <- function(var, scenario, period, subscenario = NULL) {
   deltas
 }
 
+PrepareOutput <- function(df, var, header, rounding) {
+  if(rounding) {
+    switch(var,
+           "rsds" = df[, -1] <- round(df[, -1]),
+           "evmk" = df[, -1] <- round(df[, -1], 2),
+           df[, -1] <- round(df[, -1], 1))
+  }
+  df <- as.data.table(df)
+  result <- rbind(header, df, use.names = FALSE)
+  result[, V1 := as.integer(V1)]
+  result
+}
 
 WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
                         subscenario = NULL, userProvided = TRUE) {

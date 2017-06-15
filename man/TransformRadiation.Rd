@@ -4,7 +4,7 @@
 \alias{TransformRadiation}
 \title{Transformation of radiation}
 \usage{
-TransformRadiation(input, ofile = NA, scenario, horizon = 2030,
+TransformRadiation(input, scenario = "GL", horizon = 2030, ofile = NA,
   rounding = TRUE)
 }
 \arguments{
@@ -18,13 +18,13 @@ Rows starting with a datestring refer to a specific day in the time series. \cr
 Rows starting with "#" are completely ignored and returned
 unchanged.}
 
-\item{ofile}{(DEFAULT=NA) Name of the output file to write the
-transformed data to.
-Format is similar to ifile}
-
-\item{scenario}{scenario ("GL", "GH", "WL", "WH")}
+\item{scenario}{scenario ("GL"=DEFAULT, "GH", "WL", "WH")}
 
 \item{horizon}{time horizon (2030=DEFAULT, 2050, 2085)}
+
+\item{ofile}{Name of the output file to write the transformed data to.
+Format is similar to input file mentioned in input. By default no output
+file is written.}
 
 \item{rounding}{Logical (default = TRUE) if results should be rounded}
 }

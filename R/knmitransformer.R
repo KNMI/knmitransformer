@@ -13,10 +13,10 @@
 #'  Rows starting with "#" are completely ignored and returned
 #'  unchanged.
 #'
-#' @param ofile  (DEFAULT=NA) Name of the output file to write the
-#'               transformed data to.
-#'               Format is similar to ifile
-#' @param scenario scenario ("GL", "GH", "WL", "WH")
+#' @param ofile Name of the output file to write the transformed data to.
+#'   Format is similar to input file mentioned in input. By default no output
+#'   file is written.
+#' @param scenario scenario ("GL"=DEFAULT, "GH", "WL", "WH")
 #' @param horizon  time horizon (2030=DEFAULT, 2050, 2085)
 #' @param var    kind of daily temperature variable
 #'               ("tg" = daily mean, "tn" = daily minimum, "tx" = daily maximum)
@@ -34,11 +34,11 @@
 #' @param rounding Logical (default = TRUE) if results should be rounded
 #' @export
 TransformTemp <- function(input,
-                          ofile = NA,
-                          scenario,
-                          horizon = 2030,
                           var,
+                          scenario = "GL",
+                          horizon = 2030,
                           regio.file = NA,
+                          ofile = NA,
                           rounding = TRUE) {
   version <- ReturnPackageVersion(var)
 
@@ -74,13 +74,7 @@ TransformTemp <- function(input,
   fut <- tm_trans_KNMI14(obs = input$obs, deltas = deltas,
                          regio.tabel = regio.tabel)
 
-  # OUTPUT #####################################################################
-  if(rounding) {
-    fut[, -1] <- round(fut[, -1], 1)
-  }
-  fut <- as.data.table(fut)
-  result <- rbind(input$header, fut, use.names = FALSE)
-  result[, V1 := as.integer(V1)]
+  result <- PrepareOutput(fut, var, input$header, rounding)
 
   if (!is.na(ofile)) {
     WriteOutput(var, ofile, version, scenario, horizon, input$comments, result,
@@ -104,9 +98,9 @@ TransformTemp <- function(input,
 #' interpreted to contain LATITUDES of station.
 #' @export
 TransformRadiation <- function(input,
-                               ofile=NA,
-                               scenario,
+                               scenario = "GL",
                                horizon = 2030,
+                               ofile=NA,
                                rounding = TRUE) {
 
   version <- ReturnPackageVersion("rsds")
@@ -125,13 +119,7 @@ TransformRadiation <- function(input,
   # TRANSFORMATION
   fut <- rsds_trans_KNMI14(obs=input$obs, deltas=deltas, lat=input$lat)
 
-  # OUTPUT #####################################################################
-  if(rounding) {
-    fut[, -1] <- round(fut[, -1])
-  }
-  fut <- as.data.table(fut)
-  result <- rbind(input$header, fut, use.names = FALSE)
-  result[, V1 := as.integer(V1)]
+  result <- PrepareOutput(fut, "rsds", input$header, rounding)
 
   if (!is.na(ofile)) {
     WriteOutput("rsds", ofile, version, scenario, horizon, input$comments,
@@ -152,10 +140,10 @@ TransformRadiation <- function(input,
 #' ("lower", "centr" (=DEFAULT), "upper")
 #' @export
 TransformPrecip <- function(input,
-                            ofile = NA,
-                            scenario,
+                            scenario = "GL",
                             horizon = 2030,
                             subscenario = "centr",
+                            ofile = NA,
                             rounding = TRUE) {
 
   version <- ReturnPackageVersion("rr")
@@ -176,13 +164,7 @@ TransformPrecip <- function(input,
   # TRANSFORMATION
   fut <- rr_trans_KNMI14(obs = input$obs, deltas = deltas)
 
-  # OUTPUT
-  if(rounding) {
-    fut[, -1] <- round(fut[, -1], 1)
-  }
-  fut <- as.data.table(fut)
-  result <- rbind(input$header, fut, use.names = FALSE)
-  result[, V1 := as.integer(V1)]
+  result <- PrepareOutput(fut, "rr", input$header, rounding)
 
   if (!is.na(ofile)) {
     WriteOutput("rr", ofile, version, scenario, horizon, input$comments, result,
@@ -195,17 +177,18 @@ TransformPrecip <- function(input,
 }
 
 #' Calculation of Makkink evaporation
-#' @description Function reads transformed mean temperature and transformed global radiation
-#' and calculates the Makkink evaporation for 'future time series' that match a certain climate
+#' @description Function reads transformed mean temperature and transformed
+#'   global radiation and calculates the Makkink evaporation for 'future time
+#'   series' that match a certain climate
 #' @inheritParams TransformTemp
 #' @param input_tg   Name of the input file for temperature
 #' @param input_rsds Name of the input file for radiation
 #' @export
 TransformEvap <- function(input_tg, input_rsds,
-                          ofile = NA,
-                          scenario,
+                          scenario = "GL",
                           horizon = 2030,
                           regio.file = NA,
+                          ofile = NA,
                           rounding = TRUE) {
 
   version <- ReturnPackageVersion("evmk")
@@ -241,13 +224,8 @@ TransformEvap <- function(input_tg, input_rsds,
   H.comments <- "# Makkink Evaporation [mm] as derived from transformed tg & rsds "
 
   # OUTPUT #####################################################################
-  if(rounding) {
-    fut <- as.data.frame(fut)
-    fut[, -1] <- round(fut[, -1], 2)
-  }
-  fut <- as.data.table(fut)
-  result <- rbind(header, fut, use.names = FALSE)
-  result[, V1 := as.integer(V1)]
+
+  result <- PrepareOutput(as.data.frame(fut), "evmk", header, rounding)
 
   if (!is.na(ofile)) {
     WriteOutput("evmk", ofile, version, scenario, horizon, H.comments, result,
