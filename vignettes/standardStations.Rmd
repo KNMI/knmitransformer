@@ -142,7 +142,7 @@ lon <- 5.18
 Now we can create the input object and transform it in the next step (use ?CreatKnmiTFInput for more information)
 ```{r CreateValidatedInput}
 input <- CreateKnmiTFInput(tgData, 1, lat, lon)
-inputTrans <- TransformTemp(input, NA, "GL", var = "tg", horizon = 2030,
+inputTrans <- TransformTemp(input, scenario = "GL", var = "tg", horizon = 2030,
                             regio.file = "MON") 
 head(inputTrans, n = 15)
 ```
@@ -164,7 +164,7 @@ head(precipData, n = 10)
 
 input <- CreateKnmiTFInput(precipData, 550, lat, lon)
 
-inputTrans <- TransformPrecip(input, "tmp.txt", "GL")
+inputTrans <- TransformPrecip(input, scenario = "GL", horizon = 2030)
 head(inputTrans, n = 15)
 ```
 
@@ -187,7 +187,7 @@ head(radiationData, n = 10)
 
 input <- CreateKnmiTFInput(radiationData, 260, lat, lon)
 
-inputTrans <- TransformRadiation(input, NA, "GL", horizon = 2030) 
+inputTrans <- TransformRadiation(input, scenario = "GL", horizon = 2030) 
 head(inputTrans, n = 15)
 
 ```

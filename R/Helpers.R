@@ -235,7 +235,7 @@ CreateKnmiTFInput <- function(data, stationID, lat, lon, comment = NULL) {
                               lon, lat),
                        stringsAsFactors = FALSE)
   # Check that comments are inline with rest
-  structure(list(obs = obs, coords = c(lat, lon), comment = comment,
+  structure(list(obs = obs, coords = c(lat, lon), lat = lat, comment = comment,
                  header = header), class = "knmiTF")
 }
 
