@@ -52,8 +52,9 @@ input1     <- ReadInput("rsds", system.file("refdata",
 input2 <- input1
 input2$header <- input2$header[, c(1,10)]
 input2$obs    <- input2$obs[, c(1,10)]
+input2$lat    <- input2$lat[10-1]
 
-test_that("temperature", {
+test_that("radiation", {
   input1Trans <- TransformRadiation(input1, rounding = rounding)
   input2Trans <- TransformRadiation(input2, rounding = rounding)
 

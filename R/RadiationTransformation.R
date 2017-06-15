@@ -20,27 +20,19 @@ rsds_trans_KNMI14 <- function(obs,
 
   flog.debug("Running rsds_trans_KNMI14")
 
+  if (ncol(obs) != length(lat) + 1) {
+    err <- "Number of stations does not match length of latitude vector."
+    flog.error(err)
+    stop(err)
+  }
+
   # PREPARE DATA
   # explore observations
-  ns         <- ncol(obs) - 1                      # number of stations (= number of columns minus 1)
-  mm         <- (obs[,1]%/%100)%%100               # the month that a day belongs to (1, 2, ..., 12)
-  nr         <- length(mm)                         # total number of days (in reference file)
-
-  fut      <- obs; fut[,-1] = NA                   # future values (filled with NA)
-
-  # FUNCTIONS USED FOR TRANSFORMATION
-
-  # transformation function
-  # X will not exceed Xmax
-  tf <- function(a,X,Xmax) apply(cbind(a*X,Xmax),1,min)
-
-  # iterative estimation of coefficient a in function <tf>
-  bounded.scaling <- function(X,Xmax,delta) {
-    f <- function(a) mean(tf(a,X,Xmax)) - (1+delta)*mean(X)
-    rc <- uniroot(f, lower=0, upper=4, tol = 0.01)
-    a <- rc$root
-    return(a)
-  }
+  ns         <- ncol(obs) - 1         # number of stations (= number of columns minus 1)
+  mm         <- (obs[,1]%/%100)%%100  # the month that a day belongs to (1, 2, ..., 12)
+  nr         <- length(mm)            # total number of days (in reference file)
+  fut        <- obs
+  fut[, -1]  <- NA        # future values (filled with NA)
 
   # TRANSFORMATION
   # apply transformation per station / time series <is> and per calendar month <im>
@@ -51,27 +43,39 @@ rsds_trans_KNMI14 <- function(obs,
       X             <- obs[days.im,is+1]     # select all obs in month <im> of station <is>
 
       # clear sky radiation for all days in month <im>
-      Rx            <- 0.75 * Angot(obs[days.im,1], lat[is])
+      Rx            <- 0.75 * ObtainAngotRadiation(obs[days.im,1], lat[is])
 
       # determine coefficient a for transformation function
       delta <- deltas[im,2]/100                # relative change of average in month <im>
       if(delta > 0) {
-        a <- bounded.scaling(X, Rx, delta)
+        a <- BoundedScaling(X, Rx, delta)
       } else {
         a <- 1 + delta
       }
-      Y <- tf(a, X, Rx)                      # transform
+      Y <- TransformRad(a, X, Rx)
       fut[days.im,is+1] <- Y
      }
   } # END  TRANSFORMATION LOOP
 
   return(fut)
+}
 
-} # end function rsds_trans_KNMI14
 
+# X will not exceed Xmax
+TransformRad <- function(a,X,Xmax) {
+  apply(cbind(a*X,Xmax),1,min)
+}
+
+# iterative estimation of coefficient a in function <tf>
+BoundedScaling <- function(X,Xmax,delta) {
+  f <- function(a) mean(TransformRad(a,X,Xmax)) - (1+delta)*mean(X)
+  rc <- uniroot(f, lower=0, upper=4, tol = 0.01)
+  a <- rc$root
+  return(a)
+}
 
 # "Angot" or "Top Of Atmoshphere" radiation
-Angot <- function(datestring_YYYYMMDD,lat) {
+ObtainAngotRadiation <- function(datestring_YYYYMMDD,lat) {
   Gsc <- 0.0820 # solar constant [MJ/m2/min]
   phi <- pi*lat/180
   J <- daynumber(datestring_YYYYMMDD)
