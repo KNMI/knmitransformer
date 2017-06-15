@@ -111,7 +111,7 @@ head(futEvap[, 1 : 5])
 
 ## User definied stations
 
-User definied stations, such as the data set in this example for daily temperature data set, which was downloaded from the [Climate Explorer](https://climexp.knmi.nl/selectdailyseries.cgi?id=someone@somewhere) will need some actions beforehand.
+User definied stations, such as the data set in this example for daily temperature data set, which was downloaded from the [Climate Explorer](https://climexp.knmi.nl/selectdailyseries.cgi?id=someone@somewhere) will need some actions beforehand. In this example data sets from De Bilt station are used.
 
 As you can see the data set has a slightly different format:
 ```{r LoadTGClimateExplorer, echo = FALSE}
@@ -122,7 +122,7 @@ tgData <- fread(filename, skip = 6)
 head(tgData, n = 10)
 ```
 
-For such data sets we will need to define an extra date column, provide latitutde and longitude details, and select an appropriate base period of 30 years, where a 30 year period is important for statistical stability. Keep in mind that the transformation programme was written with the base period 1981 - 2010 in mind.
+For such data sets we will need to define an extra date column, provide latitutde and longitude details, and select an appropriate base period of 30 years. A 30 year period is important for statistical stability; keep in mind that the transformation programme was written with the base period 1981 - 2010 in mind.
 
 First, we append one single date column, which is necessary:
 ```{r CorrectDate}
@@ -168,7 +168,29 @@ inputTrans <- TransformPrecip(input, "tmp.txt", "GL")
 head(inputTrans, n = 15)
 ```
 
+And for radiation also...
+```{r}
+filename <- system.file("exampledata",
+                        "qqqq260.dat",
+                        package="knmitransformer")
+radiationData <- fread(filename, skip = 6)
 
+head(radiationData, n = 10)
+
+radiationData[, date := as.integer(format(as.Date(paste(V1, V2, V3, sep = "-"),
+                        format = "%Y-%m-%d"), format = "%Y%m%d"))]
+head(radiationData, n = 10)
+
+radiationData <- radiationData[V1 %in% 1981 : 2010, .(date, values = V4)]
+
+head(radiationData, n = 10)
+
+input <- CreateKnmiTFInput(radiationData, 260, lat, lon)
+
+inputTrans <- TransformRadiation(input, NA, "GL", horizon = 2030) 
+head(inputTrans, n = 15)
+
+```
 
 
   
