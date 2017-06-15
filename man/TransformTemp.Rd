@@ -4,8 +4,8 @@
 \alias{TransformTemp}
 \title{Transformation of temperature}
 \usage{
-TransformTemp(input, ofile = NA, scenario, horizon = 2030, var,
-  regio.file = NA, rounding = TRUE)
+TransformTemp(input, var, scenario = "GL", horizon = 2030,
+  regio.file = NA, ofile = NA, rounding = TRUE)
 }
 \arguments{
 \item{input}{knmiTF object or name of the input file (ASCII) that contains
@@ -18,16 +18,12 @@ Rows starting with a datestring refer to a specific day in the time series. \cr
 Rows starting with "#" are completely ignored and returned
 unchanged.}
 
-\item{ofile}{(DEFAULT=NA) Name of the output file to write the
-transformed data to.
-Format is similar to ifile}
-
-\item{scenario}{scenario ("GL", "GH", "WL", "WH")}
-
-\item{horizon}{time horizon (2030=DEFAULT, 2050, 2085)}
-
 \item{var}{kind of daily temperature variable
 ("tg" = daily mean, "tn" = daily minimum, "tx" = daily maximum)}
+
+\item{scenario}{scenario ("GL"=DEFAULT, "GH", "WL", "WH")}
+
+\item{horizon}{time horizon (2030=DEFAULT, 2050, 2085)}
 
 \item{regio.file}{this (optional) argument provides the name of an ASCII file
 that relates the stations to a particular region.
@@ -39,6 +35,10 @@ KNMI14 distinguishes following regions:
 <NON> Noordoost Nederland
 <MON> Middenoost Nederland
 <ZON> Zuidoost Nederland}
+
+\item{ofile}{Name of the output file to write the transformed data to.
+Format is similar to input file mentioned in input. By default no output
+file is written.}
 
 \item{rounding}{Logical (default = TRUE) if results should be rounded}
 }

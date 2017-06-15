@@ -4,19 +4,15 @@
 \alias{TransformEvap}
 \title{Calculation of Makkink evaporation}
 \usage{
-TransformEvap(input_tg, input_rsds, ofile = NA, scenario, horizon = 2030,
-  regio.file = NA, rounding = TRUE)
+TransformEvap(input_tg, input_rsds, scenario = "GL", horizon = 2030,
+  regio.file = NA, ofile = NA, rounding = TRUE)
 }
 \arguments{
 \item{input_tg}{Name of the input file for temperature}
 
 \item{input_rsds}{Name of the input file for radiation}
 
-\item{ofile}{(DEFAULT=NA) Name of the output file to write the
-transformed data to.
-Format is similar to ifile}
-
-\item{scenario}{scenario ("GL", "GH", "WL", "WH")}
+\item{scenario}{scenario ("GL"=DEFAULT, "GH", "WL", "WH")}
 
 \item{horizon}{time horizon (2030=DEFAULT, 2050, 2085)}
 
@@ -31,9 +27,14 @@ KNMI14 distinguishes following regions:
 <MON> Middenoost Nederland
 <ZON> Zuidoost Nederland}
 
+\item{ofile}{Name of the output file to write the transformed data to.
+Format is similar to input file mentioned in input. By default no output
+file is written.}
+
 \item{rounding}{Logical (default = TRUE) if results should be rounded}
 }
 \description{
-Function reads transformed mean temperature and transformed global radiation
-and calculates the Makkink evaporation for 'future time series' that match a certain climate
+Function reads transformed mean temperature and transformed
+global radiation and calculates the Makkink evaporation for 'future time
+series' that match a certain climate
 }

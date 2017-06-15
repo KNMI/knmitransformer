@@ -1,3 +1,8 @@
+### Version 0.2.4
+
+- made GL with horizon 2030 the default scenario (for horizon 2030 the choice
+  of the scenario does not influence anything)
+  
 ### Version 0.2.3
 
 - input replaced infile and can now be an object of class knmiTF
