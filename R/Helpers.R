@@ -265,7 +265,8 @@ MatchRegionsOnStationId <- function(stationId) {
   tmpPath <- system.file("extdata", "stationstabel",
                          package = "knmitransformer")
   stationstabel <- read.table(tmpPath)
-  as.vector(stationstabel[match(stationId, stationstabel[, 1]), 2])
+  index <- match(stationId, stationstabel[, 1])
+  as.vector(stationstabel[index, 2])
 }
 
 CheckRegions <- function(regions, nStations) {

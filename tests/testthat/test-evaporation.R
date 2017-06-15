@@ -29,7 +29,7 @@ input_rsds <- system.file("refdata",
                           "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
 ofile    <- NA
-regions  <- MatchRegionsOnStationId(ReadInput(var, input_tg)$header[1, -1])
+regions  <- MatchRegionsOnStationId(ReadInput("tg", input_tg)$header[1, -1])
 rounding <- FALSE
 
 test_that("2030 decadal prediction", {
