@@ -6,7 +6,9 @@ flog.threshold(WARN)
 # flog.threshold(DEBUG)
 
 subscenario <- "centr"
-ifile       <- "tests/testthat/regressionInput/precipitation/KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"
+input       <- system.file("refdata",
+                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
+                           package="knmitransformer")
 ofile       <- "tmp.txt" # output file - used only temporary
 scenario    <- "GL"
 horizon     <- 2050
@@ -16,7 +18,7 @@ horizon     <- 2050
 # ------------------------------------------------------------------------------
 profvis({
   library(knmitransformer)
-  TransformPrecip(ifile=ifile, ofile=ofile, scenario=scenario, horizon=horizon,
+  TransformPrecip(input=input, ofile=ofile, scenario=scenario, horizon=horizon,
                   subscenario=subscenario)
 })
 
@@ -33,12 +35,12 @@ profvis({
 # ------------------------------------------------------------------------------
 # Micro benchmark of the inner precipitation transformation
 # ------------------------------------------------------------------------------
-input  <- knmitransformer:::ReadInput("rr", ifile)
+input  <- knmitransformer:::ReadInput("rr", input)
 deltas <- knmitransformer:::ReadChangeFactors("rr", scenario, horizon, subscenario)
-# fut <- knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas, dryingScheme = "v1.1")
+# fut <- knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas)
 microbenchmark(
-  knmitransformer:::rr_trans_KNMI14(   obs = input$obs, deltas = deltas, dryingScheme = "v1.1"),
-  # knmitransformer:::rr_trans_KNMI14_v2(obs = input$obs, deltas = deltas, dryingScheme = "v1.1"),
+  knmitransformer:::rr_trans_KNMI14(   obs = input$obs, deltas = deltas),
+  # knmitransformer:::rr_trans_KNMI14_v2(obs = input$obs, deltas = deltas),
   times = 10
 )
 
@@ -49,7 +51,7 @@ microbenchmark(
 
 profvis({
   library(knmitransformer)
-  knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas, dryingScheme = "v1.1")
+  knmitransformer:::rr_trans_KNMI14(obs = input$obs, deltas = deltas)
 })
 
 # ------------------------------------------------------------------------------
@@ -68,7 +70,7 @@ fut       <- input$obs
 
 # TRANSFORMATION
 # apply transformation per station / time series
-fut[, -1] <- knmitransformer:::DryWetDays(input$obs, deltas$wdf, th, mm, dryingScheme = "v1.1")
+fut[, -1] <- knmitransformer:::DryWetDays(input$obs, deltas$wdf, th, mm)
 fut[, -1] <- knmitransformer:::WetDryDays(fut[, -1], deltas$wdf, th, mm)
 
 # fut2 <- knmitransformer:::TransformWetDayAmounts2(fut[, -1][, 1 : 20], climatology, mm, th)
@@ -103,7 +105,9 @@ microbenchmark(
 # ------------------------------------------------------------------------------
 
 var        <- "tg"
-ifile      <- "tests/testthat/regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
+input      <- system.file("refdata",
+                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
 regio.file <- "stationstabel"
 scenario   <- "GL"
 horizon    <- 2050
@@ -111,21 +115,23 @@ ofile       <- "tmp.txt" # output file - used only temporary
 
 profvis({
   library(knmitransformer)
-  TransformTemp(ifile=ifile, ofile=ofile, scenario=scenario, horizon=horizon,
+  TransformTemp(input=input, ofile=ofile, scenario=scenario, horizon=horizon,
                 var=var, regio.file = regio.file)
 })
 
 # ------------------------------------------------------------------------------
 # Full radiation transformation profile
 # ------------------------------------------------------------------------------
-ifile      <- "tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
-scenario   <- "GL"
-horizon    <- 2030
-ofile       <- "tmp.txt" # output file - used only temporary
+input    <- system.file("refdata",
+                        "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
+                        package="knmitransformer")
+scenario <- "GL"
+horizon  <- 2030
+ofile    <- "tmp.txt" # output file - used only temporary
 
 profvis({
   library(knmitransformer)
-  TransformRadiation(ifile=ifile, ofile=ofile,
+  TransformRadiation(input=input, ofile=ofile,
                      scenario=scenario, horizon=horizon)
 })
 
@@ -133,8 +139,12 @@ profvis({
 # Full evaporation transformation profile
 # ------------------------------------------------------------------------------
 
-ifile_tg    <- "tests/testthat/regressionInput/temperature/KNMI14____ref_tg___19810101-20101231_v3.2.txt"
-ifile_rsds  <- "tests/testthat/regressionInput/radiation/KNMI14____ref_rsds___19810101-20101231_v3.2.txt"
+input_tg   <- system.file("refdata",
+                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
+input_rsds <- system.file("refdata",
+                          "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
 scenario    <- "GL"
 horizon     <- 2050
 regio.file  <- "stationstabel"
@@ -142,7 +152,7 @@ ofile       <- "tmp.txt" # output file - used only temporary
 
 profvis({
   library(knmitransformer)
-  TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds, ofile=ofile,
+  TransformEvap(input_tg=input_tg, input_rsds=input_rsds, ofile=ofile,
                 scenario=scenario, horizon=horizon,
                 regio.file="stationstabel")
 })
