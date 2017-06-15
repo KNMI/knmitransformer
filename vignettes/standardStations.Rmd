@@ -49,19 +49,19 @@ For Temperature, Radiation and Makkink evaporation similar steps are needed:
 
 * **Temperature**
 ```{r tempSelection}
-var        <- "tg" #for daily average temperature; other options are daily maximum (tx), minimum (tn) temperature
-input      <- system.file("refdata",
-                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                          package="knmitransformer")
-regio.file <- "stationstabel"
-scenario   <- "GL"
-horizon    <- 2030
+var      <- "tg" #for daily average temperature; other options are daily maximum (tx), minimum (tn) temperature
+input    <- system.file("refdata",
+                        "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
+                        package="knmitransformer")
+regions  <-  MatchRegionsOnStationId(ReadInput(var, input)$header[1, -1])
+scenario <- "GL"
+horizon  <- 2030
 ```
 
 ```{r tempTransformation}
 futTemp <- TransformTemp(input=input, ofile=NA,
                          scenario=scenario, horizon=horizon,
-                         var=var, regio.file=regio.file)
+                         var=var, regions=regions)
 ```
 
 ```{r tempShowResult}
@@ -96,13 +96,13 @@ input_rsds <- system.file("refdata",
                         package="knmitransformer")
 scenario   <- "GL"
 horizon    <- 2030
-regio.file <- "stationstabel"
+regions  <-  MatchRegionsOnStationId(ReadInput("tg", input_tg)$header[1, -1])
 ```
 
 ```{r evapTransformation}
-futEvap <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds, ofile=NA,
+futEvap <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
                          scenario=scenario, horizon=horizon,
-                        regio.file="stationstabel")
+                         regions = regions)
 ```
 
 ```{r evapShowResult}
@@ -143,7 +143,7 @@ Now we can create the input object and transform it in the next step (use ?Creat
 ```{r CreateValidatedInput}
 input <- CreateKnmiTFInput(tgData, 1, lat, lon)
 inputTrans <- TransformTemp(input, scenario = "GL", var = "tg", horizon = 2030,
-                            regio.file = "MON") 
+                            regions = "MON") 
 head(inputTrans, n = 15)
 ```
 
