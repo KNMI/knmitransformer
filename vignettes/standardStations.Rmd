@@ -184,6 +184,15 @@ head(radiationData, n = 10)
 radiationData <- radiationData[V1 %in% 1981 : 2010, .(date, values = V4)]
 
 head(radiationData, n = 10)
+```
+The unit here is w/m2 instead of kJ/m2. Therefore, we have to adapt the data
+first
+```{r}
+radiationData[, values := values * 86.4]
+head(radiationData, n = 10)
+```
+
+```{r}
 
 input <- CreateKnmiTFInput(radiationData, 260, lat, lon)
 
