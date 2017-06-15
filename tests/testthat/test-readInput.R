@@ -57,4 +57,10 @@ test_that("Recognizes official files", {
                                                package="knmitransformer")))
 })
 
-
+test_that("CheckRegions", {
+  expect_error(CheckRegions("AB", 1), "Regions have to match the KNMI defined regions")
+  expect_error(CheckRegions("MON", 2), "regions should be `NLD` or vector of length equal to number of stations")
+  expect_equal(CheckRegions("NLD", 2), rep("NLD", 2))
+  expect_equal(CheckRegions(c("NLD", "MON"), 2), c("NLD", "MON"))
+  expect_error(CheckRegions(c("NLD", "MON"), 3), "regions should be `NLD` or vector of length equal to number of stations")
+})

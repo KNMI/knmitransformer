@@ -22,7 +22,7 @@
 #' @param regio.tabel   this (optional) argument provides a vector that relates the stations to
 #'               a particular region.
 #'               KNMI14 distinguishes following regions:\cr
-#'               <NLD> Nederland            (DEFAULT) \cr
+#'               <NLD> Nederland  (DEFAULT) \cr
 #'               <NWN> Noordwest Nederland \cr
 #'               <ZWN> Zuidwest Nederland\cr
 #'               <NON> Noordoost Nederland\cr

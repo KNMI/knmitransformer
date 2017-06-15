@@ -255,3 +255,34 @@ CheckIfUserProvided <- function(x) {
          !(grepl("knmitransformer/refdata/", x) &
            basename(x) %in% admissibleNames))
 }
+
+#' Match regions on station id
+#'
+#' @param stationId Station id
+#' @return vector with regions
+#' @export
+MatchRegionsOnStationId <- function(stationId) {
+  tmpPath <- system.file("extdata", "stationstabel",
+                         package = "knmitransformer")
+  stationstabel <- read.table(tmpPath)
+  as.vector(stationstabel[match(stationId, stationstabel[, 1]), 2])
+}
+
+CheckRegions <- function(regions, nStations) {
+  admissibleRegions <- c("NLD", "NWN", "ZWN", "NON", "MON", "ZON")
+  if (any(!regions %in% admissibleRegions)) {
+    err <- "Regions have to match the KNMI defined regions"
+    flog.error(err)
+    stop(err)
+  }
+  if (nStations != length(regions)) {
+    if (length(regions) == 1 & all(regions == "NLD")) {
+      regions <- rep("NLD", nStations)
+    } else {
+      err <- "regions should be `NLD` or vector of length equal to number of stations"
+      flog.error(err)
+      stop(err)
+    }
+  }
+  regions
+}
