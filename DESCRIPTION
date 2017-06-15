@@ -1,8 +1,8 @@
 Package: knmitransformer
 Type: Package
 Title: Transformation program
-Version: 0.2.1.1
-Date: 2017-06-02
+Version: 0.0.0.1
+Date: 2017-06-15
 Authors@R: as.person(c(
     "Alexander Bakker [aut]",
     "Martin Roth <roth@knmi.nl> [aut, cre]",
@@ -17,9 +17,11 @@ License: file LICENSE
 Imports:
     data.table,
     futile.logger,
-    Rcpp
+    Rcpp,
+    sp,
+    rgdal
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000
 Roxygen: list(markdown = TRUE)
 Suggests:
     testthat,

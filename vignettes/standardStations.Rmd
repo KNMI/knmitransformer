@@ -1,6 +1,6 @@
 ---
-title: "knmitransformer - standard stations"
-author: "Vignette Author"
+title: "knmitransformer - examples"
+author: "Martin Roth & Christiana Photiadou"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -10,13 +10,21 @@ vignette: >
 ---
 
 ```{r LoadLibraries, include=FALSE}
+library(data.table)
 library(knmitransformer)
 ```
+The knmitransformer pacakge can be used with both *standard stations*, as the ones used in the published Climate Scenarions by KNMI, and *user definied stations*. This document provides examples for both situations and gives step by step examples for calculating transformed series of precipitation, temperature, radiation and Makkink evaporation.
 
-## Precipitation:
+## Standard Stations
+Standard Stations refer to the stations already used in the published climate scenarios with reference period 1981-2010. These reference data can be also found in the [KNMI'14-klimaatscenario's webpage](http://www.klimaatscenarios.nl/toekomstig_weer/transformatie/index.html)
+
+ 
+* **Precipitation**
+
+To calculate transformed precipitation series using the reference data from the period 1981-2010, we have to specify the scenario, horizon, and subscenario (plese use ``` ?TransformPrecip ``` for more information) 
 ```{r precipSelection}
 subscenario <- "centr"
-ifile       <- system.file("refdata",
+input       <- system.file("refdata",
                            "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
                            package="knmitransformer")
 ofile       <- "tmp.txt" # output file - used only temporary
@@ -25,7 +33,7 @@ horizon     <- 2030
 ```
 
 ```{r precipTransformation}
-futPrecip <- TransformPrecip(ifile=ifile, ofile=NA,
+futPrecip <- TransformPrecip(input=input, ofile=NA,
                              scenario=scenario, horizon=horizon,
                              subscenario=subscenario)
 ```
@@ -34,10 +42,15 @@ futPrecip <- TransformPrecip(ifile=ifile, ofile=NA,
 head(futPrecip[, 1 : 5])
 ```
 
-## Temperature:
+The first five lines of columns V2 - V5 of the transformed input represent the
+station number, rd northing and rd easting, lat and lon of each station. 
+
+For Temperature, Radiation and Makkink evaporation similar steps are needed:
+
+* **Temperature**
 ```{r tempSelection}
-var        <- "tg"
-ifile      <- system.file("refdata",
+var        <- "tg" #for daily average temperature; other options are daily maximum (tx), minimum (tn) temperature
+input      <- system.file("refdata",
                           "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
 regio.file <- "stationstabel"
@@ -46,7 +59,7 @@ horizon    <- 2030
 ```
 
 ```{r tempTransformation}
-futTemp <- TransformTemp(ifile=ifile, ofile=NA,
+futTemp <- TransformTemp(input=input, ofile=NA,
                          scenario=scenario, horizon=horizon,
                          var=var, regio.file=regio.file)
 ```
@@ -55,9 +68,9 @@ futTemp <- TransformTemp(ifile=ifile, ofile=NA,
 head(futTemp[, 1 : 5])
 ```
 
-## Radiation:
+* **Radiation**
 ```{r radSelection}
-ifile      <- system.file("refdata",
+input      <- system.file("refdata",
                         "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
                         package="knmitransformer")
 scenario   <- "GL"
@@ -65,7 +78,7 @@ horizon    <- 2030
 ```
 
 ```{r radTransformation}
-futRad <- TransformRadiation(ifile=ifile, ofile=NA,
+futRad <- TransformRadiation(input=input, ofile=NA,
                          scenario=scenario, horizon=horizon)
 ```
 
@@ -73,12 +86,12 @@ futRad <- TransformRadiation(ifile=ifile, ofile=NA,
 head(futRad[, 1 : 5])
 ```
 
-## Makkink evaporation:
+* **Makkink evaporation**
 ```{r evapSelection}
-ifile_tg   <- system.file("refdata",
+input_tg   <- system.file("refdata",
                           "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
-ifile_rsds <- system.file("refdata",
+input_rsds <- system.file("refdata",
                         "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
                         package="knmitransformer")
 scenario   <- "GL"
@@ -87,7 +100,7 @@ regio.file <- "stationstabel"
 ```
 
 ```{r evapTransformation}
-futEvap <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds, ofile=NA,
+futEvap <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds, ofile=NA,
                          scenario=scenario, horizon=horizon,
                         regio.file="stationstabel")
 ```
@@ -95,3 +108,89 @@ futEvap <- TransformEvap(ifile_tg=ifile_tg, ifile_rsds=ifile_rsds, ofile=NA,
 ```{r evapShowResult}
 head(futEvap[, 1 : 5])
 ```
+
+## User definied stations
+
+User definied stations, such as the data set in this example for daily temperature data set, which was downloaded from the [Climate Explorer](https://climexp.knmi.nl/selectdailyseries.cgi?id=someone@somewhere) will need some actions beforehand. In this example data sets from De Bilt station are used.
+
+As you can see the data set has a slightly different format:
+```{r LoadTGClimateExplorer, echo = FALSE}
+filename <- system.file("exampledata",
+                         "tgtg260.dat",
+                         package="knmitransformer")
+tgData <- fread(filename, skip = 6)
+head(tgData, n = 10)
+```
+
+For such data sets we will need to define an extra date column, provide latitutde and longitude details, and select an appropriate base period of 30 years. A 30 year period is important for statistical stability; keep in mind that the transformation programme was written with the base period 1981 - 2010 in mind.
+
+First, we append one single date column, which is necessary:
+```{r CorrectDate}
+tgData[, date := as.integer(format(as.Date(paste(V1, V2, V3, sep = "-"),
+                        format = "%Y-%m-%d"), format = "%Y%m%d"))]
+head(tgData, n = 10)
+```
+Then we subset the correct period and ensure that the column names are date and values. Latitude and longitude are provided as well.
+
+```{r FinalPreparations}
+tgData <- tgData[V1 %in% 1981 : 2010, .(date, values = V4)]
+head(tgData, n = 10)
+lat <- 52.1
+lon <- 5.18
+```
+
+Now we can create the input object and transform it in the next step (use ?CreatKnmiTFInput for more information)
+```{r CreateValidatedInput}
+input <- CreateKnmiTFInput(tgData, 1, lat, lon)
+inputTrans <- TransformTemp(input, scenario = "GL", var = "tg", horizon = 2030,
+                            regio.file = "MON") 
+head(inputTrans, n = 15)
+```
+
+The first five lines of the second column of the transformed input represent the
+station number, rd northing and rd easting, lat and lon. 
+
+For precipitation we can perform a similar exercise ...
+```{r}
+filename <- system.file("exampledata",
+                        "hom1951550.dat",
+                        package="knmitransformer")
+precipData <- fread(filename, skip = 6)
+
+setnames(precipData, c("date", "values"))
+
+precipData <- precipData[date %/% 10000 %in% 1981 : 2010, ]
+head(precipData, n = 10)
+
+input <- CreateKnmiTFInput(precipData, 550, lat, lon)
+
+inputTrans <- TransformPrecip(input, scenario = "GL", horizon = 2030)
+head(inputTrans, n = 15)
+```
+
+And for radiation also...
+```{r}
+filename <- system.file("exampledata",
+                        "qqqq260.dat",
+                        package="knmitransformer")
+radiationData <- fread(filename, skip = 6)
+
+head(radiationData, n = 10)
+
+radiationData[, date := as.integer(format(as.Date(paste(V1, V2, V3, sep = "-"),
+                        format = "%Y-%m-%d"), format = "%Y%m%d"))]
+head(radiationData, n = 10)
+
+radiationData <- radiationData[V1 %in% 1981 : 2010, .(date, values = V4)]
+
+head(radiationData, n = 10)
+
+input <- CreateKnmiTFInput(radiationData, 260, lat, lon)
+
+inputTrans <- TransformRadiation(input, scenario = "GL", horizon = 2030) 
+head(inputTrans, n = 15)
+
+```
+
+
+  
