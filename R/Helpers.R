@@ -108,7 +108,7 @@ PrepareOutput <- function(df, var, header, rounding) {
            "evmk" = df[, -1] <- round(df[, -1], 2),
            df[, -1] <- round(df[, -1], 1))
   }
-  df <- as.data.table(df)
+  df <- as.data.table(df) # nolint
   result <- rbind(header, df, use.names = FALSE)
   result[, V1 := as.integer(V1)]
   result
