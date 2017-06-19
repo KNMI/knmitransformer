@@ -21,15 +21,13 @@
 #' @param var    kind of daily temperature variable
 #'               ("tg" = daily mean, "tn" = daily minimum, "tx" = daily maximum)
 #'
-#' @param regio.file this (optional) argument provides the name of an ASCII file
-#'               that relates the stations to a particular region.
-#'               First column is station id and second column region
-#'                KNMI14 distinguishes following regions:
-#'                <NLD> Nederland            (DEFAULT)
-#'                <NWN> Noordwest Nederland
-#'                <ZWN> Zuidwest Nederland
-#'                <NON> Noordoost Nederland
-#'                <MON> Middenoost Nederland
+#' @param regions vector of regions
+#'                KNMI14 distinguishes following regions:\cr
+#'                <NLD> Nederland (DEFAULT) \cr
+#'                <NWN> Noordwest Nederland \cr
+#'                <ZWN> Zuidwest Nederland \cr
+#'                <NON> Noordoost Nederland \cr
+#'                <MON> Middenoost Nederland \cr
 #'                <ZON> Zuidoost Nederland
 #' @param rounding Logical (default = TRUE) if results should be rounded
 #' @export
@@ -37,7 +35,7 @@ TransformTemp <- function(input,
                           var,
                           scenario = "GL",
                           horizon = 2030,
-                          regio.file = NA,
+                          regions = "NLD",
                           ofile = NA,
                           rounding = TRUE) {
   version <- ReturnPackageVersion(var)
@@ -51,28 +49,16 @@ TransformTemp <- function(input,
     input <- ReadInput(var, input)
   }
 
+  regions <- CheckRegions(regions, ncol(input$obs) - 1)
 
   # READ CHANGE FACTORS (DELTAS)
   deltas <- ReadChangeFactors(var, scenario, horizon)
 
-  # LINK STATIONS TO REGIONS
-  if(is.na(regio.file)) {
-    regio.tabel <- NA
-  } else if (regio.file == "stationstabel") {
-    tmpPath <- system.file("extdata", "stationstabel",
-                           package = "knmitransformer")
-    stationstabel <- read.table(tmpPath)
-    regio.tabel   <- as.vector(stationstabel[match(names(input$obs)[-1],
-                                                   stationstabel[, 1]), 2])
-  } else {
-    regio.tabel <- regio.file
-  }
-
-  flog.debug("regio.table={%s}", paste(regio.tabel, collapse = ", "))
+  flog.debug("regions={%s}", paste(regions, collapse = ", "))
 
   # TRANSFORMATION
   fut <- tm_trans_KNMI14(obs = input$obs, deltas = deltas,
-                         regio.tabel = regio.tabel)
+                         regio.tabel = regions)
 
   result <- PrepareOutput(fut, var, input$header, rounding)
 
@@ -187,7 +173,7 @@ TransformPrecip <- function(input,
 TransformEvap <- function(input_tg, input_rsds,
                           scenario = "GL",
                           horizon = 2030,
-                          regio.file = NA,
+                          regions = "NLD",
                           ofile = NA,
                           rounding = TRUE) {
 
@@ -203,7 +189,7 @@ TransformEvap <- function(input_tg, input_rsds,
                                    horizon = horizon,
                                    rounding = FALSE)
   tg_input   <- TransformTemp(input = input_tg, var="tg", scenario=scenario,
-                              horizon = horizon, regio.file = regio.file,
+                              horizon = horizon, regions = regions,
                               rounding = FALSE)
 
   rsds <- rsds_input[-(1:5), ]

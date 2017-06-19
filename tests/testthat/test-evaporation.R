@@ -8,14 +8,14 @@ library(data.table)
 input_tg   <- "regressionInput/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
 input_rsds <- "regressionInput/KNMI14____ref_rsds___19810101-20101231_wrong2.txt"
 ofile      <- NA
-regio.file <- "stationstabel" # table that links stations to region
+regions    <- "MON" # table that links stations to region
 rounding   <- FALSE
 
 test_that("differences in header are discovered", {
   expect_error(TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
                 scenario = "GL",
                 horizon = 2030,
-                regio.file = regio.file,
+                regions = regions,
                 rounding = rounding),
                "Same stations should be used for temperature and radiation")
 })
@@ -28,9 +28,9 @@ input_tg   <- system.file("refdata",
 input_rsds <- system.file("refdata",
                           "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
-ofile      <- NA
-regio.file <- "stationstabel" # table that links stations to region
-rounding   <- FALSE
+ofile    <- NA
+regions  <- MatchRegionsOnStationId(ReadInput("tg", input_tg)$header[1, -1])
+rounding <- FALSE
 
 test_that("2030 decadal prediction", {
   scenario="GL"
@@ -42,7 +42,7 @@ test_that("2030 decadal prediction", {
                        ofile="tmp.txt",
                        scenario=scenario,
                        horizon = horizon,
-                       regio.file = regio.file,
+                       regions = regions,
                        rounding = rounding
                        )
 
@@ -52,7 +52,7 @@ test_that("2030 decadal prediction", {
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
-                       regio.file = regio.file,
+                       regions = regions,
                        rounding = TRUE)
 
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14___2030_evmk_rounded.rds")
@@ -66,7 +66,7 @@ test_that("Scenario WL", {
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
-                       regio.file = regio.file,
+                       regions = regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WL_2050_evmk.rds")
 
@@ -76,7 +76,7 @@ test_that("Scenario WL", {
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
-                       regio.file = regio.file,
+                       regions = regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WL_2085_evmk.rds")
 })
@@ -89,7 +89,7 @@ test_that("Scenario WH", {
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
-                       regio.file = regio.file,
+                       regions = regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WH_2050_evmk.rds")
 
@@ -98,7 +98,7 @@ test_that("Scenario WH", {
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
-                       regio.file = regio.file,
+                       regions = regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WH_2085_evmk.rds")
 })
@@ -111,7 +111,7 @@ test_that("Scenario GH", {
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
-                       regio.file = regio.file,
+                       regions = regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GH_2050_evmk.rds")
 
@@ -120,7 +120,7 @@ test_that("Scenario GH", {
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
-                       regio.file = regio.file,
+                       regions = regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GH_2085_evmk.rds")
 })
@@ -133,7 +133,7 @@ test_that("Scenario GL", {
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
-                       regio.file = regio.file,
+                       regions = regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GL_2050_evmk.rds")
 
@@ -142,7 +142,7 @@ test_that("Scenario GL", {
                        ofile=ofile,
                        scenario=scenario,
                        horizon = horizon,
-                       regio.file = regio.file,
+                       regions = regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GL_2085_evmk.rds")
 })
