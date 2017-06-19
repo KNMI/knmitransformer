@@ -103,7 +103,7 @@ TransformRadiation <- function(input,
   deltas <- ReadChangeFactors("rsds", scenario, horizon)
 
   # TRANSFORMATION
-  fut <- rsds_trans_KNMI14(obs=input$obs, deltas=deltas, lat=input$lat)
+  fut <- rsds_trans_KNMI14(obs = input$obs, deltas = deltas, lat = input$lat)
 
   result <- PrepareOutput(fut, "rsds", input$header, rounding)
 
@@ -133,8 +133,6 @@ TransformPrecip <- function(input,
                             rounding = TRUE) {
 
   version <- ReturnPackageVersion("rr")
-  dryingScheme = "v1.1"
-  flog.debug("DryingScheme={%s}", dryingScheme)
 
   CheckPeriod(horizon)
 
