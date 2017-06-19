@@ -12,7 +12,7 @@ input      <- system.file("refdata",
                           "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
 ofile      <- NA
-regio.file <- "stationstabel" # table that links stations to region
+regions    <- MatchRegionsOnStationId(ReadInput(var, input)$header[1, -1])
 rounding   <- FALSE
 
 test_that("2030 decadal prediction", {
@@ -24,7 +24,7 @@ test_that("2030 decadal prediction", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
                        )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg.rds")
@@ -34,7 +34,7 @@ test_that("2030 decadal prediction", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=TRUE)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg_rounded.rds")
 })
@@ -48,7 +48,7 @@ test_that("Scenario WL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tg.rds")
@@ -61,7 +61,7 @@ test_that("Scenario WL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2085_tg.rds")
@@ -76,7 +76,7 @@ test_that("Scenario WH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tg.rds")
@@ -87,7 +87,7 @@ test_that("Scenario WH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2085_tg.rds")
@@ -102,7 +102,7 @@ test_that("Scenario GH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tg.rds")
@@ -113,7 +113,7 @@ test_that("Scenario GH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tg.rds")
@@ -128,7 +128,7 @@ test_that("Scenario GL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tg.rds")
@@ -139,7 +139,7 @@ test_that("Scenario GL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tg.rds")
@@ -153,7 +153,6 @@ input      <- system.file("refdata",
                           "KNMI14____ref_tx___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
 ofile      <- NA # output file - used only temporary
-regio.file <- "stationstabel" # table that links stations to region
 
 test_that("2030 decadal prediction", {
   scenario="GL"
@@ -164,7 +163,7 @@ test_that("2030 decadal prediction", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tx.rds")
@@ -179,7 +178,7 @@ test_that("Scenario WL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tx.rds")
@@ -192,7 +191,7 @@ test_that("Scenario WL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2085_tx.rds")
@@ -207,7 +206,7 @@ test_that("Scenario WH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tx.rds")
@@ -218,7 +217,7 @@ test_that("Scenario WH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2085_tx.rds")
@@ -233,7 +232,7 @@ test_that("Scenario GH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tx.rds")
@@ -244,7 +243,7 @@ test_that("Scenario GH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tx.rds")
@@ -259,7 +258,7 @@ test_that("Scenario GL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tx.rds")
@@ -270,7 +269,7 @@ test_that("Scenario GL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tx.rds")
@@ -283,7 +282,6 @@ input      <- system.file("refdata",
                           "KNMI14____ref_tn___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
 ofile      <- NA # output file - used only temporary
-regio.file <- "stationstabel" # table that links stations to region
 
 test_that("2030 decadal prediction", {
   scenario="GL"
@@ -294,7 +292,7 @@ test_that("2030 decadal prediction", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tn.rds")
@@ -309,7 +307,7 @@ test_that("Scenario WL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tn.rds")
@@ -322,7 +320,7 @@ test_that("Scenario WL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2085_tn.rds")
@@ -337,7 +335,7 @@ test_that("Scenario WH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tn.rds")
@@ -348,7 +346,7 @@ test_that("Scenario WH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2085_tn.rds")
@@ -363,7 +361,7 @@ test_that("Scenario GH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tn.rds")
@@ -374,7 +372,7 @@ test_that("Scenario GH", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tn.rds")
@@ -389,7 +387,7 @@ test_that("Scenario GL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tn.rds")
@@ -400,7 +398,7 @@ test_that("Scenario GL", {
                        scenario=scenario,
                        horizon = horizon,
                        var=var,
-                       regio.file=regio.file,
+                       regions=regions,
                        rounding=rounding
   )
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tn.rds")
@@ -410,15 +408,15 @@ test_that("Scenario GL", {
 
 context("Temperature transformation - Single station exercises")
 input <- "regressionInput/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"
+regions=MatchRegionsOnStationId(260)
 
 test_that("Test wrong user input", {
-  ofile    = "uitvoer_DeBilt_tg.txt"      # output file (DEFAULT="uitvoer.txt")
+  ofile    = "tmp.txt"      # output file (DEFAULT="uitvoer.txt")
   scenario = "GL"                    # scenario ("GL", "GH", "WL", "WH")
   horizon  = 2030                     # time horizon (2030, 2050, 2085)
   var      = "tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
   #                             "tx" = max)
-  regio.file="stationstabel" # table that links stations to region
 
   expect_error(TransformTemp(input=input,
                              ofile=ofile,
@@ -465,7 +463,7 @@ test_that("Procedure works for one station as well", {
                                           scenario=scenario,
                                           horizon = horizon,
                                           var=var,
-                                          regio.file=regio.file,
+                                          regions=regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg___DeBilt.rds")
 })
@@ -478,14 +476,13 @@ test_that("Temperature regression test (with actual data) WH", {
   var="tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
   #                             "tx" = max)
-  regio.file="stationstabel" # table that links stations to region
 
   tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
                                           var=var,
-                                          regio.file=regio.file,
+                                          regions=regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tg___DeBilt.rds")
 
@@ -495,7 +492,7 @@ test_that("Temperature regression test (with actual data) WH", {
                                           scenario=scenario,
                                           horizon = horizon,
                                           var=var,
-                                          regio.file=regio.file,
+                                          regions=regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2085_tg___DeBilt.rds")
 })
@@ -508,14 +505,13 @@ test_that("Temperature regression test (with actual data) GL", {
   var="tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
   #                             "tx" = max)
-  regio.file="stationstabel" # table that links stations to region
 
   tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
                                           var=var,
-                                          regio.file=regio.file,
+                                          regions=regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tg___DeBilt.rds")
 
@@ -525,7 +521,7 @@ test_that("Temperature regression test (with actual data) GL", {
                                           scenario=scenario,
                                           horizon = horizon,
                                           var=var,
-                                          regio.file=regio.file,
+                                          regions=regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tg___DeBilt.rds")
 })
@@ -537,14 +533,13 @@ test_that("Temperature regression test (with actual data) GH", {
   var="tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
   #                             "tx" = max)
-  regio.file="stationstabel" # table that links stations to region
 
   tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
                                           var=var,
-                                          regio.file=regio.file,
+                                          regions=regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tg___DeBilt.rds")
 
@@ -554,7 +549,7 @@ test_that("Temperature regression test (with actual data) GH", {
                                           scenario=scenario,
                                           horizon = horizon,
                                           var=var,
-                                          regio.file=regio.file,
+                                          regions=regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tg___DeBilt.rds")
 })
@@ -566,14 +561,13 @@ test_that("Temperature regression test (with actual data) WL", {
   var="tg"                   # temperature characteristic ("tg" = mean,
   #                             "tn" = min,
   #                             "tx" = max)
-  regio.file="stationstabel" # table that links stations to region
 
   tmp <- TransformTemp(input=input,
                                           ofile=ofile,
                                           scenario=scenario,
                                           horizon = horizon,
                                           var=var,
-                                          regio.file=regio.file,
+                                          regions=regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tg___DeBilt.rds")
 
@@ -585,7 +579,7 @@ test_that("Temperature regression test (with actual data) WL", {
                                           scenario=scenario,
                                           horizon = horizon,
                                           var=var,
-                                          regio.file=regio.file,
+                                          regions=regions,
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2085_tg___DeBilt.rds")
 })

@@ -5,7 +5,7 @@
 \title{Calculation of Makkink evaporation}
 \usage{
 TransformEvap(input_tg, input_rsds, scenario = "GL", horizon = 2030,
-  regio.file = NA, ofile = NA, rounding = TRUE)
+  regions = "NLD", ofile = NA, rounding = TRUE)
 }
 \arguments{
 \item{input_tg}{Name of the input file for temperature}
@@ -16,15 +16,13 @@ TransformEvap(input_tg, input_rsds, scenario = "GL", horizon = 2030,
 
 \item{horizon}{time horizon (2030=DEFAULT, 2050, 2085)}
 
-\item{regio.file}{this (optional) argument provides the name of an ASCII file
-that relates the stations to a particular region.
-First column is station id and second column region
-KNMI14 distinguishes following regions:
-<NLD> Nederland            (DEFAULT)
-<NWN> Noordwest Nederland
-<ZWN> Zuidwest Nederland
-<NON> Noordoost Nederland
-<MON> Middenoost Nederland
+\item{regions}{vector of regions
+KNMI14 distinguishes following regions:\cr
+<NLD> Nederland (DEFAULT) \cr
+<NWN> Noordwest Nederland \cr
+<ZWN> Zuidwest Nederland \cr
+<NON> Noordoost Nederland \cr
+<MON> Middenoost Nederland \cr
 <ZON> Zuidoost Nederland}
 
 \item{ofile}{Name of the output file to write the transformed data to.
