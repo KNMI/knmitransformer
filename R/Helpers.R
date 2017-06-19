@@ -22,7 +22,7 @@ ReadInput <- function(var, ifile) {
   flog.debug("Scanning of the reference data returned n={%i} lines.", length(H.comments))
   H.comments <- H.comments[grep("#", H.comments)] # (only necessary for output file)
 
-  obs        < - read.table(ifile, header = F)     # read reference data (header wordt niet apart ingelezen)
+  obs         <- read.table(ifile, header = F)     # read reference data (header wordt niet apart ingelezen)
   header      <- obs[which(obs[, 1] == 0), ]       # header met stations meta-data etc.
   header[, 1] <- paste0(rep(0, 8), collapse = "")  # "00000000"
 
