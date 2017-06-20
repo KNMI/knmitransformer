@@ -18,13 +18,13 @@ ReadInput <- function(var, ifile) {
   }
 
   flog.info("Reading reference data, file={%s}", ifile)
-  H.comments <- scan(ifile, character(0), sep = "\n", quiet=TRUE) # select lines with "#" from reference file and ignore them
+  H.comments <- scan(ifile, character(0), sep = "\n", quiet = TRUE) # select lines with "#" from reference file
   flog.debug("Scanning of the reference data returned n={%i} lines.", length(H.comments))
   H.comments <- H.comments[grep("#", H.comments)] # (only necessary for output file)
 
-  obs        <- read.table(ifile, header = F)     # read reference data (header wordt niet apart ingelezen)
-  header     <- obs[which(obs[, 1] == 0), ]       # header met stations meta-data etc.
-  header[,1] <- paste0(rep(0, 8), collapse = "")  # "00000000"
+  obs         <- read.table(ifile, header = F)     # read reference data (header wordt niet apart ingelezen)
+  header      <- obs[which(obs[, 1] == 0), ]       # header met stations meta-data etc.
+  header[, 1] <- paste0(rep(0, 8), collapse = "")  # "00000000"
 
   names(obs) <- c("date", as.integer(obs[1, -1])) # station names are read from first line
   obs        <- obs[which(obs[, 1] != 0), ]       # actual data
@@ -38,7 +38,7 @@ ReadInput <- function(var, ifile) {
       flog.error("Check input file: Latitude NOT (or not properly) provided.")
       stop("Check input file: Latitude NOT (or not properly) provided.")
     } else {
-      input$lat = lat
+      input$lat <- lat
     }
   }
   structure(input, class = "knmiTF")
@@ -71,7 +71,7 @@ str.ext <- function(var, ch, n) {
 }
 
 ReadChangeFactors <- function(var, scenario, period, subscenario = NULL) {
-  if(period == "2030") {
+  if (period == "2030") {
     if (var == "rsds") {
       tmpPath <- "deltas-KNMI14__rsds_____2030.txt"
     } else {
@@ -95,19 +95,20 @@ ReadChangeFactors <- function(var, scenario, period, subscenario = NULL) {
   if (var == "rr") {
     flog.info("Subscenario={%s}", subscenario)
     # choose subscenario ("lower", "centr" or "upper")
-    deltas$P99 <- deltas[, paste("p99", subscenario, sep=".")]
+    deltas$P99 <- deltas[, paste("p99", subscenario, sep = ".")]
   }
   deltas
 }
 
 PrepareOutput <- function(df, var, header, rounding) {
-  if(rounding) {
+  V1 <- NULL
+  if (rounding) {
     switch(var,
            "rsds" = df[, -1] <- round(df[, -1]),
            "evmk" = df[, -1] <- round(df[, -1], 2),
            df[, -1] <- round(df[, -1], 1))
   }
-  df <- as.data.table(df)
+  df <- as.data.table(df) # nolint
   result <- rbind(header, df, use.names = FALSE)
   result[, V1 := as.integer(V1)]
   result
@@ -153,22 +154,24 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
                        prefix = "# Created: ", suffix = "", quiet = TRUE))
   writeLines("#")
 
-  #for(i in 1:length(H.comments)) writeLines(H.comments[i])
-
   header <- as.data.frame(dat[1:5, ])
   header[, 1] <- paste0(rep(0, 8), collapse = "")
 
-  write.table(format(header[1,      ], width = 8),             file = "", row.names = F, col.names = F, quote = F)
-  write.table(format(header[2:5,    ], width = 8, nsmall = 3), file = "", row.names = F, col.names = F, quote = F)
-  # write.table(format(dat[-(1:5), ], width = 8, nsmall = 2), file = "", row.names = F, col.names = F, quote = F)
-  date <- dat[-(1:5), 1]
-  tmp  <- dat[-(1:5), -1]
+  write.table(format(header[1,      ], width = 8),             file = "",
+              row.names = F, col.names = F, quote = F)
+  write.table(format(header[2:5,    ], width = 8, nsmall = 3), file = "",
+              row.names = F, col.names = F, quote = F)
+  date <- dat[-c(1:5), 1]
+  tmp  <- dat[-c(1:5), -1]
   if (var == "rsds") {
-    write.table(format(cbind(date, round(tmp)), width = 8, nsmall = 0), file = "", row.names = F, col.names = F, quote = F)
+    write.table(format(cbind(date, round(tmp)), width = 8, nsmall = 0),
+                file = "", row.names = F, col.names = F, quote = F)
   } else if (var == "evmk") {
-    write.table(format(cbind(date, round(tmp, 2)), width = 8, nsmall = 2), file = "", row.names = F, col.names = F, quote = F)
+    write.table(format(cbind(date, round(tmp, 2)), width = 8, nsmall = 2),
+                file = "", row.names = F, col.names = F, quote = F)
   } else {
-    write.table(format(cbind(date, round(tmp, 1)), width = 8, nsmall = 1), file = "", row.names = F, col.names = F, quote = F)
+    write.table(format(cbind(date, round(tmp, 1)), width = 8, nsmall = 1),
+                file = "", row.names = F, col.names = F, quote = F)
   }
 
   sink()
@@ -254,4 +257,43 @@ CheckIfUserProvided <- function(x) {
   ifelse(class(x) != "character", TRUE,
          !(grepl("knmitransformer/refdata/", x) &
            basename(x) %in% admissibleNames))
+}
+
+#' Match regions on station id
+#'
+#' @param stationId Station id
+#' @return vector with regions
+#' @export
+MatchRegionsOnStationId <- function(stationId) {
+  tmpPath <- system.file("extdata", "stationstabel",
+                         package = "knmitransformer")
+  stationstabel <- read.table(tmpPath)
+  index <- match(stationId, stationstabel[, 1])
+  as.vector(stationstabel[index, 2])
+}
+
+CheckRegions <- function(regions, nStations) {
+  admissibleRegions <- c("NLD", "NWN", "ZWN", "NON", "MON", "ZON")
+  if (any(!regions %in% admissibleRegions)) {
+    err <- "Regions have to match the KNMI defined regions"
+    flog.error(err)
+    stop(err)
+  }
+  if (nStations != length(regions)) {
+    if (length(regions) == 1 & all(regions == "NLD")) {
+      regions <- rep("NLD", nStations)
+    } else {
+      err <- "regions should be `NLD` or vector of length equal to number of stations"
+      flog.error(err)
+      stop(err)
+    }
+  }
+  regions
+}
+
+#' Obtains corresponding month
+#' @param day integer in format yyyymmdd
+#' @keywords internal
+ObtainMonth <- function(day) {
+  (day%/%100)%%100  # the month that a day belongs to (1, 2, ..., 12)
 }
