@@ -1,1 +1,15 @@
-.lintr
+linters: with_defaults(
+    infix_spaces_linter = NULL, # 569
+    line_length_linter = NULL, # 189
+    assignment_linter = NULL, # 147
+    commas_linter = NULL, # 77
+    snake_case_linter = NULL, # should be incorporated
+    camel_case_linter = NULL, # 60
+    commented_code_linter = NULL, # 52
+    spaces_left_parentheses_linter = NULL, # 37
+    single_quotes_linter = NULL, # 8
+    no_tab_linter = NULL, # 7
+    open_curly_linter = NULL, # 3
+    NULL
+  )
+exclusions: list("R/RcppExports.R")
