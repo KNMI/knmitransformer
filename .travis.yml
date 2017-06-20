@@ -17,8 +17,8 @@ addons:
       - libgdal-dev
       - libproj-dev
 
-env:
-  LINTR_COMMENT_BOT=false
+#env:
+#  LINTR_COMMENT_BOT=false
 
 r_packages:
   - covr
