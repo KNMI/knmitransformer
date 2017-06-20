@@ -190,8 +190,8 @@ TransformEvap <- function(input_tg, input_rsds,
                               horizon = horizon, regions = regions,
                               rounding = FALSE)
 
-  rsds <- rsds_input[-(1:5), ]
-  tg   <- tg_input[-(1:5), ]
+  rsds <- rsds_input[-c(1:5), ]
+  tg   <- tg_input[-c(1:5), ]
   if (!all(rsds_input[1:5, ] == tg_input[1:5, ])) {
     flog.error("Same stations should be used for temperature and radiation")
     stop("Same stations should be used for temperature and radiation")

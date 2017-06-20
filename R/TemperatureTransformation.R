@@ -44,15 +44,15 @@ tm_trans_KNMI14 <- function(obs,
   fut[, -1] <- NA   # future values (filled with NA)
 
   # region information
-  if(!("regio" %in% colnames(deltas))) deltas$regio <- "NLD" # add column <regio> to deltas if not provided
+  if (!("regio" %in% colnames(deltas))) deltas$regio <- "NLD" # add column <regio> to deltas if not provided
   deltas <- deltas[c("regio","maand","P01","P05","P50","P95","P99")] # arrange deltas
 
   # TRANSFORMATION
   # apply transformation per station <is> / time series
-  for(is in 1:ns) {
+  for (is in 1:ns) {
     regio <- ifelse(is.na(regio.tabel),"NLD",regio.tabel[is]) # determine region
 
-    for(im in 1:12) {
+    for (im in 1:12) {
       # get change factors for specific station and month
       percentile.changes <- as.numeric(
         deltas[which(deltas[,1]==regio & deltas[,2]==im),-1:-2] )
@@ -74,7 +74,7 @@ tm_trans_KNMI14 <- function(obs,
       b         <-  Y.percentiles[ip] - a * X.percentiles[ip]
       Y[x.ids]   <- a * X[x.ids] + b                             # apply function to all temperatures below 5th percentile
 
-      for(ip in 3:(length(X.percentiles)-1)) {
+      for (ip in 3:(length(X.percentiles)-1)) {
         x.ids    <- which(X >= X.percentiles[ip-1] & X < X.percentiles[ip]) # id's all values within analysed percentile range
         a        <- (Y.percentiles[ip] - Y.percentiles[ip-1]) /
                     (X.percentiles[ip] - X.percentiles[ip-1])

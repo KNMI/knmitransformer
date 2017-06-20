@@ -2,7 +2,7 @@ context("Evaporation calculation")
 
 library(futile.logger)
 flog.threshold(DEBUG)
-flog.appender(appender.file('knmitransformer_evaporation.log'))
+flog.appender(appender.file("knmitransformer_evaporation.log"))
 library(data.table)
 
 input_tg   <- "regressionInput/KNMI14____ref_tg___19810101-20101231_v3.2_260.txt"

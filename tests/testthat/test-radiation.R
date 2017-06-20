@@ -2,7 +2,7 @@ context("Radiation transformation")
 
 library(futile.logger)
 flog.threshold(DEBUG)
-flog.appender(appender.file('knmitransformer_radiation.log'))
+flog.appender(appender.file("knmitransformer_radiation.log"))
 library(data.table)
 
 context("rsds transformation - Entire station set")

@@ -2,7 +2,7 @@ context("Transformation of precipitation")
 
 library(futile.logger)
 flog.threshold(DEBUG)
-flog.appender(appender.file('knmitransformer_precipitation.log'))
+flog.appender(appender.file("knmitransformer_precipitation.log"))
 library(data.table)
 
 context("rr transformation (lower) - Entire station set")

@@ -2,7 +2,7 @@ context("Temperature transformation")
 
 library(futile.logger)
 flog.threshold(DEBUG)
-flog.appender(appender.file('knmitransformer_temperature.log'))
+flog.appender(appender.file("knmitransformer_temperature.log"))
 library(data.table)
 
 context("tg transformation - Entire station set")

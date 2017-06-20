@@ -45,7 +45,8 @@ rr_trans_KNMI14 <- function(obs, deltas) {
 DryWetDays <- function(obs, wdf, th, mm) {
 
   # DRYING WET DAYS ##########################################################
-  if(sum(wdf < 0) > 0) {   # check if reduction in wet days is needed
+  if (sum(wdf < 0) > 0) {
+    # check if reduction in wet days is needed
 
     flog.debug("Drying wet days")
 
@@ -55,7 +56,7 @@ DryWetDays <- function(obs, wdf, th, mm) {
     # necessary for the selection of 'days to dry'
     makeUnique <- obs[, 1] * 1e-10
 
-    for(is in 2:ncol(obs)) {
+    for (is in 2:ncol(obs)) {
       Y <- obs[, is]
 
       # dryingSchme VERSION V1.1 is official KNMI14 "drying procedure" (see TR-349)
@@ -69,16 +70,16 @@ DryWetDays <- function(obs, wdf, th, mm) {
       X          <- ifelse(Y < th, Y, Y + makeUnique)
 
       # loop all months for which a reduction of the wet day is projected
-      for(im in which(wdf < 0)) {
+      for (im in which(wdf < 0)) {
 
-        Xw   <- sort(X[which(X >= th & mm == im)])        # sorted vector of all wet day amounts that fall in month <im>
-        ndry <- round((-1 * wdf[im] / 100) * length(Xw))  # number of days 'to dry'
-        if(ndry > 0) {
+        Xw   <- sort(X[which(X >= th & mm == im)])  # sorted vector of all wet day amounts that fall in month <im>
+        ndry <- round(-wdf[im] / 100 * length(Xw))  # number of days 'to dry'
+        if (ndry > 0) {
           step <- length(Xw) / ndry # step size to step through wet day amount vector <Xw> (NOT AN INTEGER)
 
           # determine target values for month <im> (homogeneously selected from subset <Xw>)
           # and remember specific month <im> that belongs to target.values
-          target.values <- c(target.values, Xw[round(((1:ndry) - 0.5) * step)])
+          target.values <- c(target.values, Xw[round(((1:ndry) - 0.5) * step)]) #nolint
           target.months <- c(target.months, rep(im, ndry))
         }
       }
@@ -89,7 +90,7 @@ DryWetDays <- function(obs, wdf, th, mm) {
       # selection of days to dry
       droogmaken <- vector()  # vector containing the 'days to dry'
       # step through all target values from small to large
-      for(idry in 1:length(target.values)) {
+      for (idry in 1:length(target.values)) {
 
         # select all days that are currently available for drying
         # (during the drying procedure new wet days may become available for drying)
@@ -146,7 +147,7 @@ WetDryDays <- function(fut, wdf, th, mm) {
 
   flog.debug("Wetting dry days")
 
-  for(is in 1:ncol(fut)) {
+  for (is in 1:ncol(fut)) {
     # WETTING DRY DAYS #######################
     Y  <- fut[, is]
     X  <- Y             # time series after drying
@@ -154,31 +155,33 @@ WetDryDays <- function(fut, wdf, th, mm) {
     X1 <- c(1, X[-nr])  # precipitation of preceding day (preceding day of first day is
     # assigned 1 mm)
 
-    for(im in 1:12) {                                     # loop through 12 calendar months
+    for (im in 1:12) {
+      # loop through 12 calendar months
 
-      if(wdf[im] > 0) {                              # in case an increase of wdf is projected
+      if (wdf[im] > 0) {
+        # in case an increase of wdf is projected
 
         rows    <- which(mm==im)                       # identify all days in month <im>
         Xm      <-  X[rows]                            #   subset all days in month <im>
         X1m     <- X1[rows]                            #      and all preceding days
         Xw      <- sort(Xm[which(Xm >= th)])           # sort all wet day values
-        dwet    <- round((wdf[im] / 100) * length(Xw)) # number of 'dry days to wet'
-        if(dwet > 0) {
+        dwet    <- round((wdf[im] / 100) * length(Xw)) # number of 'dry days to wet' #nolint
+        if (dwet > 0) {
 
           # select target values
           step    <- length(Xw) / dwet                      # step size to step through sorted step
-          target.values <- Xw[round(((1:dwet) - 0.5) * step)] # determine target.values for month <im>
+          target.values <- Xw[round(((1:dwet) - 0.5) * step)] # determine target.values for month <im> #nolint
           # (homogeneously selected from sorted subset)
           # select days to wet
           preceding.wet <- cumsum(Xm >= th) + step / 2 # cumulative number of preceding wet days in month <im>
           add     <- vector()                          # vector with days that should be wetted
 
-          for(id in 1:dwet) {
+          for (id in 1:dwet) {
             add     <- c(add,
                          which(Xm < th &                   # select 'first' 'dry' day that succeeds a wet' day,
                                X1m >= th &                 # for which <preceding.wet> exceeds the <step> size
                                preceding.wet >= step)[1])  # and add this day(id) to vector <add>
-            if(is.na(add[id])) {
+            if (is.na(add[id])) {
               add <- add[-id]
             } else {
               preceding.wet <- preceding.wet - step        # and decrease vector <preceding.wet> with <step>
@@ -252,11 +255,11 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
 
   flog.debug("Transform wet day amounts")
 
-  for(is in 1:ncol(fut)) {
+  for (is in 1:ncol(fut)) {
 
     Y <- fut[, is]
 
-    for(im in 1:12) {
+    for (im in 1:12) {
       wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
       Xm     <- Y[wet.im]                  # select all wet day amounts
 
@@ -270,7 +273,7 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
 
       # straightforward estimation of coefficients a and c
       a  <- qfut / (qobs^b)
-      c  <- a*(qobs^b) / qobs # multiplication factor for values larger than q99
+      c  <- a*qobs^b / qobs # multiplication factor for values larger than q99
 
       # actual transformation of wet-day amounts (application of transformation function)
       Y[wet.im] <- ifelse(Xm < qobs, a * Xm^b, c*Xm)

@@ -35,8 +35,8 @@ rsds_trans_KNMI14 <- function(obs,
 
   # TRANSFORMATION
   # apply transformation per station / time series <is> and per calendar month <im>
-  for(is in 1:ns) {
-    for(im in 1:12) {
+  for (is in 1:ns) {
+    for (im in 1:12) {
 
       days.im       <- which(mm == im)       # all days within in calendar month <im>
       X             <- obs[days.im,is+1]     # select all obs in month <im> of station <is>
@@ -46,7 +46,7 @@ rsds_trans_KNMI14 <- function(obs,
 
       # determine coefficient a for transformation function
       delta <- deltas[im,2]/100                # relative change of average in month <im>
-      if(delta > 0) {
+      if (delta > 0) {
         a <- BoundedScaling(X, Rx, delta)
       } else {
         a <- 1 + delta
@@ -81,7 +81,7 @@ ObtainAngotRadiation <- function(datestring_YYYYMMDD,lat) {
   dr <- 1 + 0.033*cos(2*pi*J/365)
   delta <- 0.409*sin(2*pi*J/365-1.39)
   omega <- acos(-tan(phi)*tan(delta))
-  Ra <- (24*60/pi) * Gsc * dr*(omega *sin(phi)*sin(delta) + sin(omega)*cos(phi)*cos(delta))
+  Ra <- (24*60/pi) * Gsc * dr*(omega *sin(phi)*sin(delta) + sin(omega)*cos(phi)*cos(delta)) #nolint
   1000*Ra # unit is kJ/m2
 }
 
@@ -89,7 +89,7 @@ ObtainAngotRadiation <- function(datestring_YYYYMMDD,lat) {
 daynumber <- function(datestring_YYYYMMDD) {
   dpm <- c(0,31,59,90,120,151,181,212,243,273,304,334)
   id <- floor( datestring_YYYYMMDD %%   100)
-  im <- floor((datestring_YYYYMMDD %% 10000)  / 100)
+  im <- floor((datestring_YYYYMMDD %% 10000)  / 100) #nolint
   iy <- floor( datestring_YYYYMMDD  / 10000) %%   4
   dnr <- dpm[im] + id + (iy==0 & im >2)
   return(dnr)
