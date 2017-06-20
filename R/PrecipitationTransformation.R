@@ -26,7 +26,7 @@ rr_trans_KNMI14 <- function(obs, deltas) {
 
   # PREPARE DATA
   # explore observations
-  mm          <- (obs[,1] %/% 100) %% 100 # the month of a day (1, 2, ..., 12)
+  mm          <- ObtainMonth(obs[, 1]) # the month of a day (1, 2, ..., 12)
   climatology <- CalculateClimatology(obs[, -1, drop = FALSE], deltas, mm, th)
 
   # future values (filled with NA)
