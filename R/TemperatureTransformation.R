@@ -37,11 +37,11 @@ tm_trans_KNMI14 <- function(obs,
 
   # PREPARE DATA
   # explore observations
-  ns         <- ncol(obs) - 1                      # number of stations (= number of columns minus 1)
-  mm         <- (obs[,1]%/%100)%%100               # the month that a day belongs to (1, 2, ..., 12)
-  nr         <- length(mm)                         # total number of days (in reference file)
+  ns <- ncol(obs) - 1         # number of stations (= number of columns minus 1)
+  mm <- ObtainMonth(obs[, 1]) # the month that a day belongs to (1, 2, ..., 12)
 
-  fut      <- obs; fut[,-1] = NA                   # future values (filled with NA)
+  fut <- obs
+  fut[, -1] <- NA   # future values (filled with NA)
 
   # region information
   if(!("regio" %in% colnames(deltas))) deltas$regio <- "NLD" # add column <regio> to deltas if not provided

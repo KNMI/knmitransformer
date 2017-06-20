@@ -124,4 +124,3 @@ test_that("Scenario WL", {
                          rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WL_2085_rr_centr.rds")
 })
-
