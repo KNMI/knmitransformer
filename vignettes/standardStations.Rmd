@@ -88,19 +88,19 @@ head(futRad[, 1 : 5])
 
 * **Makkink evaporation**
 ```{r evapSelection}
-input_tg   <- system.file("refdata",
+inputTemp   <- system.file("refdata",
                           "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
-input_rsds <- system.file("refdata",
+inputRad <- system.file("refdata",
                         "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
                         package="knmitransformer")
 scenario   <- "GL"
 horizon    <- 2030
-regions  <-  MatchRegionsOnStationId(ReadInput("tg", input_tg)$header[1, -1])
+regions  <-  MatchRegionsOnStationId(ReadInput("tg", inputTemp)$header[1, -1])
 ```
 
 ```{r evapTransformation}
-futEvap <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
+futEvap <- TransformEvap(inputTemp=inputTemp, inputRad=inputRad,
                          scenario=scenario, horizon=horizon,
                          regions = regions)
 ```

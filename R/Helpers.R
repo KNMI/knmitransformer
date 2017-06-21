@@ -303,5 +303,5 @@ CheckRegions <- function(regions, nStations) {
 #' @param day integer in format yyyymmdd
 #' @keywords internal
 ObtainMonth <- function(day) {
-  (day%/%100)%%100  # the month that a day belongs to (1, 2, ..., 12)
+  (day %/% 100) %% 100  # the month that a day belongs to (1, 2, ..., 12)
 }

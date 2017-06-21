@@ -17,7 +17,7 @@ library(data.table)
 
 filename <-  system.file("exampledata",
                          "tgtg260.dat",
-                         package="knmitransformer")
+                         package = "knmitransformer")
 tgData <- fread(filename, skip = 6)
 
 tgData[, date := format(as.Date(paste(V1, V2, V3, sep = "-"),
@@ -61,7 +61,7 @@ test_that("Recognizes official files", {
   expect_true(CheckIfUserProvided("ab"))
   filename <- system.file("refdata",
                           "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                          package="knmitransformer")
+                          package = "knmitransformer")
   expect_false(CheckIfUserProvided(filename))
 })
 

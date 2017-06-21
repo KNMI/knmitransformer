@@ -39,20 +39,20 @@ rsds_trans_KNMI14 <- function(obs,
     for (im in 1:12) {
 
       days.im  <- which(mm == im)    # all days within in calendar month <im>
-      X        <- obs[days.im, is+1] # select all obs in month <im> of station <is>
+      X        <- obs[days.im, is + 1 ] # select all obs in month <im> of station <is>
 
       # clear sky radiation for all days in month <im>
       Rx            <- 0.75 * ObtainAngotRadiation(obs[days.im, 1], lat[is])
 
       # determine coefficient a for transformation function
-      delta <- deltas[im, 2]/100     # relative change of average in month <im>
+      delta <- deltas[im, 2] / 100  # relative change of average in month <im>
       if (delta > 0) {
         a <- BoundedScaling(X, Rx, delta)
       } else {
         a <- 1 + delta
       }
       Y <- TransformRad(a, X, Rx)
-      fut[days.im, is+1] <- Y
+      fut[days.im, is + 1] <- Y
      }
   } # END  TRANSFORMATION LOOP
 
@@ -62,35 +62,41 @@ rsds_trans_KNMI14 <- function(obs,
 
 # X will not exceed Xmax
 TransformRad <- function(a, X, Xmax) {
-  apply(cbind(a*X, Xmax), 1, min)
+  apply(cbind(a * X, Xmax), 1, min)
 }
 
 # iterative estimation of coefficient a in function <tf>
 BoundedScaling <- function(X, Xmax, delta) {
-  f <- function(a) mean(TransformRad(a, X, Xmax)) - (1+delta)*mean(X)
-  rc <- uniroot(f, lower=0, upper=4, tol = 0.01)
+  f <- function(a) mean(TransformRad(a, X, Xmax)) - (1 + delta) * mean(X)
+  rc <- uniroot(f, lower = 0, upper = 4, tol = 0.01)
   a <- rc$root
   return(a)
 }
 
-# "Angot" or "Top Of Atmoshphere" radiation
-ObtainAngotRadiation <- function(datestring_YYYYMMDD, lat) {
+#' Obtain Top of Atmossphere radiation
+#' @inheritParams daynumber
+#' @param lat latitude
+#' @keywords internal
+ObtainAngotRadiation <- function(datestring, lat) {
   Gsc <- 0.0820 # solar constant [MJ/m2/min]
-  phi <- pi*lat/180
-  J <- daynumber(datestring_YYYYMMDD)
-  dr <- 1 + 0.033*cos(2*pi*J/365)
-  delta <- 0.409*sin(2*pi*J/365-1.39)
-  omega <- acos(-tan(phi)*tan(delta))
-  Ra <- (24*60/pi) * Gsc * dr*(omega *sin(phi)*sin(delta) + sin(omega)*cos(phi)*cos(delta)) #nolint
-  1000*Ra # unit is kJ/m2
+  phi <- pi * lat / 180
+  J <- daynumber(datestring)
+  dr <- 1 + 0.033 * cos(2 * pi * J / 365)
+  delta <- 0.409 * sin(2 * pi * J / 365 - 1.39)
+  omega <- acos(-tan(phi) * tan(delta))
+  Ra <- (24 * 60 / pi) * Gsc * dr * (omega * sin(phi) * sin(delta) +
+            sin(omega) * cos(phi) * cos(delta))
+  1000 * Ra # unit is kJ/m2
 }
 
-# Derive daynumber within year (1-366)
-daynumber <- function(datestring_YYYYMMDD) {
+#' Derive daynumber within year (1-366)
+#' @param datestring integer in format YYYYMMDD
+#' @keywords internal
+daynumber <- function(datestring) {
   dpm <- c(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
-  id <- floor( datestring_YYYYMMDD %%   100)
-  im <- floor((datestring_YYYYMMDD %% 10000)  / 100) #nolint
-  iy <- floor( datestring_YYYYMMDD  / 10000) %%   4
-  dnr <- dpm[im] + id + (iy==0 & im >2)
+  id <- floor( datestring %%   100)
+  im <- floor( (datestring %% 10000)  / 100)
+  iy <- floor( datestring  / 10000) %%   4
+  dnr <- dpm[im] + id + (iy == 0 & im > 2)
   return(dnr)
 }

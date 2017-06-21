@@ -140,8 +140,8 @@ WetDryDays <- function(fut, wdf, th, mm) {
       if (wdf[im] > 0) {
         # in case an increase of wdf is projected
 
-        rows    <- which(mm==im)                       # identify all days in month <im>
-        Xm      <-  X[rows]                            #   subset all days in month <im>
+        rows    <- which(mm == im)                     # identify all days in month <im>
+        Xm      <- X[rows]                             #   subset all days in month <im>
         X1m     <- X1[rows]                            #      and all preceding days
         Xw      <- sort(Xm[which(Xm >= th)])           # sort all wet day values
         dwet    <- round((wdf[im] / 100) * length(Xw)) # number of 'dry days to wet' #nolint
@@ -180,9 +180,9 @@ WetDryDays <- function(fut, wdf, th, mm) {
           # preceding wet day
           Y[rows[add]] <- target.values[rank(X1m[add], ties.method = "first")]
 
-        } # dfwet > 0
-      } # days need to be added
-    } # calander month
+        }
+      }
+    }
     fut[, is] <- Y
   }
   return(fut)
@@ -192,12 +192,8 @@ CalculateClimatology <- function(obs, deltas, mm, th) {
 
   flog.debug("Calculate climatology")
 
-  # qq1   <- 0.99  # quantile of wet-day amounts that is used to estimate
-  # transformation coefficients
-  # qq2   <- 0.90  # quantile of wet-day amounts that is used to estimate qq1
-  # (robustly)
-  # national median of monthly ratios between qq1 and qq2 for 240
-  # precipitation stations
+  # national median of monthly ratios between wet-day 0.99-quantile and
+  # 0.90-quantile for 240 precipitation stations (to make qq1 more robust)
   ratio <- c(2.22,
              2.271,
              2.366,
@@ -216,19 +212,19 @@ CalculateClimatology <- function(obs, deltas, mm, th) {
   # mean (mean.obs),
   # # wet-day mean (mwet.obs),
   # wet-day 99th percentile (q1.obs)
-  wdf.obs    <- as.matrix(aggregate(obs, by=list(mm),
-      function(x)     mean(  x>=th       )))[, -1, drop = FALSE]
-  mean.obs   <- as.matrix(aggregate(obs, by=list(mm),
-      function(x)     mean(x             )))[, -1, drop = FALSE]
-  q2.obs     <- as.matrix(aggregate(obs, by=list(mm),
-      function(x) quantile(x[x>=th], 0.90)))[, -1, drop = FALSE]
-  q1.obs     <- q2.obs*ratio
+  wdf.obs    <- as.matrix(aggregate(obs, by = list(mm),
+      function(x)     mean( x >= th        )))[, -1, drop = FALSE]
+  mean.obs   <- as.matrix(aggregate(obs, by = list(mm),
+      function(x)     mean(x               )))[, -1, drop = FALSE]
+  q2.obs     <- as.matrix(aggregate(obs, by = list(mm),
+      function(x) quantile(x[x >= th], 0.90)))[, -1, drop = FALSE]
+  q1.obs     <- q2.obs * ratio
 
   # apply deltas to observed climatology to obtain future climatology
-  wdf.fut  <- wdf.obs  * (1 + deltas$wdf/100)
-  mean.fut <- mean.obs * (1 + deltas$ave/100)
+  wdf.fut  <- wdf.obs  * (1 + deltas$wdf / 100)
+  mean.fut <- mean.obs * (1 + deltas$ave / 100)
   mwet.fut <- mean.fut / wdf.fut
-  q1.fut   <- q1.obs   * (1 + deltas$P99/100)
+  q1.fut   <- q1.obs   * (1 + deltas$P99 / 100)
 
   list(#mwet.obs = RemoveDimNames(mwet.obs),
        mwet.fut = RemoveDimNames(mwet.fut),
@@ -257,7 +253,6 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
       Xm     <- Y[wet.im]                  # select all wet day amounts
 
       # get climatologies for reference and future period for the month at hand
-      #mobs   <- climatology$mwet.obs[im,is]
       qobs   <- climatology$qobs[im, is]
       mfut   <- climatology$mwet.fut[im, is]
       qfut   <- climatology$qfut[im, is]
@@ -265,11 +260,11 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
       b <- floor(DeterminePowerLawExponentCpp(Xm, qfut, qobs, mfut) * 1000) / 1000
 
       # straightforward estimation of coefficients a and c
-      a  <- qfut / (qobs^b)
-      c  <- a*qobs^b / qobs # multiplication factor for values larger than q99
+      a  <- qfut / (qobs^b) #nolint
+      c  <- a * qobs^b / qobs # factor for values larger than q99 # nolint
 
       # actual transformation of wet-day amounts (application of transformation function)
-      Y[wet.im] <- ifelse(Xm < qobs, a * Xm^b, c*Xm)
+      Y[wet.im] <- ifelse(Xm < qobs, a * Xm^b, c * Xm) #nolint
 
       # prevent days being dried by the wet-day transformation
       Y[wet.im][which(Y[wet.im] < th)] <- th

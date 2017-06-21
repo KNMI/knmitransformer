@@ -57,13 +57,13 @@ tm_trans_KNMI14 <- function(obs,
     for (im in 1:12) {
       # get change factors for specific station and month
       percentile.changes <- as.numeric(
-        deltas[which(deltas[, 1]==regio & deltas[, 2]==im), -1:-2] )
+        deltas[which(deltas[, 1] == regio & deltas[, 2] == im), -1:-2] )
 
       days.im       <- which(mm == im)     # all days within in calendar month <im>
-      X             <- obs[days.im, is+1]  # select all obs in month <im> of station <is>
+      X             <- obs[days.im, is + 1]  # select obs in month <im> of station <is>
       Y             <- rep(NA, length(X))
       # observed percentiles
-      X.percentiles <- as.numeric(quantile(X, c(1, 5, 50, 95, 99)/100, na.rm=T))
+      X.percentiles <- as.numeric(quantile(X, c(1, 5, 50, 95, 99) / 100, na.rm = T))
       # estimation of future percentiles
       Y.percentiles <- X.percentiles + percentile.changes
 
@@ -74,30 +74,30 @@ tm_trans_KNMI14 <- function(obs,
       # id's for all values smaller than second smallest
       x.ids     <- which(X < X.percentiles[ip])
       # estimate linear function for percentile range
-      a         <- (Y.percentiles[ip] - Y.percentiles[ip-1]) /
-                   (X.percentiles[ip] - X.percentiles[ip-1])
+      a         <- (Y.percentiles[ip] - Y.percentiles[ip - 1]) /
+                   (X.percentiles[ip] - X.percentiles[ip - 1])
       b         <-  Y.percentiles[ip] - a * X.percentiles[ip]
       # apply function to all temperatures below 5th percentile
       Y[x.ids]   <- a * X[x.ids] + b
 
-      for (ip in 3:(length(X.percentiles)-1)) {
+      for (ip in 3:(length(X.percentiles) - 1)) {
         # id's all values within analysed percentile range
-        x.ids    <- which(X >= X.percentiles[ip-1] & X < X.percentiles[ip])
-        a        <- (Y.percentiles[ip] - Y.percentiles[ip-1]) /
-                    (X.percentiles[ip] - X.percentiles[ip-1])
+        x.ids    <- which(X >= X.percentiles[ip - 1] & X < X.percentiles[ip])
+        a        <- (Y.percentiles[ip] - Y.percentiles[ip - 1]) /
+                    (X.percentiles[ip] - X.percentiles[ip - 1])
         b        <-  Y.percentiles[ip] - a * X.percentiles[ip]
         Y[x.ids]  <- a * X[x.ids] + b
       }
 
       ip <- length(X.percentiles)
       # id's for all values larger than second largest
-      x.ids      <- which(X >= X.percentiles[ip-1])
-      a          <- (Y.percentiles[ip] - Y.percentiles[ip-1]) /
-                   (X.percentiles[ip] - X.percentiles[ip-1])
+      x.ids      <- which(X >= X.percentiles[ip - 1])
+      a          <- (Y.percentiles[ip] - Y.percentiles[ip - 1]) /
+                   (X.percentiles[ip] - X.percentiles[ip - 1])
       b          <-  Y.percentiles[ip] - a * X.percentiles[ip]
       Y[x.ids]   <- a * X[x.ids] + b
 
-      fut[days.im, is+1] <- Y
+      fut[days.im, is + 1] <- Y
     } # END MONTHLY LOOP
 
   } # END OF TRANSFORMATION LOOP
