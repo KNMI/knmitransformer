@@ -13,3 +13,4 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^provideExamples\.R$
+^\.lintr$

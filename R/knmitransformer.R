@@ -103,7 +103,8 @@ TransformRadiation <- function(input,
   deltas <- ReadChangeFactors("rsds", scenario, horizon)
 
   # TRANSFORMATION
-  fut <- rsds_trans_KNMI14(obs=input$obs, deltas=deltas, lat=input$lat)
+  fut <- rsds_trans_KNMI14(obs = input$obs, deltas = deltas,
+                           lat = input$coords[, 1])
 
   result <- PrepareOutput(fut, "rsds", input$header, rounding)
 
@@ -133,8 +134,6 @@ TransformPrecip <- function(input,
                             rounding = TRUE) {
 
   version <- ReturnPackageVersion("rr")
-  dryingScheme = "v1.1"
-  flog.debug("DryingScheme={%s}", dryingScheme)
 
   CheckPeriod(horizon)
 
@@ -167,10 +166,10 @@ TransformPrecip <- function(input,
 #'   global radiation and calculates the Makkink evaporation for 'future time
 #'   series' that match a certain climate
 #' @inheritParams TransformTemp
-#' @param input_tg   Name of the input file for temperature
-#' @param input_rsds Name of the input file for radiation
+#' @param inputTemp   Name of the input file for temperature
+#' @param inputRad Name of the input file for radiation
 #' @export
-TransformEvap <- function(input_tg, input_rsds,
+TransformEvap <- function(inputTemp, inputRad,
                           scenario = "GL",
                           horizon = 2030,
                           regions = "NLD",
@@ -181,32 +180,33 @@ TransformEvap <- function(input_tg, input_rsds,
 
   CheckPeriod(horizon)
 
-  userProvided <- CheckIfUserProvided(input_tg) |
-    CheckIfUserProvided(input_rsds)
+  userProvided <- CheckIfUserProvided(inputTemp) |
+    CheckIfUserProvided(inputRad)
 
 
-  rsds_input <- TransformRadiation(input = input_rsds, scenario=scenario,
-                                   horizon = horizon,
-                                   rounding = TRUE)
-  tg_input   <- TransformTemp(input = input_tg, var="tg", scenario=scenario,
-                              horizon = horizon, regions = regions,
-                              rounding = TRUE)
+  inputRad <- TransformRadiation(input = inputRad, scenario = scenario,
+                                 horizon = horizon,
+                                 rounding = TRUE)
+  inputTemp <- TransformTemp(input = inputTemp, var = "tg", scenario = scenario,
+                             horizon = horizon, regions = regions,
+                             rounding = TRUE)
 
-  rsds <- rsds_input[-(1:5), ]
-  tg   <- tg_input[-(1:5), ]
-  if (!all(rsds_input[1:5, ] == tg_input[1:5, ])) {
-    flog.error("Same stations should be used for temperature and radiation")
-    stop("Same stations should be used for temperature and radiation")
+  rsds <- inputRad[-c(1:5), ]
+  tg   <- inputTemp[-c(1:5), ]
+  if (!all(inputRad[1:5, ] == inputTemp[1:5, ])) {
+    err <- "Same stations should be used for temperature and radiation"
+    flog.error(err)
+    stop(err)
   }
 
   fut               <- rsds
-  fut[,2:ncol(fut)] <- NA
-  fut[,2:ncol(fut)] <- makkink(tg[,2:ncol(fut),with=FALSE],
-                               rsds[,2:ncol(fut),with=FALSE])
+  fut[, 2:ncol(fut)] <- NA
+  fut[, 2:ncol(fut)] <- makkink(tg[, 2:ncol(fut), with = FALSE],
+                               rsds[, 2:ncol(fut), with = FALSE])
 
   # Have to add a test to make sure that the header here is the same as the
   # header in the regressionInput files
-  header     <- rsds_input[1:5, ]
+  header     <- inputRad[1:5, ]
   H.comments <- "# Makkink Evaporation [mm] as derived from transformed tg & rsds "
 
   # OUTPUT #####################################################################

@@ -1,0 +1,8 @@
+linters: with_defaults(
+    line_length_linter(90), #slightly longer lines 
+    snake_case_linter, # object snake case
+    camel_case_linter = NULL, # 60
+    commented_code_linter = NULL, # 52
+    NULL
+  )
+exclusions: list("R/RcppExports.R")
