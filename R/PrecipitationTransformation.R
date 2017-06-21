@@ -58,9 +58,6 @@ DryWetDays <- function(obs, wdf, th, mm) {
     for (is in 2:ncol(obs)) {
       Y <- obs[, is]
 
-      # dryingSchme VERSION V1.1 is official KNMI14 "drying procedure" (see TR-349)
-      # if(dryingScheme == "v1.1") {
-
       # select target values
       target.values <- vector()
       target.months <- vector()
@@ -91,55 +88,8 @@ DryWetDays <- function(obs, wdf, th, mm) {
 
       # selection of days to dry
       toDry <- SelectDaysToDry(mm, target.values, target.months, X, th)
-      # droogmaken <- vector()  # vector containing the 'days to dry'
-      # # step through all target values from small to large
-      # for (idry in 1:length(target.values)) {
-      #
-      #   # select all days that are currently available for drying
-      #   # (during the drying procedure new wet days may become available for drying)
-      #   available <- which(mm == target.months[idry] &  # all days within same month as target value #nolint
-      #                      X >= th            &         # all wet days
-      #                      (c(0, X[-nr]) < th  |        # all days preceeded and/or succeeded by dry day #nolint
-      #                       c(X[-1], 0) < th))
-      #
-      #   droogmaken <- c(droogmaken, available[                    # determine which of all available days is closest
-      #     which(abs(X[available] - target.values[idry]) ==        #  to the target.value zit en put day(id) in vector
-      #             min(abs(X[available] - target.values[idry])))]) #  containing days to dry
-      #   X[droogmaken[idry]] <- 0  # dry specific day in vector of adjusted values
-      # }
       Y[toDry] <- 0  # actual drying of original time series
 
-        # END VERSION V1.1 #
-
-      # } else {
-      #
-      #   # VERSION V1.2 has alternative procedure (not documented in TR349)
-      #   # loop all months for which a reduction wdf is projected
-      #   for(im in which(wdf < 0)) {
-      #
-      #     rows    <- which(mm == im & Y >= th)                # identify all wet days in month <im>
-      #     Xw      <- sort(Y[rows])                            # sort wet days amounts
-      #     ndry    <- round((-1 * wdf[im] / 100) * length(Xw)) # number of wet days to dry
-      #
-      #     if(ndry > 1) {
-      #       c     <- Xw[ndry] # c = constant to subtract of daily values
-      #
-      #       if(abs(length(which(Xw <= c)) - ndry) >              # is it better to lower c with respect to tied data
-      #          abs(length(which(Xw < c)) - ndry)) {              # (i.e. days with same value) ?
-      #         c <- ifelse(Xw[1] == c, 0, max(Xw[which(Xw < c)])) # this is important in case of small <c> and small <ndry>
-      #       }
-      #
-      #       # actual drying
-      #       Y[rows] <- ifelse(Y[rows] <= c, 0, Y[rows] - c)
-      #
-      #       # adjust empirical PDF of 'dried' data to match original empirical PDF
-      #       n.wd    <- which(mm == im & Y >= th)    # wet days after drying (in contrast to rows)
-      #       PP.Yw   <- rank(Y[n.wd]) / length(n.wd) # wet days empirical frequency of non-exceedance
-      #       Y[n.wd] <- quantile(Xw, PP.Yw)          # apply distribution of Xw to frequencies of non-exceedance
-      #
-      #     }
-      #   }
-      # } # END VERSION V1.2 #
       obs[, is] <- Y
     } # END DRYING WET DAYS
   }
