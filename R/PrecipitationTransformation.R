@@ -148,28 +148,36 @@ WetDryDays <- function(fut, wdf, th, mm) {
         if (dwet > 0) {
 
           # select target values
-          step    <- length(Xw) / dwet                      # step size to step through sorted step
-          target.values <- Xw[round(((1:dwet) - 0.5) * step)] # determine target.values for month <im> #nolint
+          # step size to step through sorted step
+          step    <- length(Xw) / dwet
+          # determine target.values for month <im>
+          target.values <- Xw[round( ( (1:dwet) - 0.5) * step)]
           # (homogeneously selected from sorted subset)
           # select days to wet
-          preceding.wet <- cumsum(Xm >= th) + step / 2 # cumulative number of preceding wet days in month <im>
-          add     <- vector()                          # vector with days that should be wetted
+          # cumulative number of preceding wet days in month <im>
+          preceding.wet <- cumsum(Xm >= th) + step / 2
+          add     <- vector()   # vector with days that should be wetted
 
           for (id in 1:dwet) {
+            # select 'first' 'dry' day that succeeds a wet' day,
+            # for which <preceding.wet> exceeds the <step> size
+            # and add this day(id) to vector <add>
             add     <- c(add,
-                         which(Xm < th &                   # select 'first' 'dry' day that succeeds a wet' day,
-                               X1m >= th &                 # for which <preceding.wet> exceeds the <step> size
-                               preceding.wet >= step)[1])  # and add this day(id) to vector <add>
+                         which(Xm < th &
+                               X1m >= th &
+                               preceding.wet >= step)[1])
             if (is.na(add[id])) {
               add <- add[-id]
             } else {
-              preceding.wet <- preceding.wet - step        # and decrease vector <preceding.wet> with <step>
+              # and decrease vector <preceding.wet> with <step>
+              preceding.wet <- preceding.wet - step
               preceding.wet[1:add[id]] <- 0
             }
           }
 
           # Finally, target.values are assigned to selected days
-          # on the basis of the rank order of the precipitation amount of the preceding wet day
+          # on the basis of the rank order of the precipitation amount of the
+          # preceding wet day
           Y[rows[add]] <- target.values[rank(X1m[add], ties.method = "first")]
 
         } # dfwet > 0
@@ -184,9 +192,12 @@ CalculateClimatology <- function(obs, deltas, mm, th) {
 
   flog.debug("Calculate climatology")
 
-  # qq1   <- 0.99  # quantile of wet-day amounts that is used to estimate transformation coefficients
-  # qq2   <- 0.90  # quantile of wet-day amounts that is used to estimate qq1 (robustly)
-  # national median of monthly ratios between qq1 and qq2 for 240 precipitation stations
+  # qq1   <- 0.99  # quantile of wet-day amounts that is used to estimate
+  # transformation coefficients
+  # qq2   <- 0.90  # quantile of wet-day amounts that is used to estimate qq1
+  # (robustly)
+  # national median of monthly ratios between qq1 and qq2 for 240
+  # precipitation stations
   ratio <- c(2.22,
              2.271,
              2.366,
@@ -205,10 +216,12 @@ CalculateClimatology <- function(obs, deltas, mm, th) {
   # mean (mean.obs),
   # # wet-day mean (mwet.obs),
   # wet-day 99th percentile (q1.obs)
-  wdf.obs    <- as.matrix(aggregate(obs, by=list(mm), function(x)     mean(  x>=th       )))[, -1, drop = FALSE]
-  mean.obs   <- as.matrix(aggregate(obs, by=list(mm), function(x)     mean(x             )))[, -1, drop = FALSE]
-  #mwet.obs   <- as.matrix(aggregate(obs, by=list(mm), function(x)     mean(x[x>=th]     )))[, -1, drop = FALSE]
-  q2.obs     <- as.matrix(aggregate(obs, by=list(mm), function(x) quantile(x[x>=th], 0.90)))[, -1, drop = FALSE]
+  wdf.obs    <- as.matrix(aggregate(obs, by=list(mm),
+      function(x)     mean(  x>=th       )))[, -1, drop = FALSE]
+  mean.obs   <- as.matrix(aggregate(obs, by=list(mm),
+      function(x)     mean(x             )))[, -1, drop = FALSE]
+  q2.obs     <- as.matrix(aggregate(obs, by=list(mm),
+      function(x) quantile(x[x>=th], 0.90)))[, -1, drop = FALSE]
   q1.obs     <- q2.obs*ratio
 
   # apply deltas to observed climatology to obtain future climatology
@@ -239,7 +252,8 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
     Y <- fut[, is]
 
     for (im in 1:12) {
-      wet.im <- which(im == mm & Y >= th)  # identify all wet days within calendar month <im>
+      # identify all wet days within calendar month <im>
+      wet.im <- which(im == mm & Y >= th)
       Xm     <- Y[wet.im]                  # select all wet day amounts
 
       # get climatologies for reference and future period for the month at hand
@@ -257,7 +271,8 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
       # actual transformation of wet-day amounts (application of transformation function)
       Y[wet.im] <- ifelse(Xm < qobs, a * Xm^b, c*Xm)
 
-      Y[wet.im][which(Y[wet.im] < th)] <- th # prevent days being dried by the wet-day transformation
+      # prevent days being dried by the wet-day transformation
+      Y[wet.im][which(Y[wet.im] < th)] <- th
     }
     # END TRANSFORMATION WET-DAY AMOUNTS
     fut[, is] <- Y

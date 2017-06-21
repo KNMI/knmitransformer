@@ -9,8 +9,8 @@ context("rr transformation (lower) - Entire station set")
 
 subscenario <- "lower"
 input       <- ReadInput("rr", system.file("refdata",
-                                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
-                                           package="knmitransformer"))
+                    "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
+                    package="knmitransformer"))
 ofile       <- NA
 rounding    <- FALSE
 
@@ -24,7 +24,8 @@ test_that("2030 decadal prediction", {
                          horizon = horizon,
                          subscenario=subscenario,
                          rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14___2030_rr_lower.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/precipitation/KNMI14___2030_rr_lower.rds")
 })
 
 test_that("Scenario GL", {
@@ -36,7 +37,8 @@ test_that("Scenario GL", {
                          horizon = horizon,
                          subscenario=subscenario,
                          rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2050_rr_lower.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/precipitation/KNMI14_GL_2050_rr_lower.rds")
 
   horizon <- 2085
   tmp <- TransformPrecip(input=input,
@@ -45,7 +47,8 @@ test_that("Scenario GL", {
                          horizon = horizon,
                          subscenario=subscenario,
                          rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GL_2085_rr_lower.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/precipitation/KNMI14_GL_2085_rr_lower.rds")
 })
 
 test_that("Scenario GH", {
@@ -57,7 +60,8 @@ test_that("Scenario GH", {
                          horizon = horizon,
                          subscenario=subscenario,
                          rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2050_rr_lower.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/precipitation/KNMI14_GH_2050_rr_lower.rds")
 
   horizon <- 2085
   tmp <- TransformPrecip(input=input,
@@ -66,7 +70,8 @@ test_that("Scenario GH", {
                          horizon = horizon,
                          subscenario=subscenario,
                          rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_GH_2085_rr_lower.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/precipitation/KNMI14_GH_2085_rr_lower.rds")
 })
 
 test_that("Scenario WH", {
@@ -78,7 +83,8 @@ test_that("Scenario WH", {
                          horizon = horizon,
                          subscenario=subscenario,
                          rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WH_2050_rr_lower.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/precipitation/KNMI14_WH_2050_rr_lower.rds")
 
   horizon <- 2085
   tmp <- TransformPrecip(input=input,
@@ -87,7 +93,8 @@ test_that("Scenario WH", {
                          horizon = horizon,
                          subscenario=subscenario,
                          rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WH_2085_rr_lower.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/precipitation/KNMI14_WH_2085_rr_lower.rds")
 })
 
 test_that("Scenario WL", {
@@ -99,7 +106,8 @@ test_that("Scenario WL", {
                          horizon = horizon,
                          subscenario=subscenario,
                          rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WL_2050_rr_lower.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/precipitation/KNMI14_WL_2050_rr_lower.rds")
 
   horizon <- 2085
   tmp <- TransformPrecip(input=input,
@@ -108,5 +116,6 @@ test_that("Scenario WL", {
                          horizon = horizon,
                          subscenario=subscenario,
                          rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/precipitation/KNMI14_WL_2085_rr_lower.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/precipitation/KNMI14_WL_2085_rr_lower.rds")
 })

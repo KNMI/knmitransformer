@@ -38,14 +38,14 @@ rsds_trans_KNMI14 <- function(obs,
   for (is in 1:ns) {
     for (im in 1:12) {
 
-      days.im       <- which(mm == im)       # all days within in calendar month <im>
-      X             <- obs[days.im, is+1]     # select all obs in month <im> of station <is>
+      days.im  <- which(mm == im)    # all days within in calendar month <im>
+      X        <- obs[days.im, is+1] # select all obs in month <im> of station <is>
 
       # clear sky radiation for all days in month <im>
       Rx            <- 0.75 * ObtainAngotRadiation(obs[days.im, 1], lat[is])
 
       # determine coefficient a for transformation function
-      delta <- deltas[im, 2]/100                # relative change of average in month <im>
+      delta <- deltas[im, 2]/100     # relative change of average in month <im>
       if (delta > 0) {
         a <- BoundedScaling(X, Rx, delta)
       } else {

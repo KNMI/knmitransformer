@@ -54,7 +54,8 @@ test_that("2030 decadal prediction", {
                        regions = regions,
                        rounding = TRUE)
 
-  expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14___2030_evmk_rounded.rds")
+  expect_equal_to_reference(tmp,
+    "regressionOutput/evaporation/KNMI14___2030_evmk_rounded.rds")
 })
 
 test_that("Scenario WL", {

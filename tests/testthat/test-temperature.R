@@ -35,7 +35,8 @@ test_that("2030 decadal prediction", {
                        var=var,
                        regions=regions,
                        rounding=TRUE)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg_rounded.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14___2030_tg_rounded.rds")
 })
 
 test_that("Scenario WL", {
@@ -49,7 +50,8 @@ test_that("Scenario WL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tg.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WL_2050_tg.rds")
 
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
@@ -62,7 +64,8 @@ test_that("Scenario WL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2085_tg.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WL_2085_tg.rds")
 })
 
 test_that("Scenario WH", {
@@ -76,7 +79,8 @@ test_that("Scenario WH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tg.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WH_2050_tg.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -87,7 +91,8 @@ test_that("Scenario WH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2085_tg.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WH_2085_tg.rds")
 })
 
 test_that("Scenario GH", {
@@ -101,7 +106,8 @@ test_that("Scenario GH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tg.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GH_2050_tg.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -112,7 +118,8 @@ test_that("Scenario GH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tg.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GH_2085_tg.rds")
 })
 
 test_that("Scenario GL", {
@@ -126,7 +133,8 @@ test_that("Scenario GL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tg.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GL_2050_tg.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -137,7 +145,8 @@ test_that("Scenario GL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tg.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GL_2085_tg.rds")
 })
 
 # ------------------------------------------------------------------------------
@@ -160,7 +169,8 @@ test_that("2030 decadal prediction", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tx.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14___2030_tx.rds")
 })
 
 test_that("Scenario WL", {
@@ -174,7 +184,8 @@ test_that("Scenario WL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tx.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WL_2050_tx.rds")
 
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
@@ -187,7 +198,8 @@ test_that("Scenario WL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2085_tx.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WL_2085_tx.rds")
 })
 
 test_that("Scenario WH", {
@@ -201,7 +213,8 @@ test_that("Scenario WH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tx.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WH_2050_tx.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -212,7 +225,8 @@ test_that("Scenario WH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2085_tx.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WH_2085_tx.rds")
 })
 
 test_that("Scenario GH", {
@@ -226,7 +240,8 @@ test_that("Scenario GH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tx.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GH_2050_tx.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -237,7 +252,8 @@ test_that("Scenario GH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tx.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GH_2085_tx.rds")
 })
 
 test_that("Scenario GL", {
@@ -251,7 +267,8 @@ test_that("Scenario GL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tx.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GL_2050_tx.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -262,7 +279,8 @@ test_that("Scenario GL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tx.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GL_2085_tx.rds")
 })
 
 context("tn transformation - Entire station set")
@@ -284,7 +302,8 @@ test_that("2030 decadal prediction", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tn.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14___2030_tn.rds")
 })
 
 test_that("Scenario WL", {
@@ -298,7 +317,8 @@ test_that("Scenario WL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tn.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WL_2050_tn.rds")
 
   # Regression test based only on the smaller subset used also for the other
   # scenarios - on the web there is an extended version
@@ -311,7 +331,8 @@ test_that("Scenario WL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2085_tn.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WL_2085_tn.rds")
 })
 
 test_that("Scenario WH", {
@@ -325,7 +346,8 @@ test_that("Scenario WH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tn.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WH_2050_tn.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -336,7 +358,8 @@ test_that("Scenario WH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2085_tn.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WH_2085_tn.rds")
 })
 
 test_that("Scenario GH", {
@@ -350,7 +373,8 @@ test_that("Scenario GH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tn.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GH_2050_tn.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -361,7 +385,8 @@ test_that("Scenario GH", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tn.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GH_2085_tn.rds")
 })
 
 test_that("Scenario GL", {
@@ -375,7 +400,8 @@ test_that("Scenario GL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tn.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GL_2050_tn.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -386,7 +412,8 @@ test_that("Scenario GL", {
                        regions=regions,
                        rounding=rounding
   )
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tn.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GL_2085_tn.rds")
 })
 
 
@@ -432,7 +459,8 @@ test_that("Procedure works for one station as well", {
                                           var=var,
                                           regions=regions,
                        rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14___2030_tg___DeBilt.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14___2030_tg___DeBilt.rds")
 })
 
 test_that("Temperature regression test (with actual data) WH", {
@@ -447,7 +475,8 @@ test_that("Temperature regression test (with actual data) WH", {
                                           var=var,
                                           regions=regions,
                        rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2050_tg___DeBilt.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WH_2050_tg___DeBilt.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -457,7 +486,8 @@ test_that("Temperature regression test (with actual data) WH", {
                                           var=var,
                                           regions=regions,
                        rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WH_2085_tg___DeBilt.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WH_2085_tg___DeBilt.rds")
 })
 
 test_that("Temperature regression test (with actual data) GL", {
@@ -471,7 +501,8 @@ test_that("Temperature regression test (with actual data) GL", {
                                           var=var,
                                           regions=regions,
                        rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2050_tg___DeBilt.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GL_2050_tg___DeBilt.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -481,7 +512,8 @@ test_that("Temperature regression test (with actual data) GL", {
                                           var=var,
                                           regions=regions,
                        rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GL_2085_tg___DeBilt.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GL_2085_tg___DeBilt.rds")
 })
 
 test_that("Temperature regression test (with actual data) GH", {
@@ -495,7 +527,8 @@ test_that("Temperature regression test (with actual data) GH", {
                                           var=var,
                                           regions=regions,
                        rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2050_tg___DeBilt.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GH_2050_tg___DeBilt.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -505,7 +538,8 @@ test_that("Temperature regression test (with actual data) GH", {
                                           var=var,
                                           regions=regions,
                        rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_GH_2085_tg___DeBilt.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_GH_2085_tg___DeBilt.rds")
 })
 
 test_that("Temperature regression test (with actual data) WL", {
@@ -519,7 +553,8 @@ test_that("Temperature regression test (with actual data) WL", {
                                           var=var,
                                           regions=regions,
                        rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2050_tg___DeBilt.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WL_2050_tg___DeBilt.rds")
 
   horizon <- 2085
   tmp <- TransformTemp(input=input,
@@ -529,5 +564,6 @@ test_that("Temperature regression test (with actual data) WL", {
                                           var=var,
                                           regions=regions,
                        rounding = rounding)
-  expect_equal_to_reference(tmp, "regressionOutput/temperature/KNMI14_WL_2085_tg___DeBilt.rds")
+  expect_equal_to_reference(tmp,
+      "regressionOutput/temperature/KNMI14_WL_2085_tg___DeBilt.rds")
 })
