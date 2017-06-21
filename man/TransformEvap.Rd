@@ -4,13 +4,13 @@
 \alias{TransformEvap}
 \title{Calculation of Makkink evaporation}
 \usage{
-TransformEvap(input_tg, input_rsds, scenario = "GL", horizon = 2030,
+TransformEvap(inputTemp, inputRad, scenario = "GL", horizon = 2030,
   regions = "NLD", ofile = NA, rounding = TRUE)
 }
 \arguments{
-\item{input_tg}{Name of the input file for temperature}
+\item{inputTemp}{Name of the input file for temperature}
 
-\item{input_rsds}{Name of the input file for radiation}
+\item{inputRad}{Name of the input file for radiation}
 
 \item{scenario}{scenario ("GL"=DEFAULT, "GH", "WL", "WH")}
 
