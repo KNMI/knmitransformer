@@ -52,9 +52,10 @@ test_that("Input assertion", {
 
 test_that("Recognizes official files", {
   expect_true(CheckIfUserProvided("ab"))
-  expect_false(CheckIfUserProvided(system.file("refdata",
-                                               "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                                               package="knmitransformer")))
+  filename <- system.file("refdata",
+                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
+                          package="knmitransformer")
+  expect_false(CheckIfUserProvided(filename))
 })
 
 test_that("CheckRegions", {

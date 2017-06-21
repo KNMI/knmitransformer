@@ -103,7 +103,8 @@ TransformRadiation <- function(input,
   deltas <- ReadChangeFactors("rsds", scenario, horizon)
 
   # TRANSFORMATION
-  fut <- rsds_trans_KNMI14(obs = input$obs, deltas = deltas, lat = input$lat)
+  fut <- rsds_trans_KNMI14(obs = input$obs, deltas = deltas,
+                           lat = input$coords[, 1])
 
   result <- PrepareOutput(fut, "rsds", input$header, rounding)
 
