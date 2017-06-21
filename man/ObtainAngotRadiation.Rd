@@ -2,16 +2,16 @@
 % Please edit documentation in R/RadiationTransformation.R
 \name{ObtainAngotRadiation}
 \alias{ObtainAngotRadiation}
-\title{Obtain Top of Atmossphere radiation}
+\title{Obtain Top of Atmosphere radiation}
 \usage{
-ObtainAngotRadiation(datestring, lat)
+ObtainAngotRadiation(date, lat)
 }
 \arguments{
-\item{datestring}{integer in format YYYYMMDD}
+\item{date}{datestring format yyyymmdd}
 
 \item{lat}{latitude}
 }
 \description{
-Obtain Top of Atmossphere radiation
+Obtain Top of Atmosphere radiation
 }
 \keyword{internal}

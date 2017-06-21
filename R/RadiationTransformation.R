@@ -73,30 +73,19 @@ BoundedScaling <- function(X, Xmax, delta) {
   return(a)
 }
 
-#' Obtain Top of Atmossphere radiation
-#' @inheritParams daynumber
+#' Obtain Top of Atmosphere radiation
+#' @inheritParams ObtainDayNumber
 #' @param lat latitude
 #' @keywords internal
-ObtainAngotRadiation <- function(datestring, lat) {
-  Gsc <- 0.0820 # solar constant [MJ/m2/min]
+ObtainAngotRadiation <- function(date, lat) {
+  gsc <- 0.0820 # solar constant [MJ/m2/min]
   phi <- pi * lat / 180
-  J <- daynumber(datestring)
-  dr <- 1 + 0.033 * cos(2 * pi * J / 365)
-  delta <- 0.409 * sin(2 * pi * J / 365 - 1.39)
+  yDay <- ObtainDayNumber(datestring)
+  dr <- 1 + 0.033 * cos(2 * pi * yDay / 365)
+  delta <- 0.409 * sin(2 * pi * yDay / 365 - 1.39)
   omega <- acos(-tan(phi) * tan(delta))
-  Ra <- (24 * 60 / pi) * Gsc * dr * (omega * sin(phi) * sin(delta) +
+  Ra <- (24 * 60 / pi) * gsc * dr * (omega * sin(phi) * sin(delta) +
             sin(omega) * cos(phi) * cos(delta))
   1000 * Ra # unit is kJ/m2
 }
 
-#' Derive daynumber within year (1-366)
-#' @param datestring integer in format YYYYMMDD
-#' @keywords internal
-daynumber <- function(datestring) {
-  dpm <- c(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
-  id <- floor( datestring %%   100)
-  im <- floor( (datestring %% 10000)  / 100)
-  iy <- floor( datestring  / 10000) %%   4
-  dnr <- dpm[im] + id + (iy == 0 & im > 2)
-  return(dnr)
-}

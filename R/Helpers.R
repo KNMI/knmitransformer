@@ -300,8 +300,15 @@ CheckRegions <- function(regions, nStations) {
 }
 
 #' Obtains corresponding month
-#' @param day integer in format yyyymmdd
+#' @inheritParams ObtainDayNumber
 #' @keywords internal
-ObtainMonth <- function(day) {
-  (day %/% 100) %% 100  # the month that a day belongs to (1, 2, ..., 12)
+ObtainMonth <- function(date) {
+  month(anydate(date))
+}
+
+#' Obtains yday
+#' @param date datestring format yyyymmdd
+#' @keywords internal
+ObtainDayNumber <- function(date) {
+  yday(anydate(date))
 }

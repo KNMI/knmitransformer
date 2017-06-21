@@ -139,10 +139,10 @@ profvis({
 # Full evaporation transformation profile
 # ------------------------------------------------------------------------------
 
-input_tg   <- system.file("refdata",
+inputTemp   <- system.file("refdata",
                           "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
-input_rsds <- system.file("refdata",
+inputRad <- system.file("refdata",
                           "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
                           package="knmitransformer")
 scenario    <- "GL"
@@ -152,7 +152,21 @@ ofile       <- "tmp.txt" # output file - used only temporary
 
 profvis({
   library(knmitransformer)
-  TransformEvap(input_tg=input_tg, input_rsds=input_rsds, ofile=ofile,
+  TransformEvap(inputTemp=inputTemp, inputRad=inputRad, ofile=ofile,
                 scenario=scenario, horizon=horizon,
                 regio.file="stationstabel")
 })
+
+### daynumber
+input <- system.file("refdata",
+                     "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
+                     package="knmitransformer")
+input <- ReadInput("rsds", input)
+
+microbenchmark(
+  knmitransformer:::daynumber(input$obs[, 1]),
+  knmitransformer:::ObtainDayNumber(input$obs[, 1]),
+  #knmitransformer:::TransformWetDayAmounts2(fut[, -1][, 1 : 20], climatology, mm, th),
+  # knmitransformer:::TransformWetDayAmounts(fut[, -1][, 1 : 20], climatology, mm, th),
+  times = 10
+)
