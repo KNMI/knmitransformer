@@ -19,7 +19,7 @@ The knmitransformer pacakge can be used with both *standard stations*, as the on
 Standard Stations refer to the stations already used in the published climate scenarios with reference period 1981-2010. These reference data can be also found in the [KNMI'14-klimaatscenario's webpage](http://www.klimaatscenarios.nl/toekomstig_weer/transformatie/index.html)
 
  
-* **Precipitation**
+**Precipitation**
 
 To calculate transformed precipitation series using the reference data from the period 1981-2010, we have to specify the scenario, horizon, and subscenario (plese use ``` ?TransformPrecip ``` for more information) 
 ```{r precipSelection}
@@ -47,7 +47,7 @@ station number, rd northing and rd easting, lat and lon of each station.
 
 For Temperature, Radiation and Makkink evaporation similar steps are needed:
 
-* **Temperature**
+**Temperature**
 ```{r tempSelection}
 var      <- "tg" #for daily average temperature; other options are daily maximum (tx), minimum (tn) temperature
 input    <- system.file("refdata",
@@ -68,7 +68,7 @@ futTemp <- TransformTemp(input=input, ofile=NA,
 head(futTemp[, 1 : 5])
 ```
 
-* **Radiation**
+**Radiation**
 ```{r radSelection}
 input      <- system.file("refdata",
                         "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
@@ -86,7 +86,7 @@ futRad <- TransformRadiation(input=input, ofile=NA,
 head(futRad[, 1 : 5])
 ```
 
-* **Makkink evaporation**
+**Makkink evaporation**
 ```{r evapSelection}
 inputTemp   <- system.file("refdata",
                           "KNMI14____ref_tg___19810101-20101231_v3.2.txt",

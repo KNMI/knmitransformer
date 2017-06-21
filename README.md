@@ -37,13 +37,18 @@ The routines and the used change factors are developed for the use within the Ne
 
 One can inspect the official KNMI14 change factors / deltas in the 'inst/extData' folder.
 
+For examples of usage have a look at the vignette:
+
+``` r
+vignette("examples", "knmitransformer")
+```
+
 ### Note
 
--   Transformation of different time series/stations at once is possible; stations should be separated as columns in the inputfile
--   GLOBAL RADIATION needs "latitude" as input; and this should be provided (for each station/column) in the fifth line in de header of the input file.
--   TEMPERATURE distinguishes between minimum temperature (tn), mean temperature (tg) and maximum temperature (tx); this should be specified in the function call
--   TEMPERATURE and EVAPORATION need the "station number" as input. The station table makes the link between station number and region within the Netherlands. For the reference data sets the stationtable is already included, see
-    `ShowStationTable()`. *Always check* if the station that you want to transform is listed there, if not you have to create a new station table file and include the file name as argument.
+-   Transformation of different time series/stations at once is possible.
+-   TEMPERATURE distinguishes between minimum temperature (tn), mean temperature (tg) and maximum temperature (tx); this should be specified in the function call.
+-   TEMPERATURE and EVAPORATION need the region as input. The station table makes the link between station number and region within the Netherlands. For the reference data sets the stationtable is used to make a link between the station number and the region, see
+    `ShowStationTable()`. *Always check* if the station that you want to transform is listed there, if not you have to include the region as argument.
 -   For PRECIPITATION there are three different subscenarios for each scenario available, based on resp. the 'lower', 'centr' (=central) and 'upper' estimate of the change in extreme daily precipitation. This should be specified in the function call, the default is set to 'centr'.
 
 ### Reference
