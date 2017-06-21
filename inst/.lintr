@@ -1,8 +1,6 @@
 linters: with_defaults(
     infix_spaces_linter = NULL, # 569
     line_length_linter = NULL, # 189
-    assignment_linter = NULL, # 147
-    commas_linter = NULL, # 77
     snake_case_linter = NULL, # should be incorporated
     camel_case_linter = NULL, # 60
     commented_code_linter = NULL, # 52

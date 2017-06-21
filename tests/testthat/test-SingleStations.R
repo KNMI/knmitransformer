@@ -11,14 +11,14 @@ input1 <- ReadInput("rr", system.file("refdata",
                             package="knmitransformer"))
 
 input2 <- input1
-input2$header <- input2$header[, c(1,10)]
-input2$obs    <- input2$obs[, c(1,10)]
+input2$header <- input2$header[, c(1, 10)]
+input2$obs    <- input2$obs[, c(1, 10)]
 
 test_that("precipitation", {
   input1Trans <- TransformPrecip(input1, rounding = rounding)
   input2Trans <- TransformPrecip(input2, rounding = rounding)
 
-  expect_true(all(input1Trans[, c(1,10)] == input2Trans))
+  expect_true(all(input1Trans[, c(1, 10)] == input2Trans))
 })
 
 
@@ -32,14 +32,14 @@ input1     <- ReadInput(var, system.file("refdata",
                 package="knmitransformer"))
 
 input2 <- input1
-input2$header <- input2$header[, c(1,10)]
-input2$obs    <- input2$obs[, c(1,10)]
+input2$header <- input2$header[, c(1, 10)]
+input2$obs    <- input2$obs[, c(1, 10)]
 
 test_that("temperature", {
   input1Trans <- TransformTemp(input1, var = var, rounding = rounding)
   input2Trans <- TransformTemp(input2, var = var, rounding = rounding)
 
-  expect_true(all(input1Trans[, c(1,10)] == input2Trans))
+  expect_true(all(input1Trans[, c(1, 10)] == input2Trans))
 })
 
 ## -----------------------------------------------------------------------------
@@ -50,13 +50,13 @@ input1     <- ReadInput("rsds", system.file("refdata",
                         package="knmitransformer"))
 
 input2 <- input1
-input2$header <- input2$header[, c(1,10)]
-input2$obs    <- input2$obs[, c(1,10)]
-input2$coords <- input2$coords[10-1, , drop = FALSE]
+input2$header <- input2$header[, c(1, 10)]
+input2$obs    <- input2$obs[, c(1, 10)]
+input2$coords <- input2$coords[10-1, 1:2, drop = FALSE]
 
 test_that("radiation", {
   input1Trans <- TransformRadiation(input1, rounding = rounding)
   input2Trans <- TransformRadiation(input2, rounding = rounding)
 
-  expect_true(all(input1Trans[, c(1,10)] == input2Trans))
+  expect_true(all(input1Trans[, c(1, 10)] == input2Trans))
 })

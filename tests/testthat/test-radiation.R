@@ -14,9 +14,8 @@ ofile    <- NA
 rounding <- FALSE
 
 test_that("2030 decadal prediction", {
-  scenario="GL"
-
-  horizon = 2030
+  scenario <- "GL"
+  horizon  <- 2030
   tmp <- TransformRadiation(input=input,
                             ofile="tmp.txt",
                             scenario=scenario,
@@ -35,9 +34,8 @@ test_that("2030 decadal prediction", {
 })
 
 test_that("Scenario GL", {
-  scenario="GL"
-
-  horizon = 2050
+  scenario <- "GL"
+  horizon  <- 2050
   tmp <- TransformRadiation(input=input,
                             ofile=ofile,
                             scenario=scenario,
@@ -46,7 +44,7 @@ test_that("Scenario GL", {
   expect_equal_to_reference(tmp,
       "regressionOutput/radiation/KNMI14_GL_2050_rsds.rds")
 
-  horizon = 2085
+  horizon <- 2085
   tmp <- TransformRadiation(input=input,
                             ofile=ofile,
                             scenario=scenario,
@@ -57,9 +55,8 @@ test_that("Scenario GL", {
 })
 
 test_that("Scenario GH", {
-  scenario="GH"
-
-  horizon = 2050
+  scenario <- "GH"
+  horizon  <- 2050
   tmp <- TransformRadiation(input=input,
                             ofile=ofile,
                             scenario=scenario,
@@ -68,7 +65,7 @@ test_that("Scenario GH", {
   expect_equal_to_reference(tmp,
       "regressionOutput/radiation/KNMI14_GH_2050_rsds.rds")
 
-  horizon = 2085
+  horizon <- 2085
   tmp <- TransformRadiation(input=input,
                             ofile=ofile,
                             scenario=scenario,
@@ -79,9 +76,8 @@ test_that("Scenario GH", {
 })
 
 test_that("Scenario WH 2050", {
-  scenario="WH"
-
-  horizon = 2050
+  scenario <- "WH"
+  horizon  <- 2050
   tmp <- TransformRadiation(input=input,
                             ofile=ofile,
                             scenario=scenario,
@@ -92,9 +88,8 @@ test_that("Scenario WH 2050", {
 })
 
 test_that("Scenario WH 2085", {
-  #skip_on_travis()
-  scenario="WH"
-  horizon = 2085
+  scenario <- "WH"
+  horizon  <- 2085
   tmp <- TransformRadiation(input=input,
                             ofile=ofile,
                             scenario=scenario,
@@ -106,9 +101,8 @@ test_that("Scenario WH 2085", {
 })
 
 test_that("Scenario WL", {
-  scenario="WL"
-
-  horizon = 2050
+  scenario <- "WL"
+  horizon  <- 2050
   tmp <- TransformRadiation(input=input,
                             ofile=ofile,
                             scenario=scenario,
@@ -117,7 +111,7 @@ test_that("Scenario WL", {
   expect_equal_to_reference(tmp,
       "regressionOutput/radiation/KNMI14_WL_2050_rsds.rds")
 
-  horizon = 2085
+  horizon <- 2085
   tmp <- TransformRadiation(input=input,
                             ofile=ofile,
                             scenario=scenario,
@@ -133,8 +127,8 @@ test_that("Check input latitude", {
                           package="knmitransformer"))
 
   input2 <- input1
-  input2$header <- input2$header[, c(1,10)]
-  input2$obs    <- input2$obs[, c(1,10)]
+  input2$header <- input2$header[, c(1, 10)]
+  input2$obs    <- input2$obs[, c(1, 10)]
 
   expect_error(TransformRadiation(input2, rounding = rounding),
                "Number of stations does not match length of latitude vector.")

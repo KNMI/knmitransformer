@@ -1,4 +1,4 @@
-makkink <- function(Tg,Q) {
+makkink <- function(Tg, Q) {
   # http://projects.knmi.nl/hawa/pdf/Handboek_H10.pdf onder 5.Herleiding parameters
   # Tg = mean daily temperature [oC] Q = global radiation [kJ/m2]
   rho    <- 1000                              # water mass density  [kg/m3]

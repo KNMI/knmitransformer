@@ -34,7 +34,7 @@ rr_trans_KNMI14 <- function(obs, deltas) {
 
   # TRANSFORMATION
   # apply transformation per station / time series
-  fut[, -1] <- DryWetDays(obs      , deltas$wdf, th, mm)
+  fut[, -1] <- DryWetDays(obs,                     deltas$wdf, th, mm)
   fut[, -1] <- WetDryDays(fut[, -1, drop = FALSE], deltas$wdf, th, mm)
   fut[, -1] <- TransformWetDayAmounts(fut[, -1, drop = FALSE], climatology, mm, th)
 
@@ -226,10 +226,10 @@ CalculateClimatology <- function(obs, deltas, mm, th) {
   # mean (mean.obs),
   # # wet-day mean (mwet.obs),
   # wet-day 99th percentile (q1.obs)
-  wdf.obs    <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(  x>=th      )))[,-1, drop = FALSE]
-  mean.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x            )))[,-1, drop = FALSE]
-  #mwet.obs   <- as.matrix(aggregate(obs, by=list(mm),function(x)     mean(x[x>=th]     )))[,-1, drop = FALSE]
-  q2.obs     <- as.matrix(aggregate(obs, by=list(mm),function(x) quantile(x[x>=th],0.90)))[,-1, drop = FALSE]
+  wdf.obs    <- as.matrix(aggregate(obs, by=list(mm), function(x)     mean(  x>=th       )))[, -1, drop = FALSE]
+  mean.obs   <- as.matrix(aggregate(obs, by=list(mm), function(x)     mean(x             )))[, -1, drop = FALSE]
+  #mwet.obs   <- as.matrix(aggregate(obs, by=list(mm), function(x)     mean(x[x>=th]     )))[, -1, drop = FALSE]
+  q2.obs     <- as.matrix(aggregate(obs, by=list(mm), function(x) quantile(x[x>=th], 0.90)))[, -1, drop = FALSE]
   q1.obs     <- q2.obs*ratio
 
   # apply deltas to observed climatology to obtain future climatology
@@ -265,9 +265,9 @@ TransformWetDayAmounts <- function(fut, climatology, mm, th) {
 
       # get climatologies for reference and future period for the month at hand
       #mobs   <- climatology$mwet.obs[im,is]
-      qobs   <- climatology$qobs[im,is]
-      mfut   <- climatology$mwet.fut[im,is]
-      qfut   <- climatology$qfut[im,is]
+      qobs   <- climatology$qobs[im, is]
+      mfut   <- climatology$mwet.fut[im, is]
+      qfut   <- climatology$qfut[im, is]
 
       b <- floor(DeterminePowerLawExponentCpp(Xm, qfut, qobs, mfut) * 1000) / 1000
 

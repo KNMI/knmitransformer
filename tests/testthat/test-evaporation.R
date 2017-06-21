@@ -33,9 +33,8 @@ regions  <- MatchRegionsOnStationId(ReadInput("tg", input_tg)$header[1, -1])
 rounding <- FALSE
 
 test_that("2030 decadal prediction", {
-  scenario="GL"
-
-  horizon = 2030
+  scenario <- "GL"
+  horizon  <- 2030
 
 
   tmp <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
@@ -59,9 +58,8 @@ test_that("2030 decadal prediction", {
 })
 
 test_that("Scenario WL", {
-  scenario="WL"
-
-  horizon = 2050
+  scenario <- "WL"
+  horizon  <- 2050
   tmp <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
                        ofile=ofile,
                        scenario=scenario,
@@ -71,7 +69,7 @@ test_that("Scenario WL", {
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WL_2050_evmk.rds")
 
   # Difference of 0.07 instead of the usual 0.01
-  horizon =  2085
+  horizon <-  2085
   tmp <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
                        ofile=ofile,
                        scenario=scenario,
@@ -82,9 +80,8 @@ test_that("Scenario WL", {
 })
 
 test_that("Scenario WH", {
-  scenario="WH"
-
-  horizon = 2050
+  scenario <- "WH"
+  horizon  <- 2050
   tmp <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
                        ofile=ofile,
                        scenario=scenario,
@@ -93,7 +90,7 @@ test_that("Scenario WH", {
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_WH_2050_evmk.rds")
 
-  horizon =  2085
+  horizon <-  2085
   tmp <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
                        ofile=ofile,
                        scenario=scenario,
@@ -104,9 +101,8 @@ test_that("Scenario WH", {
 })
 
 test_that("Scenario GH", {
-  scenario="GH"
-
-  horizon = 2050
+  scenario <- "GH"
+  horizon  <- 2050
   tmp <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
                        ofile=ofile,
                        scenario=scenario,
@@ -115,7 +111,7 @@ test_that("Scenario GH", {
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GH_2050_evmk.rds")
 
-  horizon =  2085
+  horizon <-  2085
   tmp <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
                        ofile=ofile,
                        scenario=scenario,
@@ -126,9 +122,8 @@ test_that("Scenario GH", {
 })
 
 test_that("Scenario GL", {
-  scenario="GL"
-
-  horizon = 2050
+  scenario <- "GL"
+  horizon  <- 2050
   tmp <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
                        ofile=ofile,
                        scenario=scenario,
@@ -137,7 +132,7 @@ test_that("Scenario GL", {
                        rounding = rounding)
   expect_equal_to_reference(tmp, "regressionOutput/evaporation/KNMI14_GL_2050_evmk.rds")
 
-  horizon =  2085
+  horizon <- 2085
   tmp <- TransformEvap(input_tg=input_tg, input_rsds=input_rsds,
                        ofile=ofile,
                        scenario=scenario,
