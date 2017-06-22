@@ -80,7 +80,7 @@ BoundedScaling <- function(X, Xmax, delta) {
 ObtainAngotRadiation <- function(date, lat) {
   gsc <- 0.0820 # solar constant [MJ/m2/min]
   phi <- pi * lat / 180
-  yDay <- ObtainDayNumber(datestring)
+  yDay <- ObtainDayNumber(date)
   dr <- 1 + 0.033 * cos(2 * pi * yDay / 365)
   delta <- 0.409 * sin(2 * pi * yDay / 365 - 1.39)
   omega <- acos(-tan(phi) * tan(delta))
