@@ -88,4 +88,3 @@ ObtainAngotRadiation <- function(date, lat) {
             sin(omega) * cos(phi) * cos(delta))
   1000 * Ra # unit is kJ/m2
 }
-
