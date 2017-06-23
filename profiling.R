@@ -6,9 +6,7 @@ flog.threshold(WARN)
 # flog.threshold(DEBUG)
 
 subscenario <- "centr"
-input       <- system.file("refdata",
-                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
-                           package="knmitransformer")
+input       <- KnmiRefFile("KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt")
 ofile       <- "tmp.txt" # output file - used only temporary
 scenario    <- "GL"
 horizon     <- 2050
@@ -105,9 +103,7 @@ microbenchmark(
 # ------------------------------------------------------------------------------
 
 var        <- "tg"
-input      <- system.file("refdata",
-                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                          package="knmitransformer")
+input      <- KnmiRefFile("KNMI14____ref_tg___19810101-20101231_v3.2.txt")
 regio.file <- "stationstabel"
 scenario   <- "GL"
 horizon    <- 2050
@@ -122,9 +118,7 @@ profvis({
 # ------------------------------------------------------------------------------
 # Full radiation transformation profile
 # ------------------------------------------------------------------------------
-input    <- system.file("refdata",
-                        "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
-                        package="knmitransformer")
+input    <- KnmiRefFile("KNMI14____ref_rsds___19810101-20101231_v3.2.txt")
 scenario <- "GL"
 horizon  <- 2030
 ofile    <- "tmp.txt" # output file - used only temporary
@@ -139,12 +133,8 @@ profvis({
 # Full evaporation transformation profile
 # ------------------------------------------------------------------------------
 
-inputTemp   <- system.file("refdata",
-                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                          package="knmitransformer")
-inputRad <- system.file("refdata",
-                          "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
-                          package="knmitransformer")
+inputTemp   <- KnmiRefFile("KNMI14____ref_tg___19810101-20101231_v3.2.txt")
+inputRad    <- KnmiRefFile("KNMI14____ref_rsds___19810101-20101231_v3.2.txt")
 scenario    <- "GL"
 horizon     <- 2050
 regio.file  <- "stationstabel"
@@ -158,9 +148,7 @@ profvis({
 })
 
 ### daynumber
-input <- system.file("refdata",
-                     "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
-                     package="knmitransformer")
+input <- KnmiRefFile("KNMI14____ref_rsds___19810101-20101231_v3.2.txt")
 input <- ReadInput("rsds", input)
 
 microbenchmark(

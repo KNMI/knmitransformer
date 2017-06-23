@@ -22,15 +22,11 @@ test_that("differences in header are discovered", {
 
 context("evmk transformation - Entire station set")
 
-inputTemp   <- system.file("refdata",
-                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                          package = "knmitransformer")
-inputRad <- system.file("refdata",
-                          "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
-                          package = "knmitransformer")
-ofile    <- NA
-regions  <- MatchRegionsOnStationId(ReadInput("tg", inputTemp)$header[1, -1])
-rounding <- FALSE
+inputTemp <- KnmiRefFile("KNMI14____ref_tg___19810101-20101231_v3.2.txt")
+inputRad  <- KnmiRefFile("KNMI14____ref_rsds___19810101-20101231_v3.2.txt")
+ofile     <- NA
+regions   <- MatchRegionsOnStationId(ReadInput("tg", inputTemp)$header[1, -1])
+rounding  <- FALSE
 
 test_that("2030 decadal prediction", {
   scenario <- "GL"

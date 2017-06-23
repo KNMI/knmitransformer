@@ -8,9 +8,7 @@ library(data.table)
 context("tg transformation - Entire station set")
 
 var        <- "tg"
-input      <- system.file("refdata",
-                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                          package = "knmitransformer")
+input      <- KnmiRefFile("KNMI14____ref_tg___19810101-20101231_v3.2.txt")
 ofile      <- NA
 regions    <- MatchRegionsOnStationId(ReadInput(var, input)$header[1, -1])
 rounding   <- FALSE
@@ -153,9 +151,7 @@ test_that("Scenario GL", {
 context("tx transformation - Entire station set")
 
 var        <- "tx"
-input      <- system.file("refdata",
-                          "KNMI14____ref_tx___19810101-20101231_v3.2.txt",
-                          package = "knmitransformer")
+input      <- KnmiRefFile("KNMI14____ref_tx___19810101-20101231_v3.2.txt")
 ofile      <- NA # output file - used only temporary
 
 test_that("2030 decadal prediction", {
@@ -286,9 +282,7 @@ test_that("Scenario GL", {
 context("tn transformation - Entire station set")
 
 var        <- "tn"
-input      <- system.file("refdata",
-                          "KNMI14____ref_tn___19810101-20101231_v3.2.txt",
-                          package = "knmitransformer")
+input      <- KnmiRefFile("KNMI14____ref_tn___19810101-20101231_v3.2.txt")
 ofile      <- NA # output file - used only temporary
 
 test_that("2030 decadal prediction", {

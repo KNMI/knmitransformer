@@ -312,3 +312,10 @@ ObtainMonth <- function(date) {
 ObtainDayNumber <- function(date) {
   yday(anydate(date))
 }
+
+#' KNMI reference files
+#' @param baseName base name of file
+#' @export
+KnmiRefFile <- function(baseName) {
+  system.file("refdata", baseName, package = "knmitransformer")
+}
