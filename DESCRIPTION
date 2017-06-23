@@ -20,7 +20,8 @@ Imports:
     Rcpp,
     sp,
     rgdal,
-    anytime
+    anytime,
+    purrr
 LazyData: TRUE
 RoxygenNote: 6.0.1.9000
 Roxygen: list(markdown = TRUE)
