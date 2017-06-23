@@ -8,9 +8,8 @@ library(data.table)
 context("rr transformation (upper) - Entire station set")
 
 subscenario <- "upper"
-input       <- ReadInput("rr", system.file("refdata",
-                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
-                           package = "knmitransformer"))
+input       <- ReadInput("rr",
+    KnmiRefFile("KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"))
 ofile       <- NA
 delta.file  <- NA
 rounding    <- FALSE
