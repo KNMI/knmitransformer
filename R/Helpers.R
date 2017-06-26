@@ -154,7 +154,7 @@ WriteOutput <- function(var, ofile, version, sc, p, H.comments, dat,
   if (var == "rr") {
     writeLines(paste0("# Subscenario: ", subscenario))
   }
-  writeLines(paste0("# Version ", version))
+  writeLines(paste0("# Version: ", version))
   writeLines(timestamp(stamp = format(Sys.time(), "%B %d, %Y"),
                        prefix = "# Created: ", suffix = "", quiet = TRUE))
   writeLines("#")
