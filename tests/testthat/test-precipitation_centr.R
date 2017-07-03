@@ -8,18 +8,15 @@ library(data.table)
 context("rr transformation (centr) - Entire station set")
 
 subscenario <- "centr"
-input       <- ReadInput("rr", system.file("refdata",
-                  "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
-                  package = "knmitransformer"))
+input       <- ReadInput("rr",
+    KnmiRefFile("KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"))
 ofile       <- NA
 rounding    <- FALSE
 
 test_that("2030 decadal prediction", {
   scenario <- "GL"
   horizon  <- 2030
-  tmp <- TransformPrecip(input = system.file("refdata",
-                            "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
-                            package = "knmitransformer"),
+  tmp <- TransformPrecip(input = KnmiRefFile("KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"), #nolint
                          ofile = "tmp.txt",
                          scenario = scenario,
                          horizon = horizon,

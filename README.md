@@ -3,7 +3,7 @@
 knmitransformer
 ===============
 
-[![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip) [![Travis-CI Build Status](https://travis-ci.org/MartinRoth/knmitransformer.svg?branch=master)](https://travis-ci.org/MartinRoth/knmitransformer) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/MartinRoth/knmitransformer?branch=master&svg=true)](https://ci.appveyor.com/project/MartinRoth/knmitransformer) [![Coverage Status](https://img.shields.io/codecov/c/github/MartinRoth/knmitransformer/master.svg)](https://codecov.io/github/MartinRoth/knmitransformer?branch=master)
+[![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip) [![Travis-CI Build Status](https://travis-ci.org/KNMI/knmitransformer.svg?branch=master)](https://travis-ci.org/KNMI/knmitransformer) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/KNMI/knmitransformer?branch=master&svg=true)](https://ci.appveyor.com/project/KNMI/knmitransformer) [![Coverage Status](https://img.shields.io/codecov/c/github/KNMI/knmitransformer/master.svg)](https://codecov.io/github/KNMI/knmitransformer?branch=master)
 
 Please, if there is an issue of any kind, file it [here](https://github.com/MartinRoth/knmitransformer/issues)
 
@@ -13,13 +13,13 @@ To install the package use:
 
 ``` r
 library(devtools)
-install_github("MartinRoth/knmitransformer")
+install_github("KNMI/knmitransformer")
 ```
 
 or
 
 ``` r
-devtools::install_github("MartinRoth/knmitransformer")
+devtools::install_github("KNMI/knmitransformer")
 ```
 
 Note that the installation (i.e. the download) can take quite some time, owing to the large test folder.

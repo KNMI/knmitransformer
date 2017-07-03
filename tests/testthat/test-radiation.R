@@ -7,9 +7,7 @@ library(data.table)
 
 context("rsds transformation - Entire station set")
 
-input    <- system.file("refdata",
-                        "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
-                        package = "knmitransformer")
+input    <- KnmiRefFile("KNMI14____ref_rsds___19810101-20101231_v3.2.txt")
 ofile    <- NA
 rounding <- FALSE
 
@@ -122,9 +120,8 @@ test_that("Scenario WL", {
 })
 
 test_that("Check input latitude", {
-  input1     <- ReadInput("rsds", system.file("refdata",
-                          "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
-                          package = "knmitransformer"))
+  filename <- KnmiRefFile("KNMI14____ref_rsds___19810101-20101231_v3.2.txt")
+  input1     <- ReadInput("rsds", filename)
 
   input2 <- input1
   input2$header <- input2$header[, c(1, 10)]

@@ -6,9 +6,8 @@ rounding <- FALSE
 ## precipitation
 ## -----------------------------------------------------------------------------
 
-input1 <- ReadInput("rr", system.file("refdata",
-                            "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
-                            package = "knmitransformer"))
+input1 <- ReadInput("rr",
+    KnmiRefFile("KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt"))
 
 input2 <- input1
 input2$header <- input2$header[, c(1, 10)]
@@ -27,9 +26,8 @@ test_that("precipitation", {
 ## -----------------------------------------------------------------------------
 var        <- "tg"
 regio.file <- "stationstabel" # table that links stations to region
-input1     <- ReadInput(var, system.file("refdata",
-                "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                package = "knmitransformer"))
+input1     <- ReadInput(var,
+    KnmiRefFile("KNMI14____ref_tg___19810101-20101231_v3.2.txt"))
 
 input2 <- input1
 input2$header <- input2$header[, c(1, 10)]
@@ -45,9 +43,8 @@ test_that("temperature", {
 ## -----------------------------------------------------------------------------
 ## radiation
 ## -----------------------------------------------------------------------------
-input1     <- ReadInput("rsds", system.file("refdata",
-                        "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
-                        package = "knmitransformer"))
+input1     <- ReadInput("rsds",
+    KnmiRefFile("KNMI14____ref_rsds___19810101-20101231_v3.2.txt"))
 
 input2 <- input1
 input2$header <- input2$header[, c(1, 10)]

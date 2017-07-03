@@ -59,9 +59,7 @@ test_that("Input assertion", {
 
 test_that("Recognizes official files", {
   expect_true(CheckIfUserProvided("ab"))
-  filename <- system.file("refdata",
-                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                          package = "knmitransformer")
+  filename <- KnmiRefFile("KNMI14____ref_tg___19810101-20101231_v3.2.txt")
   expect_false(CheckIfUserProvided(filename))
 })
 

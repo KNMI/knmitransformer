@@ -24,9 +24,7 @@ Standard Stations refer to the stations already used in the published climate sc
 To calculate transformed precipitation series using the reference data from the period 1981-2010, we have to specify the scenario, horizon, and subscenario (plese use ``` ?TransformPrecip ``` for more information) 
 ```{r precipSelection}
 subscenario <- "centr"
-input       <- system.file("refdata",
-                           "KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt",
-                           package="knmitransformer")
+input       <- KnmiRefFile("KNMI14____ref_rrcentr___19810101-20101231_v3.2.txt")
 ofile       <- "tmp.txt" # output file - used only temporary
 scenario    <- "GL"
 horizon     <- 2030
@@ -50,9 +48,7 @@ For Temperature, Radiation and Makkink evaporation similar steps are needed:
 **Temperature**
 ```{r tempSelection}
 var      <- "tg" #for daily average temperature; other options are daily maximum (tx), minimum (tn) temperature
-input    <- system.file("refdata",
-                        "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                        package="knmitransformer")
+input    <- KnmiRefFile("KNMI14____ref_tg___19810101-20101231_v3.2.txt")
 regions  <-  MatchRegionsOnStationId(ReadInput(var, input)$header[1, -1])
 scenario <- "GL"
 horizon  <- 2030
@@ -70,11 +66,9 @@ head(futTemp[, 1 : 5])
 
 **Radiation**
 ```{r radSelection}
-input      <- system.file("refdata",
-                        "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
-                        package="knmitransformer")
-scenario   <- "GL"
-horizon    <- 2030
+input    <- KnmiRefFile("KNMI14____ref_rsds___19810101-20101231_v3.2.txt")
+scenario <- "GL"
+horizon  <- 2030
 ```
 
 ```{r radTransformation}
@@ -88,15 +82,11 @@ head(futRad[, 1 : 5])
 
 **Makkink evaporation**
 ```{r evapSelection}
-inputTemp   <- system.file("refdata",
-                          "KNMI14____ref_tg___19810101-20101231_v3.2.txt",
-                          package="knmitransformer")
-inputRad <- system.file("refdata",
-                        "KNMI14____ref_rsds___19810101-20101231_v3.2.txt",
-                        package="knmitransformer")
-scenario   <- "GL"
-horizon    <- 2030
-regions  <-  MatchRegionsOnStationId(ReadInput("tg", inputTemp)$header[1, -1])
+inputTemp <- KnmiRefFile("KNMI14____ref_tg___19810101-20101231_v3.2.txt")
+inputRad  <- KnmiRefFile("KNMI14____ref_rsds___19810101-20101231_v3.2.txt")
+scenario  <- "GL"
+horizon   <- 2030
+regions   <-  MatchRegionsOnStationId(ReadInput("tg", inputTemp)$header[1, -1])
 ```
 
 ```{r evapTransformation}
