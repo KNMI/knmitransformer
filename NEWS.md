@@ -1,3 +1,16 @@
+### Version 3.2.1
+
+- Switched version number to get in line with the previously used verison numbering (in the data files)
+
+Compared to the data version 3.2 (which was added manually) the major differences are
+- A switch in the computation of the Angot radiation from 0.7 to 0.75 (see below at point 0.1.6), this was a typo in the original code. The change affects radiation and evaporation.
+- Moreover, there were several small changes which were accounted for in an update in 2015. However, several files were not updated during this last update in 2015 (e.g. evaporation). 
+- For reproducibility the version in the data file will now link to an existing version number of the package.
+- To get consistency, all files (will be) updated on the [webpage](http://www.klimaatscenarios.nl/toekomstig_weer/transformatie/index.html) this time. In future only affected variables have to be updated, see for example the create file in https://github.com/bessembi/knmitransformerReeksen/tree/develop/rrcentr.
+
+
+
+
 ### Version 0.2.4
 
 - made GL with horizon 2030 the default scenario (for horizon 2030 the choice
